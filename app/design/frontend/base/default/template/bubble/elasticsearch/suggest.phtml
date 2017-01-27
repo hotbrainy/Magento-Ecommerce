@@ -1,0 +1,14 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ *
+ * @var $this Bubble_Elasticsearch_Block_Catalogsearch_Suggest
+ */
+$suggestion = $this->getSuggestion();
+?>
+<?php if (!empty($suggestion)): ?>
+    <h2><em><?php echo $this->__('Did you mean %s?', '<a href="'. $this->getQueryUrl($suggestion) .'">'. $suggestion .'</a>'); ?></em></h2>
+<?php endif; ?>

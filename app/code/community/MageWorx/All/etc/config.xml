@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ * All Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_All
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <modules>
+        <MageWorx_All>
+            <version>2.0.4</version>
+        </MageWorx_All>
+    </modules>
+    <admin>
+        <routers>
+            <!--leave for backward compatibility with old module versions which use mageworxadmin router-->
+            <mageworxadmin>
+                <use>admin</use>
+                <args>
+                    <frontName>mageworxadmin</frontName>
+                </args>
+            </mageworxadmin>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MageWorx_All after="Mage_Adminhtml">MageWorx_All_Adminhtml</MageWorx_All>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <MageWorx_All>
+                    <files>
+                        <default>MageWorx_All.csv</default>
+                    </files>
+                </MageWorx_All>
+            </modules>
+        </translate>
+        <events>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <mageworx_all_config>
+                        <class>MageWorx_All_Model_Observer</class>
+                        <method>restrictGroupsAcl</method>
+                    </mageworx_all_config>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+        </events>
+    </adminhtml>
+	<global>
+		<blocks>
+		  <mageworx_all>
+			<class>MageWorx_All_Block</class>
+		  </mageworx_all>
+		</blocks>
+        <models>
+            <mageworx_all>
+                <class>MageWorx_All_Model</class>
+            </mageworx_all>
+        </models>
+		<helpers>
+			<mageworx_all>
+                <class>MageWorx_All_Helper</class>
+			</mageworx_all>
+		</helpers>
+	    <template>
+            <email>
+                <mageworx_support_email_template>
+                    <label>MageWorx Support</label>
+                    <file>mageworx/all/mageworx_support.html</file>
+                    <type>text</type>
+                </mageworx_support_email_template>
+            </email>
+        </template>
+	</global>
+	
+	<default>
+		<mageworx_all>
+            <support>
+                <email><![CDATA[c3VwcG9ydEBtYWdld29yeC5jb20=]]></email>
+                <name>MageWorx Support</name>
+                <template>mageworx_support_email_template</template>
+            </support>
+		</mageworx_all>
+	</default>
+</config>

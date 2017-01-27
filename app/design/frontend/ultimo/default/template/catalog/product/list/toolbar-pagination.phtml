@@ -1,0 +1,78 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+?>
+<?php
+/**
+ * - Pager moved after sorter. Show pager only if there are pages.
+ * - Amount and limiter moved inside sorter
+ * - Changed order of the main elements
+ */
+?>
+<style>
+.amount { display:none; }
+</style>
+<?php
+if(isset($_GET['p']) && $_GET['p'] !='') { $currPage = $_GET['p']; } else { $currPage=1; }
+?>
+<ul class="prod_pagination">
+<li id="result-count">
+<?php if($this->getLastPageNum()>1): ?>
+<?php echo $this->__('%s to %s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+<?php else: ?>
+<?php echo $this->__('%s Showing(s)', $this->getTotalNum()) ?>
+<?php endif; ?>
+</li>
+	
+<?php //Show pager only if there are pages ?>
+
+<?php if($currPage==1) { ?>	
+	<li class="prev" style="color: #d7d7d7; border: 1px solid #d7d7d7;">
+		<a id="last-page-bttn" class="paging-bttn">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		</a>
+	</li>
+<?php } ?>
+
+<?php if ($pagerHtml = trim($this->getPagerHtml())): ?>
+<?php echo $pagerHtml; ?>
+<?php endif; ?>
+
+<?php if($this->getLastPageNum()==$currPage) { ?>
+	<li class="next" style="color: #d7d7d7; border: 1px solid #d7d7d7;">
+		<a id="next-page-bttn" class="paging-bttn">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		</a>
+	</li>
+<?php } ?>
+
+</ul>

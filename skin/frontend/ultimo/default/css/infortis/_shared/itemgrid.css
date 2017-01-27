@@ -1,0 +1,48 @@
+/**
+ * Itemgrid
+ */
+
+
+
+.itemgrid .item {
+	float:left;
+	padding-left:1%;
+	padding-right:1%;
+}
+
+
+/* Itemgrid: different numbers of columns
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Clear every first item in each row (row: group of n items) */
+
+/* Item grid: 1 column */
+.itemgrid-1col .item { width:98%; }
+
+/* Item grid: 2 columns */
+.itemgrid-2col .item { width:48%; }
+.itemgrid-2col > li:nth-of-type(2n+1) { clear:left; }
+
+/* Item grid: 3 columns */
+.itemgrid-3col .item { width:31.3333%; }
+.itemgrid-3col > li:nth-of-type(3n+1) { clear:left; }
+
+/* Item grid: 4 columns */
+.itemgrid-4col .item { width:23%; }
+.itemgrid-4col > li:nth-of-type(4n+1) { clear:left; }
+
+/* Item grid: 5 columns */
+.itemgrid-5col .item { width:18%; }
+.itemgrid-5col > li:nth-of-type(5n+1) { clear:left; }
+
+/* Item grid: 6 columns */
+.itemgrid-6col .item { width:14.6666%; }
+.itemgrid-6col > li:nth-of-type(6n+1) { clear:left; }
+
+/* Item grid: 7 columns */
+.itemgrid-7col .item { width:12.2857%; }
+.itemgrid-7col > li:nth-of-type(7n+1) { clear:left; }
+
+/* Item grid: 8 columns */
+.itemgrid-8col .item { width:10.5%; }
+.itemgrid-8col > li:nth-of-type(8n+1) { clear:left; }

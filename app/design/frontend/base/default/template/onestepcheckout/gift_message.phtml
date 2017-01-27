@@ -1,0 +1,100 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+
+
+if($this->getEntityHasMessage())    {
+    $gift_checked = true;
+}
+else    {
+    $gift_checked = false;
+}
+
+?>
+
+<script type="text/javascript">
+Event.observe(window, 'load', function(e)    {
+    var gift_checked = <?php echo ($gift_checked) ? 'true' : 'false'; ?>;
+
+    if(!gift_checked)    {
+        $('allow-gift-message-container').hide();
+    }
+
+    $('allow_gift_messages').observe('click', function(e) {
+        var element = e.element();
+        if(element.checked)    {
+            $('allow-gift-message-container').show();
+        }
+        else    {
+            $('allow-gift-message-container').hide();
+        }
+    });
+
+});
+</script>
+
+
+
+<div class="onestepcheckout-giftmessages">
+
+    <div class="inner-box">
+        <div class="input-checkbox">
+            <input type="checkbox" name="allow_gift_messages" id="allow_gift_messages" value="1"  <?php if($this->getEntityHasMessage()): ?>checked="checked"<?php endif ?> />
+            <label for="allow_gift_messages"><?php echo $this->__('Add a gift message to my order') ?></label>
+        </div>
+    </div>
+    <div class="gift-box" id="allow-gift-message-container">
+        <div class="scroll-box">
+            <?php if (Mage::helper('giftmessage/message')->isMessagesAvailable('quote', $this->getEntity())): ?>
+            <fieldset class="group-select">
+                <input type="hidden" name="giftmessage[<?php echo $this->getEntity()->getId() ?>][type]"  value="quote" />
+                <ul class="no-padding">
+                    <li>
+                        <div class="input-box">
+                            <label for="gift-message-whole-from"><?php echo $this->__('From') ?></label><br />
+                            <input type="text" name="giftmessage[<?php echo $this->getEntity()->getId() ?>][from]" id="gift-message-whole-from" title="<?php echo $this->__('From') ?>"  value="<?php echo $this->getEscaped($this->getMessage()->getSender(), $this->getDefaultFrom()) ?>" class="input-text validation-passed" />
+                        </div>
+                        <div class="input-box input-box-last">
+                            <label for="gift-message-whole-to"><?php echo $this->__('To') ?></label><br />
+                            <input type="text" name="giftmessage[<?php echo $this->getEntity()->getId() ?>][to]" id="gift-message-whole-to" title="<?php echo $this->__('To') ?>" value="<?php echo $this->getEscaped($this->getMessage()->getRecipient(), $this->getDefaultTo()) ?>" class="input-text validation-passed" />
+                        </div>
+                    </li>
+                    <li>
+                        <label for="gift-message-whole-message"><?php echo $this->__('Message') ?></label>
+                        <br/>
+                        <textarea id="gift-message-whole-message" class="input-text validation-passed giftmessage-area" name="giftmessage[<?php echo $this->getEntity()->getId() ?>][message]" title="<?php echo $this->__('Message') ?>" rows="5" cols="40"><?php echo $this->getEscaped($this->getMessage()->getMessage()) ?></textarea>
+                    </li>
+                </ul>
+
+             </fieldset>
+             <?php endif; ?>
+        </div>
+    </div>
+
+
+</div>

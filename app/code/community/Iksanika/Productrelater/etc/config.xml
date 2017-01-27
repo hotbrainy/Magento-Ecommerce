@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Iksanika_Productrelater>
+            <version>1.0.2</version>
+        </Iksanika_Productrelater>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <productrelater after="Mage_Adminhtml">Iksanika_Productrelater_Adminhtml</productrelater>
+                    </modules>
+                </args>
+            </adminhtml>
+<!--            
+            <productrelater>
+                < ! - - should be set to "admin" when overloading admin stuff (?) - - >
+                <use>admin</use>
+                <args>
+                    <module>Iksanika_Productrelater</module>
+                    < ! - - This is used when "catching" the rewrite above - - >
+                    <frontName>productrelater</frontName>
+                </args>
+            </productrelater>
+-->
+        </routers>
+    </admin>
+    <global>
+        <blocks>
+            <productrelater>
+                <class>Iksanika_Productrelater_Block</class>
+            </productrelater>
+        </blocks>
+        <helpers>
+            <productrelater>
+                <class>Iksanika_Productrelater_Helper</class>
+            </productrelater>
+        </helpers>
+        <models>
+            <catalog_resource_eav_mysql4>
+                <rewrite>
+                    <product_collection>Iksanika_Productrelater_Model_Resource_Eav_Mysql4_Product_Collection</product_collection>
+                </rewrite>
+            </catalog_resource_eav_mysql4>
+        </models>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <widget_grid_column>Iksanika_Productrelater_Block_Widget_Grid_Column</widget_grid_column>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+                                                                                                                           
+    <!-- Relate Stuff -->                                                                                                  
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <productrelater>
+                    <file>iksanika_productrelater.xml</file>
+                </productrelater>
+            </updates>
+        </layout>
+        <menu>
+            <catalog module="productrelater">
+                <children>
+                    <productrelater module="productrelater">
+                        <title>Mass Product Relater</title>
+                        <sort_order>0</sort_order>
+                        <!-- <action>productrelater/catalog_product</action> -->
+                        <action>adminhtml/productrelater/index</action>
+                    </productrelater>
+                </children>
+            </catalog>
+        </menu>
+    </adminhtml>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <productrelater>
+                                    <title>Mass Product Relater</title>
+                                </productrelater>
+                            </children>
+                        </catalog>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <productrelater>
+                                            <title>Mass Product Relater Config</title>
+                                        </productrelater>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

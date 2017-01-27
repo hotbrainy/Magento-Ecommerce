@@ -1,0 +1,39 @@
+<!--@subject Welcome to the Entangled Fan Points Program, {{var customer_name}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <h1>Welcome to the Entangled Fan Points Program.</h1>
+            <p>Congratulations on joining the Entangled Fan Points program at <a href="{{store url=''}}">EntangledPublishing.com</a>, where each $1 you spend earns you 100 points.*</p>
+            <p>You have earned 2,000 bonus points today just for signing up! This is a $2 value that can be applied toward your next purchase!</p>
+            <p>Just click  to login and get started</p>
+            <p>
+                Go to <strong style="font-weight: bold;"><a href="{{store url='customer/account/login'}}">My Account</a></strong> in the
+                black bar of every page to view your points balance, review your recent purchases, and update any information you need.
+                You can print a receipt there, too.
+            </p>
+            <p>
+                If you have any questions about the program, your order, or other book issues, we’re happy to help.
+                Just email us at <a href="mailto:{{var store_email}}">{{var store_email}}</a>.
+            </p>
+            <p>Happy Reading!<br/>
+            The Entangled Publishing Team</p>
+            <br/>
+            <p style="font-size: 0.7em">*Rewards points are based on US dollars or foreign equivalent. Excludes taxes, gift cards, and membership fees. </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

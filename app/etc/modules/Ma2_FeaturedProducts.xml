@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ma2_FeaturedProducts>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Ma2_FeaturedProducts>
+    </modules>
+</config>

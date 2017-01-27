@@ -1,0 +1,12 @@
+.le-module-install{clear:both;}
+.le-module-install.title>*{text-align: center;background: #d8e6e6;}
+.le-module-install>*{float:left;height:22px;line-height:22px;display:block;}
+.le-module-install .le-check{width:50px;text-align:center;vertical-align: middle;border-left:1px solid #000000;border-right:1px solid #000000;border-bottom:1px solid #000000;}
+.le-module-install .le-name{width:20%;padding-left: 10px;border-bottom: 1px solid #000000;}
+.le-module-install .le-version{width:100px;text-align:center;border-left: 1px solid #000000;border-bottom: 1px solid #000000;}
+.le-module-install .le-version-update{width:100px;text-align:center;border-left: 1px solid #000000;border-bottom: 1px solid #000000;border-right: 1px solid #000000;}
+.le-module-install.title .le-check{width:50px;text-align:center;vertical-align: middle;border: 1px solid #000000;}
+.le-module-install.title .le-name{width:20%;padding-left: 10px;border-top:1px solid #000000;border-bottom: 1px solid #000000;}
+.le-module-install.title .le-version{width:100px;border-top:1px solid #000000;border-bottom: 1px solid #000000;}
+.le-module-install.title .le-version-update{width:100px;border: 1px solid #000000;}
+.le-module-install .le-check img{margin-top: 4px;}

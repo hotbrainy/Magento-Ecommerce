@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+-->
+<config>
+    <modules>
+        <SteveB27_Utility>
+            <version>0.5.0</version>
+        </SteveB27_Utility>
+    </modules>
+    <global>
+        <resources>
+            <utility_setup>
+                <setup>
+                    <module>SteveB27_Utility</module>
+                    <class>SteveB27_Utility_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </utility_setup>
+			<utility_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</utility_write>
+			<utility_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</utility_read>
+        </resources>
+        <blocks>
+            <utility>
+                <class>SteveB27_Utility_Block</class>
+            </utility>
+        </blocks>
+        <helpers>
+            <utility>
+                <class>SteveB27_Utility_Helper</class>
+            </utility>
+        </helpers>
+        <models>
+            <utility>
+                <class>SteveB27_Utility_Model</class>
+                <resourceModel>utility_resource</resourceModel>
+            </utility>
+            <utility_resource>
+                <class>SteveB27_Utility_Model_Resource</class>
+            </utility_resource>
+        </models>
+    </global>
+</config>

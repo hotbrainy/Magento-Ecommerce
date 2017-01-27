@@ -1,0 +1,17 @@
+<?php 
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+$subcategories = $this->getSubcategories(); ?>
+<?php if ($subcategories): ?>
+    <div class="amshopby-subcategories-wrapper">
+        <?php foreach ($subcategories as $cat): ?>
+            <div class="amshopby-subcategory" style="width: <?php echo $this->getDivWidth(); ?>%; float: left;">
+                <a href="<?php echo $cat->getUrl(); ?>"><?php if ($cat->getImage()): ?><img class="amshopby-subcategories-img" title="<?php echo $this->htmlEscape($cat->getName()); ?>" alt="<?php echo $this->htmlEscape($cat->getName()); ?>" src="<?php echo $cat->getImage(); ?>" <?php if ($this->getHeight()) { echo 'height="' . $this->getHeight() . '"'; } if ($this->getWidth()) { echo 'width="' . $this->getWidth() . '"'; } ?> /><?php endif; ?><?php if ($this->getShownames()) { echo '<br />' . $this->htmlEscape($cat->getName()); } ?></a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div style="clear: both;"></div>
+<?php endif; ?>

@@ -1,0 +1,312 @@
+/**
+ * Infortis themes styles
+ */
+
+
+
+/* Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Basic layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.section-container {}
+.section { padding:10px 0; }
+.section-space { padding:10px; }
+
+
+/* Helper classes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Magento default helper classes
+-------------------------------------------------------------- */
+
+/* Layout helper classes
+-------------------------------------------------------------- */
+.margin-top { margin-top:20px; }
+.margin-bottom { margin-bottom:20px; }
+.padding-top { padding-top:20px; }
+.padding-bottom { padding-bottom:20px; }
+.float-left { float:left; } /*deprecated*/
+.float-right { float:right; } /*deprecated*/
+
+
+
+/* Minor components %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Caret
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.caret {
+	display:inline-block;
+	width:0;
+	height:0;
+	margin-bottom:2px;
+	vertical-align:middle;
+	content:"";
+	border-style:solid solid none;
+	border-width:4px 4px 0;
+	border-color:#333 transparent transparent;
+}
+.dropdown .caret {
+	opacity:0.3;
+	filter:alpha(opacity=30);
+}
+.dropdown.open .caret {
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+
+
+/* Product labels (stickers)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Positionning
+-------------------------------------------------------------- */
+.sticker-wrapper {
+	position:absolute;
+	transition:			all 150ms ease-in-out;
+	-moz-transition:	all 150ms ease-in-out;
+	-webkit-transition:	all 150ms ease-in-out;
+	-o-transition:		all 150ms ease-in-out;
+}
+.product-view .sticker-wrapper { z-index:99; /* On product page z-index greater than Cloud Zoom image */ }
+.product-view .product-img-column { position:relative; } /* Stickers are positioned relative to this container */
+
+.sticker-wrapper.top-right { top:-3px; right:-3px; }
+.sticker-wrapper.bottom-right { bottom:-3px; right:-3px; }
+.sticker-wrapper.bottom-left { bottom:-3px; left:-3px; }
+.sticker-wrapper.top-left { top:-3px; left:-3px; }
+
+/* Appearence
+-------------------------------------------------------------- */
+.sticker {
+	width:60px;
+	height:60px;
+	border-radius:50%;
+	
+	font-size:1.1666em;
+	line-height:1em;
+	font-weight:bold;
+	text-align:center;
+	display:table-cell !important; /* Add "important" to override inherited styles of parent elements */
+	vertical-align:middle !important;
+
+	transition:			all 150ms ease-in-out;
+	-moz-transition:	all 150ms ease-in-out;
+	-webkit-transition:	all 150ms ease-in-out;
+	-o-transition:		all 150ms ease-in-out;
+}
+
+/* Colors */
+.sticker.new { background-color:#5BD2EC; color:#fff; }
+.sticker.sale { background-color:#F12B63; color:#fff; }
+
+/* Effects */
+.item:hover .sticker { width:65px; height:65px; }
+.item:hover .sticker-wrapper.top-right,
+.item:hover .sticker-wrapper.top-left { }
+.item:hover .sticker-wrapper.top-right { }
+.item:hover .sticker-wrapper.top-left { }
+
+/*Sizes*/
+.sticker.size-s { width:45px; height:45px; font-size:1em; }
+.item:hover .sticker.size-s { width:50px; height:50px; }
+.sticker.size-xs { width:40px; height:40px; font-size:0.9166em; /*11px*/ }
+.item:hover .sticker.size-xs { width:45px; height:45px; }
+
+
+
+/* CMS pages and custom content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Video (embed)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* "videoWrapper" - depracated class, left for backward compatibility */
+.video-wrapper,
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.video-wrapper iframe,
+.video-wrapper object,
+.video-wrapper embed,
+.videoWrapper iframe,
+.videoWrapper object,
+.videoWrapper embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+/* Page banners
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.banner-wrapper { position: relative; display: block; }
+.page-banners .banner a { display:block; }
+.page-banners .banner a img { display:block; margin:0 auto; }
+
+/* depracated styles, left for backward compatibility: */
+.page-banners .banner { margin-bottom:2%; }
+
+
+/* Landing pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.landing-page {}
+.horizontal-section,
+.vertical-section { display:block; margin-top:0; margin-bottom:10px; position:relative; }
+.horizontal-section { margin-top:10px; }
+.landing-page .center-block { display:block; margin:0 auto; }
+
+
+/* Caption
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.caption {
+	display:block;
+	position:absolute;
+	bottom:0;
+	width:80%;
+	margin:6%;
+	padding:0;
+}
+
+/* Caption position
+-------------------------------------------------------------- */
+.caption.top {
+	top:0;
+	bottom:auto;
+	width:80%;
+}
+.caption.top-right {
+	top:0;
+	bottom:auto;
+	right:0;
+	width:58%;
+}
+.caption.bottom-right {
+	right:0;
+	width:58%;
+}
+
+/* Caption elements
+-------------------------------------------------------------- */
+.caption > * {
+	float:left;
+	display:inline-block;
+	margin-bottom:1px;
+}
+.caption .heading {
+	padding:0.25em;
+	margin-bottom:0.2em;
+	font-size:2.8em;
+	line-height:1em;
+	font-weight:normal;
+}
+.caption p {
+	clear:left;
+	padding:0.25em 0.5em;
+	margin-bottom:1px;
+	font-size: 1.3333em;
+	line-height:1em;
+}
+.caption button {
+	clear:left;
+}
+
+/* Caption layout
+-------------------------------------------------------------- */
+.caption.centered {
+	text-align: center;
+}
+.caption.centered > * {
+	display:inline-block;
+	float: none;
+}
+
+/* Floating (text alignment) */
+.caption.right > * { text-align:right; float:right !important; }
+
+/* Caption additional styles
+-------------------------------------------------------------- */
+/* Width */
+.caption.full-width { width:88%; margin:6%; }
+.caption.narrow { width:38%; }
+
+/* Prevent from hiding elements of the caption on narrow screens */
+.caption .permanent { display:inline-block !important; }
+
+/* Skin
+-------------------------------------------------------------- */
+.caption .heading,
+.caption p {
+	transition:			color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-moz-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-webkit-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-o-transition:		color 450ms ease-in-out, background-color 450ms ease-in-out;
+}
+a:hover .caption .heading,
+a:hover .caption p {
+	transition:			color 200ms ease-in-out, background-color 200ms ease-in-out;
+	-moz-transition:	color 200ms ease-in-out, background-color 200ms ease-in-out;
+	-webkit-transition:	color 200ms ease-in-out, background-color 200ms ease-in-out;
+	-o-transition:		color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+/* Dark + white text */
+.caption.dark1 .heading,
+.caption.dark1 p { background-color:rgba(0,0,0, 0.35); color:#fff; }
+a:hover .caption.dark1 .heading,
+a:hover .caption.dark1 p { background-color:rgba(0,0,0, 0.7); color:#fff; }
+
+/* Dark + white text */
+.caption.dark2 .heading,
+.caption.dark2 p { background-color:rgba(0,0,0, 0.5); color:#fff; }
+a:hover .caption.dark2 .heading,
+a:hover .caption.dark2 p { background-color:rgba(0,0,0, 0.8); color:#fff; }
+
+/* Dark + white text */
+.caption.dark3 .heading,
+.caption.dark3 p { background-color:rgba(0,0,0, 0.65); color:#fff; }
+a:hover .caption.dark3 .heading,
+a:hover .caption.dark3 p { background-color:rgba(0,0,0, 1); color:#fff; }
+
+/* Light + black text */
+.caption.light1 .heading,
+.caption.light1 p { background-color:rgba(255,255,255, 0.35); color:#000; }
+a:hover .caption.light1 .heading,
+a:hover .caption.light1 p { background-color:rgba(255,255,255, 0.7); color:#000; }
+
+/* Light + black text */
+.caption.light2 .heading,
+.caption.light2 p { background-color:rgba(255,255,255, 0.6); color:#000; }
+a:hover .caption.light2 .heading,
+a:hover .caption.light2 p { background-color:rgba(255,255,255, 0.85); color:#000; }
+
+/* Light + black text */
+.caption.light3 .heading,
+.caption.light3 p { background-color:rgba(255,255,255, 0.8); color:#000; }
+a:hover .caption.light3 .heading,
+a:hover .caption.light3 p { background-color:rgba(255,255,255, 1); color:#000; }
+
+
+/* Other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Disable transitions, fade effect applied with JS */
+.fade-on-hover {
+	transition:			none;
+	-moz-transition:	none;
+	-webkit-transition:	none;
+	-o-transition:		none;
+}

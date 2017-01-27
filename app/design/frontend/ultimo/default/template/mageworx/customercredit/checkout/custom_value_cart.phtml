@@ -1,0 +1,59 @@
+<?php
+$helper = Mage::helper('mageworx_customercredit');
+if ($helper->isEnabledCustomValue() && $helper->isEnabledPartialPayment() && $this->getCreditValue()): ?>
+<div id='fakeCCDiv' style='display:none;'>
+
+<a id="customercredit_change_value" style="cursor: pointer"><?php echo $helper->__('Change')?></a>
+<span id="payment-change-please-wait" class="please-wait" style="display: none;">
+<img class="v-middle" title="<?php echo $this->__('Changing value...')?>" alt="<?php echo $this->__('Changing value...')?>" src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif'); ?>">
+<?php echo $this->__('Changing value...')?>
+</span>
+<div style="width:auto; display:none;" id="customercredit_change_value_block">
+    <form action='<?php echo Mage::getUrl('customercredit/index/reloadCart',array('_secure'=>true))?>' id='custom_credit_form' method='post'>
+        <div><?php echo $helper->__('Available');?> <?php echo Mage::helper('core')->currency($helper->getValueExchangeRateDivided($helper->getRealCreditValue())).' ('.$helper->getRealCreditValue()." ".$helper->__('credits')?>)</div>
+        <input type="text" class="validate-number" value="<?php echo $this->getCreditValue() ?>" name="custmer_credit_value" id="custmer_credit_value" />
+        <input type='button' class="change_credit_value_button" id="change_credit_value" value="Ok"/>
+        <div id="input_error" class="validation-advice" style="display:none"><?php echo $helper->__("Please enter a valid number in this field.")?></div>
+    </form>
+</div>
+<style>
+    .change_credit_value_button {
+        background: none repeat scroll 0 0 #618499;
+        border: 1px solid #618499;
+        color: #FFFFFF;
+        font: bold 12px/19px Arial,Helvetica,sans-serif;
+        height: 19px;
+        padding: 0 8px;
+        text-align: center;
+        white-space: nowrap;
+    }
+</style>
+<script type="text/javascript">
+//<![CDATA[
+    function validInput(value) {
+        var valid;
+        valid = (value.match(/^-?\d*(\.\d+)?$/));
+        return valid;
+    }
+    $("customercredit_change_value").observe("click",function(el){
+        $('customercredit_change_value_block').show();
+        $$("#customercredit_change_value_block input").each(function(elem){
+            elem.removeAttribute('disabled');
+        })
+        $('customercredit_change_value').hide();
+    })
+    
+    $("change_credit_value").observe("click", function(el){
+        if(validInput($("custmer_credit_value").value)==null){
+            $('input_error').show();
+            
+        } else {
+            $('customercredit_change_value_block').hide();
+            $('customercredit_change_value').hide()
+            $('payment-change-please-wait').show();
+            $('custom_credit_form').submit();
+        }            
+    })
+    //]]>
+</script></div>
+<?php endif; ?>

@@ -1,0 +1,111 @@
+/**
+ * Override CSS components
+ */
+
+
+
+/* Deprecated: accordion/collapsible openers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.accordion .opener,
+.collapsible .opener,
+.acco .opener /* Menu opener */
+{
+	/* Override default background image */
+	background-image: none !important;
+
+	/* Font icons */
+	display: inline-block;
+	font-family: ThemeIcons;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	/*line-height: 1em;*/ /* Important: don't overrid line height, it depends on the size of the icon */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Icon size */
+	font-size: 12px;
+}
+.accordion .opener:before,
+.collapsible .opener:before,
+.acco .opener:before {
+	content: "\e23c";
+}
+
+/* Active opener */
+.accordion li.item-active > .opener:before,
+.collapsible.active .opener:before,
+.acco li.item-active > .opener:before {
+	content: "\e23d";
+}
+
+
+
+/* Colorbox %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+#cboxPrevious,
+#cboxNext,
+#cboxClose {
+	/* Override default background image */
+	background-image: none !important;
+
+	/* Font icons */
+	display: inline-block;
+	font-family: ThemeIcons;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	/*line-height: 1em;*/ /* Important: don't overrid line height, it depends on the size of the icon */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Icon size */
+	font-size: 20px;
+}
+#cboxClose { font-size: 16px; }
+#cboxPrevious:before { content: "\e260"; }
+#cboxNext:before { content: "\e263"; }
+#cboxClose:before { content: "\e20f"; }
+
+
+
+/* Generic-nav %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Styles common for all direction controls */
+.slider-arrows1 .owl-controls .owl-buttons div,
+.slider-arrows2 .owl-controls .owl-buttons div,
+.slider-arrows3 .owl-controls .owl-buttons div {
+	/* Override default background image and remove text indent */
+	background-image: none !important;
+	text-indent: 0;
+
+	/* Font icons */
+	display: inline-block;
+	font-family: ThemeIcons;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	/*line-height: 1em;*/ /* Important: don't overrid line height, it depends on the size of the icon */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Icon size */
+	font-size: 20px;
+}
+.owl-controls .owl-buttons .owl-prev:before { content: "\e260"; }
+.owl-controls .owl-buttons .owl-next:before { content: "\e263"; }
+
+
+
+/* Itemslider %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Buttons aligned at the bottom */
+.itemslider.equal-height .item { position: static; padding-bottom: 50px; }
+.itemslider.equal-height .actions { position: absolute; bottom: 0; }

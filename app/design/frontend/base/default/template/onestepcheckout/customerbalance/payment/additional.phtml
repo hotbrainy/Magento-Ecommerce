@@ -1,0 +1,161 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+/* @var $this Enterprise_CustomerBalance_Block_Checkout_Onepage_Payment_Additional */
+?>
+<?php
+/**
+ * @see Enterprise_CustomerBalance_Block_Checkout_Onepage_Payment_Additional
+ */
+?>
+<?php if ($this->isDisplayContainer()): ?>
+    <div class="checkout-onepage-payment-additional-customerbalance" id="customerbalance_placer">
+
+        <input type="checkbox" class="checkbox" name="payment[use_customer_balance]" value="<?php echo ($this->isCustomerBalanceUsed() ? '1' : '0') ?>" id="use_customer_balance" <?php echo ($this->isCustomerBalanceUsed() ? 'checked' : '') ?>/>
+
+        <?php $balance = Mage::helper('core')->currency($this->getBalance()); ?>
+        <label for="use_customer_balance">
+        <strong>
+            <?php echo Mage::helper('enterprise_customerbalance')->__('Use Store Credit'); ?>
+            (<span id="customerbalance_available_amount"><?php echo $balance; ?></span>
+            <?php echo Mage::helper('enterprise_customerbalance')->__('available'); ?>)
+        </strong>
+        </label>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    var isFullyPaidAfterCustomerBalanceApplication = <?php echo ($this->isFullyPaidAfterApplication() ? 'true' : 'false'); ?>;
+    var customerBalanceSubstracted = <?php if ($this->isCustomerBalanceUsed()): ?>true<?php else: ?>false<?php endif; ?>;
+
+    if (customerBalanceSubstracted) {
+        quoteBaseGrandTotal += <?php echo (float)$this->getQuote()->getBaseCustomerBalanceAmountUsed(); ?>;
+        customerBalanceSubstracted = false;
+    }
+
+    Payment.prototype.switchCustomerBalanceCheckbox = function() {
+
+        if ($('use_customer_balance').checked) {
+            $('use_customer_balance').value = 1;
+        } else {
+            $('use_customer_balance').value = 0;
+        }
+
+        if (!customerBalanceSubstracted && $('use_customer_balance').checked) {
+            quoteBaseGrandTotal -= <?php echo (float)$this->getBalance(); ?>;
+            customerBalanceSubstracted = true;
+        }
+        if (customerBalanceSubstracted && !$('use_customer_balance').checked) {
+            quoteBaseGrandTotal += <?php echo (float)$this->getBalance(); ?>;
+            customerBalanceSubstracted = false;
+        }
+
+        if (quoteBaseGrandTotal < 0.0001) {
+
+            var elements = Form.getElements(this.form);
+            for (var i=0; i<elements.length; i++) {
+                if ($('use_customer_balance').checked) {
+                    if (elements[i].name == 'payment[method]') {
+                        elements[i].disabled = true;
+                    }
+                }
+                if (elements[i].name == 'payment[method]' && elements[i].value == 'free') {
+                    elements[i].checked = false;
+                    elements[i].disabled = true;
+
+                    if(elements[i].parentNode){
+                    //(elements[i].parentNode).hide();
+                    }
+                }
+            }
+            if ($('use_customer_balance').checked) {
+                if($('payment_form_' + payment.currentMethod)){
+                    $('payment_form_' + payment.currentMethod).hide()
+                }
+                payment.currentMethod = 'free';
+                if($('p_method_free')){
+                    $('p_method_free').checked = true;
+                    $('p_method_free').disabled = false;
+                }
+            }
+        } else {
+
+            var elements = Form.getElements(this.form);
+            for (var i=0; i<elements.length; i++) {
+                if (elements[i].name == 'payment[method]') {
+                    elements[i].disabled = false;
+                }
+            }
+            $('checkout-payment-method-load').show();
+
+            methodname = $RF($('onestepcheckout-form'), 'payment[method]');
+
+            if(methodname){
+                payment.currentMethod = methodname;
+            } else {
+                methodElement = $RFF($('onestepcheckout-form'), 'payment[method]');
+                if(methodElement){
+                    methodElement.checked = true;
+                    payment.currentMethod = methodElement.value;
+                }
+                if($('payment_form_' + payment.currentMethod)){
+                    $('payment_form_' + payment.currentMethod).show()
+                }
+            }
+        }
+
+        if(payment.countreload){
+            var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
+            get_separate_save_methods_function(url)();
+        }
+    }
+
+    if (payment) {
+        var customerBalanceInit = function() {
+            if ($('use_customer_balance')) {
+                $('use_customer_balance').disabled = false;
+            }
+            this.switchCustomerBalanceCheckbox();
+        }
+        payment.addAfterInitFunction('customerbalance', customerBalanceInit.bind(payment));
+        var customerBalanceValidate = function() {
+            if (quoteBaseGrandTotal < 0.0001) {
+                return true;
+            }
+            return false;
+        }
+        payment.addBeforeValidateFunction('customerbalance', customerBalanceValidate.bind(payment));
+    }
+
+    Event.observe($('use_customer_balance'), 'click', function(){
+        payment.reloadcallback = true;
+        payment.countreload = 1;
+        payment.switchCustomerBalanceCheckbox();
+    });
+    //Event.observe($('use_customer_balance'), 'click', payment.switchCustomerBalanceCheckbox);
+
+
+    //]]>
+    </script>
+<?php endif; ?>

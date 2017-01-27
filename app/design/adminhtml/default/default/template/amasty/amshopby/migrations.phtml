@@ -1,0 +1,56 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php
+$_info = $this->getInfo();
+$declaredVersion = (string) Mage::getConfig()->getNode('modules/Amasty_Shopby/version');
+$realState = $this->getRealStateVersion();
+
+?>
+
+<span>Current version declared as "<?php echo $declaredVersion ?>". Would you like to adjust it to "<?php echo $realState ?>"?</span>
+<a href="<?php echo Mage_Adminhtml_Helper_Data::getUrl("amshopby/adminhtml_migration/fix", array('version' => $realState)) ?>">Adjust</a>
+
+
+
+<table style="border: solid grey 1px; width: 100%;">
+    <tr>
+        <th>Version</th>
+        <th>Test Defined</th>
+        <th>Test OK</th>
+    </tr>
+    <?php
+
+
+    foreach ($_info as $state) {
+        $version = $state['version'];
+        $testCount = count($state['newTests']);
+        $success = $state['success'];
+        $missed = version_compare($realState, $version) < 0;
+        if ($testCount) {
+            $background = $missed ? 'pink' : 'aliceblue';
+        } else {
+            $background = 'grey';
+        }
+        ?>
+        <tr style="background-color: <?php echo $background ?>">
+            <th><?php echo $version ?></th>
+            <td>
+                <?php echo $testCount
+                    ? '<span style="color: green;">' . $testCount . '</span>'
+                    : '<span style="color: red; font-weight: bold;">No</span>' ?>
+            </td>
+            <td>
+                <?php echo $success
+                    ? '<span style="color: green;">Yes</span>'
+                    : '<span style="color: red;">No</span>' ?>
+            </td>
+        </tr>
+
+    <?php } ?>
+</table>
+

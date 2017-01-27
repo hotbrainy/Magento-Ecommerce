@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Ma2_FeaturedProducts>
+            <version>1.0.0</version>
+        </Ma2_FeaturedProducts>
+    </modules>
+
+    <global>
+        <blocks>
+            <featuredproducts>
+                <class>Ma2_FeaturedProducts_Block</class>
+            </featuredproducts>
+        </blocks>
+
+        <helpers>
+            <featuredproducts>
+                <class>Ma2_FeaturedProducts_Helper</class>
+            </featuredproducts>
+        </helpers>
+
+        <models>
+            <featuredproducts>
+                <class>Ma2_FeaturedProducts_Model</class>
+            </featuredproducts>
+        </models>
+
+        <resources>
+            <featuredproducts_setup>
+                <setup>
+                    <module>Ma2_FeaturedProducts</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </featuredproducts_setup>
+
+            <featuredproducts_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </featuredproducts_write>
+            <featuredproducts_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </featuredproducts_read>
+        </resources>
+    </global>
+
+    <frontend>
+        <routers>
+            <featuredproducts>
+                <use>standard</use>
+                <args>
+                    <module>Ma2_FeaturedProducts</module>
+                    <frontName>featured-products</frontName>
+                </args>
+            </featuredproducts>
+        </routers>
+        <layout>
+            <updates>
+                <featuredproducts>
+                    <file>ma2_featuredproducts.xml</file>
+                </featuredproducts>
+            </updates>
+        </layout>
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <featuredproducts before="Mage_Adminhtml">Ma2_FeaturedProducts_Adminhtml</featuredproducts>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <featuredproducts>
+            <block>
+                <heading>Featured Products</heading>
+                <show_heading>1</show_heading>
+                <products_count>6</products_count>
+                <sort_by>created_at</sort_by>
+                <sort_dir>DESC</sort_dir>
+                <list_type>grid</list_type>
+                <column_count>3</column_count>
+                <show_addtocart>1</show_addtocart>
+                <show_details>1</show_details>
+                <show_price>1</show_price>
+                <show_short_description>1</show_short_description>
+                <short_description_limit>88</short_description_limit>
+                <thumbnail_width>135</thumbnail_width>
+                <thumbnail_height>135</thumbnail_height>
+            </block>
+            <standalone>
+                <active>0</active>
+                <heading>Featured Products</heading>
+                <layout>two_columns_right</layout>
+                <column_count>3</column_count>
+                <show_heading>1</show_heading>
+                <show_addtocart>1</show_addtocart>
+                <show_details>1</show_details>
+                <show_price>1</show_price>
+                <show_short_description>1</show_short_description>
+                <short_description_limit>88</short_description_limit>
+                <thumbnail_width>135</thumbnail_width>
+                <thumbnail_height>135</thumbnail_height>
+                <meta_title>Featured Products</meta_title>
+                <meta_description>Check out our great collection of Featured products</meta_description>
+                <meta_keywords>featured, products</meta_keywords>
+            </standalone>
+        </featuredproducts>
+    </default>
+</config>

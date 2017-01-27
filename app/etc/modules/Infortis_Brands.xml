@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category	Infortis
+ * @package		Infortis_Brands
+ * @author		Infortis
+ * @copyright	Copyright 2012 Infortis
+ */
+ -->
+<config>
+    <modules>
+        <Infortis_Brands>
+            <active>true</active>
+            <codePool>local</codePool>
+			<depends>
+				<Infortis_Infortis />
+			</depends>
+        </Infortis_Brands>
+    </modules>
+</config> 

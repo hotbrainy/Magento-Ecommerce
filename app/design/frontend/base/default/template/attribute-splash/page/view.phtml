@@ -1,0 +1,39 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_AttributeSplash
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+ ?>
+<?php if ($splashPage = $this->getSplashPage()): ?>
+	<div class="page-title category-title splash-title">
+		<h1><?php echo $this->escapeHtml($splashPage->getName()) ?></h1>
+	</div>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<?php if ($splashPage->getImage()): ?>
+		<p class="splash-image">
+			<?php if ($splashPage->getImageUrl()): ?>
+				<a href="<?php echo $splashPage->getImageUrl() ?>" title="<?php echo $this->escapeHtml($splashPage->getName()) ?>">
+			<?php endif; ?>
+			<img src="<?php echo $this->helper('attributeSplash/image')->init($splashPage, 'image')->resize(null, null) ?>" alt="<?php echo $this->escapeHtml($splashPage->getName()) ?>"/>
+			<?php if ($splashPage->getImageUrl()): ?>
+				</a>
+			<?php endif; ?>
+		</p>
+	<?php endif; ?>
+	<?php if ($shortDescription = $splashPage->getShortDescription()): ?>
+		<div class="splash-description std"><?php echo $shortDescription ?></div>
+	<?php endif; ?>
+	<?php if($this->isContentMode()): ?>
+		<?php echo $this->getCmsBlockHtml() ?>
+	<?php elseif($this->isMixedMode()): ?>
+		<?php echo $this->getCmsBlockHtml() ?>
+		<?php echo $this->getProductListHtml() ?>
+	<?php else: ?>
+		<?php echo $this->getProductListHtml() ?>
+	<?php endif; ?>
+	<?php if ($description = $splashPage->getDescription()): ?>
+		<div class="splash-description-full std"><?php echo $description ?></div>
+	<?php endif; ?>
+<?php endif; ?>

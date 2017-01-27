@@ -1,0 +1,10 @@
+<?php
+
+$data = array(
+    'payment_method' => $this->getChildHtml('choose-payment-method'),
+    'summary' => $this->getChildHtml('totals')
+);
+
+echo Zend_Json::encode($data);
+
+?>

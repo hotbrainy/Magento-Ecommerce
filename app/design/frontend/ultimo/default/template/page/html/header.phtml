@@ -1,0 +1,304 @@
+<?php
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+	$theme = $this->helper('ultimo');
+	$helperThis = $this->helper('ultimo/template_page_html_header');
+
+	//Get HTML of header blocks
+	//**************************************************************
+
+	//User menu
+	//Important: this block has to be rendered at the very beginning of this file
+	$userMenuHtml = $this->getChildHtml('user_menu');
+
+	//Main menu
+	//Important: this block has to be rendered at the very beginning of this file
+	$menuHtml = $this->getChildHtml('topMenu');
+	
+	$mobileMenuHtml = $this->getChildHtml('catalog.topnav.navigation.mobile');
+
+	//Switchers
+	$currencySwitcher = $this->getChildHtml('currency');
+	$languageSwitcher = $this->getChildHtml('store_language');
+	$hasHeaderCollateral = ($currencySwitcher || $languageSwitcher) ? TRUE : FALSE;
+
+	//Logo
+	$logoHtml = $this->getChildHtml('logo');
+
+	//Layout settings and basic flags
+	//**************************************************************
+
+	//Sticky header
+	$sticky = $theme->getCfg('header/sticky');
+
+	//Mobile header
+	if ($sticky)
+	{
+		if (($mobileMenuThreshold = $helperThis->getMobileMenuThreshold()) === NULL)
+		{
+			$mobileMenuThreshold = 770; //Set default value, if threshold doesn't exist
+		}
+	}
+	$mobileHeaderMode = $theme->getCfg('header/mode');
+
+	//This flag indicates that in mobile header language/currency switchers should be hidden
+	//and replaced with mobile versions of those switchers
+	$moveSwitchers = FALSE;
+	if ($mobileHeaderMode)
+	{
+		//Get only if mobile header enabled
+		$moveSwitchers = $theme->getCfg('header/mobile_move_switchers');
+	}
+
+	//Get grid classes for header sections
+	$grid = $helperThis->getGridClasses();
+
+	//Get positions of header blocks
+	$position = $helperThis->getPositions();
+
+	//Get flags indicating if blocks need to be moved below the skip links on mobile view
+	$move = $helperThis->getMoveBelowSkipLinks();
+
+	//Get flags indicating if blocks are displayed directly inside the header block template or inside one of the child blocks
+	$display = $helperThis->getDisplayedInHeaderBlock();
+
+	//Check if main menu is displayed inisde a section (full-width section) at the bottom of the header
+	$menuDisplayedInFullWidthContainer = $helperThis->isMenuDisplayedInFullWidthContainer();
+
+	//Additional classes for primary header blocks holder
+	$hpClasses = '';
+	if ($menuDisplayedInFullWidthContainer === FALSE)
+	{
+		$hpClasses = ' hp-blocks-holder--stacked'; //Important: keep hte space at the beginning
+	}
+
+	//Additional classes
+	//**************************************************************
+	//Header
+	$classes['root'] = '';
+	if ($moveSwitchers)
+		$classes['root'] .= ' move-switchers';
+	
+	//Menu
+	$classes['nav-container'] = '';
+	if ($sticky && $theme->getCfg('header/sticky_full_width'))
+		$classes['nav-container'] .= ' sticky-container--full-width';
+
+	$classes['nav'] = '';
+	if ($menuDisplayedInFullWidthContainer === FALSE)
+		$classes['nav'] .= ' simple';
+
+	//Assign blocks to selected positions
+	//**************************************************************
+	$html = array();
+
+	//Mini cart
+	//--------------------------------------------------------------
+	//Get flag which indicates that mini cart block exists and is displayed
+	$existsInChildBlock['cart'] = Mage::registry('headerDisplayMiniCart');
+	if ($position['cart'] === 'mainMenu')
+	{
+		$existsInChildBlock['cart'] = TRUE;
+	}
+	if ($display['cart'])
+	{
+		$cartHtml = $this->getChildHtml('cart_sidebar');
+		if ($cartHtml)
+		{
+			$html[$position['cart']][] = $cartHtml;
+		}
+	}
+
+
+	//Logo
+	//--------------------------------------------------------------
+	$html[$position['logo']][] = $logoHtml;
+
+	//Search
+	//--------------------------------------------------------------
+	//Get flag which indicates that search box exists and is displayed
+	$existsInChildBlock['search'] = Mage::registry('headerDisplaySearch');
+	if ($position['search'] === 'mainMenu')
+	{
+		$existsInChildBlock['search'] = TRUE;
+	}
+	if ($display['search'])
+	{
+		$searchHtml = $this->getChildHtml('search_wrapper');
+		if ($searchHtml)
+		{
+			$html[$position['search']][] = $searchHtml;
+		}
+	}
+
+	//User menu
+	//--------------------------------------------------------------
+	$html[$position['user-menu']][] = $userMenuHtml;
+
+	//User menu can contain account links (including Top Links).
+	//Get flag which indicates that block with account links exists and is displayed.
+	$existsInChildBlock['account-links'] = Mage::registry('headerDisplayAccountLinks');
+
+	//Main menu
+	//--------------------------------------------------------------
+	$menuContainerHtml = $menuHtml;
+
+	if ($menuDisplayedInFullWidthContainer === FALSE)
+	{
+		$html[$position['main-menu']][] = $menuContainerHtml;
+	}
+
+	//Skip links and blocks displayed via skip links
+	//**************************************************************
+	//Skip links count
+	$skipLinksCount = 0;
+
+	//Search
+	if (!empty($searchHtml) || $existsInChildBlock['search'])
+	{
+		$skipLinksCount++;
+	}
+
+	//Account links
+	if ($existsInChildBlock['account-links'])
+	{
+		$skipLinksCount++;
+	}
+
+	//Mini cart
+	if (!empty($cartHtml) || $existsInChildBlock['cart'])
+	{
+		$skipLinksCount++;
+	}
+
+	//Main menu
+	if (!empty($menuContainerHtml)) 
+	{
+		$skipLinksCount++;
+	}
+	$delimiter = "_";
+	$fullActionName = $this->getRequest()->getRequestedRouteName().$delimiter.
+		$this->getRequest()->getRequestedControllerName().$delimiter.
+		$this->getRequest()->getRequestedActionName();
+	$isAccount = $fullActionName == "customer_account_login";
+?>
+<div class="custom_mini">
+  <?=$html['topRight_1'][0];?>
+</div>
+<header id="header-hold">
+<div class="top-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 hidden-sm top-menu-hold">
+          <div class="top-menu">
+            <ul>
+             <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_header_top_links')->toHtml();?>
+            </ul>
+            <ul class="socila_list">
+		        <li><a href="https://www.facebook.com/EntangledPublishing/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+		        <li><a href="https://twitter.com/entangledpub" target="_blank"><i class="fa fa-twitter"></i></a></li>
+		        <li><a href="https://www.instagram.com/entangled_publishing/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+	        </ul>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <div class="center-text">
+                Books available for<span class="top-nav-value-prop header-small-text">Immediate Reading!</span>
+            </div>
+        </div>
+        <div class="hidden-sm hidden-xs hidden-md col-lg-2">
+        	<div class="center-text discount-header"><a href="<?php echo $this->getUrl('books/featured/on-sale.html'); ?>" class="red" style=""><?php echo $this->__('ON SALE TODAY!') ?></a></div>
+		</div>
+        <div class="col-md-5 col-lg-3 hidden-sm top-menu-hold">
+        <div class="top-menu rth-side">
+        <ul>
+        <?php
+          if(Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+			  <li><a href="<?=Mage::getUrl('customer/account/');?>">My Account</a></li>
+	          <li><a href="<?=Mage::getUrl('downloadable/customer/products');?>">My Library</a></li>
+			  <li><a href="<?=Mage::getUrl('customer/account/logout');?>">Log Out</a></li>
+          <?php } else { ?>
+			  <li><a href="<?=Mage::getUrl('customer/account/login');?>">Sign In</a></li>
+			  <li><a href="<?=Mage::getUrl('customer/account/create');?>">Sign Up</a></li>
+          <?php } ?>
+          <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_header_top_links2')->toHtml();?>
+        </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="header" class="main-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3 logo-hold">
+          <div class="logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?=$this->getLogoSrc();?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></div>
+        </div>
+        <div class="col-xs-2 cart-hold">
+          <?php echo $this->getChildHtml('open_minicart');?>
+        </div>
+        <div class="col-xs-7 menu-hold">
+          <div class="main-menu"> <?php echo $menuContainerHtml; ?> </div>
+			<div class="search-box">
+				<form id="search_mini_form" action="<?php echo $this->getUrl('catalogsearch/result'); ?>" method="get">
+					<span class="glyphicon glyphicon-search search-opener" aria-hidden="true"></span>
+					<input type="text" name="q" class="search-input" placeholder="<?php echo $this->__('SEARCH') ?>" />
+				</form>
+			</div>
+        </div>
+        
+        
+        <div id="mobile-nav" class="mobile-menu-hold">
+          <div class="mobile-menu">
+            <div class="close-click"><i class="fa fa-times"></i></div>
+            <div class="nav_section">
+              <div class="user-section">
+
+				  <div class="search-box">
+					  <form id="search_mini_form_mobile" action="<?php echo $this->getUrl('catalogsearch/result'); ?>" method="get">
+						  <span class="glyphicon glyphicon-search search-opener" aria-hidden="true"></span>
+						  <input type="text" name="q" class="search-input" placeholder="<?php echo $this->__('SEARCH') ?>" />
+					  </form>
+				  </div>
+              
+                <?php if(!Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+                <a href="<?=Mage::getUrl('customer/account/create');?>" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>SIGN UP</a> <a href="<?=Mage::getUrl('customer/account/login');?>" class="logout-link"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>SIGN IN</a>
+                <?php } else { ?>
+                <a href="<?=Mage::getUrl('customer/account');?>" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>My Account</a> <a href="<?=Mage::getUrl('customer/account/logout');?>" class="logout-link"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>LOGOUT</a>
+                <?php } ?>
+              </div>
+
+              <ul>
+                <?php /*?><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_header_top_links')->toHtml();?> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_header_top_links2')->toHtml();?> <?php echo $mobileMenuHtml; ?><?php */?>
+                <li><a href="<?=Mage::getUrl('books.html');?>">Books</a></li>
+                <li><a href="<?=Mage::getUrl('books/imprints/teen.html');?>">Teen</a></li>
+                <li><a href="<?=Mage::getUrl('publish/author/index');?>">Authors</a></li>
+                <li><a href="http://www.entangledinromance.com/" target="_blank">Blogs</a></li>
+                <li><a href="<?=Mage::getUrl('about-us');?>">About</a></li>
+                <li><a href="<?=Mage::getUrl('submission-information');?>">Submissions</a></li>
+                <li><a href="<?=Mage::getUrl('contact-us');?>">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</header>
+<?php if($this->getIsHomePage()): ?>
+<section class="hero-slider">
+  <div class="container-fluid">
+  </div>
+</section><?php elseif(!$isAccount): ?>
+<section class="hero-slider">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="hero-slider-inner"><?php echo $this->getLayout()->createBlock('bannerslider/default')->setTemplate('bannerslider/bannerslider.phtml')->setBannersliderId(3)->toHtml();?></div>
+    </div>
+  </div>
+</section><?php endif; ?>

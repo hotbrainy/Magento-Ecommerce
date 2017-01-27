@@ -1,0 +1,75 @@
+<?php
+/**
+ * - Additional CSS
+ */
+?>
+<?php
+	$theme = Mage::helper('ultimo');
+	$bgUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $theme->getBgImagesPath();
+	$texUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $theme->getTexPath();
+	$pageBgImg = $theme->getCfgDesign('page/bg_image');
+	$pageTex = $theme->getCfgDesign('page/tex');
+	$headerBgImg = $theme->getCfgDesign('header/bg_image');
+	$headerTex = $theme->getCfgDesign('header/tex');
+	$headerTex2 = $theme->getCfgDesign('header/tex2');
+	$mainTex = $theme->getCfgDesign('main/tex');
+	$footerBgImg = $theme->getCfgDesign('footer/bg_image');
+	$footerTex = $theme->getCfgDesign('footer/tex');
+	$footerTex2 = $theme->getCfgDesign('footer/tex2');
+?>
+<style type="text/css">
+	<?php if ($pageBgImg): ?>
+	.wrapper
+	{	
+		background-image: url(<?php echo $bgUrl . $pageBgImg; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($pageTex): ?>
+	.page
+	{
+		background-image: url(<?php echo $texUrl . $pageTex . '.png'; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($headerBgImg): ?>
+	.header-container
+	{
+		background-image: url(<?php echo $bgUrl . $headerBgImg; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($headerTex): ?>
+	.header-container2
+	{
+		background-image: url(<?php echo $texUrl . $headerTex . '.png'; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($headerTex2): ?>
+	.header-container3
+	{
+		background-image: url(<?php echo $texUrl . $headerTex2 . '.png'; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($mainTex): ?>
+	.main-container
+	{
+		background-image: url(<?php echo $texUrl . $mainTex . '.png'; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($footerBgImg): ?>
+	.footer-container
+	{
+		background-image: url(<?php echo $bgUrl . $footerBgImg; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($footerTex): ?>
+	.footer-container2
+	{
+		background-image: url(<?php echo $texUrl . $footerTex . '.png'; ?>);
+	}
+	<?php endif; ?>
+	<?php if ($footerTex2): ?>
+	.footer-container3
+	{
+		background-image: url(<?php echo $texUrl . $footerTex2 . '.png'; ?>);
+	}
+	<?php endif; ?>
+</style>

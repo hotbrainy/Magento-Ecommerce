@@ -1,0 +1,71 @@
+<?php $helpZoom = $this->helper('infortis_cloudzoom'); ?>
+<?php if ($helpZoom->useLightbox()): ?>
+	<?php
+		$maxWidth	= $helpZoom->getCfg('lightbox/max_width');
+		$maxHeight	= $helpZoom->getCfg('lightbox/max_height');
+		$cfg = '';
+		if ($maxWidth)
+			$cfg .= ", maxWidth:'{$maxWidth}'";
+		if ($maxHeight)
+			$cfg .= ", maxHeight:'{$maxHeight}'";
+	?>
+	<script type="text/javascript">
+        jQuery(function($) {
+
+        	//Zoom button for main image
+        	$zoomButton = $("#zoom-btn");
+            
+            //Init lightbox
+            $(".lightbox-group").colorbox({
+			<?php if ($helpZoom->getCfg('lightbox/group')): ?>
+                rel:		'lightbox-group',
+			<?php endif; ?>
+                opacity:	0.5,
+                speed:		300,
+                current:	'<?php echo $this->__('image {current} of {total}') ?>',
+                previous: '',
+                next: '',
+                close: '' //No comma here
+				<?php if ($cfg) echo $cfg; ?>
+			});
+			
+			//Product thumbnails - remove first one from gallery, it's already included in gallery by "zoom" button
+			<?php if ($helpZoom->getCfg('lightbox/group')): ?>
+				$(".cloud-zoom-gallery").first().removeClass("cboxElement");
+			<?php endif; ?>
+			
+			//Remove clicked thumbnail from gallery, it's already included in gallery by "zoom" button
+			$(".cloud-zoom-gallery").click(function() {
+				$zoomButton
+					.attr('href', $(this).attr('href'))
+					.attr('title', $(this).attr('title'));
+			
+				<?php if ($helpZoom->getCfg('lightbox/group')): //Erase gallery class from clicked thumbnail ?>
+					//First add gallery class to all thumbnails
+					$(".cloud-zoom-gallery").each(function() {
+						$(this).addClass("cboxElement");
+					});
+					$(this).removeClass("cboxElement");
+				<?php endif; ?>
+			});
+
+			//On image change
+			$(document).on('product-media-manager-image-updated', function(e, data) {
+
+				var img = data.img;
+
+				//Add new image's URL to the zoom button's href attribute
+				$zoomButton.attr('href', img.attr('src'));
+				$zoomButton.attr('title', '');
+
+				<?php if ($helpZoom->getCfg('lightbox/group')): //Add gallery class to all thumbnails ?>
+					$(".cloud-zoom-gallery").each(function() {
+						$(this).addClass("cboxElement");
+					});
+				<?php endif; ?>
+
+			}); //end: on event
+            
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addCss"><stylesheet>le_ajaxlogin/css/ajaxlogin.css</stylesheet></action>
+            <!--action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>skin_js</type><script>le_ajaxlogin/js/jquery-1-7-1.js</script></action-->
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>skin_js</type><script>le_ajaxlogin/js/jquery.leajaxlogin.js</script></action>
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+        </reference>
+
+        <reference name="content">
+            <block ifconfig="ajaxlogin/ajaxlogin/enable" type="ajaxlogin/ajaxlogin" name="litextensionajaxlogin" as="litextensionajaxlogin">
+                <action ifconfig="ajaxlogin/ajaxlogin/enable" method="setTemplate">
+                    <template>le_ajaxlogin/ajaxlogin/ajaxlogin.phtml</template>
+                </action>
+                <block ifconfig="ajaxlogin/ajaxlogin/enable" type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+                <block type="ajaxlogin/facebook_button" name="le_ajaxlogin_facebook_login_button"/>
+                <block type="ajaxlogin/google_button" name="le_ajaxlogin_google_login_button"/>
+                <block type="ajaxlogin/amazon_button" name="le_ajaxlogin_amazon_login_button"/>
+                <block type="ajaxlogin/twitter_button" name="le_ajaxlogin_twitter_login_button"/>
+                <block type="ajaxlogin/linkedin_button" name="le_ajaxlogin_linkedin_login_button"/>
+                <block type="ajaxlogin/yahoo_button" name="le_ajaxlogin_yahoo_login_button"/>
+            </block>
+            <block ifconfig="ajaxlogin/ajaxlogin/enablemenu" type="ajaxlogin/ajaxlogin" name="my.account.menu" as="my.account.menu">
+                <action ifconfig="ajaxlogin/ajaxlogin/enablemenu" method="setTemplate">
+                    <template>le_ajaxlogin/ajaxlogin/menu.phtml</template>
+                </action>
+            </block>
+        </reference>
+
+    </default>
+
+    <customer_account_edit translate="label">
+        <reference name="head">
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addJs"><script>varien/product.js</script></action>
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addJs"><script>varien/configurable.js</script></action>
+
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+        </reference>
+
+        <block ifconfig="ajaxlogin/ajaxlogin/enable" name="customer_edit">
+            <action ifconfig="ajaxlogin/ajaxlogin/enable" method="setTemplate"><template>le_ajaxlogin/customer/form/edit.phtml</template></action>
+        </block>
+
+        <reference name="before_body_end">
+            <block ifconfig="ajaxlogin/ajaxlogin/enable" type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+        </reference>
+    </customer_account_edit>
+
+    <customer_account_login>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>le_ajaxlogin/css/ajaxlogin.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ajaxlogin/login" name="ajaxlogin_social_login">
+                <block type="ajaxlogin/facebook_button" name="le_ajaxlogin_facebook_login_button" />
+                <block type="ajaxlogin/google_button" name="le_ajaxlogin_google_login_button" />
+                <block type="ajaxlogin/amazon_button" name="le_ajaxlogin_amazon_login_button" />
+                <block type="ajaxlogin/twitter_button" name="le_ajaxlogin_twitter_login_button" />
+                <block type="ajaxlogin/linkedin_button" name="le_ajaxlogin_linkedin_login_button" />
+                <block type="ajaxlogin/yahoo_button" name="le_ajaxlogin_yahoo_login_button" />
+            </block>
+        </reference>
+    </customer_account_login>
+
+</layout>

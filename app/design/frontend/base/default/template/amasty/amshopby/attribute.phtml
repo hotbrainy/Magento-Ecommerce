@@ -1,0 +1,151 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php
+/**
+ * @var $this Amasty_Shopby_Block_Catalog_Layer_Filter_Attribute
+ */
+?>
+<?php
+$currentCat = '';
+$CheckMyPageTypeVal = $this->getRequest()->getControllerName();
+if($CheckMyPageTypeVal=='category') {
+$currentCat = $this->getLayout()->getBlock('category.products')->getCurrentCategory()->getName();
+}
+?>
+<ol class="
+<?php if ($this->getCollapsed() && !$this->getHasSelection()): ?>no-display-current <?php endif ?>
+<?php
+    if($this->getSingleChoice()) {echo " single-choice ";}?>
+<?php
+	if ($this->getSortFeaturedFirst() && in_array($this->getDisplayType(), array(Amasty_Shopby_Model_Source_Attribute::DT_LABELS_ONLY, Amasty_Shopby_Model_Source_Attribute::DT_IMAGES_AND_LABELS))):
+	?>sort-featured-first-<?php echo $this->getRequestValue(); endif ?>
+">
+	<?php if ($this->getSortFeaturedFirst()): ?><input type="hidden" id="field_sort_featured_<?php echo $this->getRequestValue();?>" value="default_sort"><?php endif ?>
+<?php
+switch ($this->getDisplayType()){
+    case Amasty_Shopby_Model_Source_Attribute::DT_LABELS_ONLY:
+        if ($this->getShowSearch()){
+            echo '<li rel="search"><input type="text" class="amshopby_attr_search input-text" onkeyup="amshopby_attr_search(this)" /></li>';
+        }
+		
+        foreach ($this->getItemsAsArray() as $item){
+			//var_dump($item);
+			if($item['label']==$currentCat) { $AdditionalMyClass = "-selected"; } else {$AdditionalMyClass = "";}
+			if ($this->getName() == 'Imprints')
+                        {
+                            $item['css'] = str_replace('amshopby-attr-inactive', '', $item['css']);
+                        }
+            
+            if (intval(preg_replace("/[^0-9,.]/", "", $item['count'])) < 1 && $this->getName() != 'Imprints'){ $AdditionalMyClass .= " amshopby-attr-inactive"; }
+            echo
+				'<li id="filter-item"'.
+				(isset($item['style']) ? ' '.$item['style'] : '') .
+				(isset($item['default_sort']) ? ' data-default_sort="' . $item['default_sort'] . '"': '') .
+				(isset($item['featured_sort']) ? ' data-featured_sort="' . $item['featured_sort'] . '"': '') .
+				' data-text="' . htmlspecialchars($item['label']) . '"> ' .
+				'<a 
+                    data-text="' . ($item['label']) . '" 
+                    parent="' . $this->getName() . '" 
+                    data-id="'. $item['id'].'" 
+                    data-title="'. str_replace("amp;","",($item['attr']!="")?$item['attr']:"book_imprint") .'" 
+                    class="filter-item-link '.$item['css'].''.$AdditionalMyClass.'"' . $item['rel'] . ' 
+                    href="'.$item['url'].'">'. $item['label'] . " " . 
+                    (($this->getName() != 'Imprints') ? $item['count'] : '') . '</a>' .
+				'</li>';
+        }
+    break;
+    
+    case Amasty_Shopby_Model_Source_Attribute::DT_IMAGES_ONLY:
+        echo '<li>';
+        foreach ($this->getItemsAsArray() as $item){
+            if (isset($item['image_hover']) && $item['image_hover'] != '') {
+                echo '<img src="' . $item['image_hover'] . '" style="display: none;" />';
+                $onHover = 'onmouseover=this.src="' . $item['image_hover'] . '"'; 
+                $onHover .= ' onmouseout=this.src="' . $item['image'] . '"';
+            } else {
+                $onHover = '';
+            }
+            echo '<a '.$item['style'].$item['rel'].' class="'.$item['css'].'" href="'.$item['url'].'"><img src="'.$item['image'].'" ' . $onHover . ' title="'. $item['label'] .'" alt="'. $item['label'] .'"></a>';
+            
+        }
+        echo '</li>';
+    break;
+    
+    case Amasty_Shopby_Model_Source_Attribute::DT_IMAGES_AND_LABELS:
+        if ($this->getShowSearch()){
+            echo '<li rel="search"><input type="text" class="amshopby_attr_search" /></li>';
+        }
+        foreach ($this->getItemsAsArray() as $item){
+            echo '<li'.$item['style'].
+				(isset($item['default_sort']) ? ' data-default_sort="' . $item['default_sort'] . '"': '') .
+				(isset($item['featured_sort']) ? ' data-featured_sort="' . $item['featured_sort'] . '"': '') .
+				' data-text="' . htmlspecialchars($item['label']) . '"><a class="'.$item['css'].'" '.$item['rel'].' href="'.$item['url'].'">';
+            
+            if (isset($item['image_hover']) && $item['image_hover'] != '') {
+                echo '<img src="' . $item['image_hover'] . '" style="display: none;" />';
+                $onHover = 'onmouseover=this.src="' . $item['image_hover'] . '"'; 
+                $onHover .= ' onmouseout=this.src="' . $item['image'] . '"';
+            } else {
+                $onHover = '';
+            }
+            
+            if (!empty($item['image'])){
+                echo '<img src="'.$item['image'].'" ' . $onHover . ' title="'. $item['label'] .'" alt="'. $item['label'] .'">';
+            }
+            echo $item['label'] . $item['count'] . '</a>' . '</li>';
+        }
+    break;
+    
+    case Amasty_Shopby_Model_Source_Attribute::DT_DROPDOWN:
+        echo '<li><select onchange="if (this.value) setLocation(this.value)" class="amshopby-select amshopby-ajax-select">';
+        echo '<option value="'.$this->getRemoveUrl().'">&nbsp;</option>';
+        foreach ($this->getItemsAsArray() as $item){
+            echo '<option '.$item['css'] . $item['rel'] . ' value="'.$item['url'].'">'. $item['label'] . $item['count'] . '</option>';
+        }
+        echo '</select></li>';
+    break;
+    
+    case Amasty_Shopby_Model_Source_Attribute::DT_LABELS_IN_2_COLUMNS:
+        $items = $this->getItemsAsArray(); 
+        $size  = sizeof($items);
+        $half  =  ceil($size/2);
+        
+        echo '<li>';
+        echo '<div class="amshopby-column">';
+        for ($i=0; $i<$half; $i++){
+            $item = $items[$i];
+            echo '<a class="'.$item['css'].'" '.$item['rel'].' href="'.$item['url'].'" data-text="' . htmlspecialchars($item['label']) . '">'. $item['label'] . $item['count'] . '</a>' . '<br/>';
+        }
+        echo '</div>';
+        echo '<div class="amshopby-column">';
+        for ($i=$half; $i<$size; $i++){
+            $item = $items[$i];
+            echo '<a class="'.$item['css'].'" '.$item['rel'].' href="'.$item['url'].'" data-text="' . htmlspecialchars($item['label']) . '">'. $item['label'] . $item['count'] . '</a>' . '<br/>';
+        }
+        echo '</div>';
+        echo '</li>';
+    break;
+}
+
+if ($this->getShowLessMore() && in_array($this->getDisplayType(), array(
+        Amasty_Shopby_Model_Source_Attribute::DT_LABELS_ONLY,
+        Amasty_Shopby_Model_Source_Attribute::DT_IMAGES_ONLY,
+        Amasty_Shopby_Model_Source_Attribute::DT_IMAGES_AND_LABELS,
+    ))) {
+
+    $total = count($this->getItemsAsArray());
+    $short = $this->getMaxOptions();
+    $add = $total - $short;
+    if ($add > 0) {
+        $text = sprintf($this->__('View %d More'), $add);
+        echo '<li class="amshopby-clearer"><a id="amshopby-more-'.$this->getRequestValue().'" class="amshopby-more" href="#">' . $text . '</a></li>';
+    }
+    echo '<li class="amshopby-clearer"><a id="amshopby-less-'.$this->getRequestValue().'" class="amshopby-less" href="#" style="display:none">' . $this->__('Show Less') . '</a></li>';
+} 
+?>
+</ol>

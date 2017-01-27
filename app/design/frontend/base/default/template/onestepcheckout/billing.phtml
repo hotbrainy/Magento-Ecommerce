@@ -1,0 +1,21 @@
+<?php
+
+if($this->getRequest()->getParam('original_totals', false))    {
+    $summary = $this->getChildHtml('totals');
+}
+else    {
+    $summary = $this->getChildHtml('summary');
+}
+
+
+$data = array(
+    'shipping_method' => $this->getChildHtml('choose-shipping-method'),
+    'payment_method' => $this->getChildHtml('choose-payment-method'),
+    'summary' => $summary
+);
+
+
+
+echo Zend_Json::encode($data);
+
+?>

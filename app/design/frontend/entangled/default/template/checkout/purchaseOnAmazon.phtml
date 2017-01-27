@@ -1,0 +1,36 @@
+<?php 
+    $quote = Mage::getSingleton('checkout/session')->getQuote();
+	$cartItems = $quote->getAllVisibleItems();
+	$url = "http://www.amazon.com/gp/aws/cart/add.html?";
+	$cnt = 1;
+	$nonAmazonProducts = array();
+	foreach ($cartItems as $item) {
+	    $productId = $item->getProductId();
+	    $product = Mage::getModel('catalog/product')->load($productId);
+	    if ($product->getAsin()){
+		    if ($cnt > 1){
+		    	$url .= "&";
+		    }
+		    $url .= "ASIN.$cnt=" . $product->getData('asin') . "&Quantity.$cnt=1";
+		    $cnt += 1;
+		} else {
+			$nonAmazonProducts[] = $product;
+		}
+	}
+	$url .= "&AWSAccessKeyId=AKIAIMF6YO5L7ZUXEFPQ&AssociateTag=entangpublis-20";
+?>
+<?php if($cnt > 1): ?>
+<ul class="checkout-types">
+    <li>
+    	<a href="<?php echo $url ?>" target="_blank">
+	        <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout">
+	            <span>
+	                <span>
+	                    <?php echo $this->__('Checkout on Amazon'); ?>
+	                </span>
+	            </span>
+	        </button>
+	   	</a>
+    </li>
+</ul>
+<?php endif; ?>

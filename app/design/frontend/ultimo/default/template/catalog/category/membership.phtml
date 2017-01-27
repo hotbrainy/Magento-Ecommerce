@@ -1,0 +1,21 @@
+<?php  
+	return "";
+$_category = Mage::registry('current_category');
+
+if(!$_category) {
+    return;
+}
+$sku	 =	Entangled_Purchasediscount_Helper_Data::DISCOUNT_SKU;
+$proId	 = 	Mage::getModel('catalog/product')->getResource()->getIdBySku($sku);
+if ($proId) {
+   $_product 	= 	Mage::getModel('catalog/product')->load($proId);
+   $proImg		=	(string)Mage::helper('catalog/image')->init($_product, 'image')->resize(260);
+  ?>
+	<div class="membership-div">
+		<a href="<?php echo $this->getUrl('membership/index/membership')?>">
+			<img src="<?php echo $proImg ?>" alt="<?php echo $_product->getName() ?>"/>
+		</a>
+		 <!-- <button type="button" title="<?php //echo $this->__('Get Membership') ?>" class="button membership-btn" onclick="setLocation('<?php //echo $this->getUrl('membership/index/membership')?>')"><span><span><?php //echo $this->__('Get Membership') ?></span></span></button> -->
+		<div class="clr"></div>
+	</div>
+<?php }	?>

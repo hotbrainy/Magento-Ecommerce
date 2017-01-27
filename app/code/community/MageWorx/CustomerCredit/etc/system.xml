@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <sections>
+        <mageworx_customercredit translate="label" module="mageworx_customercredit">
+            <label>Loyalty Booster</label>
+            <tab>mageworx</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>600</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+
+            <groups>
+                <main translate="label" module="mageworx_customercredit">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable_credit translate="label">
+                            <label>Enable Loyalty Booster</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_credit>
+
+                        <enable_partial_credit_payment translate="label">
+                            <label>Enable Partial Credit Payment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_partial_credit_payment>
+
+                        <enable_custom_value translate="label comment">
+                            <label>Enable Custom Value Credit</label>
+                            <comment>Allows entering a custom value of used credits during the checkout</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable_partial_credit_payment>1</enable_partial_credit_payment>
+                            </depends>
+                        </enable_custom_value>
+
+                        <display_credit_block_at_cart translate="label">
+                            <label>Display Credit Block at Cart Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_credit_block_at_cart>
+
+                        <enable_sharing translate="label">
+                            <label>Enable Credits Sharing</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_sharing>
+
+                        <credit_scope translate="label comment">
+                            <label>Share Loyalty Booster</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>customer/config_share</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </credit_scope>
+
+                        <enable_invoice_order translate="label">
+                            <label>Invoice Order Paid by Credit</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_invoice_order>
+
+                        <enable_credit_memo_return translate="label">
+                            <label>Enable Credit Memo Return in Credits</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_credit_memo_return>
+
+                        <order_edit_affect_credit_log translate="label">
+                            <label>Display the balance changing for the user due to the order editing</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_edit_affect_credit_log>
+
+                        <enable_credit_columns_in_grid_order_view_tabs translate="label">
+                            <label>Enable Credit Columns in "Order View" Tabs</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_credit_columns_in_grid_order_view_tabs>
+
+                        <enable_customer_balance_grid_column translate="label">
+                            <label>Enable Customer Balance Column in Customers Grid</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_customer_balance_grid_column>
+
+                        <display_credit_link_in_top_menu translate="label">
+                            <label>Display "My Credit" Link in Top Menu</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_credit_link_in_top_menu>
+
+                        <static_block_for_my_credit_section translate="label">
+                            <label>Static Block for "My Credit" Section</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_all/system_config_source_cms_blocks</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </static_block_for_my_credit_section>
+
+                        <credit_totals translate="label">
+                            <label>Apply Credit to</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_totals</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </credit_totals>
+                        <credit_product translate="label">
+                            <label>Credit Product</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_product</source_model>
+                            <frontend_model>mageworx_customercredit/adminhtml_system_config_frontend_product_create
+                            </frontend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </credit_product>
+                        <default_qty_credit_units translate="label">
+                            <label>Default Qty of Credit Units</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits validate-not-negative-number</validate>
+                        </default_qty_credit_units>
+                        <exchange_rate translate="label comment">
+                            <label>Credit Exchange Rate</label>
+                            <comment>Enter amount of credits equal to 1 base currency</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>165</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits validate-not-negative-number</validate>
+                        </exchange_rate>
+                        <customer_group translate="label">
+                            <label>Assign to Customer Groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_customer_group_multiselect
+                            </source_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_group>
+                        <sync_credits translate="label">
+                            <label>Sync Store Credits Balances</label>
+                            <comment>Magento EE only</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_sync</source_model>
+                            <frontend_model>mageworx_customercredit/adminhtml_system_config_frontend_sync_credits
+                            </frontend_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sync_credits>
+                        <!--<min_order_amount translate="label">
+                            <label>Minimal Order Amount</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>175</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_order_amount>-->
+                        <product_apply_notice translate="label comment">
+                            <label>Product View Notice</label>
+                            <comment>This message will be shown on products that can be purchased for credits (if credit
+                                rules of the “Apply” type are added)
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_apply_notice>
+                    </fields>
+                </main>
+                <expiration translate="label" module="mageworx_customercredit">
+                    <label>Expiration Date Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <expiration_enable translate="label">
+                            <label>Enable Expiration Date</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </expiration_enable>
+                        <default_expiration_period translate="label ">
+                            <label>Default Expiration Period (days)</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>mageworx_customercredit/system_config_backend_expiration</backend_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_expiration_period>
+                        <update_expiration_date translate="label">
+                            <label>Update Current Expiration Dates if Default Expiration Period is changed</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </update_expiration_date>
+                        <notify_expiration_date_left translate="label comment">
+                            <label>Notify Customers about Expiration Date</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Day(s) left</comment>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notify_expiration_date_left>
+                    </fields>
+                </expiration>
+                <recharge_codes translate="label" module="mageworx_customercredit">
+                    <label>Recharge Codes Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable_recharge_codes translate="label comment">
+                            <label>Enable Recharge Codes</label>
+                            <comment>Loyalty Booster should be enabled</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_recharge_codes>
+                        <code_length translate="label comment">
+                            <label>Code Length</label>
+                            <comment>excluding separators, prefix and suffix</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                        </code_length>
+                        <group_length translate="label comment">
+                            <label>Character Group Length</label>
+                            <comment>groups not used if empty</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-digits validate-not-negative-number</validate>
+                        </group_length>
+                        <group_separator translate="label comment">
+                            <label>Character Group Separator</label>
+                            <comment>groups not used if empty</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_separator>
+                        <code_format translate="label">
+                            <label>Code Format</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_code_format</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </code_format>
+
+                    </fields>
+                </recharge_codes>
+                <email_config translate="label" module="mageworx_customercredit">
+                    <label>Email Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <send_email_templates translate="label">
+                            <label>Send Email Templates<![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>▾</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </send_email_templates>
+                        <for_balance_changed translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Balance Changed</label>
+                            <comment>The setting doesn’t apply to Product Reviews, Customer Birthday, etc.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_balance_changed>
+                        <notification_template_balance_changed translate="label comment">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Template for Balance
+                                <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Changed Email
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_email_template</source_model>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                                <for_balance_changed>1</for_balance_changed>
+                            </depends>
+                        </notification_template_balance_changed>
+                        <for_expiration_notice translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Expiration Notice</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_expiration_notice>
+                        <notification_template_expiration_notice translate="label comment">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Template for Expiration
+                                <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Notice
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_email_template</source_model>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                                <for_expiration_notice>1</for_expiration_notice>
+                            </depends>
+                        </notification_template_expiration_notice>
+                        <for_credit_rules translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Credit Rules</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_credit_rules>
+                        <for_product_review translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Product Review</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_product_review>
+                        <tpl_product_review translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Template for Product
+                                Review
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_email_template</source_model>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                                <for_product_review>1</for_product_review>
+                            </depends>
+                        </tpl_product_review>
+                        <for_customer_birthday translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Customer Birthday</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_customer_birthday>
+                        <tpl_customer_birthday translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Template for Customer
+                                <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Birthday
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_email_template</source_model>
+                            <sort_order>51</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                                <for_customer_birthday>1</for_customer_birthday>
+                            </depends>
+                        </tpl_customer_birthday>
+                        <for_newsletter_subscription translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Newsletter Subscription</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_newsletter_subscription>
+                        <tpl_newsletter_subscription translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Template for Newsletter
+                                <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Subscription
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_email_template</source_model>
+                            <sort_order>61</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                                <for_newsletter_subscription>1</for_newsletter_subscription>
+                            </depends>
+                        </tpl_newsletter_subscription>
+                        <for_product_tag translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>For Product Tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                            </depends>
+                        </for_product_tag>
+                        <tpl_product_tag translate="label">
+                            <label><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Template for Product
+                                Tag
+                            </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mageworx_customercredit/system_config_source_email_template</source_model>
+                            <sort_order>71</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <send_email_templates>1</send_email_templates>
+                                <for_product_tag>1</for_product_tag>
+                            </depends>
+                        </tpl_product_tag>
+                        <enable_bcc translate="label comment">
+                            <label>Send Email Copy to</label>
+                            <comment>Send a copy of email to addresses specified above</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_bcc>
+                    </fields>
+                </email_config>
+                <give_credit translate="label" module="mageworx_customercredit">
+                    <label>Give Credit</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <product_review translate="label comment">
+                            <label>Product Review</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Amount of credits a customer will get for one approved review.</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_review>
+                        <customer_birthday translate="label comment">
+                            <label>Customer Birthday</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Amount of credits a customer will get on his/her birthday.</comment>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_birthday>
+                        <newsletter_subscription translate="label comment">
+                            <label>Newsletter Subscription</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Amount of credits a customer will get for a newsletter subscription.</comment>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </newsletter_subscription>
+                        <product_tag translate="label comment">
+                            <label>Product Tag</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Amount of credits a customer will get for a product tag.</comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_tag>
+                    </fields>
+                </give_credit>
+            </groups>
+        </mageworx_customercredit>
+        <sales>
+            <groups>
+                <totals_sort>
+                    <fields>
+                        <mageworx_customercredit module="mageworx_customercredit" translate="label">
+                            <label>Internal Credit</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mageworx_customercredit>
+                    </fields>
+                </totals_sort>
+            </groups>
+        </sales>
+    </sections>
+</config>

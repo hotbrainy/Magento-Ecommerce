@@ -1,0 +1,15 @@
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+
+.positive_row {
+    color: #006918;
+}
+.negative_row {
+    color: #9b0000;
+}

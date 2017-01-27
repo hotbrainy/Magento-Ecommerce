@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ * All Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_All
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>    
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<mageworx translate="title" module="mageworx_all">
+										<title>MageWorx &gt; Extensions &amp; Support</title>
+										<sort_order>550</sort_order>
+										<children>
+											<extensions translate="title">
+												<title>Extensions Information</title>
+												<sort_order>1</sort_order>
+											</extensions>
+											<support translate="title">
+												<title>Get Support</title>
+												<sort_order>2</sort_order>
+											</support>
+										</children>
+									</mageworx>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>    
+</config>

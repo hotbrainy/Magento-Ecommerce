@@ -1,0 +1,53 @@
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+
+
+.credit-payment h4 {
+    background-image:url(../../../images/mageworx/customercredit/icon-credit.gif);
+    padding-left:23px;
+    min-height:16px;
+    color:#e26703;
+    background-repeat:no-repeat;
+    background-position:0 0;
+    padding:1px 0 1px 21px;
+    text-transform:uppercase;
+}
+
+.box-account .credit-payment h2 {
+    background-image:url(../../../images/mageworx/customercredit/icon-credit.gif);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    color: #E65505;
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+    padding-left: 21px;
+    text-transform: uppercase;
+}
+
+.box-account .box-credit-generate h2 {
+    background-image:url(../../../images/mageworx/customercredit/fam_money_add.gif);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    color: #E65505;
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+    padding-left: 21px;
+    text-transform: uppercase;
+}
+.customcredit-list {
+    overflow: hidden;
+}
+.customcredit-list li {
+    float: left;
+    margin-left: 20px;
+}

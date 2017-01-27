@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<!--
+    Configuration file for Ebizmarts_Autoresponder module, touch at you entire responsibility
+
+    @category   Ebizmarts
+    @package    Ebizmarts_Autoresponder
+    @author     Ebizmarts Team <info@ebizmarts.com>
+    @license    http://opensource.org/licenses/osl-3.0.php
+-->
+<config>
+    <modules>
+        <Ebizmarts_Autoresponder>
+            <version>1.2.0</version>
+        </Ebizmarts_Autoresponder>
+    </modules>
+    <global>
+        <models>
+            <ebizmarts_autoresponder>
+                <class>Ebizmarts_Autoresponder_Model</class>
+                <resourceModel>ebizmarts_autoresponder_resource</resourceModel>
+            </ebizmarts_autoresponder>
+            <ebizmarts_autoresponder_resource>
+                <class>Ebizmarts_Autoresponder_Model_Resource</class>
+                <deprecatedNode>ebizmarts_autoresponder_mysql4</deprecatedNode>
+                <entities>
+                    <unsubscribe>
+                        <table>ebizmarts_autoresponder_unsubscribe</table>
+                    </unsubscribe>
+                    <visited>
+                        <table>ebizmarts_autoresponder_visited</table>
+                    </visited>
+                    <review>
+                        <table>ebizmarts_autoresponder_review</table>
+                    </review>
+                    <backtostock>
+                        <table>ebizmarts_autoresponder_backtostock</table>
+                    </backtostock>
+                    <backtostockalert>
+                        <table>ebizmarts_autoresponder_backtostock_alert</table>
+                    </backtostockalert>
+                </entities>
+            </ebizmarts_autoresponder_resource>
+        </models>
+        <blocks>
+            <ebizmarts_autoresponder>
+                <class>Ebizmarts_Autoresponder_Block</class>
+            </ebizmarts_autoresponder>
+        </blocks>
+        <helpers>
+            <ebizmarts_autoresponder>
+                <class>Ebizmarts_Autoresponder_Helper</class>
+            </ebizmarts_autoresponder>
+        </helpers>
+        <resources>
+            <ebizmarts_autoresponder_setup>
+                <setup>
+                    <module>Ebizmarts_Autoresponder</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+            </ebizmarts_autoresponder_setup>
+        </resources>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_neworder_template translate="label" module="ebizmarts_autoresponder">
+                    <label>New Order Email</label>
+                    <file>ebizmarts/autoresponder/neworder.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_neworder_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_related_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Related Products Email</label>
+                    <file>ebizmarts/autoresponder/relatedproducts.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_related_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_review_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Review Email</label>
+                    <file>ebizmarts/autoresponder/review.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_review_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_birthday_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Customer Birthday Email</label>
+                    <file>ebizmarts/autoresponder/birthday.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_birthday_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_noactivity_template translate="label" module="ebizmarts_autoresponder">
+                    <label>No Customer Activity Email</label>
+                    <file>ebizmarts/autoresponder/noactivity.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_noactivity_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_wishlist_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Wishlist Email</label>
+                    <file>ebizmarts/autoresponder/wishlist.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_wishlist_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_visitedproducts_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Visited Products Email</label>
+                    <file>ebizmarts/autoresponder/visitedproducts.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_visitedproducts_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_review_coupon_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Review Coupon Email</label>
+                    <file>ebizmarts/autoresponder/reviewcoupon.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_review_coupon_template>
+            </email>
+        </template>
+        <template>
+            <email>
+                <ebizmarts_autoresponder_backtostock_template translate="label" module="ebizmarts_autoresponder">
+                    <label>Back to Stock</label>
+                    <file>ebizmarts/autoresponder/backtostock.html</file>
+                    <type>html</type>
+                </ebizmarts_autoresponder_backtostock_template>
+            </email>
+        </template>
+    </global>
+    <adminhtml>
+        <events>
+            <admin_system_config_changed_section_ebizmarts_autoresponder>
+                <observers>
+                    <ebizmarts_autoresponder_save_config>
+                        <class>ebizmarts_autoresponder/eventObserver</class>
+                        <method>saveConfig</method>
+                    </ebizmarts_autoresponder_save_config>
+                </observers>
+            </admin_system_config_changed_section_ebizmarts_autoresponder>
+            <admin_system_config_changed_section_mandrill>
+                <observers>
+                    <mandrill_save_config>
+                        <class>ebizmarts_autoresponder/eventObserver</class>
+                        <method>saveConfig</method>
+                    </mandrill_save_config>
+                </observers>
+            </admin_system_config_changed_section_mandrill>
+            <sales_order_save_after>
+                <observers>
+                    <ebizmarts_autoresponder_order_save_after>
+                        <class>ebizmarts_autoresponder/eventObserver</class>
+                        <method>orderSaved</method>
+                    </ebizmarts_autoresponder_order_save_after>
+                </observers>
+            </sales_order_save_after>
+        </events>
+        <translate>
+            <modules>
+                <Ebizmarts_Autoresponder>
+                    <files>
+                        <default>Ebizmarts_Autoresponder.csv</default>
+                    </files>
+                </Ebizmarts_Autoresponder>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <layout>
+            <updates>
+                <ebizmarts_autoresponder>
+                    <file>ebizmarts/autoresponder.xml</file>
+                </ebizmarts_autoresponder>
+            </updates>
+        </layout>
+        <routers>
+            <ebizmarts_autoresponder>
+                <use>standard</use>
+                <args>
+                    <module>Ebizmarts_Autoresponder</module>
+                    <frontName>ebizautoresponder</frontName>
+                </args>
+            </ebizmarts_autoresponder>
+        </routers>
+        <events>
+            <controller_action_postdispatch>
+                <observers>
+                    <ebizmarts_autoresponder_controller_action_after>
+                        <class>ebizmarts_autoresponder/eventObserver</class>
+                        <method>actionAfter</method>
+                    </ebizmarts_autoresponder_controller_action_after>
+                </observers>
+            </controller_action_postdispatch>
+            <review_product_post_after>
+                <observers>
+                    <ebizmarts_autoresponder_review_product_post_after>
+                        <class>ebizmarts_autoresponder/eventObserver</class>
+                        <method>reviewProductPostAfter</method>
+                    </ebizmarts_autoresponder_review_product_post_after>
+                </observers>
+            </review_product_post_after>
+        </events>
+        <translate>
+            <modules>
+                <Ebizmarts_Autoresponder>
+                    <files>
+                        <default>Ebizmarts_Autoresponder.csv</default>
+                    </files>
+                </Ebizmarts_Autoresponder>
+            </modules>
+        </translate>
+    </frontend>
+
+    <crontab>
+        <jobs>
+            <ebizmarts_autoresponder>
+                <schedule>
+                    <cron_expr>0 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>ebizmarts_autoresponder/cron::autoresponder</model>
+                </run>
+            </ebizmarts_autoresponder>
+            <ebizmarts_autoresponder_backtostock_cleanup>
+                <schedule>
+                    <cron_expr>0 1 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>ebizmarts_autoresponder/cron::cleanupBackToStock</model>
+                </run>
+            </ebizmarts_autoresponder_backtostock_cleanup>
+        </jobs>
+    </crontab>
+    <default>
+        <ebizmarts_autoresponder>
+            <neworder>
+                <mandrill-tag>Autoresponder_NewOrder</mandrill-tag>
+                <subject>Thanks for your order</subject>
+                <listname>New Order List</listname>
+            </neworder>
+            <related>
+                <mandrill-tag>Autoresponder_RelatedProducts</mandrill-tag>
+                <max-related>5</max-related>
+                <subject>Products of your interest</subject>
+                <listname>Related Product List</listname>
+                <status>complete</status>
+            </related>
+            <review>
+                <mandrill-tag>Autoresponder_Review</mandrill-tag>
+                <subject>Please review your purchased products</subject>
+                <listname>Review Product List</listname>
+                <status>complete</status>
+            </review>
+            <birthday>
+                <mandrill-tag>Autoresponder_Birthday</mandrill-tag>
+                <subject>Happy birthday</subject>
+                <listname>Happy Birthday List</listname>
+            </birthday>
+            <noactivity>
+                <mandrill-tag>Autoresponder_NoCustomerActivity</mandrill-tag>
+                <subject>You don't have any activity</subject>
+                <listname>No Activity List</listname>
+            </noactivity>
+            <wishlist>
+                <mandrill-tag>Autoresponder_WishlistAdd</mandrill-tag>
+                <subject>Wishlist Subject</subject>
+                <listname>Wishlist List</listname>
+            </wishlist>
+            <visitedproducts>
+                <mandrill-tag>Autoresponder_VisitedProducts</mandrill-tag>
+                <subject>Visited Product Subject</subject>
+                <listname>Visited Product List</listname>
+            </visitedproducts>
+            <backtostock>
+                <subject>Back to Stock Notification</subject>
+                <mandrill_tag>Autoresponder_BacktoStock</mandrill_tag>
+                <allow-guests>1</allow-guests>
+                <listname>Back to Stock List</listname>
+            </backtostock>
+        </ebizmarts_autoresponder>
+    </default>
+</config>

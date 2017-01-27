@@ -1,0 +1,39 @@
+<div class="content-header">
+    <h3><?php echo $this->getHeaderText(); ?></h3>
+    <p class="form-buttons"><?php echo $this->getBackButton();?></p>
+</div>
+
+<div class="entry-edit main-plugin-block">
+    <?php echo $this->getPluginsHtml();?>
+</div>
+<script type="text/javascript">
+    Event.observe(window, 'load', function(){
+        var state = localStorage.getItem('state');
+        if (null !== state) {
+            state = state.split(',');
+            for (var i=0; i<state.length; i++) {
+                if ($(state[i])) {
+                    Fieldset.toggleCollapse(state[i]);
+                }
+            }
+        }
+    });
+    var saveState = function(fieldset)
+    {
+        var state = [];
+        var needPush = true;
+        if (null !== localStorage.getItem('state')) {
+            state = localStorage.getItem('state').split(',');
+        }
+        for (var i=0; i<state.length; i++) {
+            if (state[i] == fieldset) {
+                state.splice(i, 1);
+                needPush = false;
+            }
+        }
+        if (needPush === true) {
+            state.push(fieldset);
+        }
+        localStorage.setItem('state', state.join(','));
+    }
+</script>

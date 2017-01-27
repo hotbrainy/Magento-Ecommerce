@@ -1,0 +1,29 @@
+<?php
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+?>
+<?php $_author = $this->getCurrentAuthor();?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-title author-title">
+    <h1><?php echo $_author->getName(); ?></h1>
+</div>
+<div class="author-view">
+    <div class="author-image">
+        <img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(265) ?>" alt="<?php echo $_author->getName(); ?>"/>
+    </div>
+    <div class="author-biography">
+        <p><?php echo nl2br(Mage::helper('publish')->__('Biography'));?>:<?php echo $_author->getBiography();?></p>
+    </div>
+    <hr />
+	<div class="product-list">
+		<?php echo $this->getChildHtml('product_list'); ?>
+	</div>
+</div>

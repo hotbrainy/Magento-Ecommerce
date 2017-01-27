@@ -1,0 +1,1210 @@
+/**
+ * Override all Magento base styles.
+ * Add theme-specific styles.
+ */
+
+
+
+/**
+ *
+ *
+ * OVERRIDE/EXTEND styles.css
+ *
+ *
+ */
+
+
+
+/* Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.wrapper { border-top-style:solid; border-top-width:5px; }
+
+/* Additional margin for sidebars
+-------------------------------------------------------------- */
+.col-left > *,
+.col-left .widget-static-block { margin-right: 32px; }
+.col-right > *,
+.col-right .widget-static-block { margin-left: 32px; }
+
+
+
+/* Global Styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Form
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Page Heading
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.page-title h1,
+.page-title h2 { margin:0; min-height:1.3125em; /* 42px. Has to ba aligned with ".block .block-title" */ }
+.category-title { margin-bottom:0; }
+
+
+/* Global Messages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.note-msg.empty-catalog {
+	background:url(../images/img/empty-catalog.png) 10px 10px no-repeat transparent !important;
+	color:inherit;
+	min-height:70px;
+	padding:40px 20px 40px 160px !important;
+}
+
+
+/* BreadCrumbs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.breadcrumbs { line-height:1.5em; /*18px*/ margin:0 0 5px; }
+/* Breadcrumbs on product page */
+.catalog-product-view .breadcrumbs { margin-bottom:10px; }
+
+
+
+/* Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Line breaker */
+.user-menu .line-break-after { clear:both; margin-bottom: 1px; }
+
+
+
+/* Regular header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Skip link
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-regular .skip-link { display: none; }
+
+/* Products counter */
+.skip-link .count {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	background-color: red;
+	color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	/* To display products counter sticked above the icon, uncomment this code: */
+	/*
+	margin-left: -14px;
+	margin-right: -7px;
+	margin-top: -22px;
+	position: relative;
+	*/
+}
+
+
+/* Selected skip links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Cart + compare
+-------------------------------------------------------------- */
+/* Skip links has to be hidden except cart and compare */
+.header-regular .mini-cart-heading,
+.header-regular .mini-compare-heading { display: block; }
+
+.header-regular .mini-cart-heading .label.no-display,
+.header-regular .mini-compare-heading .label.no-display { display: none; }
+
+
+/* Vertically aligned grid (in "Header - Primary" section)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-regular .hp-blocks-holder {
+	display:table;
+	width:100%;
+}
+.header-regular .hp-blocks-holder .hp-block {
+	float:none;
+	display:table-cell;
+	vertical-align:middle;
+}
+.header-regular .hp-blocks-holder .hp-block:before,
+.header-regular .hp-blocks-holder .hp-block:after {
+	display: table;
+	content: " ";
+}
+.header-regular .hp-blocks-holder .hp-block:after {
+	clear: both;
+}
+
+
+/* Selected elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Search
+-------------------------------------------------------------- */
+/* Let the search box have the same width as containing block */
+.header-regular .search-wrapper {
+	width: 100%;
+}
+
+
+/* Header sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-regular .left-column {
+	text-align: left;
+}
+.header-regular .central-column {
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.header-regular .right-column {
+	text-align: right;
+}
+
+
+/* Left column 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Dropdowns
+-------------------------------------------------------------- */
+/* Force left-aligned edge of dropdowns */
+.header-regular .left-column .dropdown .dropdown-content {
+	left: 0;
+	right: auto;
+}
+/* Avoid dropdown heading stretched in containing block */
+.header-regular .left-column .dropdown {
+	display: inline-block;
+}
+
+/* Search box
+-------------------------------------------------------------- */
+.header-regular .left-column .search-wrapper {
+	float: left;
+}
+
+/* Elements of User Menu
+-------------------------------------------------------------- */
+.header-regular .left-column .user-menu .search-wrapper,
+.header-regular .left-column .user-menu .mini-cart,
+.header-regular .left-column .user-menu .mini-compare,
+.header-regular .left-column .user-menu .top-links,
+.header-regular .left-column .user-menu .top-links ul {
+	float: left;
+}
+
+/* Right column
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Dropdowns
+-------------------------------------------------------------- */
+/* Force right-aligned edge of dropdowns */
+.header-regular .right-column .dropdown .dropdown-content {
+	left: auto;
+	right: 0;
+}
+/* Avoid dropdown heading stretched in containing block */
+.header-regular .right-column .dropdown {
+	display: inline-block;
+}
+
+/* Search box
+-------------------------------------------------------------- */
+.header-regular .right-column .search-wrapper {
+	float: right;
+}
+
+/* Elements of User Menu
+-------------------------------------------------------------- */
+.header-regular .right-column .user-menu .search-wrapper,
+.header-regular .right-column .user-menu .mini-cart,
+.header-regular .right-column .user-menu .mini-compare,
+.header-regular .right-column .user-menu .top-links,
+.header-regular .right-column .user-menu .top-links ul {
+	float: right;
+}
+
+/* Main menu
+-------------------------------------------------------------- */
+.header-regular .right-column .nav-container {
+	float: right;
+}
+
+
+/* Central column
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Search box
+-------------------------------------------------------------- */
+/* Centered search box */
+.header-regular .central-column .form-search {
+	margin:0 auto;
+}
+
+/* Elements of User Menu
+-------------------------------------------------------------- */
+/* Elements of the central column are centered so the "user-menu" container also needs to be centered:
+   so it needs to be inline-block, it can't float and can't have 100% width. */
+.header-regular .central-column .user-menu {
+	display: inline-block;
+	float: none;
+	width: auto;
+}
+.header-regular .central-column .user-menu .search-wrapper,
+.header-regular .central-column .user-menu #mini-cart-wrapper-regular, /* IMPORTANT: cart wrapper also needs to float */
+.header-regular .central-column .user-menu .mini-cart,
+.header-regular .central-column .user-menu .mini-compare,
+.header-regular .central-column .user-menu .top-links,
+.header-regular .central-column .user-menu .top-links ul {
+	float: right;
+}
+
+
+/* Hidden elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-regular .logo-wrapper--mobile,
+.header-regular .logo--mobile,
+.header-regular .header-collateral,
+.header-regular .after-mobile-logo,
+.header-regular .skip-links-clearer,
+.header-regular #search-wrapper-mobile,
+.header-regular #user-menu-wrapper-mobile,
+.header-regular #account-links-wrapper-mobile,
+.header-regular #mini-cart-wrapper-mobile,
+.header-regular #mini-compare-wrapper-mobile {
+	display: none;
+}
+
+
+/* Other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/*.header-regular .header-top .lang-switcher,
+.header-regular .header-top .currency-switcher, */
+.header-regular #lang-switcher-wrapper-regular,
+.header-regular #currency-switcher-wrapper-regular,
+.header-regular .header-top .dropdown {
+	margin:0;
+}
+
+
+
+/* Mobile header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Skip links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Some skip links are also displayed in regular header so the styles specific to mobile header
+   have to be applied with "header-mobile" class */
+.header-mobile .skip-link {
+	position: relative;
+	float: left;
+	width: 20%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+.header-mobile a.skip-link {
+	text-decoration: none;
+}
+/*.header-mobile .skip-link:not(.skip-active):hover*/
+.header-mobile .skip-link:hover {
+	opacity: 0.7;
+}
+.header-mobile .skip-link.skip-active:hover {
+	opacity: 1;
+}
+
+/* Elements
+-------------------------------------------------------------- */
+.header-mobile .skip-link .icon {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 3px;
+	font-size: 16px;
+	line-height: 16px;
+}
+.header-mobile .skip-link .label {
+	display: inline-block !important; /* Added "!important" because label can be hidden in cart and in compare */
+	vertical-align: middle;
+	line-height: 16px;
+	font-size: 14px;
+}
+.header-mobile .skip-link .count {
+	display: inline-block;
+	vertical-align: middle;
+}
+.header-mobile .skip-link .caret {
+	display: none;
+}
+
+/* Active link
+-------------------------------------------------------------- */
+.header-mobile .skip-link.skip-active,
+.header-mobile .skip-link:hover {
+	color: inherit;
+}
+.header-mobile .skip-link.skip-active span {
+	color: inherit;
+}
+.header-mobile .skip-link.skip-active .count {
+	color: #fff;
+}
+
+/* Size
+-------------------------------------------------------------- */
+.header-mobile .skip-links--1 .skip-link { width: 100%; }
+.header-mobile .skip-links--2 .skip-link { width: 50%; }
+.header-mobile .skip-links--3 .skip-link { width: 33.33%; }
+.header-mobile .skip-links--4 .skip-link { width: 25%; }
+.header-mobile .skip-links--5 .skip-link { width: 20%; }
+.header-mobile .skip-links--6 .skip-link { width: 16.66%; }
+
+
+/* Selected skip links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Compare
+-------------------------------------------------------------- */
+/* Hide compare block's heading (only heading) */
+.header-mobile .mini-compare .mini-compare-heading { display: none; }
+.header-mobile .mini-compare .actions {
+	border: none;
+	padding-top: 0;
+}
+
+/* Cart + compare
+-------------------------------------------------------------- */
+/* Important: possible value "relative" of the "position" property.
+   In mobile header, we need to reset "position" of the dropdown container so that it doesn't cover other skip links.
+   We also need to remove float.
+   */
+.header-mobile .mini-cart,
+.header-mobile .mini-compare {
+	position: static;
+	float: none;
+}
+
+.header-mobile .mini-cart-content,
+.header-mobile .mini-compare-content {
+	clear: both;
+	width: 100%;
+}
+/*.header-mobile .skip-cart { float: right; }
+.header-mobile .skip-compare { float: right; }*/
+
+
+/* Skip content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-mobile .skip-content {
+	display: none;
+}
+.header-mobile .skip-content.skip-active {
+	display: block;
+}
+
+/* Styls required in skip-content blocks are added through
+   special class so that we can control which blocks are styled
+-------------------------------------------------------------- */
+.header-mobile .skip-content--style {
+	padding: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	/* Skip content blocks have to be reset the same as all grid units
+	   because skip content blocks can have grid units */
+	width:100% !important; /* Added "!important" to override units with "no-gutter" */
+	margin: 0;
+}
+.header-mobile .skip-content--style:before,
+.header-mobile .skip-content--style:after {
+	display: table;
+	content: " ";
+}
+.header-mobile .skip-content--style:after {
+	clear: both;
+}
+
+/* Containers
+-------------------------------------------------------------- */
+/* In mobile header set new bottom padding for primary header
+   to show space at the very bottom of skip links and skip content blocks
+   (which are inside primary header) */
+.header-mobile .header-primary {
+	padding-bottom: 20px;
+}
+
+/* Main menu is outside primary header so we need to pull it up
+   to get rid of the gap between menu and its skip link.
+   Important: but only when menu is in the full width container
+   (so when it's child of ".header-container3" element)
+   and not when menu is inside one of other containers.
+*/
+.header-mobile .header-container3 > .nav-container {
+	margin-top: -20px;
+	margin-bottom: 20px;
+}
+
+
+/* Selected skip content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Search
+-------------------------------------------------------------- */
+.header-mobile .form-search {
+	width: 100%;
+}
+.header-mobile .form-search .input-text {
+	width: 100%;
+}
+
+/* Cart + compare
+-------------------------------------------------------------- */
+.header-mobile .mini-cart-content,
+.header-mobile .mini-compare-content {
+	clear: both;
+	width: 100%;
+}
+
+
+/* Vertically aligned grid of blocks (in "Header - Primary" section).
+   In mobile header all blocks are stretched to full width
+   and stack vertically.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-mobile .hp-blocks-holder .hp-block {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+@media only screen and (max-width: 960px) {
+
+	/* If special class exists, 
+	   reset blocks below this breakpoint - blocks become full width and stack vertically. */
+	.header-regular .hp-blocks-holder--stacked .hp-block {
+		display: block;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	/* Remove floating of the menu container */
+	.header-regular .hp-blocks-holder--stacked .nav-container {
+		float: none;
+	}
+	.header-regular .hp-blocks-holder--stacked .right-column {
+		text-align: inherit;
+	}
+
+	/* Logo
+	-------------------------------------------------------------- */
+	.header-regular .hp-blocks-holder--stacked .logo-wrapper {
+		text-align: center;
+	}
+	.header-regular .hp-blocks-holder--stacked .logo-wrapper .logo {
+		max-width: 60%;
+		margin-left: auto; /* Margins "auto" not needed. Left in case custom CSS removes "display:inline-block" from the ".logo" element. */
+		margin-right: auto;
+	}
+		
+	/* Search
+	-------------------------------------------------------------- */
+	.header-regular .hp-blocks-holder--stacked .search-wrapper {
+		float: none;
+		max-width: 440px;
+		margin: 10px auto; /* Add space above and below search box */
+	}
+
+}
+
+
+/* Top links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-mobile .top-links { float: none !important; clear: both; }
+.header-mobile .top-links ul { float: none !important; }
+
+
+/* Generic vertical inline links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-mobile .skip-content .links > li {
+	float: none;
+	line-height: 44px;
+	font-size: 16px;
+}
+.header-mobile .skip-content .links > li > a {
+	background-image: none; /* Remove link separators */
+}
+
+
+/* Logo and collateral elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Regular logo */
+.header-mobile .logo-wrapper--regular {
+	display: none;
+}
+
+/* Mobile logo */
+.header-mobile .logo-wrapper--mobile {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.header-mobile .logo-wrapper--mobile .logo {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/* Header collateral elements */
+.header-mobile .header-collateral {
+	float: right;
+	text-align: right;
+}
+/* If collateral next to logo, logo floats left */
+.header-mobile .header-collateral + .logo-wrapper--mobile {
+	float: left;
+	text-align: left;
+}
+
+
+/* Other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-mobile .line-break-after { display: none !important; }
+
+/* User menu
+-------------------------------------------------------------- */
+.header-mobile .user-menu {
+	float: none !important;
+	margin: 0; /* Important: remove margins to collapse the block completely */
+}
+
+/* Language/currency switcher
+-------------------------------------------------------------- */
+/*.header-mobile #lang-switcher-wrapper-regular,
+.header-mobile #currency-switcher-wrapper-regular {
+	display: none;
+}*/
+.header-mobile.move-switchers #lang-switcher-wrapper-regular,
+.header-mobile.move-switchers #currency-switcher-wrapper-regular {
+	display: none;
+}
+
+
+/* Mobile menu inside mobile header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Hide/show basic elements */
+.header-mobile .mobnav-trigger-wrapper { display: none !important; } /* Always hidden */
+.header-mobile .nav-mobile { display: block !important; } /* Always displayed */
+
+/* Remove side padding from inner container when menu container has "simple" class */
+.header-mobile .nav.simple .inner-container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Containers
+-------------------------------------------------------------- */
+/* Important: menu container is also a "skip-content" block */
+.header-mobile .nav-container {
+
+	/* Padding for menu container may be added via admin panel so we need to remove it here */
+	padding: 0;
+
+	/* If needed, reset also other styles which are added to standard "skip-content" blocks */
+
+	/* Remove background color */
+	background-color: transparent;
+}
+
+/* Menu bar
+-------------------------------------------------------------- */
+/* Remove shadow */
+.header-mobile .nav-container .nav,
+.header-mobile .nav-container #nav {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.header-mobile .nav-border-bottom
+{
+	border-bottom: none;
+}
+
+/* Menu items
+-------------------------------------------------------------- */
+/* Mobile menu - remove possible gap from the top of the very first item.
+   Gaps are added as dividers between items of the mobile menu accordion. */
+.header-mobile .nav-mobile .nav-item.nav-1 {
+	margin-top: 0 !important;
+}
+
+
+/* Hidden elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.header-mobile .container_header_primary_left_1,
+.header-mobile .container_header_primary_central_1,
+.header-mobile .container_header_primary_right_1 {
+	display: none;
+}
+
+
+
+/* Sticky header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.sticky-header .sticky-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: #fff;
+}
+
+/* Reset selected styles of the menu bar in sticky header
+-------------------------------------------------------------- */
+/* Remove additional padding above and below the menu container */
+.sticky-header .nav-container {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+/* Remove background color and vertical padding (they work as an outline of the menu bar) from the nav container */
+.sticky-header .nav-container .nav {
+	background-color: transparent;
+	padding-top: 0;
+	padding-bottom: 0;	
+}
+
+/* Remove shadow from the menu bar and from the menu bar container */
+.sticky-header .nav-container .nav,
+.sticky-header .nav-container #nav {
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+/* Category labels
+-------------------------------------------------------------- */
+/* Make top-level category labels invisible */
+.sticky-header .nav-regular .nav-item.level0 > a .cat-label {
+	display: none;
+}
+/* Alternatively, we can make the labels smaller */
+/*.sticky-header .nav-regular .nav-item.level0 > a .cat-label {
+	font-size: 11px;
+	line-height: 15px;
+	padding: 0 4px;
+	top: 2px;
+}
+.sticky-header .nav-regular .nav-item.level0 > a .pin-bottom:before { display: none; }*/
+
+/* Full width content 
+-------------------------------------------------------------- */
+.sticky-header .sticky-container--full-width .container {
+	/* Stretch the container to take all available space */
+	max-width: none;
+	width: 100%;
+}
+.sticky-header .sticky-container--full-width .inner-container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Hide selected elements
+-------------------------------------------------------------- */
+/* Text label of the dropdown when inside sticky header */
+.sticky-header .nav-holder .dropdown-heading .label {
+	display: none;
+}
+
+
+
+/* Sticky header + mobile menu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/*.sticky-header .nav-container {
+	height: 55px;
+}
+.sticky-header .nav-mobile {
+	height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}*/
+
+
+
+/* Sidebar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Block lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.block-viewed .block-content ol,
+.block-compare .block-content ol,
+.block-compared .block-content ol {
+	padding-left: 0;
+	list-style: none;
+}
+.block-viewed .block-content li.item,
+.block-compare .block-content li.item,
+.block-compared .block-content li.item {
+	background:url(../images/img/bullet.png) no-repeat 3px 10px;
+	padding-left:15px;
+}
+
+
+/* Block: Related
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Align block title with the tabs on product page */
+/*.block-related .section-title { padding-top: 19px; }*/
+
+
+/* Block: Account
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.block-account .block-title { background:url(../images/img/ic-account.png) 5px 2px no-repeat; padding-left:42px !important; }
+.block-account .block-content { padding:10px 0 0; }
+.block-account li > * { padding: 2px; }
+.block-account li.current strong { font-weight:bold; }
+
+
+
+/* Category view %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+.products-grid .item { -webkit-tap-highlight-color: transparent; }
+
+
+
+/* Product view elements %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Availability
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.availability { float:right; margin:15px 0 10px; visibility:hidden !important}
+
+
+
+/* Product page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Prices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Bundle product */
+.price-box-bundle {
+	border-bottom:1px solid #e5e5e5;
+	margin:-10px 0 15px; /* Move up to align with the main price box */
+	padding-bottom:15px;
+}
+
+
+/* Main containers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Margin before price box */
+.product-view .space-before-avail { margin:0 0 15px; height:0; line-height:0; }
+
+/* Upper part of the container */
+.product-view .product-type-data > .price-box {
+	border-top-style:solid;
+	border-top-width:1px;
+	margin:15px 0 0;
+	padding:10px 0;
+}
+
+/* Other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Reviews */
+.product-view .box-reviews .buttons-set { margin-left:0; margin-right:0; }
+
+
+/* New elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.product-view .sku { margin: 15px 0; }
+.product-view .sku .label { font-weight: bold; }
+
+
+/* Product type specific data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.product-view .is-type-grouped .availability { margin-top:0; margin-bottom:0; }
+.product-view .grouped-items-table input.input-text { height: 26px; padding:4px; /* Decrease default height and padding */ }
+
+
+
+/* My Account %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/*.my-account .pager { margin: -1px 0 20px; }*/
+
+
+
+/**
+ *
+ *
+ * MISCELLANEOUS
+ *
+ *
+ */
+
+
+
+/* Accordion/collapsible %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Accordion - Style 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.accordion-style1 li a {
+	border-bottom-color:#eee;
+	border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.accordion-style1 li a:hover {
+	background-color:rgba(0,0,0, 0.03);
+}
+
+/* Deprecated: opener
+-------------------------------------------------------------- */
+.accordion-style1 .opener {
+	background-color:rgba(0,0,0, 0.03);
+}
+
+
+/* Collapsible blocks.
+   Set position and other properties of arrow icon.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Different types of collapsible blocks share the same styles */
+
+/* Generic tabs - accordion */
+.gen-tabs .acctab:after,
+
+/* Collapsible blocks */
+.collapsible .block-title:after,
+.mobile-collapsible .block-title:after,
+
+/* Sidebar blocks */
+.sidebar .block .block-title:after,
+
+/* Layered navigation */
+.block-layered-nav .block-title:after {
+	float: right;
+	font-size: 22px;
+}
+
+/* Blocks collapsible only on mobile - hide arrow */
+.mobile-collapsible .block-title:after,
+.sidebar .block .block-title:after,
+.block-layered-nav .block-title:after {
+	display: none !important;
+}
+
+
+
+/* Icons %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Icons applied with icon codes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* These icons needs to have the same basic styles as standard font icons.
+   Except line height - it would override individual size of each icon.
+*/
+.form-search .button:before,
+
+.buttons-set .back-link a:before,
+
+.btn-remove:before,
+.btn-remove2:before,
+.map-popup-close:before,
+.remember-me-popup-head .remember-me-popup-close:before,
+
+.btn-edit:before,
+
+.breadcrumbs .sep,
+
+/* Generic tabs - accordion */
+.gen-tabs .acctab:after,
+
+/* Collapsible block icon */
+.collapsible .block-title:after,
+.mobile-collapsible .block-title:after,
+.sidebar .block .block-title:after,
+.block-layered-nav .block-title:after
+{
+	display: inline-block;
+	font-family: ThemeIcons;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	/*line-height: 1em;*/ /* Important: don't overrid line height, it depends on the size of the icon */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply icon codes
+-------------------------------------------------------------- */
+.form-search .button:before {
+	content: "\e235";
+}
+.buttons-set .back-link a:before {
+	content: "\e22a";
+}
+.btn-remove:before,
+.btn-remove2:before,
+.map-popup-close:before,
+.remember-me-popup-head .remember-me-popup-close:before {
+	content: "\e22d";
+}
+.btn-edit:before {
+	content: "\e22e";
+}
+.breadcrumbs .sep:before {
+	content: "\e228";
+	font-size: 8px;
+}
+.gen-tabs .acctab:after,
+.collapsible .block-title:after,
+.mobile-collapsible .block-title:after,
+.sidebar .block .block-title:after,
+.block-layered-nav .block-title:after {
+	content: "\e261";
+}
+.gen-tabs .acctab.current:after,
+.collapsible .block-title.active:after,
+.mobile-collapsible .block-title.active:after,
+.sidebar .block .block-title.active:after,
+.block-layered-nav .block-title.active:after {
+	content: "\e262";
+}
+
+
+
+/* Other modifications %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Menu container
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Simple menu container - when menu is inside the container which is not full-width but is narrow
+   and placed in one of the header sections. Override the width of the "nav" class. */
+.nav.simple {
+	width: 100%;
+}
+
+
+/* Cart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Collateral boxes - full width */
+.cart-left-column .grid-full,
+.cart-right-column .grid-full { width:100%; }
+
+
+
+/**
+ *
+ *
+ * BUILT-IN STATIC BLOCKS
+ *
+ *
+ */
+
+
+
+.block_category_above_collection { margin:10px 0; }
+.block_category_below_collection { margin:10px 0; }
+.block_category_above_empty_collection { margin:10px 0; }
+.block_mini_cart_above_products { margin:0 0 10px; }
+.block_cms_page_top { margin:0 0 15px; }
+.block_footer_payment { margin-bottom:10px; margin-left:20px; }
+
+/* Sample block content
+-------------------------------------------------------------- */
+.sample-block {
+	color:#999;
+	margin-top:10px;
+	padding: 0 !important;
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-webkit-transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+.sample-block:hover { color:#333; }
+
+
+
+/**
+ *
+ *
+ * HIGH-RESOLUTION READY IMAGES (RETINA-READY)
+ *
+ *
+ */
+
+
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (   min--moz-device-pixel-ratio: 1.5),
+only screen and (     -o-min-device-pixel-ratio: 3/2),
+only screen and (    -ms-min-device-pixel-ratio: 1.5),
+only screen and (        min-device-pixel-ratio: 1.5)
+{
+
+	/* Rating */
+	.rating-box,
+	.rating-box .rating { background-image:url(../images/img/rating@2x.png); background-size:14px 43px; }
+
+	/* Icons below are obsolete and will be removed in future releases.
+	   Icons created with image sprites were replaced with font icons.
+	   Font icons should be used instead of old sprite image icons.
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	*/
+	
+	/* Theme icons
+	   IMPORTANT: Deprecated: will be removed in next versions (sprite image icons were replaced with font icons).
+	-------------------------------------------------------------- */
+	/* To top */
+	#scroll-to-top,
+	
+	/* Search button */
+	.header .form-search .button span,
+	
+	/* All icons from icons-theme.css */
+	/* Row 1: */
+	.icon.i-wishlist,
+	.icon.i-wishlist-w,
+	.icon.i-wishlist-bw,
+	.icon.i-wishlist-wb,
+	
+	.icon.i-compare,
+	.icon.i-compare-w,
+	.icon.i-compare-bw,
+	.icon.i-compare-wb,
+	
+	.icon.i-recommend,
+	.icon.i-recommend-w,
+	.icon.i-recommend-bw,
+	.icon.i-recommend-wb,
+	
+	.icon.i-lowstock,
+	.icon.i-lowstock-w,
+	.icon.i-lowstock-bw,
+	.icon.i-lowstock-wb,
+	
+	.icon.i-cart,
+	.icon.i-cart-w,
+	.icon.i-cart-bw,
+	.icon.i-cart-wb,
+	
+	/* Row 2: */
+	.icon.i-home,
+	.icon.i-home-w,
+	.icon.i-home-bw,
+	.icon.i-home-wb,
+	
+	.icon.i-left,
+	.icon.i-left-w,
+	.icon.i-left-bw,
+	.icon.i-left-wb,
+	
+	.icon.i-right,
+	.icon.i-right-w,
+	.icon.i-right-bw,
+	.icon.i-right-wb,
+	
+	.icon.i-top,
+	.icon.i-top-w,
+	.icon.i-top-bw,
+	.icon.i-top-wb,
+	
+	.icon.i-bottom,
+	.icon.i-bottom-w,
+	.icon.i-bottom-bw,
+	.icon.i-bottom-wb /* Last selector without trailing coma */
+	
+	{ background-image:url(../images/sprite@2x.png); background-size:500px 200px; }
+	
+	
+	/* All icons from icons-social.css
+	-------------------------------------------------------------- */
+	/* Row 1: */
+	.icon.i-telephone,
+	.icon.i-telephone-w,
+	
+	.icon.i-mobile,
+	.icon.i-mobile-w,
+
+	.icon.i-skype,
+	.icon.i-skype-w,
+	
+	.icon.i-letter,
+	.icon.i-letter-w,
+
+	.icon.i-location,
+	.icon.i-location-w,
+	
+	/* Row 2: */
+	.icon.i-twitter,
+	.icon.i-twitter-w,
+	
+	.icon.i-facebook,
+	.icon.i-facebook-w,
+	
+	.icon.i-googleplus,
+	.icon.i-googleplus-w,
+	
+	.icon.i-youtube,
+	.icon.i-youtube-w,
+	
+	.icon.i-vimeo,
+	.icon.i-vimeo-w,
+	
+	.icon.i-wordpress,
+	.icon.i-wordpress-w,
+	
+	.icon.i-pinterest,
+	.icon.i-pinterest-w,
+		
+	.icon.i-linkedin,
+	.icon.i-linkedin-w,
+	
+	.icon.i-blogger,
+	.icon.i-blogger-w,
+
+	.icon.i-envato,
+	.icon.i-envato-w /* Last selector without trailing coma */
+	
+	{ background-image:url(../images/sprite-icons-social@2x.png); background-size:500px 200px; }
+
+} /* end: media query */

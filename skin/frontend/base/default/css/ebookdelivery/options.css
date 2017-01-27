@@ -1,0 +1,22 @@
+ul.ebookdelivery > li {
+	background-color: #f3f3f3;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	padding: 20px;
+}
+ul.ebookdelivery > li ol { list-style-type: decimal; padding-left: 20px; }
+ul.ebookdelivery > li .image { float:left; clear:left; width:120px; }
+ul.ebookdelivery > li .image img { width: 100%; }
+ul.ebookdelivery > li .col2-set { margin-left:130px; }
+ul.ebookdelivery > li .description {  }
+ul.ebookdelivery > li .form {  }
+ul.ebookdelivery > li .form ul.form-list {
+	border: 1px solid;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px 5px 0;
+	margin: 3px; }
+ul.ebookdelivery > li .form button { width: 100%; }
+ul.ebookdelivery > li .form input[type=text] { float:right; }

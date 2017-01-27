@@ -1,0 +1,116 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php 
+    $_displayType = $this->getDisplayType();
+    $_multiselectEnabled = Mage::helper('amshopby')->getCategoriesMultiselectMode();
+    $_showCount = !$this->getData('hide_counts');
+?>
+
+<ol <?php if ($this->getCollapsed() && !$this->getHasSelection()) echo 'class="no-display-current"'?>  >
+<?php if (in_array($_displayType, array(
+            Amasty_Shopby_Model_Catalog_Layer_Filter_Category::DT_DEFAULT, 
+            Amasty_Shopby_Model_Catalog_Layer_Filter_Category::DT_WSUBCAT,
+        ))): ?>
+    <?php foreach ($this->getItems() as $_item): ?>
+        <li class="amshopby-cat amshopby-cat-level-<?php echo max(1, $_item->getLevel())?> <?php if ($_multiselectEnabled) echo 'amshopby-cat-multi' . ($_item->getIsSelected() ? ' amshopby-cat-multiselected' : '') ?>">
+            <?php if ($_item->getIsSelected()) :?>
+                <?php if ($_multiselectEnabled) echo '<a href="' . $this->urlEscape($_item->getUrl())  .'">' ?>
+                <?php echo $_item->getLabel() ?>
+                <?php if ($_showCount && $_item->getCount()):?>
+                    <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                <?php endif;?>
+                <?php if ($_multiselectEnabled) echo '</a>' ?>
+            <?php else:?>
+                <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>">
+                    <?php echo $_item->getLabel() ?>
+                    <?php if ($_showCount && $_item->getCount()):?>
+                        <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                    <?php endif;?>
+                </a>
+            <?php endif;?>
+        </li>
+    <?php endforeach ?>
+<?php elseif (Amasty_Shopby_Model_Catalog_Layer_Filter_Category::DT_STATIC2LVL == $_displayType): ?>
+    <?php foreach ($this->getItems() as $_item): ?>
+        <?php
+            $level      = $_item->getLevel();
+            $additional = $_item->getIsFolded() ? 'style="display:none"' : '';
+
+            $class      = 'amshopby-cat amshopby-cat-level-' . $level;
+            if (1 != $level){
+                $class .= ' amshopby-cat-parentid-' . $_item->getParentId();
+            }
+
+            $showIcon = (1 == $level && $_item->getHasChildren());
+            $icon = ($_item->getIsChildSelected()) ? 'minus': 'plus';
+        ?>
+        <li class="<?php echo $class?>" <?php echo $additional?>>
+            <?php if ($showIcon): ?><span id="amshopby-cat-id-<?php echo $_item->getId()?>" class="amshopby-plusminus <?php echo $icon?>"></span><?php endif ?>
+            <a <?php if ($_item->getIsSelected()):?>class="amshopby-cat-selected"<?php endif?> href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a>
+            <?php if ($_showCount && $_item->getCount()):?>
+                <span class="count">(<?php echo $_item->getCount() ?>)</span>
+            <?php endif;?>
+        </li>
+    <?php endforeach ?>
+<?php elseif (Amasty_Shopby_Model_Catalog_Layer_Filter_Category::DT_DROPDOWN == $_displayType): ?>
+    <li>
+        <select onchange="if (this.value) setLocation(this.value)" class="amshopby-select">
+            <!-- uncomment to show Filter name in the dropdown <option value=""><?php echo $this->getName() ?></option>-->
+            <option value="">&nbsp;</option>
+            <?php foreach ($this->getItems() as $_item): ?>
+            <option  value="<?php echo $this->urlEscape($_item->getUrl()) ?>">
+                <?php echo $_item->getLabel() ?>
+                <?php if ($_showCount && $_item->getCount()):?>
+                    <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                <?php endif;?>
+            </option>
+            <?php endforeach ?>
+        </select>
+    </li>
+    <?php elseif (Amasty_Shopby_Model_Catalog_Layer_Filter_Category::DT_ADVANCED == $_displayType): ?>
+        <li class="amshopby-advanced">
+            <ol>
+                <?php
+                $advancedBlock = Mage::getSingleton('core/layout')->createBlock('amshopby/advanced');
+                $advancedBlock->setFilterModel($this->get);
+                // Prevent caching like it done in Magento code
+                echo $advancedBlock->getHtml();
+                ?>
+            </ol>
+        </li>
+    <?php elseif (5 == $_displayType): // 0_o 5? ?>
+        <?php $subcategories = Mage::getSingleton('core/layout')->createBlock('amshopby/subcategories')->getSubcategories(); ?>
+        <?php
+            /*
+             * Adjust Image width Here  
+             */
+            $imgWidth = "79px;"; 
+        ?>
+        <?php  if ($subcategories):?>
+            <li>
+                <ol>
+                    <?php foreach ($subcategories as $cat): ?>
+                        <li class="amshopby-subcategory" style="float: left;text-align: center; width: 50%;">
+                            <a href="<?php echo $cat->getUrl(); ?>">
+                            <?php if ($cat->getImage()): ?>
+                                <img class="amshopby-subcategories-img" 
+                                    title="<?php echo $this->htmlEscape($cat->getName()); ?>" 
+                                    alt="<?php echo $this->htmlEscape($cat->getName()); ?>"
+                                    src="<?php echo $cat->getImage(); ?>"
+                                    width="<?php echo $imgWidth?>"
+                                />
+                            <?php endif; ?>
+                            <?php echo '<br />' . $this->htmlEscape($cat->getName()); ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>            
+            </li>
+        <?php endif; ?>
+    <?php endif ?>
+</ol>

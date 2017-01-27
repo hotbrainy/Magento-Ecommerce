@@ -1,0 +1,328 @@
+<?php
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+	$theme = $this->helper('ultimo');
+	$helperThis = $this->helper('ultimo/template_page_html_header');
+
+	//Get HTML of header blocks
+	//**************************************************************
+
+	//User menu
+	//Important: this block has to be rendered at the very beginning of this file
+	$userMenuHtml = $this->getChildHtml('user_menu');
+
+	//Main menu
+	//Important: this block has to be rendered at the very beginning of this file
+	$menuHtml = $this->getChildHtml('topMenu');
+
+	//Switchers
+	$currencySwitcher = $this->getChildHtml('currency');
+	$languageSwitcher = $this->getChildHtml('store_language');
+	$hasHeaderCollateral = ($currencySwitcher || $languageSwitcher) ? TRUE : FALSE;
+
+	//Logo
+	$logoHtml = $this->getChildHtml('logo');
+
+	//Layout settings and basic flags
+	//**************************************************************
+
+	//Sticky header
+	$sticky = $theme->getCfg('header/sticky');
+
+	//Mobile header
+	if ($sticky)
+	{
+		if (($mobileMenuThreshold = $helperThis->getMobileMenuThreshold()) === NULL)
+		{
+			$mobileMenuThreshold = 770; //Set default value, if threshold doesn't exist
+		}
+	}
+	$mobileHeaderMode = $theme->getCfg('header/mode');
+
+	//This flag indicates that in mobile header language/currency switchers should be hidden
+	//and replaced with mobile versions of those switchers
+	$moveSwitchers = FALSE;
+	if ($mobileHeaderMode)
+	{
+		//Get only if mobile header enabled
+		$moveSwitchers = $theme->getCfg('header/mobile_move_switchers');
+	}
+
+	//Get grid classes for header sections
+	$grid = $helperThis->getGridClasses();
+
+	//Get positions of header blocks
+	$position = $helperThis->getPositions();
+
+	//Get flags indicating if blocks need to be moved below the skip links on mobile view
+	$move = $helperThis->getMoveBelowSkipLinks();
+
+	//Get flags indicating if blocks are displayed directly inside the header block template or inside one of the child blocks
+	$display = $helperThis->getDisplayedInHeaderBlock();
+
+	//Check if main menu is displayed inisde a section (full-width section) at the bottom of the header
+	$menuDisplayedInFullWidthContainer = $helperThis->isMenuDisplayedInFullWidthContainer();
+
+	//Additional classes for primary header blocks holder
+	$hpClasses = '';
+	if ($menuDisplayedInFullWidthContainer === FALSE)
+	{
+		$hpClasses = ' hp-blocks-holder--stacked'; //Important: keep hte space at the beginning
+	}
+
+	//Additional classes
+	//**************************************************************
+	//Header
+	$classes['root'] = '';
+	if ($moveSwitchers)
+		$classes['root'] .= ' move-switchers';
+	
+	//Menu
+	$classes['nav-container'] = '';
+	if ($sticky && $theme->getCfg('header/sticky_full_width'))
+		$classes['nav-container'] .= ' sticky-container--full-width';
+
+	$classes['nav'] = '';
+	if ($menuDisplayedInFullWidthContainer === FALSE)
+		$classes['nav'] .= ' simple';
+
+	//Assign blocks to selected positions
+	//**************************************************************
+	$html = array();
+
+	//Mini cart
+	//--------------------------------------------------------------
+	//Get flag which indicates that mini cart block exists and is displayed
+	$existsInChildBlock['cart'] = Mage::registry('headerDisplayMiniCart');
+	if ($position['cart'] === 'mainMenu')
+	{
+		$existsInChildBlock['cart'] = TRUE;
+	}
+	if ($display['cart'])
+	{
+		$cartHtml = $this->getChildHtml('cart_sidebar');
+		if ($cartHtml)
+		{
+			$html[$position['cart']][] = $cartHtml;
+		}
+	}
+
+
+	//Logo
+	//--------------------------------------------------------------
+	$html[$position['logo']][] = $logoHtml;
+
+	//Search
+	//--------------------------------------------------------------
+	//Get flag which indicates that search box exists and is displayed
+	$existsInChildBlock['search'] = Mage::registry('headerDisplaySearch');
+	if ($position['search'] === 'mainMenu')
+	{
+		$existsInChildBlock['search'] = TRUE;
+	}
+	if ($display['search'])
+	{
+		$searchHtml = $this->getChildHtml('search_wrapper');
+		if ($searchHtml)
+		{
+			$html[$position['search']][] = $searchHtml;
+		}
+	}
+
+	//User menu
+	//--------------------------------------------------------------
+	$html[$position['user-menu']][] = $userMenuHtml;
+
+	//User menu can contain account links (including Top Links).
+	//Get flag which indicates that block with account links exists and is displayed.
+	$existsInChildBlock['account-links'] = Mage::registry('headerDisplayAccountLinks');
+
+	//Main menu
+	//--------------------------------------------------------------
+	$menuContainerHtml = '
+	<div id="header-nav" class="nav-container skip-content sticky-container' . ($classes['nav-container'] ? $classes['nav-container'] : '') . '">
+		<div class="nav container clearer' . ($classes['nav'] ? $classes['nav'] : '') . '">
+			<div class="inner-container">' . $menuHtml . '</div> <!-- end: inner-container -->
+		</div> <!-- end: nav -->
+	</div> <!-- end: nav-container -->';
+
+	if ($menuDisplayedInFullWidthContainer === FALSE)
+	{
+		$html[$position['main-menu']][] = $menuContainerHtml;
+	}
+
+	//Skip links and blocks displayed via skip links
+	//**************************************************************
+	//Skip links count
+	$skipLinksCount = 0;
+
+	//Search
+	if (!empty($searchHtml) || $existsInChildBlock['search'])
+	{
+		$skipLinksCount++;
+	}
+
+	//Account links
+	if ($existsInChildBlock['account-links'])
+	{
+		$skipLinksCount++;
+	}
+
+	//Mini cart
+	if (!empty($cartHtml) || $existsInChildBlock['cart'])
+	{
+		$skipLinksCount++;
+	}
+
+	//Main menu
+	if (!empty($menuContainerHtml)) 
+	{
+		$skipLinksCount++;
+	}
+?>
+<!--header section-->
+<div class="toppart-outer">
+<div class="top_part">
+  <div class="header_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6">
+          <div class="top-logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getLogoSrcSmall(); ?>" alt="<?php echo $this->getLogoAlt() ?>"></a></div>
+        </div>
+        <div class="col-xs-6 col-sm-6">
+          <div class="cart_section">
+            <ul>
+              <li><a href="#">Explore Books</a></li>
+              <li><a href="#">Log in</a></li>
+              <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/Cart Large.png');?>" alt=""></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="banner_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="slider_imgbox"><img src="<?php echo $this->getSkinUrl('images/slider_img1.png');?>" alt=""></div>
+          <div class="slider_infobox">
+            <h1>Discovernew stories <br>
+              that will you off your seat</h1>
+            <p>Over 3,000 books for every type of romance reader, whether you're looking for sweet romancees or <br /> someting spicier, somting from an auther new-to-you or from a NYT bestselling auther.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="book_typeinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <ul>
+            <li><a href="#">Read <span>Action</span> Novels</a></li>
+            <li><a href="#">Read <span>Action</span> Novels</a></li>
+            <li><a href="#">Read <span>Action</span> Novels</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+<!--top part end--> 
+
+
+<header id="header-hold">
+	<div class="top-header">
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-4 top-menu-hold">
+    <div class="top-menu">
+    <ul>
+    	<li><a href="#">About</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Submissions</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="center-text">Books Available For<span>Immediate Reading!</span></div>
+    </div>
+    <div class="col-sm-4 top-menu-hold">
+    <div class="top-menu rth-side">
+    <ul>
+    	<li><a href="#">Sign Up</a></li>
+        <li><a href="#">Login</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div id="header" class="main-header">
+    	<div class="container">
+        <div class="row">
+        <div class="col-xs-3 logo-hold">
+        <div class="logo"><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></div>
+        </div>
+        
+        <div class="col-xs-2 cart-hold">
+        <div class="cart-menu">
+        <a href="#"><span class="carttxt"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>My Cart</span><span class="value">12</span></a>
+        </div>
+        <div class="open-click"><i class="fa fa-bars"></i></div>
+        </div>
+        
+        <div class="col-xs-7 menu-hold">
+        <div class="main-menu">
+        <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Authors</a></li>
+            <li><a href="#">Trading Stories</a></li>
+            <li><a href="#">Explore Book</a></li>
+        </ul>
+        </div>
+        </div>
+        
+        <div id="mobile-nav" class="mobile-menu-hold">        
+        <div class="mobile-menu">
+        <div class="close-click"><i class="fa fa-times"></i></div>
+        
+        <div class="nav_section">
+        <div class="user-section">
+        	<a href="#" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Megan Erickson</a>
+            <a href="#" class="logout-link"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a>
+        </div>
+        <ul>
+        	<li><a href="#">Sign Up</a></li>
+        	<li><a href="#">Login</a></li>
+        	<li><a href="#">About</a></li>
+        	<li><a href="#">Contact Us</a></li>
+        	<li><a href="#">Submissions</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Authors</a></li>
+            <li><a href="#">Trading Stories</a></li>
+            <li><a href="#">Explore Book</a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        
+        </div>
+        </div>
+    </div>
+</header>
+<!--content section-->
+<section class="hero-slider">
+	<div class="container-fluid">
+    <div class="row">
+    	<div class="hero-slider-inner"><img src="<?php echo $this->getSkinUrl('images/innerslider-image.jpg');?>" /></div>
+    </div>
+    </div>
+</section>
+
+<?php //Scripts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ?>

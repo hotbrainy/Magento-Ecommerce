@@ -1,0 +1,81 @@
+<?php
+/**
+ * Classy Llama
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email to us at
+ * support+paypal@classyllama.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module
+ * to newer versions in the future. If you require customizations of this
+ * module for your needs, please write us at sales@classyllama.com.
+ *
+ * To report bugs or issues with this module, please email support+paypal@classyllama.com.
+ * 
+ * @category   CLS
+ * @package    Paypal
+ * @copyright  Copyright (c) 2014 Classy Llama Studios, LLC (http://www.classyllama.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * Customer's stored cards listing
+ */
+
+/** @var $this CLS_Paypal_Block_Customer_Storedcard */
+
+$_storedCardHelper = Mage::helper('cls_paypal/storedcard');
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('Manage saved cards') ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="box-account">
+    <?php $_storedCards = $this->getStoredCards(); ?>
+    <div class="box-head">
+        <h2><?php echo $this->__('Credit Cards') ?></h2>
+    </div>
+    <?php if( $_storedCards && ($_storedCards->count() > 0) ): ?>
+    <table class="data-table" id="stored-cards-table">
+        <col />
+        <col width="1" />
+        <col width="1" />
+        <col width="1" />
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Credit Card') ?></th>
+            <th><?php echo $this->__('Expiration Date') ?></th>
+            <th><?php echo $this->__('Last Used') ?></th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($_storedCards as $_storedCard): ?>
+        <tr>
+            <td><?php echo $_storedCardHelper->translateCcType($_storedCard->getCcType()) ?> (<?php echo sprintf('xxxx-%s', $_storedCard->getCcLast4()) ?>)</td>
+            <td class="a-center"><span class="nobr"><?php echo $_storedCard->getCcExpMonth() ?>/<?php echo $_storedCard->getCcExpYear() ?></span></td>
+            <td class="a-center"><span class="nobr"><?php echo $this->formatDate($this->transformDate($_storedCard->getDate())) ?></span></td>
+            <td class="a-center">
+                <span class="nobr">
+                    <a href="<?php echo $this->getDeleteUrl($_storedCard) ?>" onclick="return confirm('<?php echo $this->__('Are you sure?') ?>')"><?php echo $this->__('Delete') ?></a>
+                </span>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('stored-cards-table')</script>
+    <?php else: ?>
+    <p><?php echo $this->__('No saved cards'); ?></p>
+    <?php endif; ?>
+</div>

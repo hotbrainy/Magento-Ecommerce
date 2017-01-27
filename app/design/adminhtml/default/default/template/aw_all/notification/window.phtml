@@ -1,0 +1,74 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_All
+ * @copyright  Copyright (c) 2009-2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<div id="message-popup-window-mask" style="display:none;"></div>
+
+<div style="position:relative;margin-left:-390px;">
+    <div id="aw_notif" class="notification" style="display:none;">
+        <div class="head">
+            <h3><?php echo $this->getHeaderText();?></h3>
+            <button type="button" class="close" onclick="closeMessagePopupWindow()">
+                <span><?php echo $this->getCloseText(); ?></span></button>
+        </div>
+        <div class="content">
+            <?php echo $this->getNoticeMessageText(); ?>
+        </div>
+    </div>
+</div>
+<script>
+    function showAwNotificator() {
+        openMessagePopupWindow();
+        Effect.Appear('aw_notif', { duration: 1.0 });
+    }
+    Event.observe(window, 'load', showAwNotificator);
+
+
+    function openMessagePopupWindow() {
+        var height = $('html-body').getHeight();
+        $('message-popup-window-mask').setStyle({'height':height + 'px'});
+        toggleSelectsUnderBlock($('message-popup-window-mask'), false);
+        Element.show('message-popup-window-mask');
+    }
+
+    function closeMessagePopupWindow() {
+        toggleSelectsUnderBlock($('message-popup-window-mask'), true);
+        Effect.Fade('aw_notif', { duration: 0.5 });
+        Element.hide('message-popup-window-mask');
+    }
+
+
+    function saveCloseMessagePopupWindow() {
+        $('aw-save-button-content').innerHTML = '<?php echo $this->__("Saving, please wait...")?>';
+        $('aw-save-button').addClassName('disabled');
+        $('aw_firstrun').request({
+            onComplete: function() {
+                toggleSelectsUnderBlock($('message-popup-window-mask'), true);
+                Effect.Fade('aw_notif', { duration: 0.5 });
+                Element.hide('message-popup-window-mask');
+            }
+        })
+
+    }
+
+</script>
+
+
+<?php  /*
+
+
+*/
+?>

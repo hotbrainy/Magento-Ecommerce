@@ -1,0 +1,31 @@
+div.main-plugin-block{
+    font-size: 12px;
+}
+
+div.main-plugin-block div{
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+div.main-plugin-block table{
+    width:100%;
+    border: 1px solid #D6D6D6 !important;
+}
+
+div.main-plugin-block table td{
+    border: 1px solid #D6D6D6;
+}
+
+div.main-plugin-block table td.odd{
+    background-color:#D6D6D6;
+}
+
+div.main-plugin-block table thead{
+    background-color:#cccccc;
+}
+
+div.main-plugin-block table th,td{
+    padding:5px;
+}

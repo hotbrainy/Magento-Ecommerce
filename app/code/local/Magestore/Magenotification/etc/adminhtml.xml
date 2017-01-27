@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<system>
+			<children>
+				<magestore_extension translate="title">
+					<title>Magestore Extensions</title>
+					<sort_order>10</sort_order>
+					<children>
+                        <magenotificationcerts translate="title">
+                            <title>License Certificates</title>
+							<sort_order>0</sort_order>
+							<action>adminhtml/system_config/edit/section/magenotificationcerts</action>
+                        </magenotificationcerts>
+						<extension_key translate="title">
+							<title>License Keys</title>
+							<sort_order>1</sort_order>
+							<action>adminhtml/system_config/edit/section/magenotificationsecure</action>
+						</extension_key>							
+						<extension_feedback translate="title">
+							<title>Extension Feedbacks</title>
+							<sort_order>10</sort_order>
+							<action>magenotification/adminhtml_feedback/index/</action>
+						</extension_feedback>								
+					</children>
+				</magestore_extension>		
+			</children>
+		</system>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+                                    <magenotificationcerts translate="title">
+                                        <title>License Certificates Information</title>
+										<sort_order>0</sort_order>
+                                    </magenotificationcerts>
+									<magenotificationsecure translate="title">
+										<title>Extension Key Management</title>
+										<sort_order>1</sort_order>
+									</magenotificationsecure>	
+									<magestore_extension_feedback translate="title">
+										<title>License Keys</title>
+										<sort_order>2</sort_order>
+									</magestore_extension_feedback>										
+									<magenotification translate="title">
+										<title>MageNotification</title>
+										<sort_order>50</sort_order>
+									</magenotification>								
+								</children>
+							</config>
+							<magestore_extension translate="title">
+								<title>Magestore Extensions</title>
+								<sort_order>10</sort_order>
+								<children>
+                                    <magenotificationcerts translate="title">
+                                        <title>License Certificates</title>
+										<sort_order>0</sort_order>
+                                    </magenotificationcerts>
+									<extension_key translate="title">
+										<title>License Keys</title>
+										<sort_order>1</sort_order>
+										<action>adminhtml/system_config/edit/section/magenotificationsecure</action>
+									</extension_key>								
+									<extension_feedback translate="title">
+										<title>Extension Feedbacks</title>
+										<sort_order>10</sort_order>
+										<action>adminhtml/system_config/edit/section/licensemanager</action>
+									</extension_feedback>								
+								</children>
+							</magestore_extension>								
+						</children>											
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>		
+</config>

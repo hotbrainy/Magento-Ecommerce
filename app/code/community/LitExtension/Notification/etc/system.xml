@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   /**
+    * @project     Notification
+    * @package	   LitExtension_Notification
+    * @author      LitExtension
+    * @email       litextension@gmail.com
+    */
+-->
+<config>
+    <tabs>
+        <tabs>
+            <litextension translate="label">
+                <label>LitExtension</label>
+                <sort_order>2000</sort_order>
+            </litextension>
+        </tabs>
+    </tabs>
+
+    <sections>
+        <le_extension>
+            <label>General</label>
+            <tab>litextension</tab>
+            <class></class>
+            <frontend_type>text</frontend_type>
+            <sort_order>0</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <installed translate="label">
+                    <label>Installed Extensions</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <extensions>
+                            <label>Installed Extensions</label>
+                            <comment><![CDATA[]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>le_notification/system_config_form_fieldset_extensions</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </extensions>
+                    </fields>
+                </installed>
+                <feed>
+                    <label>Notifications</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>90</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <interests translate="label">
+                            <label>I'd like to be informed by LitExtension about:</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <source_model>le_notification/system_config_source_interests</source_model>
+                        </interests>
+                    </fields>
+                </feed>
+            </groups>
+        </le_extension>
+        <le_store>
+            <label>Store</label>
+            <tab>litextension</tab>
+            <class></class>
+            <frontend_type>text</frontend_type>
+            <sort_order>9999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <extensions translate="label">
+                    <label>LitExtension Store</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>le_notification/system_config_form_fieldset_store</frontend_model>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extensions>
+            </groups>
+        </le_store>
+    </sections>
+</config>

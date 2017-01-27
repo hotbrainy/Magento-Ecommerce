@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ebookdelivery translate="title" module="ebookdelivery">
+                                        <title>Ebook Delivery</title>
+                                    </ebookdelivery>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+					<publish translate="title" module="ebookdelivery">
+						<title>Publishing</title>
+						<children>
+							<ebookdelivery translate="title" module="ebookdelivery">
+								<title>Ebook Delivery</title>
+								<sort_order>10</sort_order>
+							</ebookdelivery>
+						</children>
+					</publish>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

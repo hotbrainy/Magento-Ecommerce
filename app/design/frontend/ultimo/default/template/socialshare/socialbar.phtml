@@ -1,0 +1,94 @@
+<?php if (Mage::getStoreConfig('socialshare/general/enabled')) : ?>
+
+	<?php if(!Mage::getStoreConfig('opengraphtags/conf/active')) : ?>
+		<!-- Facebook Social Init -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	<?php endif; ?>
+	
+	<?php if (Mage::getStoreConfig('socialshare/general/show_count')) : ?>
+	<div class="social_buttons withcount">    
+		<?php if (Mage::getStoreConfig('socialshare/general/facebook_btn')) : ?>
+		<!-- Facebook -->
+		<span class="facebookContainer">
+			<div class="fb-like" data-href="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false"></div>
+		</span>
+		<?php endif; ?>
+		
+		<?php if (Mage::getStoreConfig('socialshare/general/twitter_btn')) : ?>
+		<!-- Twitter -->
+		<div class="twitterContainer">
+			<a href="//twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<?php echo Mage::getStoreConfig('socialshare/general/twitter_acc'); ?>">Tweet</a>
+		</div>
+		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>    
+		<?php endif; ?>
+		
+		<?php if (Mage::getStoreConfig('socialshare/general/google_btn')) : ?>
+		<!-- Google +1 -->
+		<script type="text/javascript">
+		  (function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		  })();
+		</script>
+		<div class="gPlusContainer">
+			<g:plusone size="medium"></g:plusone>
+		</div>
+		<?php endif; ?>
+		
+		<?php if (Mage::getStoreConfig('socialshare/general/pinter_btn')) : ?>
+		<?php $product = Mage::registry('current_product'); ?>
+		<!-- Pinterest -->
+		<div class="pinterestContainer">
+			<a href="//pinterest.com/pin/create/button/?url=<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>&media=<?php echo $this->htmlEscape($product->getImageUrl());?>&description=<?php echo $this->stripTags($product->getShortDescription());?>" data-pin-do="buttonPin" data-pin-config="beside">
+				<img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+			</a>
+		</div>
+		<?php endif; ?>	
+	</div>
+	<?php else : ?>
+	<div class="social_buttons withoutcount">
+
+		<div class="social-container">
+			<?php $product = Mage::registry('current_product'); ?>
+			
+			<a href="https://twitter.com/intent/tweet" data-text="<?php echo $product->getName()." by ".implode(",",Mage::helper('publish/author')->getAuthorsList($product,false))." ".Mage::helper('core/url')->getCurrentUrl() ?>" class="twitter-share-button" data-count="none" data-via="<?php echo Mage::getStoreConfig('socialshare/general/twitter_acc'); ?>" target="_new">
+				<i style="margin-top: 10px; margin-right: 7px;" class="fa fa-twitter-square"></i>Share on Twitter
+			</a>
+			<script type="text/javascript">
+				  jQuery('a[target^="_new"]').click(function(e) {
+				        e.preventDefault();
+					    var width = 500 ;
+					    // define the height in
+					    var height = 500 ;
+					    // Ratio the hight to the width as the user screen ratio
+					    window.open(this.href+'?via='+jQuery(this).attr('data-via')+"&text="+jQuery(this).attr('data-text') , 'newwindow', 'width=' + width + ', height=' + height + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
+
+					});
+
+			</script>
+
+			<a class="facebook-share share-button" href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(Mage::helper('core/url')->getCurrentUrl()); ?>&t=<?php echo urlencode($product->getName()); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><i style="margin-top: 10px;" class="fa fa-facebook-square"></i><span>Share on Facebook</span></a>
+
+			<div class="social-goodreads">
+				  <div id="gr_add_to_books">
+				    <div class="gr_custom_each_container_">
+				      <a target="_blank" style="border:none" href="https://www.goodreads.com/book/isbn/<?php echo($product->getSku()); ?>"><img alt="Harry Potter and the Goblet of Fire (Harry Potter, #4)" src="https://www.goodreads.com/images/atmb_add_book-70x25.png" /></a>
+				    </div>
+				  </div>
+				  <!-- the identifier in the following script tag can be a GR book id or an isbn -->
+				  <script src="https://www.goodreads.com/book/add_to_books_widget_frame/<?php echo($product->getSku()); ?>?atmb_widget%5Bbutton%5D=atmb_widget_1.png&amp;atmb_widget%5Bhide_friends%5D=on"></script>
+			</div>	
+		</div>
+	</div>
+	<?php endif; ?>
+
+<div class="clearfix"></div>
+<?php endif; ?>

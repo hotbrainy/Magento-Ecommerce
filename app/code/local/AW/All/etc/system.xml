@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <awall translate="label" module="awall">
+            <label>aheadWorks Extensions</label>
+            <sort_order>300</sort_order>
+        </awall>
+    </tabs>
+    <sections>
+        <awall translate="label" module="awall">
+            <label>Info</label>
+            <tab>awall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>99999</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <extensions translate="label">
+                    <label>Installed aheadWorks Extensions</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>awall/system_config_form_fieldset_awall_extensions</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extensions>
+                <feed>
+                    <label>Notifications</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!--enabled translate="label">
+                                  <label>Enable </label>
+                                  <comment>Will check for aheadWorks extensions updates</comment>
+                                  <frontend_type>select</frontend_type>
+                                  <sort_order>90</sort_order>
+                                  <show_in_default>1</show_in_default>
+                                  <show_in_website>1</show_in_website>
+                                  <show_in_store>1</show_in_store>
+                                  <source_model>adminhtml/system_config_source_yesno</source_model>
+                              </enabled-->
+                        <interests translate="label">
+                            <label>I'd like to be informed by aheadWorks about:</label>
+                            <comment></comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <source_model>awall/source_updates_type</source_model>
+                        </interests>
+
+                    </fields>
+                </feed>
+                <additional translate="label">
+                    <label>Additional Info</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>awall/system_config_form_fieldset_awall_additional</frontend_model>
+                    <sort_order>110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </additional>
+            </groups>
+        </awall>
+    </sections>
+</config>

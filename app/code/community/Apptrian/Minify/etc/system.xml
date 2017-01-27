@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  Apptrian
+ * @package   Apptrian_Minify
+ * @author    Apptrian
+ * @copyright Copyright (c) 2016 Apptrian (http://www.apptrian.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License
+ */
+-->
+<config>
+    <tabs>
+        <apptrian_extensions>
+            <label>Apptrian Extensions</label>
+            <sort_order>100</sort_order>
+        </apptrian_extensions>
+    </tabs>
+    <sections>
+        <apptrian_info translate="label">
+            <label>Info</label>
+            <tab>apptrian_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info>
+                    <frontend_model>apptrian_minify/adminhtml_info</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </info>
+            </groups>
+        </apptrian_info>
+        <apptrian_minify translate="label" >
+            <label>Minify HTML CSS JS</label>
+            <tab>apptrian_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <about>
+                    <frontend_model>apptrian_minify/adminhtml_about</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </about>
+                <minify_html translate="label comment">
+                    <label>Minify HTML</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[<h4>WARNING! Use validator to check your pages code before using our extension. You must have error-free HTML code if you want minification to work.</h4>]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Minify HTML</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enables or disables HTML minification.<br />WARNING! Before you enable this option you must have valid HTML code on all of the pages on your site. Use W3C Validator to check.]]></comment>
+                        </enabled>
+                        <max_minification translate="label comment tooltip">
+                            <label>Enable Maximum Minification</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enables or disables Maximum HTML Minification.<br />WARNING! Slower and unsafe. See tooltip for more information.]]></comment>
+                            <tooltip>If you enable this option all multiple spaces will be eliminated and replaced with one space. All new line characters will be substituted with one space character. Your entire code will be on one line. This is not recommended, you should keep this option disabled.</tooltip>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </max_minification>
+                        <compatibility translate="label comment">
+                            <label>Enable Cache Compatibility Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enables or disables Cache Compatibility Mode.<br />WARNING! You should enable this if you use third party FPC or Varnish cache extensions.]]></comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </compatibility>
+                    </fields>
+                </minify_html>
+                <minify_css_js translate="label comment">
+                    <label>Minify CSS and JavaScript</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[<h4>WARNING! Use validators to check your pages code before using our extension. You must have error-free code in your CSS and JS files if you want minification to work.</h4><p>1. Enable <strong>System > Configuration > Developer > CSS Settings > Merge CSS Files</strong><br />2. Enable <strong>System > Configuration > Developer > JavaScript Settings > Merge JavaScript Files</strong><br />3. Flush and Refresh Magento cache <strong>System > Cache Management</strong><br />4. Visit several pages of your site on the frontend and wait for them to fully load. (Visit home page, one CMS page, one category page, one product page, cart page, and checkout page. This is done so Magento default merger can merge CSS and JS files, and some extensions add CSS and/or JS files only on specific pages not globally.)<br />5. Click <strong>Minify</strong> button and wait for CSS/JS files to be minified.<br />6. If you are using <strong>Expires</strong> header for CSS and JS files remember to empty your web browser's cache.<br />7. If you are using <strong>CDN</strong> make sure you flush/empty CDN cache.</p><p>(Our extension scans following directories:<br /><strong>/media/css/</strong><br /><strong>/media/css_secure/</strong><br /><strong>/media/js/</strong><br />for CSS and JS files and minifies them. If after minification your pages break or show any errors, just delete all files from above mentioned directories. This happens when there are errors in CSS and JS files. Use validators to check your CSS and JS code, find errors and fix them before you use our extension.)</p>]]></comment>
+                    <fields>
+                        <remove_comments translate="label comment tooltip">
+                            <label>Remove Important Comments</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[WARNING! See tooltip for more information.]]></comment>
+                            <tooltip>If you enable this option important comments will be removed. Sometimes important comments hold copyright information and removing them is considered copyright infringement violation. If you are sure your CSS and JS files do not have important comments with copyright information you can enable this option.</tooltip>
+                        </remove_comments>
+                        <heading_minify_files translate="label">
+                            <label>Minify CSS and JavaScript Files</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </heading_minify_files>
+                        <minify_files translate="label comment">
+                            <label>Minify</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>apptrian_minify/adminhtml_button_minify</frontend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[WARNING! Follow instructions on the top.]]></comment>
+                        </minify_files>
+                    </fields>
+                </minify_css_js>
+            </groups>
+        </apptrian_minify>
+    </sections>
+</config>

@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Entangled_RewardPoints>
+            <version>0.1.0</version>
+        </Entangled_RewardPoints>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <entangled_rewardpoints>
+                    <file>entangled_rewardpoints.xml</file>
+                </entangled_rewardpoints>
+            </updates>
+        </layout>
+        <routers>
+            <entangled_rewardpoints>
+                <use>standard</use>
+                <args>
+                    <module>Entangled_RewardPoints</module>
+                    <frontName>reward-points</frontName>
+                </args>
+            </entangled_rewardpoints>
+            <onestepcheckout>
+                <args>
+                    <modules>
+                        <entangled_rewardpoints before="Idev_OneStepCheckout">Entangled_RewardPoints_Rewrite</entangled_rewardpoints>
+                    </modules>
+                </args>
+            </onestepcheckout>
+        </routers>
+        <events>
+            <controller_action_predispatch_cms>
+                <observers>
+                    <entangled_rewardpoints>
+                        <class>entangled_rewardpoints/observer</class>
+                        <method>controllerActionPredispatchCmsIndexIndex</method>
+                    </entangled_rewardpoints>
+                </observers>
+            </controller_action_predispatch_cms>
+        </events>
+    </frontend>
+    <global>
+        <blocks>
+            <entangled_rewardpoints>
+                <class>Entangled_RewardPoints_Block</class>
+            </entangled_rewardpoints>
+        </blocks>
+        <models>
+            <entangled_rewardpoints>
+                <class>Entangled_RewardPoints_Model</class>
+            </entangled_rewardpoints>
+            <mageworx_customercredit>
+                <rewrite>
+                    <quote_total_customercredit>Entangled_RewardPoints_Model_Rewrite_CustomerCredit_Quote_Total_Customercredit</quote_total_customercredit>
+                </rewrite>
+            </mageworx_customercredit>
+            <avatax>
+                <rewrite>
+                    <service_avatax_estimate>Entangled_RewardPoints_Model_Rewrite_AvaTax_Service_Avatax_Estimate</service_avatax_estimate>
+                    <sales_quote_address_total_tax>Entangled_RewardPoints_Model_Rewrite_AvaTax_Sales_Quote_Address_Total_Tax</sales_quote_address_total_tax>
+                </rewrite>
+            </avatax>
+        </models>
+        <helpers>
+            <entangled_rewardpoints>
+                <class>Entangled_RewardPoints_Helper</class>
+            </entangled_rewardpoints>
+        </helpers>
+        <template>
+            <email>
+                <entangled_rewardpoints_new_fan translate="label">
+                    <label>New Fan</label>
+                    <file>entangled/rewardpoints_new_fan.html</file>
+                    <type>html</type>
+                </entangled_rewardpoints_new_fan>
+                <entangled_rewardpoints_new_fanatic translate="label">
+                    <label>New Fanatic</label>
+                    <file>entangled/rewardpoints_new_fanatic.html</file>
+                    <type>html</type>
+                </entangled_rewardpoints_new_fanatic>
+                <entangled_rewardpoints_new_points translate="label">
+                    <label>New Points</label>
+                    <file>entangled/rewardpoints_new_points.html</file>
+                    <type>html</type>
+                </entangled_rewardpoints_new_points>
+            </email>
+        </template>
+        <resources>
+            <entangled_rewardpoints_setup>
+                <setup>
+                    <module>Entangled_RewardPoints</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </entangled_rewardpoints_setup>
+        </resources>
+        <events>
+            <sales_quote_address_discount_item>
+                <observers>
+                    <entangled_rewardpoints>
+                        <class>entangled_rewardpoints/observer</class>
+                        <method>salesQuoteAddressDiscountItem</method>
+                    </entangled_rewardpoints>
+                </observers>
+            </sales_quote_address_discount_item>
+        </events>
+
+
+        <sales>
+            <quote>
+                <totals>
+                    <mageworx_customercredit>
+                        <class>mageworx_customercredit/quote_total_customercredit</class>
+                        <after>shipping,tax_shipping,discount</after>
+                    </mageworx_customercredit>
+                </totals>
+            </quote>
+
+            <order_invoice>
+                <totals>
+                    <mageworx_customercredit>
+                        <class>mageworx_customercredit/invoice_total_customercredit</class>
+                        <after>shipping,tax_shipping,discount</after>
+                    </mageworx_customercredit>
+                </totals>
+            </order_invoice>
+
+            <order_creditmemo>
+                <totals>
+                    <mageworx_customercredit>
+                        <after>shipping,tax_shipping,discount</after>
+                        <class>mageworx_customercredit/creditmemo_total_customercredit</class>
+                    </mageworx_customercredit>
+                </totals>
+            </order_creditmemo>
+        </sales>
+    </global>
+</config>

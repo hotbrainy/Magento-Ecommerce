@@ -1,0 +1,12 @@
+<?php 
+$gaEnabled = Mage::helper('googleanalytics')->isGoogleAnalyticsAvailable();
+$osAdvancedEnabled = Mage::getStoreConfig('onestepcheckout/googleanalytics/enable', Mage::app()->getStore());
+?>
+<?php if($gaEnabled && $osAdvancedEnabled):?>
+<script type="text/javascript">
+Event.observe(window, 'load', function() {
+  var config = {track_multiple: '<?php echo Mage::getStoreConfig('onestepcheckout/googleanalytics/track_multiple', Mage::app()->getStore());?>'};
+  new oscAdvancedGoogle(config);
+});
+</script>
+<?php endif;?>

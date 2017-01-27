@@ -1,0 +1,85 @@
+<?php
+    $isCreateForm = $this->getData("submit") ? $this->getData("submit") : false;
+    $devices = $this->getExistingDevices();
+?>
+<ul class="form-list ebookdelivery">
+    <li class="wide">
+        <div class="image">
+            <img src="<?=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/base/default/images/ebookdelivery/amazon-kindle-logo.svg" alt="Amazon Kindle eMail Delivery">
+        </div>
+        <div class="col2-set">
+            <div class="col-1 description">
+                <p><strong><?php echo $this->__('Receiving your ebooks on your favorite Kindle device is easy!') ?></strong> (<a href="http://www.amazon.com/gp/help/customer/display.html?nodeId=201974220" rel="no-follow" target="_blank">Amazon Help</a>):</p>
+                <ol type="1">
+                    <li> <span class="a-list-item">Go to your Amazon page to <span><a href="https://www.amazon.com/mycd" target="_blank" rel="no-follow">Manage Your Content and Devices</a></span>.</span>
+                    </li>
+                    <li> <span class="a-list-item">Click the "Settings" tab and scroll down to "Approved Personal Document E-mail List" and click the link at the bottom of the list that says, "Add a new approved e-mail address.".</span> </li>
+                    <li> <span class="a-list-item">Add <strong>delivery@entangledpublishing.com</strong> and click "Add Address" to save and close window.</span> </li>
+                    <li> <span class="a-list-item">On same page, scroll up to the "Send-to-Kindle E-Mail Settings" section and note the email address of the Kindle device where you wish to send your ebooks. **</span> </li>
+                    <li> <span class="a-list-item">Now let's add that Kindle device's email address so you can begin reading right away! Click button below to Add this Device.</span> </li>
+                </ol>
+            </div>
+            <div class="col-2 form">
+                <?php if(!$isCreateForm && count($devices)): ?>
+                    <ul class="form-list full-width">
+                        <li class="control">
+                            <h2><?php echo $this->__('My Devices') ?></h2>
+                            <?php foreach($this->getExistingDevices() as $device): ?>
+                                <label for="device-<?php echo $device->getId() ?>"><input type="checkbox" id="device-<?php echo $device->getId() ?>" name="existing_devices[amazonemail][]" value="<?php echo $device->getId() ?>" /> <?php echo $device->getDeviceNickname() ?></label>
+                            <?php endforeach; ?>
+                            <label for="create-devices"><input type="checkbox" id="create-devices" name="delivery_create" value="1" /> <?php echo $this->__('+ Add new devices') ?></label>
+                        </li>
+                    </ul>
+                <?php endif; ?>
+                <div id="create-devices-container"  <?php if(!$isCreateForm && count($devices)): ?>style="display: none;"<?php endif; ?>>
+                    <div id="amazonemailContainer">
+                        <ul class="form-list">
+                            <li class="control">
+                                <label for="delivery_amazonemail_device_nickname">Device Nickname</label>
+                                <input type="text" name="delivery[0][amazonemail][device_nickname]" />
+                            </li>
+                            <li class="control">
+                                <label for="delivery_amazonemail_device_email">Delivery Email</label>
+                                <input type="text" id="delivery_email0" name="delivery[0][amazonemail][device_email]" class="validate-amazonemail" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix">
+                        <div id="addKindleEmail">
+                            <i class="glyphicon glyphicon-plus-sign"></i>
+                            <span><?php echo $this->__("Add another kindle device") ?></span>
+                        </div>
+                    </div>
+                    <div id="email_error_msg" style="font-size:12px;"></div>
+
+                    <div>
+                        <button id="kindle_button" class="form-button-alt button"
+                                <?php if($isCreateForm): ?>type="submit" onsubmit="checkemail();"
+                                <?php else: ?>type="button" onclick="checkemail();"<?php endif; ?>
+                                style=""><span>Save Kindle Information</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var deviceindex = 0;
+            function addKindleFields(event, element) {
+                deviceindex += 1;
+                $('amazonemailContainer').insert({
+                    bottom: "        <ul class=\"form-list\">\
+                                                            <li class=\"control\">\
+                                                                <label for=\"delivery_amazonemail_device_nickname\">Device Nickname</label>\
+                                                                <input type=\"text\" name=\"delivery[" + deviceindex + "][amazonemail][device_nickname]\" />\
+                                                            </li>\
+                                                            <li class=\"control\">\
+                                                                <label for=\"delivery_amazonemail_device_email\">Delivery Email</label>\
+                                                                <input type=\"text\" id= \"delivery_email" + deviceindex + "\" name=\"delivery[" + deviceindex + "][amazonemail][device_email]\" class=\"validate-amazonemail\" />\
+                                                            </li>\
+                                                        </ul>"
+                });
+            }
+            jQuery('#addKindleEmail').on("click", "span",addKindleFields);
+        </script>
+        <p class="paypal-note"><strong>** Note: </strong>If your device or Kindle reading app is not compatible with Kindle Personal Documents Service, a Send to Kindle email address will not be listed for that device.</p>
+    </li>
+</ul>

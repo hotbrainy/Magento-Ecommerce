@@ -1,0 +1,163 @@
+/*
+ * Product images gallery and zoom
+ */
+
+
+
+/* Basic zoom styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* This is the moving lens square underneath the mouse pointer. */
+.cloud-zoom-lens {
+	border:1px solid #ccc;
+	margin:-1px; /* Set this to minus the border thickness. */
+	background-color:#fff;
+	cursor:move;
+}
+
+/* This is the zoom window. */
+.cloud-zoom-big {
+	border:1px solid #e5e5e5;
+	overflow:hidden;
+}
+
+/* This is the loading message. */
+.cloud-zoom-loading {
+    color:white;
+    background:#222;
+    padding:0.25em;
+    border:1px solid #000;
+}
+
+#wrap {
+	/* Decrease default z-index */
+	z-index:99 !important;
+}
+
+/* Zoom position: "inside"
+-------------------------------------------------------------- */
+.product-image .mousetrap {
+	z-index:100 !important;
+	
+	/* For responsive layout */
+	width:100% !important;
+	height:100% !important;
+}
+.zoom-inside #wrap { overflow:hidden; }
+
+/* No borders if zoom position is "inside" */
+.zoom-inside .cloud-zoom-big { border:none; }
+
+/* Display images without Cloud Zoom
+-------------------------------------------------------------- */
+/* Hide zoom area */
+.simple-mode .cloud-zoom-big,
+.simple-mode .cloud-zoom-lens { display:none !important; }
+.simple-mode .cloud-zoom-lens { cursor:default !important; }
+
+
+/* Zoom button (enlarge the main image)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.zoom-btn-small {
+	position:absolute;
+	right:4px;
+	bottom:4px;
+	padding:0 1em;
+	line-height:2.6666em;
+	z-index:100;
+	background-color:#fff;
+	background-color:rgba(255,255,255, 0.7);
+	color:#333;
+}
+.zoom-btn-small:hover { background-color:#fff; }
+
+/* Use lightbox without cloud zoom */
+.zoom-btn-large {
+	position:absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	padding:0;
+	z-index:100;
+	cursor:pointer;
+	
+	text-indent:-9999px;
+	overflow:hidden;
+}
+.zoom-btn-large:hover { background-color:rgba(255,255,255, 0.15); }
+
+
+
+/* Skins %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Default skin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.img-box { margin-bottom: 15px; }
+.img-box .product-image { margin: 0 auto; position:relative; /* Labels (e.g. "sale") are positioned relative to this box */ }
+.img-box .product-image.product-image-zoom { z-index:9; } /*TODO: obsolete*/
+
+/* Image pop-up */
+.product-image-popup { margin:0 auto; }
+.product-image-popup .nav { font-weight:bold; text-align:center; }
+.product-image-popup .image { display:block; margin:10px 0;  }
+.product-image-popup .image-label { margin:0 0 10px; }
+
+/* Thumbnails */
+.img-box .more-images { margin-top:12px; }
+/*.img-box .more-images .thumbnails { width:80%; margin:0 auto; }*/
+
+/*.img-box .more-images .thumbnails .item { float:left; }*/ /* Deprecated */
+.img-box .more-images .thumbnails .item.last { margin-right:0; } /* Deprecated */
+.img-box .more-images .thumbnails .item a {
+	margin:0 3px;
+	display:block;
+	overflow:hidden;
+	text-decoration:none;
+	text-align:center;
+}
+
+/* Thumbnails - with slider */
+.img-box .more-images .thumbnails.slides { display:none; }
+
+	/* Minimum size of thumbnail if lazy loading enabled */
+	.img-box .more-images .thumbnails .owl-item.loading { min-height:50px; }
+	.img-box .more-images .thumbnails .owl-item.loading a { min-height:36px; }
+
+/* Thumbnails - without slider */
+.img-box .more-images .thumbnails.show-all { width:100%; text-align: center; }
+.img-box .more-images .thumbnails.show-all .item { float: none; display: inline-block; }
+
+
+/* Skin 1: with thin borders
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.img-box-style1 .product-image {
+	border:1px solid #eee;
+	padding:5px;
+}
+
+/* Thumbnails */
+/* Prevent cutting off thumbnails */
+.img-box-style1 .more-images .thumbnails .owl-wrapper-outer { padding:1px 0; }
+.img-box-style1 .more-images .thumbnails .item a {
+	margin:0 2px 4px;
+	padding:4px;
+	border:1px solid #eee;
+}
+.img-box-style1 .more-images .thumbnails .item a:hover {
+	border-color:#999; 
+	/*position:relative; z-index:1;*/ /*TODO: Not needed if items not adjacent? */
+}
+
+
+/* Thumbnails carousel %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.img-box .itemslider-thumbnails { margin-left: auto; margin-right: auto; }
+.itemslider-thumbnails			{ max-width:237px; } /* count-3 is default */
+.itemslider-thumbnails.count-1	{ max-width:79px; }
+.itemslider-thumbnails.count-2	{ max-width:158px; }

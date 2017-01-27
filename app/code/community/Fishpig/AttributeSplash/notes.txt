@@ -1,0 +1,171 @@
+##
+# Attribute Splash Pages
+#
+# Author:					Ben Tideswell
+# Company:				FishPig
+# Documentation:	http://fishpig.co.uk/magento/extensions/attribute-splash-pages/
+##
+
+24/02/2016 - 3.3.8.15
+- Fixed bug that caused the META tab to be hidden when custom fields are setup.
+
+01/01/2016 - 3.3.8.14
+- Added option to have a pager on the group page. To do this, add a pager block as a child block to the 'attributeSplash.view.group' block with an alias of 'pager'. Then add <?php echo $this->getPagerHtml() ?> to the attribute-splash/group/view.phtml template.
+
+02/09/2015 - 3.3.8.10
+- Fixed system.log entry for undefined index.
+
+30/07/2015 - 3.3.8.9
+- Another fix for the ACL permissions issue.
+
+10/07/2015 - 3.3.8.7
+- Fixed ACL issue caused by Magento 1.9.2.0 upgrade. This update allows you to continue using restricted Admin user accounts that have access to the Attribute Splash Pages section.
+
+09/07/2015 - 3.3.8.5
+- Added support for Magento CE 1.9.2.0. If you still have errors after installing this update, please reindex all of the indexes in the Magento Admin.
+
+07/03/2015 - 3.3.8.4
+- Fixed FishPig_FSeo issue
+
+17/08/2013 - 3.3.8.1
+- Fixed issue that broke mass deleting Splash Pages from grid after applying filter
+
+30/07/2013 - 3.3.8.0
+- Added support for FishPig SEO (http://fishpig.co.uk/magento/extensions/seo/)
+
+22/07/2013 - 3.3.7.3
+- Getting ready for the new FishPig SEO extension and adding support for the layered navigation features.
+
+14/07/2013 - 3.3.7.0
+- Added better fix for setLayer fatal error
+
+06/06/2013 - 3.3.6.4
+- Added fix for Magento 1.9 rwd package
+
+02/06/2013 - 3.3.6.3
+- Added 'others' field to pages to allow custom add-ons to add fields to pages easily
+
+27/05/2013 - 3.3.6.1
+- Fix for XmlSitemap add-on
+
+14/04/2013 - 3.3.6.0
+- Changed Image URLs so that secure URL is used when on an HTTPS page
+
+22/03/2013 - 3.3.4.0
+- Fixed bug that stopped store scoped groups from being created
+
+21/03/2013 - 3.3.3.0
+- Added _afterMatch to Router
+
+19/03/2014 - v3.3.2.0
+- Fix that allows you to delete a group if it's not global or has no pages associated with it
+
+18/03/2014 - v3.3.0.0
+- Added support for LayeredNavBridge add-on (http://fishpig.co.uk/magento/extensions/attribute-splash-pages/layered-navigation/)
+
+17/03/2014 - v3.2.3.0
+- Added fix for product sort by attributes
+
+17/03/2014 - v3.2.2.0
+- Display group in menu even if no splash pages are enabled for the menu
+
+04/03/2014 - v3.2.0.0
+- Fixed e.visibility issue
+- Added default store_ids = 0 to Adminhtml forms for Splash Pages
+
+20/02/2014 - v3.1.10.0
+- Fix for URL's when using store codes
+
+16/02/2014 - v3.1.9.0
+- Small fix for QuickCreate add-on
+
+05/02/2014 - v3.1.7.0
+- Added is_featured back in to extension
+
+04/02/2014 - v3.1.5.0
+- Fixed bug that stopped some splash pages from displaying correctly
+
+30/01/2014 - v3.1.4.0
+- Processing added to getShortDescription so that {{...}} tags are parsed and rendered
+
+16/01/2014 - v3.1.3.0
+- Fixed page/group count in Adminhtml grids
+
+13/01/2014 - v3.1.1.0
+- Fixed issue with setStoreFilter method (should be addStoreFilter)
+
+02/01/2014 - v3.1.0.0
+- Added support for Quick Create addon: http://fishpig.co.uk/magento/extensions/attribute-splash-pages/quick-create/
+
+02/01/2014 - v3.0.10.0
+- Added support for XML Sitemap addon: http://fishpig.co.uk/magento/extensions/attribute-splash-pages/xml-sitemap/
+
+19/12/2013 - v3.0.9.0
+- Fixed WYSIWYG editor image problem
+
+17/12/2013 - v3.0.8.0
+- Fixed SQL installation issues
+
+14/12/2013 - v3.0.6.0
+- Added column_count back in for pages
+
+13/12/2013 - v3.0.5.0
+- Added category filters back into layered navigation
+
+13/12/2013 - v3.0.4.0
+- Fixed multiple Adminhtml issues
+
+12/12/2013 - v3.0.3.0
+- Fixed install issue
+
+02/12/2013 - v3.0.2.0
+- Added indexes so that page/groups display for correct scope always
+
+02/12/2013 - v3.0.1.9
+- Fixed Group and Page ordering issue
+
+29/11/2013 - v3.0.1.8
+- Fixed page creation bug
+
+27/11/2013 - v3.0.1.7
+- Fixed multiple bugs
+
+26/11/2013 - v3.0.1.4
+- Fixed Group issue
+
+25/11/2013 - v3.0.1.1
+- Fixed canDisplay() problem
+
+23/11/2013 - v3.0.1.0
+- Added support for FPAdmin
+
+22/11/2013 - v3.0.0.10
+- Fixed mysql install issue
+
+21/11/2013 - v3.0.0.9
+- Added support for FPAdmin
+
+21/11/2013 - v3.0.0.7
+- Removed sitemap.xml integration. Will soon be replaced with own sitemap
+
+20/11/2013 - v3.0.0.6
+- Added CSS file to package
+
+20/11/2013 - v3.0.0.5
+- Changed short_description to a HTML editor for groups and pages
+
+20/11/2013 - v3.0.0.4
+- Setting a page layout from the config now works for Groups and Pages
+
+19/11/2013 - v3.0.0.3
+- Setting a custom template for a group now works again
+- Fixed Splash Page banner image error
+
+19/11/2013 - v3.0.0.2
+- A few more bug fixes
+
+19/11/2013 - v3.0.0.1
+- Fixed Adminhtml link
+
+17/11/2013 - v3.0.0.0
+- Rewritten. Includes new routing system, speed improvements, UI improvements and much more.

@@ -1,0 +1,36 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Base
+ */
+?>
+<?php
+    $notification = $this->getLatestNotification();
+    
+    if ($notification) {
+    
+    $closeUrl = $this->getCloseUrl();
+    $unsubscribeUrl = $this->getUnsubscribeUrl();
+    
+?>
+    <div class="notification-global" id="amasty-update-notification">
+        <strong class="label"><?php echo $this->__("Latest Message:")?></strong>&nbsp;<?php echo $notification->getTitle()?>
+
+    <?php if($notification->getUrl()) {?>
+    &nbsp;<a href="<?php echo $notification->getUrl();?>" onclick="this.target='_blank';"><?php echo $this->__("Read details")?></a>
+    <?php }?>
+
+        <span class="f-right">
+            <a href="#" onclick="Effect.toggle('amasty-update-notification', 'blind', { duration: 0.1 });new Ajax.Request('<?php echo $closeUrl;?>', {
+                onCreate: function(request) {
+                    Ajax.Responders.unregister(varienLoaderHandler.handler);
+                },
+                onSuccess: function(transport) { 
+                    Ajax.Responders.register(varienLoaderHandler.handler);
+                }
+            }); return false;"><?php echo $this->__("Close")?></a>&nbsp;|&nbsp;<a style="color: #A3A3A3;" href="<?php echo $unsubscribeUrl;?>"><?php echo $this->__("Unsubscribe")?></a>
+        </span>
+    </div>
+
+<?php }?>

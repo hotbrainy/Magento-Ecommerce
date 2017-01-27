@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<layout version="0.1.0">
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="mageworx_customercredit/adminhtml_customer_edit_tab_customercredit" name="adminhtml_customer_edit_tab_customercredit">
+                <block type="mageworx_customercredit/adminhtml_customer_edit_tab_customercredit_adjust" name="adjust" before="-" />
+                <block type="mageworx_customercredit/adminhtml_customer_edit_tab_customercredit_accordion" name="accordion" />
+            </block>
+                 <action method="addTab"><name>adminhtml_customer_edit_tab_customercredit</name><block>adminhtml_customer_edit_tab_customercredit</block></action>
+        </reference>
+    </adminhtml_customer_edit>
+   <adminhtml_mageworx_customercredit_import_credit_import>
+        <remove name="root"/>
+        <block type="adminhtml/page" name="convert_root" output="toHtml" template="page.phtml">
+            <block type="adminhtml/page_head" name="convert_root_head" as="head" template="page/head.phtml">
+                <action method="addJs"><script>prototype/prototype.js</script></action>
+                <action method="addJs"><script>prototype/validation.js</script></action>
+                <action method="addJs"><script>varien/js.js</script></action>
+                <action method="addJs"><script>mage/translate.js</script></action>
+                <action method="addJs"><script>mage/adminhtml/tools.js</script></action>
+            </block>
+            <block type="adminhtml/template" name="generate" template="mageworx/customercredit/generate.phtml" output="toHtml"/>
+        </block>
+    </adminhtml_mageworx_customercredit_import_credit_import>
+
+   <adminhtml_mageworx_customercredit_import_credit_index>
+        <reference name="content">
+            <block type="mageworx_customercredit/adminhtml_import" name="customercredit.import.form" />
+        </reference>
+    </adminhtml_mageworx_customercredit_import_credit_index>
+
+    <adminhtml_mageworx_customercredit_import_code_import>
+        <remove name="root"/>
+        <block type="adminhtml/page" name="convert_root" output="toHtml" template="page.phtml">
+            <block type="adminhtml/page_head" name="convert_root_head" as="head" template="page/head.phtml">
+                <action method="addJs"><script>prototype/prototype.js</script></action>
+                <action method="addJs"><script>prototype/validation.js</script></action>
+                <action method="addJs"><script>varien/js.js</script></action>
+                <action method="addJs"><script>mage/translate.js</script></action>
+                <action method="addJs"><script>mage/adminhtml/tools.js</script></action>
+            </block>
+            <block type="adminhtml/template" name="generate" template="mageworx/customercredit/generate.phtml" output="toHtml"/>
+        </block>
+    </adminhtml_mageworx_customercredit_import_code_import>
+
+   <adminhtml_mageworx_customercredit_import_code_index>
+        <reference name="content">
+            <block type="mageworx_customercredit/adminhtml_import" name="customercredit.import.form" />
+        </reference>
+    </adminhtml_mageworx_customercredit_import_code_index>
+
+    <adminhtml_mageworx_customercredit_credit_index>
+        <block type="core/text_list" name="root">
+            <block type="mageworx_customercredit/adminhtml_customer_edit_tab_customercredit_adjust" name="customercredit.adjust"/>
+            <block type="mageworx_customercredit/adminhtml_customer_edit_tab_customercredit_log" name="customercredit.credit.log" template="mageworx/customercredit/customer/tab/view/log.phtml">
+                <block type="mageworx_customercredit/adminhtml_customer_edit_tab_customercredit_log_grid" name="customercredit.credit.log.grid" as="customercredit_credit_log_grid"/>
+            </block>
+        </block>
+    </adminhtml_mageworx_customercredit_credit_index>
+
+    <adminhtml_mageworx_customercredit_report_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/mageworx/customercredit/style.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <!--<block type="mageworx_customercredit/adminhtml_report" template="customercredit/report/form.phtml" name="customercredit.report.form" />-->
+        </reference>
+    </adminhtml_mageworx_customercredit_report_index>
+
+    <adminhtml_mageworx_customercredit_report_grid>
+
+        <block type="core/text_list" name="root" output="toHtml">
+              <reference name="head">
+                <action method="addItem">
+                    <type>skin_js</type>
+                    <name>js/mageworx/customercredit/conditions.js</name>
+                </action>
+              </reference>
+            <block type="mageworx_customercredit/adminhtml_report_grid" name="customercredit.report.grid"/>
+        </block>
+    </adminhtml_mageworx_customercredit_report_grid>
+
+    <adminhtml_mageworx_customercredit_rules_info>
+<!--        <remove name="header"/>
+        <remove name="menu"/>
+        <remove name="notifications"/>
+        <remove name="footer"/>
+        <remove name="messages"/>
+        <remove name="before_body_end"/>
+        <remove name="breadcrumbs"/>
+        <reference name="content">
+            <block type="mageworx_customercredit/adminhtml_rules_grid_info"  name="adminhtml_rules_grid_info"/>
+        </reference>
+          <remove name="footer"/>-->
+          <block type="mageworx_customercredit/adminhtml_rules_grid_info" output="toHtml" name="root"/>
+    </adminhtml_mageworx_customercredit_rules_info>
+
+    <adminhtml_mageworx_customercredit_rules_new>
+         <reference name="head">
+             <action method="addItem">
+                 <type>skin_js</type>
+                 <name>js/mageworx/customercredit/conditions.js</name>
+             </action>
+        </reference>
+    </adminhtml_mageworx_customercredit_rules_new>
+
+    <adminhtml_mageworx_customercredit_rules_edit>
+         <reference name="head">
+             <action method="addItem">
+                 <type>skin_js</type>
+                 <name>js/mageworx/customercredit/conditions.js</name>
+             </action>
+        </reference>
+    </adminhtml_mageworx_customercredit_rules_edit>
+    <adminhtml_mageworx_customercredit_rules_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/mageworx/customercredit/conditions.js</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name='diallog_box' template="mageworx/customercredit/diallog.phtml" />
+        </reference>
+    </adminhtml_mageworx_customercredit_rules_index>
+    
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value" module="mageworx_customercredit"><value>Internal Credit</value></action>
+            </block>
+            <block type="mageworx_customercredit/adminhtml_sales_order_totals_item" name="customercredit_refunded" template="mageworx/customercredit/sales/order/totals/customercredit_refunded.phtml" after="refunded">
+                <action method="setSourceField"><value>customer_credit_refunded</value></action>
+                <action method="setLabel" translate="value" module="mageworx_customercredit"><value>Refunded to Customer's Credit</value></action>
+                <action method="setDisplayArea"><value>footer</value></action>
+                <action method="setStrong"><value>1</value></action>
+                <action method="setHtmlClass"><value>emph</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value"><value>Internal Credit</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value"><value>Internal Credit</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value"><value>Internal Credit</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+    
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value"><value>Internal Credit</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value"><value>Internal Credit</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="customercredit" template="mageworx/customercredit/sales/order/totals/customercredit.phtml">
+                <action method="setSourceField"><value>customer_credit_amount</value></action>
+                <action method="setLabel" translate="value"><value>Internal Credit</value></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+	    
+    <adminhtml_sales_order_create_index>        
+        <reference name="billing_method">
+            <block type="adminhtml/sales_order_create_billing_method_form" template="mageworx/customercredit/sales/order/create/billing_method_form.phtml" name="form" />
+        </reference>
+        <reference name="totals">
+            <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/create/totals.phtml</template></action>
+        </reference>
+    </adminhtml_sales_order_create_index>
+
+    <adminhtml_sales_order_create_load_block_data>
+        <reference name="billing_method">
+            <reference name="form">
+                <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/create/billing_method_form.phtml</template></action>
+            </reference>
+        </reference>
+        <reference name="totals">
+            <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/create/totals.phtml</template></action>
+        </reference>
+    </adminhtml_sales_order_create_load_block_data>
+
+    <adminhtml_sales_order_create_load_block_totals>
+        <reference name="totals">
+            <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/create/totals.phtml</template></action>
+        </reference>
+    </adminhtml_sales_order_create_load_block_totals>
+
+    <adminhtml_sales_order_create_load_block_billing_method>
+        <reference name="content">
+            <reference name="billing_method">
+                <reference name="form">
+                    <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/create/billing_method_form.phtml</template></action>
+                </reference>
+            </reference>
+        </reference>
+    </adminhtml_sales_order_create_load_block_billing_method>
+        
+    
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="adjustments">
+            <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/creditmemo/create_totals_adjustments.phtml</template></action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="adjustments">
+            <action method="setTemplate" ifconfig="mageworx_customercredit/main/enable_credit"><template>mageworx/customercredit/sales/order/creditmemo/create_totals_adjustments.phtml</template></action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+</layout>

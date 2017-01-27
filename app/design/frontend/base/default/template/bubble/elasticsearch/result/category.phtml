@@ -1,0 +1,32 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ *
+ * @var $this Bubble_Elasticsearch_Block_Catalogsearch_Category
+ */
+$_categories = $this->getCategoryCollection();
+?>
+<?php if ($_categories->count()): ?>
+    <div class="block block-list block-gr-search">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Category Results') ?>
+                    <small><?php echo $this->__('(%d)', $_categories->count()) ?></small></span></strong>
+        </div>
+        <div class="block-content">
+            <ol id="category-search-results">
+                <?php foreach ($_categories as $_category): /** @var Mage_Catalog_Model_Category $_category */ ?>
+                    <li>
+                        <a href="<?php echo $this->escapeUrl($_category->getUrl()) ?>"
+                           title="<?php echo $this->escapeHtml($_category->getName()) ?>">
+                            <?php echo $this->escapeHtml($this->getCategoryPathName($_category)) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <script type="text/javascript">decorateList('category-search-results');</script>
+        </div>
+    </div>
+<?php endif; ?>

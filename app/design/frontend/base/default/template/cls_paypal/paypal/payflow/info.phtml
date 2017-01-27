@@ -1,0 +1,45 @@
+<?php
+/**
+ * Classy Llama
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email to us at
+ * support+paypal@classyllama.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module
+ * to newer versions in the future. If you require customizations of this
+ * module for your needs, please write us at sales@classyllama.com.
+ *
+ * To report bugs or issues with this module, please email support+paypal@classyllama.com.
+ * 
+ * @category   CLS
+ * @package    Paypal
+ * @copyright  Copyright (c) 2014 Classy Llama Studios, LLC (http://www.classyllama.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php $_code = $this->getMethodCode() ?>
+<ul id="payment_form_<?php echo $_code ?>" style="display:none" class="form-list">
+    <li>
+        <?php echo $this->__('You will be required to enter your payment details after you place an order.') ?>
+    </li>
+
+    <?php if ($this->isCcSaveAllowed()): ?>
+    <li>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="checkbox" id="<?php echo $_code ?>_cc_save_future" name="payment[cc_save_future]" value="Y" />
+            </div>
+        </div>
+        <label for="<?php echo $_code ?>_cc_save_future"><?php echo $this->__('Save this card for future use') ?> (<?php echo $this->__('if paid by credit card') ?>)</label>
+    </li>
+    <?php endif; ?>
+</ul>

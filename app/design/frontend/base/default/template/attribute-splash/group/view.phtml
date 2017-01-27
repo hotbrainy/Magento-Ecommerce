@@ -1,0 +1,55 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_AttributeSplash
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php if ($splashGroup = $this->getSplashGroup()): ?>
+	<?php $splashPages = $this->getSplashPages() ?>
+	<div class="page-title category-title">
+		<h1><?php echo $this->escapeHtml($splashGroup->getName()) ?></h1>
+	</div>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<?php if ($splashGroup->getShortDescription()): ?>
+		<div class="category-description std"><?php echo $splashGroup->getShortDescription() ?></div>
+	<?php endif; ?>
+	<?php if($this->isContentMode()): ?>
+		<?php echo $this->getCmsBlockHtml() ?>
+	<?php elseif($this->isMixedMode()): ?>
+		<?php echo $this->getCmsBlockHtml() ?>
+	<?php endif; ?>
+	<?php if ($this->isProductMode() || $this->isMixedMode()): ?>
+		<div class="splash-groups">
+			<?php $_columnCount = $this->getColumnCount() ?>
+			<?php $_collectionSize = $splashPages->count() ?>
+			<?php $i = 0; foreach($splashPages as $splashPage): ?>
+				<?php if ($i++%$_columnCount==0): ?>
+					<ul class="splash-group-grid splash-group-grid-<?php echo $this->getColumnCount() ?>">
+				<?php endif ?>
+				<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+					<div class="inner">
+						<?php if ($splashPage->getThumbnail()): ?>
+						<a href="<?php echo $splashPage->getUrl() ?>" title="<?php echo $this->escapeHtml($splashPage->getName()) ?>" class="product-image">
+							<img src="<?php echo $this->helper('attributeSplash/image')->init($splashPage, 'thumbnail')->keepFrame(false)->constrainOnly(true)->resize(150, 150) ?>" alt="<?php echo $this->escapeHtml($splashPage->getName()) ?>" />
+						</a>
+						<?php endif; ?>
+						<h2 class="product-name">
+							<a href="<?php echo $splashPage->getUrl() ?>" title="<?php echo $this->escapeHtml($splashPage->getName()) ?>">
+								<?php echo $this->escapeHtml($splashPage->getName()) ?>
+							</a>
+						</h2>
+					</div>
+				</li>
+				<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+					</ul>
+				<?php endif ?>
+			<?php endforeach ?>
+	        <script type="text/javascript">decorateGeneric($$('ul.splash-group-grid'), ['odd','even','first','last'])</script>
+	        <?php if ($this->hasPagerBlock()): ?>
+	        	<?php echo $this->getPagerHtml() ?>
+	        <?php endif; ?>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>

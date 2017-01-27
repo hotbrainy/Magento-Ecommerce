@@ -1,0 +1,31 @@
+<div class="grid" id="extradownloads_statistics_container">
+    <div class="hor-scroll">
+        <table cellspacing="0" class="data border">
+            <col width="80%" />
+            <col width="20%" />
+            <thead>
+                <tr class="headings">
+                    <th><?php echo Mage::helper('extradownloads')->__('Filename') ?></th>
+                    <th><?php echo Mage::helper('extradownloads')->__('Downloads') ?></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="a-right"><?php echo $this->getResetButtonHtml() ?></td>
+                </tr>
+            </tfoot>
+            <tbody id="extradownloads_items_body">
+                <?php foreach($this->getCollection() as $file): ?>
+                <tr>
+                    <td><?php echo $file->getTitle(); ?></td>
+                    <?php if ($this->getStoreId()): ?>
+                        <td><?php echo $file->getDownloads() ? $file->getDownloads() : 0; ?></td>
+                    <?php else: ?>
+                        <td><?php echo $file->getDownloadsSummary(); ?></td>
+                    <?php endif; ?>      
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

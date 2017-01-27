@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<attributesplash translate="title" module="attributeSplash">
+			<title>Splash</title>
+			<sort_order>31</sort_order>
+			<children>
+				<dashboard translate="title">
+					<title>Manage Splash Pages</title>
+					<action>adminhtml/attributeSplash</action>
+					<sort_order>1</sort_order>
+				</dashboard>
+			</children>
+		</attributesplash>
+	</menu>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<attributesplash translate="title" module="attributeSplash">
+						<title>Attribute Splash Pages</title>
+						<sort_order>40</sort_order>
+						<children>
+							<dashboard translate="title">
+								<title>Manage Splash Pages</title>
+								<sort_order>6</sort_order>
+							</dashboard>
+						</children>
+					</attributesplash>
+					<system>
+						<children>
+							<config>
+								<children>
+									<attributeSplash translate="title" module="attributeSplash">
+										<title>Attribute Splash Pages</title>
+										<sort_order>990</sort_order>
+									</attributeSplash>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

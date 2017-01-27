@@ -1,0 +1,38 @@
+<form action="<?=Mage::getUrl('contact-us');?>" id="contactForm" method="post">
+<div class="row form-row">
+    <div class="col-sm-6">
+    <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
+    <input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+    </div>
+    <div class="col-sm-6">
+    <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+    <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+    </div>
+</div>
+
+<div class="row form-row">
+    <div class="col-sm-12">
+    <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+    <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+    </div>
+</div>
+
+<div class="row form-row">
+    <div class="col-sm-12">
+    <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment') ?></label>
+    <textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+    </div>
+</div>
+
+<div class="row buttons-set">
+    <div class="col-sm-12">
+    <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+    <button style="color: white;" type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><?php //echo Mage::helper('contacts')->__('Submit') ?>Send Your Message</button>
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+    //]]>
+</script>

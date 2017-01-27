@@ -1,0 +1,60 @@
+/**
+ * Brands
+ */
+
+
+
+/* Base
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.brand-name {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	line-height: 18px;
+	text-align: center;
+}
+.brand-name-wrapper {
+	display: table;
+	min-height: 36px; /* Two lines of text */
+	margin: 0 auto;
+}
+.brand-name-wrapper .brand-name {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+
+/* On product page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.box-brand a {
+	margin:0 auto;
+	display:block;
+}
+.box-brand img {
+	margin:0 auto;
+	display:block;
+}
+.box-brand .brand-name {}
+.box-brand .brand-name .label {}
+
+/* Brand in secondary column on product page */
+.product-secondary-column .box-brand .attribute {
+	font-size:1.25em; /*15px*/
+	line-height:1.2em; /*18px*/
+	font-weight:bold;
+	text-align:center;
+	margin:10px 0;
+}
+
+
+/* Brand slider
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.brand-slider .item {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+.brand-slider .item a { display: block; }
+.brand-slider .owl-item.loading { min-height:60px; }

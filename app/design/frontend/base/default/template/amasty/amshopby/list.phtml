@@ -1,0 +1,42 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php $items = $this->getItems() ?>
+<div class="page-head">
+<h3><?php echo $this->getHeader()?></h3>
+</div>
+<div class="content">
+<?php if ($items): ?>
+<?php $width = floor(100/count($items)) ?>
+<?php foreach ($items as $letters): ?>
+    <div style="float:left; width:<?php echo $width ?>%">
+    <?php foreach ($letters as $letter => $options): ?>
+    <dl>
+        <dt><?php echo $letter ?></dt>
+        <dd>
+            <ul class="bare-list">
+            <?php foreach ($options as $o): ?>
+                <li>
+                    <a href="<?php echo $o['url'] ?>">
+                        <?php if ($o['img']): ?>
+                            <img src="<?php echo $o['img'] ?>" />
+                        <?php else: ?>
+                            <?php echo $this->htmlEscape($o['label']) ?>
+                        <?php endif ?>
+                        <?php if ($this->getShowCounts()) { echo '&nbsp;<span class="count">('.$o['cnt'].')</span>'; } ?>
+                    </a>
+                </li>
+            <?php endforeach ?>
+            </ul>
+        </dd>
+    </dl>
+    <?php endforeach ?>
+    </div>
+<?php endforeach ?>
+    <div style="clear:both;"></div>
+<?php endif ?>
+</div>

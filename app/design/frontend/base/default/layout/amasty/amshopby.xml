@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+-->
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/amshopby.css</stylesheet></action>
+            <action method="addJs"><script>scriptaculous/slider.js</script></action>
+        </reference>
+    </default>
+
+    <amshopby_index_index>
+        <!-- feel free remove that if you need to use default page layout -->
+        <reference name="root">
+           <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+
+        <reference name="left">
+           <block type="amshopby/catalog_layer_view" name="amshopby.navleft" before="-" template="catalog/layer/view.phtml"/> 
+        </reference>
+        <reference name="content">
+            <block type="amshopby/catalog_layer_view_top" name="amshopby.navtop" template="amasty/amshopby/view_top.phtml"/>
+            <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
+                <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
+                    <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                    <!--
+                     <action method="setColumnCount"><coulumn>4</coulumn></action>
+                    -->
+                </block>
+            </block>
+    		<block type="amshopby/top" name="amshopby.top" before="category.products" template="amasty/amshopby/top.phtml"/>
+            <block type="core/template" name="amshopby.bottom" after="-" template="amasty/amshopby/bottom.phtml">
+                <action method="setBlockId"><id>amshopby-filters-bottom-cms</id></action>
+            </block>
+        </reference>
+    </amshopby_index_index>
+
+    <catalog_category_layered> 
+        <remove name="catalog.leftnav" />
+        <remove name="enterprisecatalog.leftnav"/> 
+        <reference name="left">
+           <block type="amshopby/catalog_layer_view" name="amshopby.navleft" before="-" template="catalog/layer/view.phtml"/> 
+        </reference>
+        <reference name="content">
+                <block type="amshopby/catalog_layer_view_top" name="amshopby.navtop" before="-" template="amasty/amshopby/view_top.phtml"/>
+                <block type="amshopby/top" name="amshopby.top" before="category.products" template="amasty/amshopby/top.phtml"/>
+            <block type="core/template" name="amshopby.bottom" after="-" template="amasty/amshopby/bottom.phtml">
+                <action method="setBlockId"><id>amshopby-filters-bottom-cms</id></action>
+            </block>
+        </reference>
+    </catalog_category_layered> 
+
+    
+    <catalogsearch_result_index>
+        <remove name="catalogsearch.leftnav" />
+        <remove name="enterprisesearch.leftnav"/> 
+        
+        <reference name="left">
+           <block type="amshopby/search_layer" name="amshopby.navleft" before="-" template="catalog/layer/view.phtml"/> 
+        </reference>  
+        <reference name="content">
+                <block type="amshopby/search_layer_top" name="amshopby.navtop" before="search.result" template="amasty/amshopby/view_top.phtml"/>
+            <block type="core/template" name="amshopby.bottom" after="-" template="amasty/amshopby/bottom.phtml">
+                <action method="setBlockId"><id>amshopby-filters-bottom-cms</id></action>
+            </block>
+        </reference>
+    </catalogsearch_result_index>   
+
+<!-- comment out to show navigation on the product pages
+     <catalog_product_view>
+        <reference name="right">
+           <block type="amshopby/catalog_layer_view" name="catalog.navleft" before="-" template="catalog/layer/view.phtml">
+           </block> 
+        </reference>
+     </catalog_product_view>
+-->
+    
+</layout>

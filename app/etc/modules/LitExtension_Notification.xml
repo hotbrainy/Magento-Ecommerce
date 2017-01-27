@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @project     Notification
+ * @package	    LitExtension_Notification
+ * @author      LitExtension
+ * @email       litextension@gmail.com
+ */
+-->
+<config>
+    <modules>
+        <LitExtension_Notification>
+            <active>false</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Core/>
+            </depends>
+        </LitExtension_Notification>
+    </modules>
+</config>
+

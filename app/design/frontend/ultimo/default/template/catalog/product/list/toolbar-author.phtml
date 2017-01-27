@@ -1,0 +1,97 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+?>
+<?php
+/**
+ * - Pager moved after sorter. Show pager only if there are pages.
+ * - Amount and limiter moved inside sorter
+ * - Changed order of the main elements
+ */
+?>
+<?php 
+$CurrentUrl = strtok(Mage::helper('core/url')->getCurrentUrl(), '?');
+?>
+
+<?php if( $this->isExpanded() ): ?>
+<ul class="sort_listing">
+  <li>
+  <div class="form-group">
+    <label for="sel1">Sort:</label>
+    <select onchange="setLocation(this.value)" class="form-control" id="sel1">
+	<?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+   <?php if($_order == "Position"){ continue; } ?>
+   <?php $str = $this->getOrderUrl($_key, 'asc'); 
+	     $str = strchr($str,"?");
+    ?>
+        <option value="<?php echo $CurrentUrl.$str; ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+            <?php echo $this->__($_order) ?>
+        </option>
+    <?php endforeach; ?>
+    </select>
+    <div class="clearfix"></div>
+    </div> 
+  </li>
+ 
+  
+  
+  
+<?php if( $this->isEnabledViewSwitcher() ): ?>
+	<?php $_modes = $this->getModes(); ?>
+	<?php if($_modes && count($_modes)>1): ?>
+		<?php foreach (array_reverse($this->getModes()) as $_code=>$_label): ?>
+		<?php  $codeToLower = strtolower($_code);
+		 $ModeUrl = $this->getModeUrl($_code); 
+	     $ModeUrl = strchr($ModeUrl,"?");
+		 if($this->isModeActive($_code)):?>
+        
+        <?php if($codeToLower=='grid'){?>
+		      <li class="sort_icon"><span class="glyphicon glyphicon-th-large active" aria-hidden="true"></span></li> 
+        <?php }else{ ?>
+         <li class="bar_icon"><span class="glyphicon glyphicon-align-justify active" aria-hidden="true"></span></li>
+        <?php } ?>
+        
+		<?php else: ?>
+        
+        <?php if($codeToLower=='grid'){?>
+		      <li class="sort_icon"><a href="<?php echo $CurrentUrl.$ModeUrl; ?>"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span></a></li> 
+        <?php }else{ ?>
+         <li class="bar_icon"><a href="<?php echo $CurrentUrl.$ModeUrl; ?>"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a></li>
+        <?php } ?>
+  		<?php endif; ?>
+		<?php endforeach; ?>
+	<?php endif; ?>
+<?php endif; ?>
+
+  </ul>
+<?php endif; ?>
+	

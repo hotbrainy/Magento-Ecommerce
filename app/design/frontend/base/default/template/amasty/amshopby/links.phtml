@@ -1,0 +1,18 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php $links = $this->getLinks() ?>
+<?php if (count($links)): ?>
+<div class="amshopby-links-wrapper clearer" >
+<?php foreach ($links as $link): ?>
+<div class="amshopby-link"><a href="<?php echo $link['url']?>"><img 
+title="<?php echo $this->htmlEscape($link['title'])?>" 
+alt="<?php echo $this->htmlEscape($link['title'])?>" 
+src="<?php echo $link['img']?>"></a></div>
+<?php endforeach ?>
+</div>
+<?php endif; ?>

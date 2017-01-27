@@ -1,0 +1,414 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+
+<?php
+$_productCollection = $this->getLoadedProductCollection();
+$_collectionSize = $_productCollection->count();
+?>
+<?php
+$customerHelper = $this->helper('entangled_custom');
+$_helper = $this->helper('catalog/output');
+$theme = $this->helper('ultimo');
+$helpLabels = $this->helper('ultimo/labels');
+$helpTemplate = $this->helper('ultimo/template');
+$helpImg = $this->helper('infortis/image');
+
+//Image size
+$imgWidth = intval($theme->getCfg('category/image_width'));
+$imgHeight = $imgWidth;
+
+//If image width is not specified, use default values
+if ($imgWidth <= 0)
+{
+    $imgWidth = 295;
+    $imgHeight = 295;
+}
+
+//Image aspect ratio settings
+$keepAspectRatio = $theme->getCfg('category/aspect_ratio');
+if ($keepAspectRatio)
+{
+    $imgHeight = 0; //Height will be calculated automatically (based on width) to keep the aspect ratio
+    $catViewKeepFrame = FALSE;
+}
+else
+{
+    $catViewKeepFrame = TRUE;
+}
+
+if (Mage::registry('catViewKeepFrame') === NULL)
+{
+    Mage::register('catViewKeepFrame', $catViewKeepFrame);
+}
+
+//Hide toolbar
+$hideToolbar = false;
+if ($this->getHideToolbar())
+{
+    $hideToolbar = true;
+}
+
+?>
+
+<form action="<?php echo $this->getUrl();?>checkout/cart/add/product" method="post" id="product_addtocart_form">
+    <input name="form_key" type="hidden" value="<?=Mage::getSingleton('core/session')->getFormKey();?>" />
+    <input type="hidden" name="qty" id="qty" value="1">
+    <div class="ad_banner">
+        <?php /*?>
+            <?php $current_cat_id = $this->getLayer()->getCurrentCategory()->getId();?>
+            <?php $categoryImage = Mage::getModel('catalog/category')->load($current_cat_id)->getImageUrl(); ?>
+            <?php if($categoryImage){?>
+                <img src="<?php echo $categoryImage; ?>" alt="" style="width:100%;" />
+            <?php } else { ?>
+                <img src="<?=$this->getSkinUrl('images/common-product-banner.png');?>" alt="" style="width:100%;" />
+            <?php } ?>
+        <?php */?>
+    </div>
+    <div class="producttitle_wrap">
+        <div class="row">
+            <div class="col-md-5">
+                <?php
+                    $text = $this->getLayer()->getCurrentCategory()->getName();
+                    if ($text == "Default Category"){
+                        $text = "";
+                    }elseif($text == "Books"){
+                        $text = "All Books";
+                    }else if ($text == "New Releases"){
+                        $text = "All $text";
+                    }else{
+                        $text = "All $text Books";
+                    }
+                ?>
+                <h2><?php echo($text); ?></h2>
+            </div>
+            <div class="col-md-7">
+                <div class="sorting_wrap_new">
+                    <div class="sorting_wrap">
+                        <?php echo $this->getToolbarBlock()->setTemplate('catalog/product/list/toolbar.phtml')->toHtml() ?>
+                    </div>
+                </div>
+                <?php echo $this->getToolbarBlock()->setTemplate('catalog/product/list/toolbar-pagination.phtml')->toHtml() ?>
+            </div>
+        </div>
+    </div>
+
+    <?php if($this->getMode()=='grid'){ ?>
+        <input id="view-mode" value="grid" hidden/>
+        <div class="carousel_container each_prod">
+            <ul class="carousel_items">
+                <?php foreach ($_productCollection as $_product): ?>
+                    <li class="prod-grid-item">
+                        <div class="prod-hold">
+                            <div class="carousel_thumb">
+                                <div class="thumb_imgbox">
+                                    <a href="<?php echo $_product->getProductUrl() ?>">
+                                        <img id="product-collection-image-<?php echo $_product->getId(); ?>" src="<?php echo $helpImg->getImg($_product, 165, 247, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                                        <?php echo $helpLabels->getLabels($_product); //Product labels ?>
+                                    </a>
+                                    <div class="reviwe_info">
+                                        <div class="star_info">
+                                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="infobox">
+                                    <a href="<?php echo $_product->getProductUrl();?>" class="short_desc_overlay">
+                                        <h5><?php echo $_product->getName() ?></h5>
+                                        <?php echo Mage::helper("entangled_custom")->getShortDesc($_product->getShortDescription()) ?>
+                                    </a>
+
+                                    <?php
+                                    if (isset($lc) && $lc['addtolinks_simple'])
+                                        echo $helpTemplate->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                                    else
+                                        echo $helpTemplate->getCategoryAddtoLinksComplex($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                                    ?>
+                                    <div class="home_addtocart">
+                                        <input type="hidden" name="product" value="<?=$_product->getId();?>"/>
+                                        <button type="button" title="Add to Cart" id="<?=$_product->getId();?>" class="button btn-cart"><span><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span>Add to Cart</span></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php } else{ ?>
+        <!-----------------List Mode Start---------------------->
+        <input id="view-mode" value="list" hidden/>
+        <div class="carousel_container each_prod">
+            <ul class="carousel_items listview">
+                <?php foreach ($_productCollection as $_product): ?>
+                    <li class="product-list-item">
+                        <div class="prod-hold">
+                            <div class="carousel_thumb">
+                                <a href="<?php echo $_product->getProductUrl() ?>">
+                                    <img id="product-collection-image-<?php echo $_product->getId(); ?>" src="<?php echo $helpImg->getImg($_product, 165, 247, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    <?php echo $helpLabels->getLabels($_product); //Product labels ?>
+                                </a>
+                            </div>
+
+                            <div class="reviwe_info">
+                                <div class="row add-to-cart-container">
+                                    <div class="col-xs-5 name-container">
+                                        <span class="series_title">
+                                            <?php echo $_product->getData('book_series'); ?>
+                                            <?php echo ($_product->getData('book_series') != "")? "series" : ""; ?>
+                                        </span>
+                                        <h3><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_product->getName()?></a></h3>
+                                        <?php 
+                                            $authors = implode(", ", Mage::helper('publish/author')->getAuthorsList($_product->getId(),false));
+                                        ?>
+                                        <h5><?php echo $authors;?></h5>
+                                        <div class="star_info"><?php echo $this->getReviewsSummaryHtml($_product, 'short') ?></div>
+                                    </div>
+                                    <div class="col-xs-6 price-container">
+                                        <div class="row">
+                                            <div class="col-xs-4" style="padding-top: 5px;">
+                                                <?php echo $this->getPriceHtml($_product, true) ?>
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="home_addtocart" style="top: 0px;">
+                                                            <input type="hidden" name="product" value="<?php echo $_product->getId(); ?>"/>
+                                                            <button type="button" title="Add to Cart" id="<?php echo $_product->getId(); ?>" class="button btn-cart"><span>
+                                                                <span  style="display: inline;" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                                                <span style="" class="list-add-to-cart">Add to Cart</span></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4" style="height: 36px;">
+                                                        <?php
+                                                            echo $helpTemplate->getCategoryAddtoLinksComplex($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="prod-des"><?php  echo substr($_product->getShortDescription(),0,1500); ?></div>
+                            </div>
+
+
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php } ?>
+    <div class="producttitle_wrap bottom">
+        <div class="row">
+            <div class="col-sm-12">
+                <?php echo $this->getToolbarBlock()->setTemplate('catalog/product/list/toolbar-pagination.phtml')->toHtml() ?>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- Grid Ajax Template -->
+<div id="grid-template" style="display: none;">
+    <li class="prod-grid-item animated fadeIn">
+        <div class="prod-hold">
+            <div class="carousel_thumb">
+                <div class="thumb_imgbox">
+                    <a href="{PATH}">
+                        <?php $baseImageUrl = array_slice(explode("/", $helpImg->getImg($_product, 165, 247, 'small_image')), 3, -3); ?>
+                        <img id="product-collection-image-{ID}" src="{IMG-URL}" src-base="<?php echo implode("/", $baseImageUrl); ?>"/>
+                        {RIBBONS}
+                    </a>
+                    <div class="reviwe_info">
+                        <div class="star_info">
+                            <div class="ratings">
+                                <div class="rating-box">
+                                    <div class="rating" style="width:{RATING}"></div>
+                                </div>
+                                <a href="https://www.goodreads.com/search?q=SKU" class="amount">{RATING-CNT} Ratings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="infobox">
+                    <a href="{PATH}" class="short_desc_overlay">
+                        <h5>{TITLE}</h5>
+                        {SHORT-DESC}
+                    </a>
+
+                    <?php
+                    if (isset($lc) && $lc['addtolinks_simple'])
+                        echo $helpTemplate->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                    else
+                        echo $helpTemplate->getCategoryAddtoLinksComplex($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                    ?>
+                    <div class="home_addtocart">
+                        <input type="hidden" name="product" value="{ID}"/>
+                        <button type="button" title="Add to Cart" id="{ID}" class="button btn-cart"><span><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span>Add to Cart</span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</div>
+
+<!-- List Ajax Template -->
+<div id="list-template" style="display: none;">
+    <li class="product-list-item">
+        <div class="prod-hold">
+            <div class="carousel_thumb">
+                <a href="{PATH}">
+                    <img id="product-collection-image-{ID}" src="{IMG-URL}" alt="" />
+                </a>
+            </div>
+
+            <div class="reviwe_info">
+                <div class="row add-to-cart-container">
+                    <div class="col-xs-5 name-container">
+                        <span class="series_title">
+                            {SERIES}
+                        </span>
+                        <h3><a href="{PATH}">{TITLE}</a></h3>
+                        <h5>{AUTHOR}</h5>
+                        <div class="star_info">
+                            <div class="ratings">
+                                <div class="rating-box">
+                                    <div class="rating" style="width:{RATING}"></div>
+                                </div>
+                                <a href="https://www.goodreads.com/search?q=SKU" class="amount">{RATING-CNT} Ratings</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 price-container">
+                        <div class="row">
+                            <div class="col-xs-4" style="padding-top: 5px;">
+                                <div class="price-box">
+                                    <span class="regular-wishlist" id="product-price-{ID}">
+                                        <span class="price">${PRICE}</span>                                    
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="home_addtocart" style="top: 0px;">
+                                            <input type="hidden" name="product" value="{ID}"/>
+                                            <button type="button" title="Add to Cart" id="{ID}" class="button btn-cart"><span>
+                                                <span  style="display: inline;" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                                <span style="" class="list-add-to-cart">Add to Cart</span></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" style="height: 36px;">
+                                        <?php
+                                            echo $helpTemplate->getCategoryAddtoLinksComplex($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right');
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prod-des">{MED-DESC}</div>
+            </div>
+        </div>
+    </li>
+</div>
+
+
+<script type="text/javascript">
+    var bindAddToCarts = function() {
+        jQuery('.btn-cart').off("click.entangled").on("click.entangled",function() {
+            var proId = this.id;
+            var actionvalue = '<?php echo $this->getUrl();?>checkout/cart/add/product/' + proId;
+
+            jQuery('#product_addtocart_form').attr('action', actionvalue);
+            productAddToCartForm.submit(this);
+        });
+    };
+    jQuery(document).ready(function() {
+        bindAddToCarts();
+    });
+    var extendProductAddToCartForm = function(form){
+        form.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+                if (url) {
+                    form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {}
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(form);
+        form.submitLight = function(button, url) {
+            if (this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(form);
+    };
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    extendProductAddToCartForm(productAddToCartForm);
+</script>
+<script>
+    jQuery(document).ready(function() {
+        var maxHeight = 0;
+        jQuery('#product_addtocart_form .carousel_items li').each(function() {
+            if(jQuery(this).outerHeight() > maxHeight) {
+                maxHeight = jQuery(this).outerHeight();
+            }
+        });
+        jQuery('#product_addtocart_form .carousel_items li').height(maxHeight);
+    });
+</script>

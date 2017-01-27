@@ -1,0 +1,294 @@
+<?php $_product = $this->getProduct() ?>
+<div class="fieldset">
+    <table cellspacing="0" class="form-list">
+        <tbody>
+            <tr class="headings">
+                <td class="label"><label for="name"><?php echo Mage::helper('extradownloads')->__('Enabled')?></label>
+                </td>
+                <td class="value">
+                    <select id="extradownloads_enabled" class="input-text" name="product[extradownloads_enabled]" onchange="needSave();">
+                    <?php foreach(Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray() as $option): ?>
+                        '<option value="<?php echo $option['value']; ?>" <?php if($_product->getExtradownloadsEnabled() == $option['value']) { echo "selected"; } ?>><?php echo $option['label']; ?></option>'+
+                    <?php endforeach; ?>
+                    </select>
+                </td>
+                <td class="scope-label"><?php if (!Mage::app()->isSingleStoreMode()): ?>[STORE VIEW]<?php endif; ?></td>
+                <td class="value use-default">
+                <?php if($_product->getStoreId()): ?>
+                    <input id="extradownloads_enabled_default" type="checkbox" name="use_default[]" value="extradownloads_enabled" onclick="toggleValueElements(this, this.parentNode.parentNode)" <?php echo $this->getUsedDefault()?'checked="checked"':'' ?> />
+                    <label class="normal" for="extradownloads_enabled_default"><?php echo $this->__(''.$this->__('Use Default Value').''); ?></label>
+                <?php endif; ?>
+                </td>
+            </tr>
+            <tr class="headings">
+                <td class="label"><label for="name"><?php echo Mage::helper('extradownloads')->__('Section title')?></label>
+                </td>
+                <td class="value">
+                    <input id="extradownloads_title" type="text" class="input-text" name="product[extradownloads_title]" value="<?php echo $_product->getId()?$_product->getExtradownloadsTitle():$this->getExtradownloadsTitle() ?>" <?php echo ($_product->getStoreId() && $this->getUsedDefault())?'disabled="disabled"':'' ?> onchange="needSave();" />
+                </td>
+                <td class="scope-label"><?php if (!Mage::app()->isSingleStoreMode()): ?>[STORE VIEW]<?php endif; ?></td>
+                <td class="value use-default">
+                <?php if($_product->getStoreId()): ?>
+                    <input id="extradownloads_title_default" type="checkbox" name="use_default[]" value="extradownloads_title" onclick="toggleValueElements(this, this.parentNode.parentNode)" <?php echo $this->getUsedDefault()?'checked="checked"':'' ?> />
+                    <label class="normal" for="extradownloads_title_default"><?php echo $this->__(''.$this->__('Use Default Value').''); ?></label>
+                <?php endif; ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <label class="normal" for="extradownloads_container"><?php echo $this->__('Files'); ?></label>
+    <div class="grid" id="extradownloads_container">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="data border">
+                <col />
+                <col width="5%" />
+                <col width="15%" />
+                <col width="5%" />
+                <col width="1" />
+                <thead>
+                    <tr class="headings">
+                        <th><?php echo Mage::helper('extradownloads')->__('Title') ?> <span class="required">*</span></th>
+                        <th><?php echo Mage::helper('extradownloads')->__('Visible') ?></th>
+                        <th><?php echo Mage::helper('extradownloads')->__('File') ?></th>
+                        <th><span class="nobr"><?php echo Mage::helper('extradownloads')->__('Sort Order') ?></span></th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="a-right"><?php echo $this->getAddButtonHtml() ?>&nbsp;<?php echo $this->getUploadButtonHtml() ?></td>
+                    </tr>
+                </tfoot>
+                <tbody id="extradownloads_items_body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[>
+var extradownloadsTemplate = '<tr>'+
+                        '<td>'+
+                            '<input type="hidden" class="__delete__ always_enabled" name="extradownloads[extradownloads][{{id}}][is_delete]" value="" />'+
+                            '<input type="hidden" class="always_enabled" name="extradownloads[extradownloads][{{id}}][extradownloads_id]" value="{{extradownloads_id}}" />'+
+                            '<input type="text" class="required-entry input-text" name="extradownloads[extradownloads][{{id}}][title]" value="{{title}}" />'+
+                            '<?php echo $_product->getStoreId()?'<br /><input type="checkbox" id="extradownloads_extradownloads_{{id}}_use_default_title" name="extradownloads[extradownloads][{{id}}][use_default_title]" value="1" /><label class="normal" for="extradownloads_extradownloads_{{id}}_use_default_title">'.$this->__('Use Default Value').'</label>':'' ?>'+
+                        '</td>'+
+                        '<td>'+
+                            '<select id="extradownloads_{{id}}_visible" name="extradownloads[extradownloads][{{id}}][visible]" class="required-entry select">'+
+                            <?php foreach(Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray() as $option): ?>
+                                '<option value="<?php echo $option['value']; ?>"><?php echo $option['label']; ?></option>'+
+                            <?php endforeach; ?>
+                            '</select>'+
+                            '<?php echo $_product->getStoreId()?'<br /><input type="checkbox" id="extradownloads_extradownloads_{{id}}_use_default_visible" name="extradownloads[extradownloads][{{id}}][use_default_visible]" value="1" /><label class="normal" for="extradownloads_extradownloads_{{id}}_use_default_visible">'.$this->__('Use Default Value').'</label>':'' ?>'+
+                        '</td>'+
+                        '<td>'+
+                            '<div class="files-wide">'+
+                                '<div class="row">'+
+                                    '<label for="extradownloads_extradownloads_{{id}}_file_type"><input type="radio" class="radio validate-one-required-by-name" id="extradownloads_extradownloads_{{id}}_file_type" name="extradownloads[extradownloads][{{id}}][type]" value="file"{{file_checked}} /> <?php echo $this->__('File:'); ?></label>'+
+                                    '<input type="hidden" class="validate-extradownloads-file" id="extradownloads_extradownloads_{{id}}_file_save" name="extradownloads[extradownloads][{{id}}][file]" value="{{file_save}}" />'+
+                                    '<div id="extradownloads_extradownloads_{{id}}_file" class="uploader">'+
+                                        '<div id="extradownloads_extradownloads_{{id}}_file-old" class="file-row-info"></div>'+
+                                        '<div id="extradownloads_extradownloads_{{id}}_file-new" class="file-row-info new-file"></div>'+
+                                        '<div class="buttons">'+
+                                            '<div id="extradownloads_extradownloads_{{id}}_file-install-flash" style="display:none">'+
+                                                '<?php echo Mage::helper('media')->__('This content requires last version of Adobe Flash Player. <a href="%s">Get Flash</a>', 'http://www.adobe.com/go/getflash/') ?>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="clear"></div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="row">'+
+                                    '<label for="extradownloads_extradownloads_{{id}}_url_type"><input type="radio" class="radio validate-one-required-by-name" id="extradownloads_extradownloads_{{id}}_url_type" name="extradownloads[extradownloads][{{id}}][type]" value="url"{{url_checked}} /> <?php echo $this->__('URL:'); ?></label><input type="text" class="validate-extradownloads-url input-text" name="extradownloads[extradownloads][{{id}}][url]" value="{{url}}" />'+
+                                '</div>'+
+                                '<div>'+
+                                    '<span id="extradownloads_extradownloads_{{id}}_container"></span>'+
+                                '</div>'+
+                            '</div>'+
+                            '<?php echo $_product->getStoreId()?'<br /><input type="checkbox" id="extradownloads_extradownloads_{{id}}_use_default_type" name="extradownloads[extradownloads][{{id}}][use_default_type]" value="1" /><label class="normal" for="extradownloads_extradownloads_{{id}}_use_default_type">'.$this->__('Use Default Value').'</label>':'' ?>'+
+                        '</td>'+
+                        '<td class="a-left"><input type="text" name="extradownloads[extradownloads][{{id}}][sort_order]" value="{{sort_order}}" class="input-text sort" />'+
+                        '<?php echo $_product->getStoreId()?'<input type="checkbox" id="extradownloads_extradownloads_{{id}}_use_default_sort_order" name="extradownloads[extradownloads][{{id}}][use_default_sort_order]" value="1" /><label class="normal" for="extradownloads_extradownloads_{{id}}_use_default_sort_order">'.$this->__('Use Default Value').'</label>':'' ?>'+
+                        '</td>'+
+                        '<td>'+
+                            '<button type="button" class="scalable delete icon-btn delete-extradownloads-item"><span>Delete</span></button>'+
+                        '</td>'+
+                    '</tr>';
+var extradownloadsItems = {
+    tbody : $('extradownloads_items_body'),
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : extradownloadsTemplate,
+    itemCount : 0,
+    store_id: <?php echo $_product->getStoreId(); ?>,
+    add : function(data) {
+        alertAlreadyDisplayed = false;
+        this.template = new Template(this.templateText, this.templateSyntax);
+
+        if(!data.extradownloads_id){
+            data = {};
+            data.type = 'file';
+            data.extradownloads_id  = 0;
+
+        }
+        
+        data.id = this.itemCount;
+
+        if (data.type == 'url') {
+            data.url_checked = ' checked="checked"';
+        } else if (data.type == 'file') {
+            data.file_checked = ' checked="checked"';
+        }
+
+        if (!data.visible){
+            data.visible = 1;
+        }
+
+        Element.insert(this.tbody, {'bottom':this.template.evaluate(data)});
+
+        var scopeTitle = $('extradownloads_extradownloads_'+data.id+'_title');
+        if (scopeTitle) {
+            Event.observe(scopeTitle, 'click', function(event){
+                scopeElm = $(Event.findElement(event, 'input'));
+                titleField = scopeElm.up(0).down('input[type="text"]');
+                if (scopeElm.checked == true) {
+                    titleField.disabled = true;
+                } else {
+                    titleField.disabled = false;
+                }
+            });
+        }
+
+        if (this.store_id > 0){                        
+            // Title default
+            Event.observe('extradownloads_extradownloads_'+data.id+'_use_default_title', 'change', this.checkDefault.bind(this));
+            if (data.use_default_title){
+                $('extradownloads_extradownloads_'+data.id+'_use_default_title').checked = true;
+                this.startCheck($('extradownloads_extradownloads_'+data.id+'_use_default_title'));
+            }
+            // Visible default
+            Event.observe('extradownloads_extradownloads_'+data.id+'_use_default_visible', 'change', this.checkDefault.bind(this));
+            if (data.use_default_visible){
+                $('extradownloads_extradownloads_'+data.id+'_use_default_visible').checked = true;
+                this.startCheck($('extradownloads_extradownloads_'+data.id+'_use_default_visible'));
+            }
+            // File default
+            Event.observe('extradownloads_extradownloads_'+data.id+'_use_default_type', 'change', this.checkDefault.bind(this));
+            if (data.use_default_type){
+                $('extradownloads_extradownloads_'+data.id+'_use_default_type').checked = true;
+                this.startCheck($('extradownloads_extradownloads_'+data.id+'_use_default_type'));
+            }
+            // Sort order default
+            Event.observe('extradownloads_extradownloads_'+data.id+'_use_default_sort_order', 'change', this.checkDefault.bind(this));
+            if (data.use_default_sort_order){
+                $('extradownloads_extradownloads_'+data.id+'_use_default_sort_order').checked = true;
+                this.startCheck($('extradownloads_extradownloads_'+data.id+'_use_default_sort_order'));
+            }
+        }
+
+        var visible_options = $('extradownloads_' + data.id + '_visible');
+        for (var i = 0; i < visible_options.length; i++ ){
+            if (visible_options[i].value == data.visible){
+                visible_options[i].selected = true;
+            }
+        }
+
+        extradownloadsUrl = $('extradownloads_extradownloads_'+data.id+'_url_type');
+
+        if (!data.file_save) {
+            data.file_save = [];
+        }
+        new Extradownloads.FileUploader(
+            'extradownloads',
+            data.id,
+            extradownloadsUrl.up('td').down('div.uploader'),
+            'extradownloads[extradownloads]['+data.id+']',
+            data.file_save,
+            'extradownloads_extradownloads_'+data.id+'_file',
+            <?php echo $this->getConfigJson() ?>
+        );
+        extradownloadsUrl.advaiceContainer = 'extradownloads_extradownloads_'+data.id+'_container';
+        extradownloadsFile = $('extradownloads_extradownloads_'+data.id+'_file_type');
+        extradownloadsFile.advaiceContainer = 'extradownloads_extradownloads_'+data.id+'_container';
+        $('extradownloads_extradownloads_'+data.id+'_file_save').advaiceContainer = 'extradownloads_extradownloads_'+data.id+'_container';
+
+        this.itemCount++;
+        this.bindRemoveButtons();
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'tr'));
+        alertAlreadyDisplayed = false;
+        if(element){
+            element.down('input[type="hidden"].__delete__').value = '1';
+            element.down('div.flex').remove();
+            element.addClassName('no-display');
+            element.addClassName('ignore-validate');
+            element.hide();
+        }
+    },
+    bindRemoveButtons : function(){
+        var buttons = $$('tbody#extradownloads_items_body .delete-extradownloads-item');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+    },
+    startCheck : function(element){
+        var objects = element.parentNode.childNodes;
+        if (objects == undefined){
+            return;
+        }
+        if (objects.length > 0){
+            for (var i = 0; i < objects.length; i++){
+                if (objects[i] != element){
+                    this.setDisabled(objects[i], element.checked, element);
+                }
+            }
+        }        
+    },
+    checkDefault : function (event){
+        var element = event.findElement();
+        var objects = element.parentNode.childNodes;
+        if (objects == undefined){
+            return;
+        }
+        if (objects.length > 0){
+            for (var i = 0; i < objects.length; i++){
+                if (objects[i] != element){
+                    this.setDisabled(objects[i], element.checked, element);
+                }
+            }
+        }
+    },
+    setDisabled : function (obj, value, exclude){
+        if (obj.disabled != undefined){
+            if ((obj != exclude) && (obj.className.search('always_enabled') == -1)){
+                obj.disabled = value;
+            }
+        }
+        if (obj.childNodes.length > 0){
+            for(var i = 0; i < obj.childNodes.length; i++){
+                this.setDisabled(obj.childNodes[i], value, exclude);
+            }
+        }
+
+    }
+}
+
+var needSave = function(){
+  $('product_info_tabs_extradownloads').className += ' changed';
+};
+
+extradownloadsItems.bindRemoveButtons();
+
+if($('add_extradownloads_item')){
+    Event.observe('add_extradownloads_item', 'click', extradownloadsItems.add.bind(extradownloadsItems));
+}
+
+<?php foreach ($this->getExtradownloadsData() as $item): ?>
+    extradownloadsItems.add(<?php echo $item->toJson() ?>);
+<?php endforeach; ?>
+
+//]]>
+</script>

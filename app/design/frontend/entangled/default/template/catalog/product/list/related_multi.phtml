@@ -1,0 +1,208 @@
+<?php
+/**
+ * Related products slider (thumbnails)
+ */
+?>
+<?php if($_collectionSize = $this->getItems()->getSize()): ?>
+<?php
+    $_productCollection = $this->getItems();
+    $theme = $this->helper('ultimo');
+    $helpImg = $this->helper('infortis/image');
+    $productCountInSlide = intval($theme->getCfg('product_page/related_count')); //Number of products displayed in a single slide
+    $i = 0;
+    $sliderClasses = '';
+    $gridClasses = '';
+
+    //Additional parameters
+    $isResponsive = true;
+    if ($_collectionSize <= $productCountInSlide)
+    {
+        //If total number of products is smaller than number of products displayed in a single slide
+        $isResponsive = false;
+    }
+
+    //Slider parameters
+    //--------------------------------------------------------------
+
+    $sliderId = "itemslider-related-multi";
+
+    //Responsive mode on/off
+    $isResponsive = true;
+
+    //Assign number of items in a row to specific viewport width
+    $breakpoints = '[0, 1], [480, 2], [768, 1]';
+
+    //Pagination on/off
+    $pagination = false;
+
+    //Default image size
+    $imgWidth = 100;
+    $imgHeight = 100;
+    
+        //Image aspect ratio
+        if ($theme->getCfg('category/aspect_ratio'))
+        {
+            $imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+        }
+
+    //Slider timeout. Set to enable automatic scrolling.
+    $timeout = intval($theme->getCfg('product_page/related_timeout'));
+
+    //Number of items that should move on scrolling
+    $move = 0;
+
+    //If set, slider will loop
+    $loop = $theme->getCfg('product_slider/loop');
+
+    //Speed (arrows / touch swipe)
+    $speed = intval($theme->getCfg('product_slider/speed'));
+
+    //Speed (automatic scrolling / pagination)
+    $autoSpeed = intval($theme->getCfg('product_slider/auto_speed'));
+
+    //Pause slider on mouse hover
+    $pause = $theme->getCfg('product_slider/pause');
+
+
+
+
+?>
+<div class="block block-related block-related-thumbnails">
+    <h3 class="section-title padding-right"><?php echo $this->__('Related Products'); ?></h3>
+    <div class="itemslider-wrapper itemslider-related-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
+        <div id="<?php echo $sliderId; ?>" class="itemslider <?php if($sliderClasses) echo $sliderClasses; ?>">
+        <?php foreach ($_productCollection as $_item): ?>
+            <?php if ($i++ % $productCountInSlide == 0): //Open: new slide and list of products ?>
+                <div class="item">
+                    <ul class="clearer">
+            <?php endif; ?>
+
+            <li class="product">
+                <a class="product-image" href="<?php echo $_item->getProductUrl(); ?>" title="<?php echo $this->escapeHtml($_item->getName()); ?>">
+                    <img src="<?php echo $helpImg->getImg($_item, $imgWidth, $imgHeight, 'thumbnail'); ?>" alt="<?php echo $this->escapeHtml($_item->getName()); ?>" />
+                </a>
+                <div class="product-details">
+                    <h3 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>"><?php echo $this->escapeHtml($_item->getName()); ?></a></h3>
+                    
+                    <?php if ($theme->getCfg('magento_blocks/related_products_checkbox')): ?>
+                        <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+                            <?php if (!$_item->getRequiredOptions()): ?>
+                            <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    
+                    <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                    
+                    <?php if ($this->helper('wishlist')->isAllow()): ?>
+                        <a class="related-add-to-wishlist" href="<?php echo $this->getAddToWishlistUrl($_item); ?>" title="<?php echo $this->__('Add to Wishlist') ?>"><?php echo $this->__('Add to Wishlist'); ?></a>
+                    <?php endif; ?>
+                </div> <!-- end: product-details -->
+            </li>
+
+            <?php if ($i % $productCountInSlide == 0 || $i == $_collectionSize): //Close: list of products and slide ?>
+                    </ul> <!-- end: list of products -->
+                </div> <!-- end: slider item -->
+            <?php endif ?>
+        <?php endforeach; ?>
+        </div> <!-- end: itemslider -->
+    </div> <!-- end: itemslider-wrapper -->
+    <script type="text/javascript">
+    //<![CDATA[
+        jQuery(function($) {
+
+            var owl = $('#<?php echo $sliderId; ?>');
+            owl.owlCarousel({
+
+            <?php if(!$isResponsive): ?>
+                responsive: false,
+                items: <?php echo $showItems; ?>,
+            <?php else: ?>
+                itemsCustom: [ <?php echo $breakpoints; ?> ],
+                responsiveRefreshRate: 50,
+            <?php endif; ?>
+
+            <?php if ($speed): ?>
+                slideSpeed: <?php echo $speed; ?>,
+            <?php endif; ?>
+
+            <?php if ($autoSpeed): ?>
+                paginationSpeed: <?php echo $autoSpeed; ?>,
+            <?php endif; ?>
+
+            <?php if ($move !== 1): ?>
+                scrollPerPage: true,
+            <?php endif; ?>
+
+            <?php if ($timeout): ?>
+                autoPlay: <?php echo $timeout; ?>,
+            <?php endif; ?>
+
+            <?php if ($pause): ?>
+                stopOnHover: true,
+            <?php endif; ?>
+
+            <?php if ($loop): ?>
+                rewindNav: true,
+                rewindSpeed: 600,
+            <?php else: ?>
+                rewindNav: false,
+            <?php endif; ?>
+
+            <?php if ($pagination): ?>
+                pagination: true,
+            <?php else: ?>
+                pagination: false,
+            <?php endif; ?>
+
+                navigation: true,
+                navigationText: false
+
+            }); //end: owl
+
+        });
+    //]]>
+    </script>
+
+    <?php if ($theme->getCfg('magento_blocks/related_products_checkbox')): ?>
+        <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+        <script type="text/javascript">
+        //<![CDATA[
+            $$('.related-checkbox').each(function(elem){
+                Event.observe(elem, 'click', addRelatedToProduct)
+            });
+        
+            var relatedProductsCheckFlag = false;
+            function selectAllRelated(txt){
+                if (relatedProductsCheckFlag == false) {
+                    $$('.related-checkbox').each(function(elem){
+                        elem.checked = true;
+                    });
+                    relatedProductsCheckFlag = true;
+                    txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('unselect all')) ?>";
+                } else {
+                    $$('.related-checkbox').each(function(elem){
+                        elem.checked = false;
+                    });
+                    relatedProductsCheckFlag = false;
+                    txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('select all')) ?>";
+                }
+                addRelatedToProduct();
+            }
+        
+            function addRelatedToProduct(){
+                var checkboxes = $$('.related-checkbox');
+                var values = [];
+                for(var i=0;i<checkboxes.length;i++){
+                    if(checkboxes[i].checked) values.push(checkboxes[i].value);
+                }
+                if($('related-products-field')){
+                    $('related-products-field').value = values.join(',');
+                }
+            }
+        //]]>
+        </script>
+    <?php endif; ?>
+    
+</div> <!-- end: block -->
+<?php endif; ?>

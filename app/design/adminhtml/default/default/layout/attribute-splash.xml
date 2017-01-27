@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<layout>
+	<!--
+	/**
+	 * Splash Dashboard
+	 */
+	 -->
+	<adminhtml_attributesplash_index>
+		<reference name="content">
+			<block type="core/text" name="splash.dashboard.title">
+				<action method="setText">
+					<text><![CDATA[<div class="content-header"><h3>Attribute Splash Pages</h3></div>]]></text>
+				</action>
+			</block>
+			<block type="attributeSplash/adminhtml_dashboard" name="splash.dashboard" />
+			<block type="core/text" name="splash.tabs.content">
+				<action method="setText">
+					<text><![CDATA[
+						<div id="splash_tab_content"></div>
+						<style type="text/css">
+							#splash_dashboard_tabs_group_content .content-header { display: none; }
+							#splash_dashboard_tabs_page_content .content-header { display: none; }
+						</style>
+					]]></text>
+				</action>
+			</block>
+		</reference>
+	</adminhtml_attributesplash_index>
+	
+	<adminhtml_attributesplash_pagegrid>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="attributeSplash/adminhtml_page_grid" name="splash.grid"/>
+		</block>
+	</adminhtml_attributesplash_pagegrid>
+	
+	<adminhtml_attributesplash_groupgrid>
+		<block type="core/text_list" name="root" output="toHtml">
+			<block type="attributeSplash/adminhtml_group_grid" name="splash.grid"/>
+		</block>
+	</adminhtml_attributesplash_groupgrid>
+	
+	<!--
+	/**
+	 * Splash Page edit
+	 */
+	 -->
+	<adminhtml_attributesplash_page_edit>
+		<update handle="editor" />
+		<reference name="left">
+			<block type="attributeSplash/adminhtml_page_edit_tabs" name="splash_page.edit.tabs" />
+		</reference>
+		<reference name="content">
+			<block type="attributeSplash/adminhtml_page_edit" name="splash_page.edit" />
+		</reference>
+		<reference name="before_body_end">
+			<block type="attributeSplash/adminhtml_page_edit_js" name="splash_page.edit.js" />		
+			<block type="core/text" name="splash.tabs.content">
+				<action method="setText" ifconfig="attributeSplash/missing_addon/quickcreate">				
+					<text><![CDATA[
+						<style type="text/css">
+							#qc-go {font-size:110%;margin-top:-18px;padding:10px 0;text-align:right;}
+						</style>
+						<script type="text/javascript">
+							$('content').select('.content-header').first().insert({
+								after: new Element('div', {'id': 'qc-go'}).update(
+									'Create 100\'s of Splash Pages a second with <a href="http://fishpig.co.uk/magento/extensions/attribute-splash-pages/quick-create/?utm_source=Fishpig_AttributeSplash&utm_medium=Edit%20Page&utm_term=Fishpig_AttributeSplash_Addon_QuickCreate&utm_campaign=Extend" target="_blank">Quick Create</a>.'
+								)
+							});
+						</script>
+					]]></text>
+				</action>
+			</block>
+		</reference>
+	</adminhtml_attributesplash_page_edit>
+	<!--
+	/**
+	 * Splash Group edit
+	 */
+	 -->
+	<adminhtml_attributesplash_group_edit>
+		<update handle="editor" />
+		<reference name="left">
+			<block type="attributeSplash/adminhtml_group_edit_tabs" name="splash_group.edit.tabs" />
+		</reference>
+		<reference name="content">
+			<block type="attributeSplash/adminhtml_group_edit" name="splash_group.edit" />
+		</reference>
+	</adminhtml_attributesplash_group_edit>
+</layout>

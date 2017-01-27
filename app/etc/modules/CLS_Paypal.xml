@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <CLS_Paypal>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Paypal />
+                <Mage_PaypalUk />
+            </depends>
+        </CLS_Paypal>
+    </modules>
+</config>

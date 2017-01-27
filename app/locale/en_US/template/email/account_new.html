@@ -1,0 +1,45 @@
+<!--@subject Welcome, {{var customer.name}}! @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<!--@styles
+@-->
+
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="action-content">
+            <p>Thank you for creating an account with {{var store.getFrontendName()}}. Now, get ready for great love stories at even better prices!</p>
+            <p class="highlighted-text">
+                Use the following values when prompted to log in:<br/>
+                <strong style="font-weight: bold;">Email</strong>: {{var customer.email}}<br/>
+                <strong style="font-weight: bold;">Password</strong>: {{htmlescape var=$customer.password}}
+            </p>
+            <p>Our site is packed with info and fun. So, here are a few things to do first:</p>
+            <ul>
+                <li><strong style="font-weight: bold;">FREE BOOKS!</strong> You are now a member of the <strong style="font-weight: bold;"><a href="{{store url='rewardpoints'}}">Entangled Rewards Program</a></strong> and will earn points on every purchase. For every ten books you buy, get a book for free (of equal value) using your points!</li>
+                <!--<li>Want to save even more? Upgrade your Rewards Program and become an Entangled Fanatic&trade; to save 10% on every purchase! <strong style="font-weight: bold;"><a href="{{store url='rewardpoints'}}">Upgrade here</a></strong>.</li>-->
+                <li>We can send eBooks <strong style="font-weight: bold;">directly to your favorite Kindle&trade; device</strong>. <a href="{{store url='/'}}support#collapseTwo">Learn how</a>.</li>
+                <li>Like free gifts? Fill out your address in your <strong style="font-weight: bold;"><a href="{{store url='customer/account'}}">Account Info</a></strong> and enter our drawing to receive a basket of free print books and swag every month!</li> Don't worry&mdash;we'll never share your private information!
+                <li>Browse our catalog of more than 1,200 <strong style="font-weight: bold;"><a href="{{store url=''}}books.html">quality books</a></strong>. From first love, to hometown romances, to sizzling sexy billionaires, we’ve got you covered.</li>
+                <li>Love our authors? So do we! Use our <strong style="font-weight: bold;"><a href="{{store url='publish/author/index'}}">Follow This Author</a></strong> feature to receive updates on sales and new releases from all of your favorites.</li>
+                <li>Don’t forget to check our <strong><a href="http://www.entangledinromance.com">adult romance</a></strong> and <strong><a href="http://www.entangledteen.com">young adult</a></strong> blogs. It’s where we offer fun articles, games, and interviews you don't want to miss. So awesome.</li>
+            </ul>
+
+            <p>Just click <strong style="font-weight: bold;"><a href="{{store url='customer/account/login'}}">here</a></strong> to login and get started</p>.
+
+            <p>Happy Reading!<br/>
+            The Entangled Team</p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

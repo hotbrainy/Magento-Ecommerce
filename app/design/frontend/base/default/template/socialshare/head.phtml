@@ -1,0 +1,98 @@
+<!-- BEGIN SocialShare - OpenGraphTags Head -->
+<?php
+	$_socialShareOgData = array();
+	$_imageSize = array('x' => 200 , 'y' => 200);
+	if (Mage::getStoreConfig('opengraphtags/facebook/fb_appid') != '') {
+		$_socialShareOgData["fb:app_id"] = trim(Mage::getStoreConfig('opengraphtags/facebook/fb_appid'));
+	}
+	if (Mage::getStoreConfig('opengraphtags/facebook/fb_admins') != '') {
+		$_socialShareOgData["fb:admins"] = trim(Mage::getStoreConfig('opengraphtags/facebook/fb_admins'));
+	}
+
+	/* Defaults */
+	$_socialShareOgData["og:type"] 			= "article";
+	$_socialShareOgData["og:title"] 		= strip_tags($this->getLayout()->getBlock('head')->getTitle());
+	$_socialShareOgData["og:url"]           = Mage::helper('core')->escapeHtml(Mage::helper('core/url')->getCurrentUrl());
+	$_socialShareOgData["og:description"] 	= strip_tags( $this->getLayout()->getBlock('head')->getDescription() );  //Head Meta Descripion
+	//$_socialShareOgData["og:description"] = strip_tags($this->getDescription());
+	$_socialShareOgData["og:site_name"] = Mage::app()->getStore()->getFrontEndName();
+
+	/* Product Pages */
+	if($_product = Mage::registry('current_product')) {
+		$_socialShareOgData["og:type"] 			= "product";
+		$_socialShareOgData["og:title"] 		= strip_tags($_product->getName());
+		$_socialShareOgData["og:image"] 		= Mage::helper('catalog/image')->init($_product, 'image');//->resize($_imageSize['x'], $_imageSize['y']); //Causes Errors with the Facebook Debugger
+		$_socialShareOgData["og:url"] 			= $_product->getProductUrl();
+		
+		if( empty($_socialShareOgData["og:description"]) ) 
+			$_socialShareOgData["og:description"] 	= htmlspecialchars(strip_tags(($_product->getShortDescription())));
+		
+		/* Pricing */
+		if (Mage::getStoreConfig('sales/msrp/enabled') != "1") { // MAP pricing NOT enabled
+			if ($_product->getFinalPrice() && $_product->getFinalPrice() <> $_product->getPrice()) { // Product on sale (or catalog price rule applied)
+				
+			    $_socialShareOgData["product:original_price:amount"]     = $_product->getPrice();
+				$_socialShareOgData["product:original_price:currency"]   = Mage::app()->getStore()->getCurrentCurrencyCode();
+				
+				$_socialShareOgData["product:price:amount"]             = $_product->getFinalPrice();
+				$_socialShareOgData["product:price:currency"] 		    = Mage::app()->getStore()->getCurrentCurrencyCode();
+				
+			} else { // Product not on sale
+				$_socialShareOgData["product:price:amount"] 			= $_product->getPrice();
+				$_socialShareOgData["product:price:currency"] 		    = Mage::app()->getStore()->getCurrentCurrencyCode();
+				
+			}
+		} elseif ($_product->getMsrp()) { // MAP pricing enabled and product has MSRP
+			$_socialShareOgData["product:price:amount"] 	= $_product->getMsrp();
+			$_socialShareOgData["product:price:currency"]   = Mage::app()->getStore()->getCurrentCurrencyCode();
+		}
+		
+		if(empty($_socialShareOgData["product:price:amount"])){
+		    //Default Price, Mandetory Value
+		    $_socialShareOgData["product:price:amount"]     = '0.00';   //Default, Price is mendatory for this object
+		    $_socialShareOgData["product:price:currency"] 	= Mage::app()->getStore()->getCurrentCurrencyCode();
+		}
+		
+		/* Product Rating */
+//		if (($entityId = Mage::app()->getRequest()->getParam('id')) > 0) {
+//			if (($reviewsCount = Mage::getModel('review/review')->getTotalReviews($entityId, true)) > 0) {
+//				Mage::getModel('review/review')->getEntitySummary($_product,Mage::app()->getStore()->getStoreId());
+//				if ($ratingSummary = $_product->getRatingSummary()->getRatingSummary()) {
+//					$_socialShareOgData["og:rating"] = $ratingSummary / 20; // Number (float), rating of this product (for example, 4.6) (Magento provides the product rating as a percentage, so divide by 20 to make it out of 5)
+//					$_socialShareOgData["og:rating_scale"] = 5; //Number (int), maximum value of the ratings scale. Required if rating provided (e.g. 5)
+//					$_socialShareOgData["og:rating_count"] = $reviewsCount; //Number (int), rating count of which the product is rated(e.g. 113)
+//				}
+//			}
+//		}
+	}
+	
+	/* Category Pages */
+	elseif($_category  = Mage::registry('current_category')) {
+//		$cur_category = Mage::getModel('catalog/category')->load($_category->getId());
+//		$imageUrl = $cur_category->getImageUrl();
+		$_socialShareOgData["og:type"] 	= "product.group";
+		$_socialShareOgData["og:title"] = strip_tags($_category->getName());
+		$_socialShareOgData["og:url"] 	= $_category->getUrl();
+		$_socialShareOgData["og:image"] = $_category->getImageUrl();
+	}
+	
+	/* CMS Home Page */
+	elseif((Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms')) {
+		$_socialShareOgData["og:type"] = "website";
+	}
+
+	/* Default Image */
+	if(!array_key_exists("og:image", $_socialShareOgData)) {
+		if (Mage::getStoreConfig('opengraphtags/defaults/default_image')) { 
+			$image = Mage::getBaseUrl('media') . 'socialshare/image/' . Mage::getStoreConfig('opengraphtags/defaults/default_image');
+			$_socialShareOgData["og:image"] = $image;
+		}
+	}
+	
+	/* Print OG Tags */
+	foreach($_socialShareOgData as $key => $value) {
+	    if(!empty($value))
+		  echo "<meta property=\"{$key}\" content=\"{$value}\" />\n";
+	}
+?>
+<!-- END SocialShare - OpenGraphTags Head -->

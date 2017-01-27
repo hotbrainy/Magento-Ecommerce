@@ -1,0 +1,99 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$quote = Mage::getSingleton('checkout/session')->getQuote();
+$cartItems = $quote->getAllVisibleItems();
+?>
+<div id="header-cart">
+  <div class="cart_container" style="background: url(<?php echo $this->getSkinUrl('images/header-bg.jpg'); ?>) no-repeat; background-size:cover;">
+    <h2>My cart</h2>
+    <div class="cart_details no_border">
+      <div class="cart_lft"><span><img src="<?php echo $this->getSkinUrl('images/cart-large.png'); ?>" alt="<?php echo $this->__("Cart icon") ?>"></span> </div>
+      <div class="cart_rht">
+        <h5>cart subtotal:<span> <span class="price"><?php echo $this->helper('checkout')->formatPrice(Mage::getSingleton('checkout/cart')->getQuote()->getGrandTotal()); ?></span></span></h5>
+        <h6>your books are available for immediate download.</h6>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="living_holder">
+    <ol id="cart-sidebar" class="mini-products-list clearer">
+      <?php foreach ($cartItems as $item) {?>
+      <div class="living_container">
+        <div class="living_feild">
+          <li class="item"> <a href="#" class="product-image"> <img src="<?=$this->helper('catalog/image')->init($item->getProduct(),'small_image')->resize(50,50);?>" width="50" height="50" alt="<?=$item->getName();?>"></a>
+            <div class="product-details"><a href="#" title="Remove This Item" onclick="return confirm('Are you sure you would like to remove this item from the shopping cart?');" class="btn-remove">Remove This Item</a>
+              <p class="product-name"><a href="#">
+                <?=$item->getName();?>
+                </a>
+              </p>
+              <strong>
+              <?=$item->getQty();?>
+              </strong> x <span class="price">$
+              <?=$item->getPrice();?>
+              </span> </div>
+          </li>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <?php } ?>
+    </ol>
+  </div>
+</div>
+
+<?php /*?><div class="block block-progress opc-block-progress">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Your Checkout Progress') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <dl>
+            <?php if ($this->getCheckout()->getStepData('billing', 'is_show')): ?>
+            <div id="billing-progress-opcheckout">
+                <?php echo $this->getChildHtml('billing.progress') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->getCheckout()->getStepData('shipping', 'is_show')): ?>
+            <div id="shipping-progress-opcheckout">
+                <?php echo $this->getChildHtml('shipping.progress') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->getCheckout()->getStepData('shipping_method', 'is_show')): ?>
+            <div id="shipping_method-progress-opcheckout">
+                <?php echo $this->getChildHtml('shippingmethod.progress') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->getCheckout()->getStepData('payment', 'is_show')): ?>
+            <div id="payment-progress-opcheckout">
+                <?php echo $this->getChildHtml('payment.progress') ?>
+            </div>
+            <?php endif; ?>
+        </dl>
+    </div>
+</div><?php */?>

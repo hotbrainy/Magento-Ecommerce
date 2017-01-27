@@ -1,0 +1,75 @@
+/**
+ * Lightbox
+ */
+
+
+
+/* ColorBox Core Style
+-------------------------------------------------------------- */
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; }
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box;}
+
+/* ColorBox skin.
+   The following styles are ordered and tabbed
+   in a way that represents the nesting of the generated HTML.
+-------------------------------------------------------------- */
+#cboxOverlay{background:url(../../../images/infortis/_shared/colorbox/overlay.png) repeat 0 0;}
+#colorbox{}
+    #cboxContent{background:#fff; overflow:hidden; border:none;/*10px solid #333*/ padding:10px; }
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:40px; /*10px above buttons*/ }
+        #cboxCurrent{position:absolute; bottom:17px; left:80px; color:#999;}
+        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
+		
+		#cboxPrevious,
+		#cboxNext { position:absolute; background:url(../../../images/infortis/_shared/colorbox/slider-arrows.png) no-repeat #f5f5f5; width:30px; height:30px; line-height:30px; text-align:center; }
+		#cboxPrevious:hover,
+		#cboxNext:hover { background-color:#333; }
+        #cboxPrevious{bottom:10px; left:10px; background-position:-10px -10px;}
+        #cboxPrevious:hover{background-position:-10px -60px;}
+        #cboxNext{bottom:10px; left:40px; background-position:-60px -10px;}
+        #cboxNext:hover{background-position:-60px -60px;}
+		
+        #cboxLoadingOverlay{background:url(../../../images/infortis/_shared/colorbox/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(../../../images/infortis/_shared/colorbox/loading.gif) no-repeat center center;}
+		
+        #cboxClose{position:absolute; bottom:10px; right:10px; background:url(../../../images/infortis/_shared/colorbox/close-button.png) -10px -10px no-repeat #f5f5f5; width:30px; height:30px; line-height:30px; text-align:center; }
+        #cboxClose:hover{background-position:-10px -60px; background-color:#333;}
+
+        /* Captions */
+        #cboxTitle {position:absolute; bottom:17px; left:0; text-align:center; width:100%; color:#999;}
+        /* Alternative position and style of image captions */
+        /*
+        #cboxTitle {
+            position: absolute;
+            bottom: 50px;
+            left: 10px;
+            text-align: left;
+            right: 10px;
+            color: #000;
+            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.75);
+            padding: 10px;
+        }
+        */
+
+#cboxNext,
+#cboxPrevious,
+#cboxClose {
+	transition:			background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+	-moz-transition:	background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+	-webkit-transition:	background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+	-o-transition:		background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+}
+
+

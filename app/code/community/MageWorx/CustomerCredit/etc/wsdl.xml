@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+ -->
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}" xmlns:ns0="urn:Magento">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/" />
+
+
+            <complexType name="customerCreditEntity">
+                <all>
+                    <element name="credit_id" type="xsd:string"/>
+                    <element name="customer_id" type="xsd:string"/>
+                    <element name="website_id" type="xsd:string"/>
+                    <element name="value" type="xsd:string"/>
+                </all>
+            </complexType>
+            <complexType name="customerCreditEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:customerCreditEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+        </schema>
+    </types>
+    
+<!--END TYPES -->
+
+<!--BEGIN MESSAGES -->
+
+    <message name="customerCreditListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="customerCreditListResponse">
+        <part name="result" type="typens:customerCreditEntityArray" />
+    </message>
+    
+    <message name="customerCreditGetcreditRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="customerId" type="xsd:string" />
+    </message>
+    <message name="customerCreditGetcreditResponse">
+        <part name="result" type="xsd:int"/>
+    </message>
+    
+    <message name="customerCreditSetcreditRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="customerId" type="xsd:string" />
+        <part name="value" type="xsd:string" />
+    </message>
+    <message name="customerCreditSetcreditResponse">
+        <part name="result" type="xsd:boolean"/>
+    </message>
+
+    <message name="customerCreditIncrcreditRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="customerId" type="xsd:string" />
+        <part name="value" type="xsd:string" />
+    </message>
+    <message name="customerCreditIncrcreditResponse">
+        <part name="result" type="xsd:boolean"/>
+    </message>
+
+    <message name="customerCreditDecrcreditRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="customerId" type="xsd:string" />
+        <part name="value" type="xsd:string" />
+    </message>
+    <message name="customerCreditDecrcreditResponse">
+        <part name="result" type="xsd:boolean"/>
+    </message>
+<!--END MESSAGES -->
+    
+    
+<!--BEGIN PORT TYPES -->
+    
+    <portType name="{{var wsdl.handler}}PortType">
+
+        <operation name="customerCreditList">
+            <documentation>Retrieve customer credit list</documentation>
+            <input message="typens:customerCreditListRequest" />
+            <output message="typens:customerCreditListResponse" />
+        </operation>
+        <operation name="customerCreditGetcredit">
+            <documentation>Get customer credit</documentation>
+            <input message="typens:customerCreditGetcreditRequest" />
+            <output message="typens:customerCreditGetcreditResponse" />
+        </operation>
+        <operation name="customerCreditSetcredit">
+            <documentation>Set customer credit</documentation>
+            <input message="typens:customerCreditSetcreditRequest" />
+            <output message="typens:customerCreditSetcreditResponse" />
+        </operation>
+        <operation name="customerCreditIncrcredit">
+            <documentation>Increase customer credit</documentation>
+            <input message="typens:customerCreditIncrcreditRequest" />
+            <output message="typens:customerCreditIncrcreditResponse" />
+        </operation>
+        <operation name="customerCreditDecrcredit">
+            <documentation>Increase customer credit</documentation>
+            <input message="typens:customerCreditDecrcreditRequest" />
+            <output message="typens:customerCreditDecrcreditResponse" />
+        </operation>
+        
+    </portType>
+    
+<!--END PORT TYPES -->    
+    
+<!--BEGIN BINDINGS --> 
+
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        
+        <!--BEGIN CUSTOMER BINDINGS -->
+        <operation name="customerCreditList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="customerCreditGetcredit">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="customerCreditSetcredit">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="customerCreditIncrcredit">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="customerCreditDecrcredit">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <!--END CUSTOMER BINDINGS --> 
+    </binding>
+<!--END BINDINGS -->     
+    
+</definitions>

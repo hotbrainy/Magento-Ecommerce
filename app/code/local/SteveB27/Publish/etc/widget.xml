@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+    <featuredauthor translate="name description" type="publish/widget">
+        <name>Author Widget</name>
+        <description type="desc">Add author info to a static block or cms page</description>
+        <parameters>
+            <widget_title translate="label description">
+                <required>0</required>
+                <visible>1</visible>
+                <label>Frontend Title</label>
+                <value>Featured Author</value>
+                <type>text</type>
+                <description>The frontend widget instance title</description>
+            </widget_title>
+            <author_id translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Select Author</label>
+                <type>select</type>
+                <source_model>publish/catalog_product_attribute_source_author_type</source_model>
+            </author_id>
+            <template>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Select template</label>
+                <type>select</type>
+                <values>
+                     <default translate="label">
+                        <value>publish/author/widget.phtml</value>
+                        <label>Simple</label>
+                    </default>
+                </values>
+            </template>
+        </parameters>
+    </featuredauthor>
+</widgets>

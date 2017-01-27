@@ -1,0 +1,43 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php if($this->canShowBlock()): ?>
+    <div class="block block-layered-nav">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Shop By') ?></span></strong>
+        </div>
+        <div class="block-content">
+            <?php echo $this->getStateHtml() ?>
+            <?php if ($this->getLayer()->getState()->getFilters() && method_exists('Mage', 'getEdition')): // CE 1.7+, EE 1.12+?>
+                <div class="actions"><a href="<?php echo Mage::helper('amshopby/url')->getFullUrl(array(), 1) ?>">
+                        <?php echo Mage::helper('catalog')->__('Clear All') ?></a>
+                </div>
+            <?php endif; ?>
+            <?php if($this->canShowOptions()): ?>
+                    <div class="amshopby-container-top block-layered-nav">
+                        <?php foreach ($this->getFilters() as $_filter): ?>
+                            <?php if($_filter->getItemsCount()): ?>
+                                <?php  $position = Mage::helper('amshopby')->getAttributePosition($_filter); ?>
+                                <div class="amshopby-item-top block-content am-toggle-content">
+                                    <dl id="narrow-by-list" class="amshopby-narrow-by-list" data-position="<?php echo $position;?>">
+                                        <?php if ($_filter->getAttributeCode() == 'price') : ?>
+                                            <?php $_filter->addData(array('amprice-position' => 'top')); ?>
+                                        <?php endif; ?>
+                                        <dt><?php echo $this->__($_filter->getName()) ?></dt>
+                                        <dd style="background:none"><?php echo $_filter->getHtml() ?></dd>
+                                    </dl>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                <script type="text/javascript">decorateDataList('narrow-by-list')</script>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php else: ?>
+    <div style="display:none" class="<?php echo $this->getBlockId()?>"></div>
+<?php endif; ?>

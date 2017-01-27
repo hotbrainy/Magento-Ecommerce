@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category	Infortis
+ * @package		Infortis_Infortis
+ * @author		Infortis
+ * @copyright	Copyright 2013 Infortis
+ */
+-->
+<config>
+    <modules>
+        <Infortis_Infortis>
+            <version>0.9.0</version>
+        </Infortis_Infortis>
+    </modules>
+	<!--<admin>
+		<routers>
+			<infortis>
+				<use>admin</use>
+				<args>
+					<module>Infortis_Infortis</module>
+					<frontName>infortis</frontName>
+				</args>
+			</infortis>
+		</routers>
+	</admin>-->
+    <global>
+        <blocks>
+            <infortis>
+                <class>Infortis_Infortis_Block</class>
+            </infortis>
+        </blocks>
+        <helpers>
+            <infortis>
+                <class>Infortis_Infortis_Helper</class>
+            </infortis>
+        </helpers>
+        <models>
+            <infortis>
+                <class>Infortis_Infortis_Model</class>
+            </infortis>
+        </models>
+    </global>
+</config>

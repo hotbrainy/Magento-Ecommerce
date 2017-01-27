@@ -1,0 +1,207 @@
+<?php
+/**
+ * @var $this Infortis_UltraSlideshow_Block_Slideshow
+ */
+?>
+<?php // $slides = $this->getSlideIds(); ?>
+<?php
+	$today=Mage::getModel('core/date')->gmtDate();
+	$block_data = Mage::getModel('bannerslider/bannerslider')->getCollection()
+		->addFieldToFilter('status', 0)
+		->addFieldToFilter('position', 'cms-page-content-top')
+		->getFirstItem();
+	$slides = Mage::getModel('bannerslider/banner')->getCollection()
+		->addFieldToFilter('bannerslider_id', $block_data->getId())
+		->addFieldToFilter('status', 0)                   
+		->addFieldToFilter('start_time', array('lteq' => $today))
+		->addFieldToFilter('end_time', array('gteq' => $today))
+		->setOrder('order_banner', "ASC");
+?>
+<?php if ($slides): ?>
+
+    <?php
+    $h = $this->helper('ultraslideshow');
+    $sliderId = "slideshow-{$this->getFrontendHash()}";
+
+    //Slider parameters
+    //--------------------------------------------------------------
+
+    //Slider timeout. Set to enable automatic scrolling.
+    $timeout = $this->getTimeout(); //param: timeout
+    if ($timeout === NULL) //Param not set
+    {
+        $timeout = intval($h->getCfg('general/timeout'));
+    }
+    else
+    {
+        $timeout = intval($timeout);
+    }
+
+    //If set, slider will loop.
+    $loop = $this->getLoop(); //param: loop
+    if ($loop === NULL) //Param not set
+    {
+        $loop = $h->getCfg('general/loop');
+    }
+
+    //Speed (arrows / touch swipe)
+    $speed = intval($h->getCfg('general/speed'));
+
+    //Speed (automatic scrolling / pagination)
+    $autoSpeed = intval($h->getCfg('general/auto_speed'));
+
+    //Pause slider on mouse hover
+    $pause = $h->getCfg('general/pause');
+
+    //Auto height
+    $smoothHeight = $h->getCfg('general/smooth_height');
+
+    //Transition effect
+    $fx = $h->getCfg('general/effect');
+
+    //Other settings
+    //--------------------------------------------------------------
+
+    //Determin width (grid units) and position (left or right) of the slideshow and banners
+    $banners = $this->getBannersHtml();
+    $slideshowPositionClass = '';
+    $slideshowGridClass = '';
+    $bannersGridClass = '';
+    if ($banners)
+    {
+        $bannersPosition = $h->getCfg('banners/position');
+        if ($bannersPosition == 'left') //Banners at the left, slideshow at the right
+        {
+            $slideshowPositionClass = 'right';
+            $slideshowGridClass = 'grid12-9 no-right-gutter';
+            $bannersGridClass = 'grid12-3 no-left-gutter';
+        }
+        else //Slideshow at the left, banners at the right
+        {
+            $slideshowGridClass = 'grid12-9 no-left-gutter';
+            $bannersGridClass = 'grid12-3 no-right-gutter';
+        }
+    }
+    /*else
+    {
+        $slideshowGridClass = 'grid-full no-gutter';
+    }*/
+
+    //Hide slides (not including banners) on mobile devices
+    $hideSlideshowClass = '';
+    if ($h->getCfg('general/hide'))
+    {
+        $hideSlideshowClass = 'hide-below-768';
+    }
+
+    //Slideshow strucural classes
+    $sliderClasses[] = $slideshowGridClass;
+    $sliderClasses[] = $slideshowPositionClass;
+    $sliderClasses[] = $hideSlideshowClass;
+
+    //Additional classes
+    $sliderClasses[] = 'slider-arrows2';
+    $paginationClass = $h->getCfg('navigation/pagination');
+    if ($paginationClass)
+    {
+        $sliderClasses[] = $paginationClass;
+        $sliderClasses[] = $h->getCfg('navigation/pagination_position');
+    }
+    ?>
+
+    <?php if($this->isPredefined()): ?>
+        <div class="the-slideshow-wrapper-outer" <?php echo $this->getMarginStyles(); ?>>
+    <?php endif; ?>
+
+            <div class="the-slideshow-wrapper">
+
+                <div class="the-slideshow <?php echo implode(' ', $sliderClasses); ?>">
+                    <div id="<?php echo $sliderId; ?>" class="slides">
+                    <?php foreach ($slides as $slide): ?>
+						<div class="item slide">
+							<?php $banner = $slide->getData(); ?>
+							<a href="<?php echo $banner['click_url']; ?>" target="<?php echo $this->getTarget($banner['tartget'])?>" style="display:block;" onclick="bannerClicks('<?php echo $banner['banner_id']?>','<?php echo $banner['bannerslider_id'] ?>')">
+								<img src="<?php echo Mage::helper('bannerslider')->getBannerImage($banner['image']); ?>" title="<?php echo $banner['name']; ?>" alt="<?php echo $banner['image_alt']; ?>" />
+							</a>
+						</div>
+                    <?php endforeach; ?>
+                    </div> <!-- end: slides -->
+                </div> <!-- end: the-slideshow -->
+
+                <?php if ($banners): ?>
+                    <?php //Hide banners on mobile devices? "Yes" is default.
+                        $hideBannersClass = 'hide-below-768';
+                        if ($h->getCfg('banners/hide') == false)
+                            $hideBannersClass = '';
+                    ?>
+                    <div class="the-slideshow-banners slideshow-banners <?php echo $bannersGridClass . ' ' . $hideBannersClass; ?>"><?php echo $banners; ?></div>
+                <?php endif; ?>
+
+            </div> <!-- end: the-slideshow-wrapper -->
+
+    <?php if($this->isPredefined()): ?>
+        </div> <!-- end: the-slideshow-wrapper-outer -->
+    <?php endif; ?>
+
+<script type="text/javascript">
+//<![CDATA[
+    jQuery(function($) {
+        
+        var owl = $('#<?php echo $sliderId; ?>');
+        owl.owlCarousel({
+
+            singleItem: true,
+
+        <?php if ($speed): ?>
+            slideSpeed: <?php echo $speed; ?>,
+        <?php endif; ?>
+
+        <?php if ($autoSpeed): ?>
+            paginationSpeed: <?php echo $autoSpeed; ?>,
+        <?php endif; ?>
+
+        <?php if ($timeout): ?>
+            autoPlay: <?php echo $timeout; ?>,
+        <?php endif; ?>
+
+        <?php if ($pause): ?>
+            stopOnHover: true,
+        <?php endif; ?>
+
+        <?php if ($loop): ?>
+            rewindNav: true,
+            rewindSpeed: 600,
+        <?php else: ?>
+            rewindNav: false,
+        <?php endif; ?>
+
+        <?php if ($smoothHeight): ?>
+            autoHeight: true,
+        <?php endif; ?>
+
+        <?php if ($fx): ?>
+            transitionStyle: '<?php echo $fx; ?>',
+        <?php endif; ?>
+
+            navigation: true,
+            navigationText: false
+
+        }); //end: owl
+
+    });
+//]]>
+</script>
+<script type="text/javascript">
+	function bannerClicks(id_banner,id_slider){
+		var click_url = '<?php echo $this->getUrl('bannerslider/index/click'); ?>';
+		banner_id = id_banner;
+		new Ajax.Request(click_url,{
+			method: 'post',
+			parameters:{id_banner: banner_id, slider_id:id_slider},
+			onFailure: '',
+			onSuccess: ''
+		});
+		
+	}
+</script>
+<?php endif; //end: if slides ?>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Watermark Downloadable Files
+ * 
+ * Add a watermark to downloadable files such as PDF files
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown, Alex Pelletier May 6, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>, Alex Pelletier
+ */
+-->
+<config>
+	<modules>
+		<SteveB27_Watermark>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+                <Mage_Downloadable />
+            </depends>
+		</SteveB27_Watermark>
+	</modules>
+</config>

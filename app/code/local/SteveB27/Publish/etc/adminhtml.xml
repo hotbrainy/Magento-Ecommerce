@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <publish translate="title" module="publish">
+                                        <title>Publishing</title>
+                                    </publish>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+					<publish translate="title" module="publish">
+						<title>Publishing</title>
+						<children>
+							<author translate="title" module="publish">
+								<title>Authors</title>
+								<sort_order>0</sort_order>
+							</author>
+							<attributes translate="title" module="publish">
+								<title>Manage attributes</title>
+								<sort_order>7</sort_order>
+							</attributes>
+						</children>
+					</publish>
+					<report>
+						<children>
+							<author translate="title" module="publish">
+								<title>Author Reports</title>
+								<sort_order>10</sort_order>
+								<children>
+									<sales translate="title" module="publish">
+										<title>Sales Volume</title>
+										<sort_order>5</sort_order>
+									</sales>
+								</children>
+							</author>
+						</children>
+					</report>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+		<publish translate="title" module="publish">
+			<title>Publishing</title>
+			<sort_order>17</sort_order>
+			<children>
+				<author translate="title" module="publish">
+					<title>Manage Authors</title>
+					<action>adminhtml/author/index</action>
+					<sort_order>0</sort_order>
+				</author>
+				<attributes translate="title" module="publish">
+					<title>Manage Attributes</title>
+					<action>adminhtml/attribute/index</action>
+					<sort_order>7</sort_order>
+				</attributes>
+			</children>
+		</publish>
+		<report>
+			<children>
+				<author translate="title" module="publish">
+                    <title>Author</title>
+                    <sort_order>10</sort_order>
+                    <children>
+                        <sales translate="title" module="publish">
+                            <title>Sales Volume</title>
+                            <action>adminhtml/author_report_sales</action>
+                        </sales>
+                    </children>
+                </author>
+			</children>
+		</report>
+    </menu>
+</config>

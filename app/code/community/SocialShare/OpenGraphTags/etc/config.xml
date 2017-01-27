@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <SocialShare_OpenGraphTags>
+            <version>3.0</version>
+        </SocialShare_OpenGraphTags>
+    </modules>
+
+    <frontend>
+        <layout>
+            <updates>
+                <OpenGraphTags>
+                    <file>socialshare/OpenGraphTags.xml</file>
+                </OpenGraphTags>
+            </updates>
+        </layout>
+        
+    </frontend>
+
+    <adminhtml>
+	<!--
+        <translate>
+            <modules>
+                <SocialShare_OpenGraphTags>
+                    <files>
+                        <default>SocialShare_OpenGraphTags.csv</default>
+                    </files>
+                </SocialShare_OpenGraphTags>
+            </modules>
+        </translate>
+		-->
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<opengraphtags translate="title" module="opengraphtags">
+											<title>Social Share - Open Graph</title>
+										</opengraphtags>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>		
+    </adminhtml>
+
+    <global>
+        <resources>
+            <OpenGraphTags_setup>
+                <setup>
+                    <module>SocialShare_OpenGraphTags</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </OpenGraphTags_setup>
+            <OpenGraphTags_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </OpenGraphTags_write>
+            <OpenGraphTags_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </OpenGraphTags_read>
+        </resources>
+        <blocks>
+            <OpenGraphTags>
+                <class>SocialShare_OpenGraphTags_Block</class>
+            </OpenGraphTags>
+        </blocks>
+        <helpers>
+            <opengraphtags>
+                <class>SocialShare_OpenGraphTags_Helper</class>
+            </opengraphtags>
+        </helpers>
+		<models>
+            <opengraphtags>
+                <class>SocialShare_OpenGraphTags_Model</class>
+            </opengraphtags>
+        </models>
+    </global>
+
+    <default>
+        <opengraphtags>
+		
+			<conf>
+                <enabled>1</enabled>
+				<lang>en_US</lang>
+            </conf>
+			
+			<!--
+            <general>
+                <enabled>1</enabled>
+				<color>2</color>
+				<lang>en_US</lang>
+            </general>
+            <opengraph>
+                <enabled_op>0</enabled_op>
+				<color>2</color>
+				<lang>en_US</lang>
+            </opengraph>
+			-->
+        </opengraphtags>
+    </default>
+</config>

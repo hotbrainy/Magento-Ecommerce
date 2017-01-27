@@ -1,0 +1,46 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<?php $_filters = $this->getActiveFilters() ?>
+<?php $_removeTxt = Mage::helper('catalog')->__('Remove This Item') ?>
+<?php
+
+$extraAttr = "";
+if (empty($_filters)){
+    $extraAttr = 'style="display: none;"';
+} 
+?>
+<br/><br/>
+<div class="currently" id="active-filters" <?php echo $extraAttr; ?>>
+    <ol>
+        <?php foreach ($_filters as $_filter):?>
+            <li>
+                <span class="label"><?php echo Mage::helper('catalog')->__($_filter->getName()) ?>:</span>
+                <?php if ($_filter->hasData('children')): ?>
+                    <?php foreach ($_filter->getData('children') as $child): ?>
+                        <span class="multiselect-child">
+                            <a href="<?php echo $child['url'] ?>" class="btn-remove" title="<?php echo $_removeTxt ?>">
+                                <?php echo $_removeTxt ?>
+                            </a>
+                            <?php echo $child['label']  ?>
+                        </span>
+                    <?php endforeach ?>
+                <?php else: ?>
+                        <span class="multiselect-child">
+                            <a href="<?php echo $_filter->getRemoveUrl() ?>" class="btn-remove" title="<?php echo $_removeTxt ?>">
+                                <?php echo $_removeTxt ?>    
+                            </a>
+                            <?php echo $_filter->getLabel() ?>
+                        </span>
+                <?php endif ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+    <?php if (!method_exists('Mage', 'getEdition')): // CE 1.7+, EE 1.12+?>
+        <div class="actions"><a href="<?php echo $this->getParentBlock()->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a></div>
+    <?php endif; ?>
+</div>

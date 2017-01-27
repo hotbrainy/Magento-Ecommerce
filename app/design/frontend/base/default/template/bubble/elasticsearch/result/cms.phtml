@@ -1,0 +1,32 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ *
+ * @var $this Bubble_Elasticsearch_Block_Catalogsearch_Cms
+ */
+$_pages = $this->getPageCollection();
+?>
+<?php if ($_pages->count()): ?>
+    <div class="block block-list block-gr-search">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Page Results') ?>
+                    <small><?php echo $this->__('(%d)', $_pages->count()) ?></small></span></strong>
+        </div>
+        <div class="block-content">
+            <ol id="cms-search-results">
+                <?php foreach ($_pages as $_page): /** @var Mage_Cms_Model_Page $_page */ ?>
+                    <li>
+                        <a href="<?php echo $this->escapeUrl(Mage::getBaseUrl() . $_page->getIdentifier()) ?>"
+                           title="<?php echo $this->escapeHtml($_page->getTitle()) ?>">
+                            <?php echo $this->escapeHtml($_page->getTitle()) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <script type="text/javascript">decorateList('cms-search-results');</script>
+        </div>
+    </div>
+<?php endif; ?>

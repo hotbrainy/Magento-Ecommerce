@@ -1,0 +1,108 @@
+<div class="entry-edit-head collapseable">
+    <a id="<?php echo $this->getHtmlId()?>-head" href="javascript:void(0);" onclick="Fieldset.toggleCollapse('<?php echo $this->getHtmlId()?>'); saveState('<?php echo $this->getHtmlId()?>');return false;">
+        <?php echo $this->getHeaderText();?>
+    </a>
+</div>
+<fieldset class="" id="<?php echo $this->getHtmlId();?>" style="display: none;">
+    <legend><?php echo $this->getHeaderText();?></legend>
+    <div>
+        <span><?php echo $this->__('Last magento cron executed at');?> : <?php echo $this->getMagentoCronStatusToHtml('executed_at');?></span>
+    </div>
+    <div>
+        <span><?php echo $this->__('Last magento cron scheduled at');?> : <?php echo $this->getMagentoCronStatusToHtml('scheduled_at');?></span>
+    </div>
+    <div>
+        <span><?php echo $this->__('Compilation');?> : <?php echo $this->getCompilationStatusToHtml();?></span>
+    </div>
+
+    <div class="entry-edit-head collapseable">
+        <a id="rewrites-head" class = "closed" href="javascript:void(0);" onclick="Fieldset.toggleCollapse('rewrites'); saveState('rewrites');return false;"><?php echo $this->__('Rewrites conflicts');?></a>
+    </div>
+    <fieldset class="" id="rewrites" style="display: none;">
+        <legend><?php echo $this->__('Rewrites conflicts');?></legend>
+        <?php if(count($this->getRewrites()) != 0) : ?>
+            <table class="form-list">
+                <thead>
+                    <th><?php echo $this->__('Class Name');?></th>
+                    <th><?php echo $this->__('Conflict with');?></th>
+                </thead>
+                <tbody>
+                    <?php foreach($this->getRewrites() as $key => $_rewrite): ?>
+                        <tr>
+                            <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                                <?php echo implode(',', $_rewrite['aw']);?>
+                            </td>
+                            <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                                <?php echo implode(',', $_rewrite['other']);?>
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                </tbody>
+            </table>
+        <?php else : ?>
+            <span class="available"><?php echo $this->__('No conflicts found');?></span>
+        <?php endif;?>
+    </fieldset>
+
+    <div class="entry-edit-head collapseable">
+        <a id="website_themes-head" class = "closed" href="javascript:void(0);" onclick="Fieldset.toggleCollapse('website_themes'); saveState('website_themes');return false;"><?php echo $this->__('Website themes tree');?></a>
+    </div>
+    <fieldset class="" id="website_themes" style="display: none;">
+        <legend><?php echo $this->__('Website themes tree');?></legend>
+        <table class="form-list">
+            <thead>
+                <th><?php echo $this->__('Store');?></th>
+                <th><?php echo $this->__('Package');?></th>
+                <th><?php echo $this->__('Templates');?></th>
+                <th><?php echo $this->__('Skin');?></th>
+                <th><?php echo $this->__('Layout');?></th>
+            </thead>
+            <tbody>
+                <?php foreach($this->getWebsiteThemesParams() as $key => $_theme): ?>
+                    <tr>
+                        <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                            <?php echo $_theme['store'];?>
+                        </td>
+                        <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                            <?php echo $_theme['package'];?>
+                        </td>
+                        <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                            <?php echo $_theme['templates'];?>
+                        </td>
+                        <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                            <?php echo $_theme['skin'];?>
+                        </td>
+                        <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                            <?php echo $_theme['layout'];?>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <div class="entry-edit-head collapseable">
+        <a id="disabled_modules-head" class = "closed" href="javascript:void(0);" onclick="Fieldset.toggleCollapse('disabled_modules'); saveState('disabled_modules');return false;"><?php echo $this->__('Disabled AW extensions');?></a>
+    </div>
+    <fieldset class="" id="disabled_modules" style="display: none;">
+        <legend><?php echo $this->__('Disabled AW extensions');?></legend>
+        <table class="form-list">
+            <thead>
+                <th><?php echo $this->__('Module Name');?></th>
+                <th><?php echo $this->__('Output/Xml');?></th>
+            </thead>
+            <tbody>
+            <?php foreach($this->getDisabledAWModules() as $key => $_disabled): ?>
+                <tr>
+                    <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                        <?php echo $_disabled['module_name'];?>
+                    </td>
+                    <td <?php if($key != 0 && $key%2 != 0) echo 'class = "odd"';?>>
+                        <?php echo $_disabled['source'];?>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+            </tbody>
+        </table>
+    </fieldset>
+ </fieldset>

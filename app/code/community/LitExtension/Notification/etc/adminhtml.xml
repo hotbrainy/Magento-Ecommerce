@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   /**
+    * @project     Notification
+    * @package	   LitExtension_Notification
+    * @author      LitExtension
+    * @email       litextension@gmail.com
+    */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <le_extension translate="title">
+                                        <title>General</title>
+                                        <sort_order>9999</sort_order>
+                                    </le_extension>
+                                    <le_store translate="title">
+                                        <title>Store</title>
+                                        <sort_order>9999</sort_order>
+                                    </le_store>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

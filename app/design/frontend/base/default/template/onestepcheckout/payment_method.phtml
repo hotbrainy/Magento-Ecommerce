@@ -1,0 +1,184 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * One page checkout payment methods
+ *
+ * @see Mage_Checkout_Block_Onepage_Payment_Methods
+ */
+?>
+
+
+<?php
+
+$helper = Mage::helper('onestepcheckout/checkout');
+$hide_nonfree_methods = false;
+if($helper->settings['hide_nonfree_payment_methods'])   {
+    foreach($this->getMethods() as $_method)    {
+        if($_method->getCode() == 'free')   {
+            $hide_nonfree_methods = true;
+        }
+    }
+}
+
+
+?>
+
+<div class="payment-methods">
+<script type="text/javascript">
+//<![CDATA[
+  <?php echo $this->getChildHtml('reward.scripts'); ?>
+  <?php echo $this->getChildHtml('customerbalance_scripts'); ?>
+  var payment = new Payment('checkout-payment-method-load', '<?php echo $this->getUrl('checkout/onepage/savePayment') ?>');
+  payment.currentMethod = "<?php echo Mage::helper('core')->escapeHtml($this->getQuote()->getPayment()->getMethod()) ?>";
+//]]>
+</script>
+    <?php if(Mage::helper('onestepcheckout')->isEnterprise()):?>
+        <?php echo $this->getChildHtml('customerbalance'); ?>
+        <?php echo $this->getChildHtml('reward.points'); ?>
+    <?php endif;?>
+
+    <?php if (count($this->getMethods())=='1' && Mage::getStoreConfig('onestepcheckout/general/hide_payment_method')):?>
+    <dl id="checkout-payment-method-load" style="display: none">
+    
+    <div class="row payment_panel">
+    
+    
+        <?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+        
+        
+      
+        
+		<div class="col-sm-6 <?php if($_code=='customercredit') { echo "col-sm-push-6 brdr_lt"; } else { 
+		if(Mage::getSingleton('customer/session')->isLoggedIn())
+		{ 
+		echo "col-sm-pull-6"; } } ?>">
+        <dt>
+        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="hidden" name="payment[method]" title="<?php echo $this->escapeHtml($_method->getTitle()) ?>" class="radio" <?php if($this->getSelectedMethodCode()==$_code || ($hide_nonfree_methods && $_code == 'free')): ?> checked="checked"<?php endif; ?> />
+        <label for="p_method_<?php echo $_code ?>"><?php echo $_method->getTitle() ?></label>
+        <?php if($_code=='paypal_express') { ?>
+                
+                <div class="payple_info"> <span><img src="<?=$this->getSkinUrl('images/payment_options.jpg');?>"></span>
+      <p>We accept Paypal for purchases, the most renowned name in digital payments.</p>
+<p>You will be redirected to PayPal upon completing the purchase to enter your credit card information securely.</p>
+    </div>
+                
+                <?php } ?>
+
+        </dt>
+        </div>
+        <?php endforeach; ?>
+        
+        </div>
+        
+    </dl>
+    <?php else:?>
+
+        <dl id="checkout-payment-method-load">
+        <div class="row payment_panel">
+        <?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+        <div class="col-sm-6 <?php if($_code=='customercredit') { echo "col-sm-push-6 brdr_lt"; } else { if(Mage::getSingleton('customer/session')->isLoggedIn())
+		{ echo "col-sm-pull-6"; } } ?>">
+        <?php if($hide_nonfree_methods && $_code != 'free') continue; ?>
+            <dt>
+            <?php if( sizeof($this->getMethods()) > 1 ): ?>
+                <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->escapeHtml($_method->getTitle()) ?>" class="radio validate-one-required-by-name" <?php if($this->getSelectedMethodCode()==$_code || ($hide_nonfree_methods && $_code == 'free')): ?> checked="checked"<?php endif; ?> />
+            <?php else: ?>
+                <span class="no-display"><input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" checked="checked" /></span>
+            <?php endif; ?>
+                <label for="p_method_<?php echo $_code ?>"><?php echo $_method->getTitle() ?></label>
+                <?php if($_code=='paypal_express') { ?>
+                
+                <div class="payple_info"> <span><img src="<?=$this->getSkinUrl('images/payment_options.jpg');?>"></span>
+      <p>We accept Paypal for purchases, the most renowned name in digital payments.</p>
+<p>You will be redirected to PayPal upon completing the purchase to enter your credit card information securely.</p>
+    </div>
+                
+                <?php } ?>
+                
+            </dt>
+            <?php if($html = $this->getChildHtml('payment.method.'.$_code)): ?>
+            <dd id="container_payment_method_<?php echo $_code; ?>" class="payment-method">
+                <?php echo $html; ?>
+            </dd>
+            <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+        </div>
+        </dl>
+    <?php endif;?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+$$('.cvv-what-is-this').each(function(element){
+    Event.observe(element, 'click', function(){window.paymentToolTip.open()});
+});
+
+var checkout = new Checkout();
+$$('#checkout-payment-method-load dt input').invoke('observe', 'click', function(e) {
+
+    var element = e.element();
+    var name = 'payment_form_' + element.getValue();
+    payment.currentMethod = element.getValue();
+    /* Hide all other forms */
+    $$('dd.payment-method').invoke('hide');
+
+    if(element.checked) {
+        payment.switchMethod(payment.currentMethod);
+        var form = $(name);
+        var container = $('container_payment_method_' + element.getValue());
+
+        if(element !== null && container !== null)    {
+            container.show();
+            $(name).show();
+        }
+    }
+});
+
+<?php if(Mage::helper('onestepcheckout')->isEnterprise() && Mage::helper('customer')->isLoggedIn()):?>
+//if we have a enterprise version we should include this
+
+rPoints = $('use_reward_points');
+if(rPoints){
+    if(rPoints.checked){
+        payment.switchRewardPointsCheckbox();
+    }
+}
+cBalance = $('use_customer_balance');
+if(cBalance){
+    if(cBalance.checked){
+        payment.switchCustomerBalanceCheckbox();
+    }
+}
+//if we have a enterprise version we should include this end
+<?php endif;?>
+
+payment.switchMethod(payment.currentMethod);
+<?php echo $this->getChildHtml('giftcardaccount_scripts');?>
+//]]>
+</script>

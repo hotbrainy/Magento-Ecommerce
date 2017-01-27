@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category  Apptrian
+ * @package   Apptrian_ImageOptimizer
+ * @author    Apptrian
+ * @copyright Copyright (c) 2016 Apptrian (http://www.apptrian.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License
+ */
+-->
+<config>
+    <tabs>
+        <apptrian_extensions>
+            <label>Apptrian Extensions</label>
+            <sort_order>100</sort_order>
+        </apptrian_extensions>
+    </tabs>
+    <sections>
+        <apptrian_info translate="label">
+            <label>Info</label>
+            <tab>apptrian_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info>
+                    <frontend_model>apptrian_imageoptimizer/adminhtml_info</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </info>
+            </groups>
+        </apptrian_info>
+        <apptrian_imageoptimizer translate="label">
+            <label>Image Optimizer</label>
+            <tab>apptrian_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <about>
+                    <frontend_model>apptrian_imageoptimizer/adminhtml_about</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </about>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enables or disables extension.</comment>
+                        </enabled>
+                        <batch_size translate="label comment">
+                            <label>Batch Size</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <backend_model>apptrian_imageoptimizer/config_batchsize</backend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Number of images to be optimized per request.</comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </batch_size>
+                        <paths translate="label comment tooltip">
+                            <label>Paths</label>
+                            <frontend_type>textarea</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_paths</backend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Paths to be scanned for images.</comment>
+                            <tooltip><![CDATA[Paths are relative to your Magento root directory.<br />Use "/" as directory separator.<br />Use ";" to separate paths.]]></tooltip>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </paths>
+                        <heading_scan translate="label">
+                            <label>1. Scan and Reindex</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </heading_scan>
+                        <scan translate="label">
+                            <label>Start Scan and Reindex Process</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>apptrian_imageoptimizer/adminhtml_button_scan</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </scan>
+                        <heading_optimize translate="label">
+                            <label>2. Optimize</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </heading_optimize>
+                        <optimize translate="label">
+                            <label>Start Optimization Process</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>apptrian_imageoptimizer/adminhtml_button_optimize</frontend_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </optimize>
+                        <heading_stats translate="label">
+                            <label>Progress Bar</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </heading_stats>
+                        <stats translate="label">
+                            <label>Bar on the right represents how many images are optimized.</label>
+                            <frontend_model>apptrian_imageoptimizer/adminhtml_stats</frontend_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <tooltip><![CDATA[Every time you click "Start Optimization Process" (or cron job executes) depending on "Batch Size" value and number of indexed files, progress bar will move.<br />If progress bar does not move most likely reason is file permissions.<br /><strong>Utility binaries located in lib/apptrian/imageoptimizer must be executable which means you have to set right permissions on files inside this directory.</strong><br />If you are getting less than 100% despite you clicked "Start Optimization Process" button more than several times and the percentage is stuck to same value that means some of your files are corrupt. To find out which files are corrupt in "Utility" section for "Log Utility Output" select "Yes". Refresh your cache and click "Start Optimization Process" button again. After it is done you will find a list of corrupt files in<br />var/log/apptrian_imageoptimizer.log<br />You can inspect the log and fix the files yourself. Do not forget to set "Log Utility Output" back to "No".]]></tooltip>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </stats>
+                        <heading_clear translate="label">
+                            <label>Clear Index</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </heading_clear>
+                        <clear translate="label">
+                            <label>This resets above progress bar and you will have to index and optimize all images again.</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>apptrian_imageoptimizer/adminhtml_button_clear</frontend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </clear>
+                    </fields>
+                </general>
+                <cron translate="label">
+                    <label>Cron</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <heading_html translate="label">
+                            <label>WARNING! Do not change any options! (Unless you know what you are doing.)</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </heading_html>
+                        <enabled_scan translate="label comment">
+                            <label>Enable Scan and Reindex Process Cron Job</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enables or disables scan and reindex process cron job.</comment>
+                        </enabled_scan>
+                        <expression_scan translate="label comment tooltip">
+                            <label>Cron Expression for Scan and Reindex Process</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_cron_scan</backend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Cron expression used to trigger scan and reindex process. Example: 15 4 * * * (once a day at 4:15 AM)]]></comment>
+                            <tooltip><![CDATA[Examples:<br />*/5 * * * * (every 5 minutes)<br />0,30 * * * * (twice an hour)<br />0 * * * * (once an hour)<br />0 0,12 * * * (twice a day)<br />0 0 * * * (once a day)<br />0 0 * * 0 (once a week)<br />0 0 1,15 * * (1st and 15th)<br />0 0 1 * * (once a month)<br />0 0 1 1 * (once a year)]]></tooltip>
+                            <depends>
+                                <enabled_scan>1</enabled_scan>
+                            </depends>
+                        </expression_scan>
+                        <enabled_optimize translate="label comment">
+                            <label>Enable Optimization Process Cron Job</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enables or disables optimization process cron job.</comment>
+                        </enabled_optimize>
+                        <expression_optimize translate="label comment tooltip">
+                            <label>Cron Expression for Optimization Process</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_cron_optimize</backend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Cron expression used to trigger image optimization process. Example: 0 * * * * (once an hour)]]></comment>
+                            <tooltip><![CDATA[Examples:<br />*/5 * * * * (every 5 minutes)<br />0,30 * * * * (twice an hour)<br />0 * * * * (once an hour)<br />0 0,12 * * * (twice a day)<br />0 0 * * * (once a day)<br />0 0 * * 0 (once a week)<br />0 0 1,15 * * (1st and 15th)<br />0 0 1 * * (once a month)<br />0 0 1 1 * (once a year)]]></tooltip>
+                            <depends>
+                                <enabled_optimize>1</enabled_optimize>
+                            </depends>
+                        </expression_optimize>
+                    </fields>
+                </cron>
+                <utility translate="label">
+                    <label>Utility</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <heading_html translate="label">
+                            <label>WARNING! Do not change any options! (Unless you know what you are doing.)</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </heading_html>
+                        <use64bit translate="label comment">
+                            <label>Use 64-bit Utilities</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Use only if your site is on 64-bit server.</comment>
+                        </use64bit>
+                        <log_output translate="label comment">
+                            <label>Log Utility Output</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Log output information generated by utilities.</comment>
+                        </log_output>
+                        <permissions translate="label comment tooltip">
+                            <label>Force File Permissions</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_permissions</backend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Force file permissions after optimization. Example: 0644</comment>
+                            <tooltip><![CDATA[Optimization utilities might change permissions of files they optimize (usually to 0644 or 0666). Use this option to force permissions you want. If you do not want to force file permission leave this field empty.]]></tooltip>
+                        </permissions>
+                        <path translate="label comment tooltip">
+                            <label>Utilities Path</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_path</backend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Path to optimization utilities.</comment>
+                            <tooltip><![CDATA[Path is relative to your Magento root directory.<br />Use "/" as directory separator.<br />Inside this directory you must have following directories:<br /><strong>elf32</strong><br /><strong>elf64</strong><br /><strong>win32</strong><br /><strong>win64</strong><br /> Inside these directories put <strong>command line binaries</strong>.]]></tooltip>
+                        </path>
+                        <gif translate="label comment tooltip">
+                            <label>GIF Utility</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_utility</backend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Optimization utility for .gif files.</comment>
+                            <tooltip><![CDATA[Do not include the .exe extension for Windows binaries.<br /><strong>Command line binaries only!</strong>]]></tooltip>
+                        </gif>
+                        <gif_path translate="label comment tooltip">
+                            <label>GIF Utility Exact Path</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_exactpath</backend_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>WARNING! Read the tooltip for more information.</comment>
+                            <tooltip><![CDATA[If utility you want to use is already installed on your server, you can specify exact path to it. When generating command this exact path to utility will be used and then "Utility Options" will be appended to it. Example:<br/>/usr/bin/gifsicle<br/>If your utility is added to your system path (which means it is accessible from every directory) then type only utility executable filename. If you do not want to use this option leave this field empty. (Do not leave any white space characters.)]]></tooltip>
+                        </gif_path>
+                        <gif_options translate="label comment tooltip">
+                            <label>GIF Utility Options</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_options</backend_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Options for optimization of .gif files.</comment>
+                            <tooltip><![CDATA[The <strong>%filepath%</strong> will be substituted with image file path by the extension.]]></tooltip>
+                        </gif_options>
+                        <jpg translate="label comment tooltip">
+                            <label>JPG Utility</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_utility</backend_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Optimization utility for .jpg files.</comment>
+                            <tooltip><![CDATA[Do not include the .exe extension for Windows binaries.<br /><strong>Command line binaries only!</strong>]]></tooltip>
+                        </jpg>
+                        <jpg_path translate="label comment tooltip">
+                            <label>JPG Utility Exact Path</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_exactpath</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>WARNING! Read the tooltip for more information.</comment>
+                            <tooltip><![CDATA[If utility you want to use is already installed on your server, you can specify exact path to it. When generating command this exact path to utility will be used and then "Utility Options" will be appended to it. Example:<br/>/usr/bin/jpegtran<br/>If your utility is added to your system path (which means it is accessible from every directory) then type only utility executable filename. If you do not want to use this option leave this field empty. (Do not leave any white space characters.)]]></tooltip>
+                        </jpg_path>
+                        <jpg_options translate="label comment tooltip">
+                            <label>JPG Utility Options</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_options</backend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Options for optimization of .jpg files.</comment>
+                            <tooltip><![CDATA[The <strong>%filepath%</strong> will be substituted with image file path by the extension.]]></tooltip>
+                        </jpg_options>
+                        <png translate="label comment tooltip">
+                            <label>PNG Utility</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_utility</backend_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Optimization utility for .png files.</comment>
+                            <tooltip><![CDATA[Do not include the .exe extension for Windows binaries.<br /><strong>Command line binaries only!</strong>]]></tooltip>
+                        </png>
+                        <png_path translate="label comment tooltip">
+                            <label>PNG Utility Exact Path</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_exactpath</backend_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>WARNING! Read the tooltip for more information.</comment>
+                            <tooltip><![CDATA[If utility you want to use is already installed on your server, you can specify exact path to it. When generating command this exact path to utility will be used and then "Utility Options" will be appended to it. Example:<br/>/usr/bin/optipng<br/>If your utility is added to your system path (which means it is accessible from every directory) then type only utility executable filename. If you do not want to use this option leave this field empty. (Do not leave any white space characters.)]]></tooltip>
+                        </png_path>
+                        <png_options translate="label comment tooltip">
+                            <label>PNG Utility Options</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_imageoptimizer/config_options</backend_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Options for optimization of .png files.</comment>
+                            <tooltip><![CDATA[The <strong>%filepath%</strong> will be substituted with image file path by the extension.]]></tooltip>
+                        </png_options>
+                    </fields>
+                </utility>
+            </groups>
+        </apptrian_imageoptimizer>
+    </sections>
+</config>

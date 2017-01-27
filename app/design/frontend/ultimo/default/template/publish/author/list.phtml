@@ -1,0 +1,195 @@
+<?php
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+?>
+<?php $_authors = $this->getAuthorCollection(); ?>
+<?php 
+//Pagination Custom Code 
+$authorPaginationUrl = $this->getAuthorPaginationUrl();
+$totalProductSize = $_authors->getSize();
+$start = 1;
+$limit = 24;
+if(isset($_GET['p']))
+{
+  $id = $_GET['p'];
+  if($id!=1){ $start = (($id-1)*$limit)+1; }
+  if($id!=1){ $limit = $limit+($start-1); }
+  if($limit > $totalProductSize) { $limit = $totalProductSize; }
+}else{
+  $id = 1;
+}
+
+$total = ceil($totalProductSize/24);
+//Pagination Custom Code
+?>
+
+<?php /*?><section class="breadcrumb_wraper" style="margin-top:-22px !important;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb_sec">
+          <ul>
+            <li class="home" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> <a href="<?=Mage::getUrl('');?>" itemprop="url">Home <span class="crumb_separator">&gt;</span></a></li>
+            <li class="author"><a href="javascript:void(0);">Authors</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><?php */?>
+<div class="Searchbox author-searchbox">
+    <form id="search_author_mini_form" action="<?php echo $this->getAuthorSearchUrl() ?>" method="get">
+        <input type="text" name="author" placeholder="Search By Author" value="<?php echo $this->getSearchTerm() ?>"/>
+    </form>
+</div>
+<div class="producttitle_wrap" style="border:none;">
+  <div class="row">
+    <div class="col-sm-12">
+     <?php if(Mage::helper('publish/author')->isRssEnabled()) : ?>
+        <a href="<?php echo Mage::helper('publish/author')->getRssUrl();?>" class="link-rss"><?php echo Mage::helper('publish')->__('Subscribe to RSS Feed')?></a>
+     <?php endif;?>
+        <?php if($this->getSearchTerm()) : ?>
+            <h3><?php echo Mage::helper('publish')->__('Authors - Search results for \'%s\'',$this->getSearchTerm()) ?></h3>
+        <?php else:?>
+            <h3><?php echo Mage::helper('publish')->__('Authors') ?></h3>
+        <?php endif;?>
+     <?php 
+	 if(isset($_GET['p']) && $_GET['p'] !='') { $currPage = $_GET['p']; } else { $currPage=1; }
+	 if($totalProductSize > 24){?>
+      <ul class="prod_pagination">
+            <li>Showing <?php echo '&nbsp;'.$start; ?> to <?php echo '&nbsp;'.$limit; ?> of <?php echo '&nbsp;'.$totalProductSize; ?></li>
+            
+            <?php if($currPage==1) { ?><li class="prev" style="color: #d7d7d7; border: 1px solid #d7d7d7;"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></li><?php } ?>
+            
+            <?php if($id>1){?><li class="prev"><a href="<?php echo $authorPaginationUrl;?>p=<?php echo ($id-1); ?>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li><?php } ?>
+            
+            <?php if($id !=$total){?>
+                <li class="next"><a href="<?php echo $authorPaginationUrl;?>p=<?php echo ($id+1); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+            <?php }else{ ?>
+                <li class="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></li>
+            <?php } ?>
+
+            </ul>
+       <?php } ?>
+    </div>
+  </div>
+</div>
+
+<?php /*?><div class="carousel_container each_author">
+  <ul class="carousel_items">
+   <?php if ($_authors->getSize() > 0) :?>
+   <?php foreach($_authors as $_author) : ?>
+    <li>
+     <div class="author-hold">
+      <div class="carousel_thumb">
+      <a href="<?php echo $_author->getAuthorUrl() ?>" class="product-author">
+	  <img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(270) ?>" alt="<?php echo $_author->getName(); ?>"/>
+	  </a>
+      </div>
+      <div class="reviwe_info">
+        <h3><a href="<?php echo $_author->getAuthorUrl() ?>" title="<?php echo $this->stripTags($_author->getName(), null, true) ?>"><?php echo $this->stripTags($_author->getName(), null, true) ?></a></h3>
+      </div>
+      </div>
+    </li>
+    <?php endforeach;?>
+    <?php else : ?>
+    <?php echo Mage::helper('publish')->__('There are no authors at this moment');?>
+    <?php endif;?>
+   </ul>
+</div><?php */?>
+
+<?php $helpImg = $this->helper('infortis/image'); ?>
+<?php if ($_authors->getSize() > 0) :?>
+<?php
+
+
+$j=1;
+foreach($_authors as $_author) :
+
+/*if($_author->getAwardWinning()) $adwards[] = 'Award Winning';
+if($_author->getBestSellerInternational()) $adwards[] = 'International Best Selling';
+if($_author->getBestSellerNyTimes()) $adwards[] = 'NY Times Best Selling';
+if($_author->getBestSellerUsaToday()) $adwards[] = 'USA Today Best Selling';
+$adwards = implode(", ",$adwards);*/
+
+
+$products = Mage::getResourceModel('catalog/product_collection');
+$products->addAttributeToSelect('*');
+$products->addAttributeToFilter('visibility', array('neq' => 1));
+$products->addAttributeToFilter('status', 1);
+$products->addAttributeToFilter('publish_author',$_author->getId());
+?>
+<div class="author_row">
+	<div class="row author-container">
+    	<div class="col-sm-6">
+        	<div class="authr_lt">
+            	<div class="authr_thumb">
+                <a href="<?php echo $_author->getAuthorUrl() ?>" class="product-author">
+                    <img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(70,70) ?>" alt="<?php echo $_author->getName(); ?>"/>
+	            </a>
+                </div>
+                <div class="authr_rtinfo">
+                    <h2><a href="<?php echo $_author->getAuthorUrl() ?>" title="<?php echo $this->stripTags($_author->getName(), null, true) ?>"><?php echo $this->stripTags($_author->getName(), null, true) ?></a></h2>
+                    <h5 style="text-transform:none;"><?php echo strip_tags(substr($_author->getBiography(),0,600));?> ..<a href="<?=$_author->getAuthorUrl();?>">Read more</a></h5>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    <div class="col-sm-6">
+        <div class="authr_rt">
+            <ul>
+                <?php $j=1; foreach($products as $_product) { ?>
+                   <?php if($j>3){ echo '<span class="more-authors">+</span>';break; } ?>
+                    <li>
+                        <a href="<?php echo $_product->getProductUrl() ?>">
+                            <img id="product-collection-image-<?php echo $_product->getId(); ?>" src="<?php echo $helpImg->getImg($_product, 90, 165, 'small_image'); ?>" alt="<?php echo $this->__($_product->getName()) ?>"/>
+                        </a>
+                    </li>
+                <?php $j++; } ?>
+            </ul>
+            <div id="FollowContentList<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" class="pop_dialog follow_author_popup" style="display:none;">
+                <a href="#" data-toggle="popover<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" data-placement="bottom" class="follow-author-close">
+                                <span class="follow-author-close-bttn">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </span>
+                </a>
+                <h3><span><?php echo $this->__('Are you a fan of %s',$this->stripTags($_author->getName(), null, true)) ?></span>?</h3>
+                <p><?php echo $this->__('Don’t miss the latest books news, alert, and special offers about this author.') ?></p>
+                <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->setAuthorId($_author->getId())->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:void(0);" class="btn follow_btn follow_author" data-toggle="popover<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" data-placement="bottom"><?php echo $this->__('+ Follow This Author') ?></a>
+</div>
+</div>
+<?php $j++; endforeach;?>
+    <?php else : ?>
+    <?php echo Mage::helper('publish')->__('There are no authors at this moment');?>
+    <?php endif;?>
+
+
+
+
+<div class="producttitle_wrap">
+  <div class="row">
+    <div class="col-sm-12">
+      <?php if($totalProductSize > 24){?>
+      <ul class="prod_pagination">
+            <li>Showing <?php echo '&nbsp;'.$start; ?> to <?php echo '&nbsp;'.$limit; ?> of <?php echo '&nbsp;'.$totalProductSize; ?></li>
+            <?php if($currPage==1) { ?><li class="prev" style="color: #d7d7d7; border: 1px solid #d7d7d7;"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></li><?php } ?>
+            
+            <?php if($id>1){?><li class="prev"><a href="<?php echo $authorPaginationUrl;?>p=<?php echo ($id-1); ?>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li><?php } ?>
+            <?php if($id !=$total){?><li class="next"><a href="<?php echo $authorPaginationUrl;?>p=<?php echo ($id+1); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li><?php } ?>
+            </ul>
+       <?php } ?>
+    </div>
+  </div>
+</div>

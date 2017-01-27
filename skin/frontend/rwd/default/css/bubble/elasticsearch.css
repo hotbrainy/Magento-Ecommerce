@@ -1,0 +1,45 @@
+.search-autocomplete ul.bubble-elasticsearch li.title,
+.search-autocomplete ul.bubble-elasticsearch li.title a {
+    padding: 6px;
+    background-color: #f4f4f4;
+    color: #636363;
+    text-transform: uppercase;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li {
+    padding: 0;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li .image {
+    float: left;
+    margin-right: 6px;
+    background-color: #fff;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li a {
+    display: block;
+    padding: 6px;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li.selected a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li .price-box {
+    margin: 0;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li.selected a .price-box .price,
+.search-autocomplete ul.bubble-elasticsearch li.selected a .price-box .minimal-price-link .label,
+.search-autocomplete ul.bubble-elasticsearch li.selected a .price-box .price-label {
+    color: #fff;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li a .price-box .minimal-price-link {
+    padding: 0;
+}
+
+.search-autocomplete ul.bubble-elasticsearch li .clearer {
+    clear: both;
+}

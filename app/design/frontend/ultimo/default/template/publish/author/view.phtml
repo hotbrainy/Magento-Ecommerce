@@ -1,0 +1,101 @@
+<?php
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license     http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright    Steven Brown March 12, 2016
+ * @author        Steven Brown <steveb.27@outlook.com>
+ */
+?>
+
+<?php 
+    $_author = $this->getCurrentAuthor();
+    
+    $adwards = array();
+    if($_author->getAwardWinning()) $adwards[] = 'Award Winning';
+    if($_author->getBestSellerInternational()) $adwards[] = 'International Best Selling';
+    if($_author->getBestSellerNyTimes()) $adwards[] = 'NY Times Best Selling';
+    if($_author->getBestSellerUsaToday()) $adwards[] = 'USA Today Best Selling';
+?>
+
+<?php
+    $GLOBALS['author_id'] = $_author->getId();
+    $GLOBALS['author_url'] = $_author->getAuthorUrl();
+    $GLOBALS['author_name'] = $_author->getName();
+?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml()?>
+<?php /*?><section class="breadcrumb_wraper" style="margin-top:-22px !important;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb_sec">
+          <ul>
+            <li class="home" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> <a href="<?=Mage::getUrl('');?>" itemprop="url">Home <span class="crumb_separator">&gt;</span></a></li>
+            <li class="author"><a href="<?=Mage::getUrl('publish/author/index');?>">Authors <span class="crumb_separator">&gt;</span></a></li>
+            <li class="author"><a href="javascript:void(0);"><?=$_author->getName();?></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><?php */?>
+<section class="testimonial_wrap single_testimonial" style="background-color: white;">
+    <div class="row">
+        <div class="testemonial_info" style="padding-bottom:48px !important; padding-top:30px;">
+            <div class="col-sm-4">
+                <div class="testimonial_thumb"><img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(248,248) ?>" alt="<?php echo $_author->getName(); ?>" /></div>
+            </div>
+            <div class="col-sm-8 author-container">
+                <h4 class="author_title">ABOUT THE AUTHOR</h4>
+                <div class="tesimonial_social">
+                    <h3><?php echo $_author->getName(); ?></h3>
+                    <ul class="socila_info">
+                        <?php if($_author->getSocialFacebook()): ?><li><a href="<?php echo $_author->getSocialFacebook(); ?>" target="_blank"><i class="fa fa-facebook-square"></i></a></li><?php endif; ?>
+                        <?php if($_author->getSocialInstagram()): ?><li><a href="<?php echo $_author->getSocialInstagram(); ?>" target="_blank"><i class="fa fa-instagram"></i></a></li><?php endif; ?>
+                        <?php if($_author->getSocialTwitter()): ?><li><a href="<?php echo $_author->getSocialTwitter(); ?>" target="_blank"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
+                        <?php if($_author->getSocialBlogger()): ?><li><a href="<?php echo $_author->getSocialBlogger(); ?>" target="_blank"><i class="fa fa-globe"></i></a></li><?php endif; ?>
+                    </ul>
+                </div>
+                
+                <div class="testimonial_aswards">
+                    <?php echo implode(', ', $adwards); ?>
+                </div>
+                <p><?php echo $_author->getBiography();?></p>                
+               
+<a href="javascript:void(0);" class="btn" id="popoverbutton" data-toggle="popover">FOLLOW THIS AUTHOR!</a>
+
+<div id="FollowContent" style="display:none;">
+    <a href="#" data-toggle="popover<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" data-placement="bottom" class="follow-author-close">
+                                <span class="follow-author-close-bttn">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </span>
+    </a>
+<h3>Are you a <span><?=$_author->getName();?></span> fan?</h3>
+<p>Sign up now for <span><?=$_author->getName();?></span> alerts, including news and special offers.</p>
+<?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->setAuthorId($_author->getId())->toHtml(); ?>
+</div>
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('[data-toggle=popover]').popover({
+    content: jQuery('#FollowContent').html(),
+    html: true
+}).click(function() {
+    $j(this).css('display','inline-block');
+});
+});
+</script>
+   
+            </div>
+        </div>
+    </div>
+</section>
+<div class="author-view">
+    <div class="product-list">
+        <?php echo $this->getChildHtml('product_list'); ?>
+    </div>
+</div>

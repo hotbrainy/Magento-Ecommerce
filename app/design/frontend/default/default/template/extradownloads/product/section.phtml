@@ -1,0 +1,15 @@
+<?php if ($this->getShowBlock()): ?>
+<div class="aw_extradownloads"<?php if ($style_id = $this->getStyleId()){ echo " id=\"{$style_id}\""; } ?>>
+    <h4><?php echo $this->getSectionTitle(); ?></h4>
+    <ul>
+    <?php $_files = $this->getFiles();  ?>
+    <?php if (count($_files)): ?>
+        <?php foreach($_files as $file): ?>
+        <li><a href="<?php echo $this->getDownloadLink($file); ?>" target="_blank"><?php echo $file->getTitle(); ?></a></li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li><?php echo $this->__('There are no files'); ?></li>
+    <?php endif; ?>
+    </ul>
+</div>
+<?php endif; ?>

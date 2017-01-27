@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_reports_books_sales>
+        <reference name="content">
+            <block type="entangled_reports/adminhtml_books" name="adminhtml.reports.books"/>
+        </reference>
+    </adminhtml_reports_books_sales>
+
+    <adminhtml_reports_books_files>
+        <reference name="content">
+            <block type="entangled_reports/adminhtml_files" name="adminhtml.reports.files"/>
+        </reference>
+    </adminhtml_reports_books_files>
+</layout>

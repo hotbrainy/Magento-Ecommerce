@@ -1,0 +1,92 @@
+<div class="modal fade" id="returnsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form action="<?php echo Mage::getUrl('returns/index/newRequest') ?>" method="post" id="return-form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><?php echo $this->__('Risk-Free reads ™ return form') ?></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="grey-box"><?php echo $this->__('Entangled strives to offer only the best in romantic fiction, and your comments below will help us continue to learn and grow!') ?></div>
+
+                    <p><?php echo $this->__('We’re sorry you were not satisfied with one of our books. Please complete the below short form to receive your full store credit for your purchase <strong>within 7 days.</strong>') ?></p>
+
+                    <div class="field returnOrder">
+                        <label><?php echo $this->__('Order ID: ')?></label>
+                        <span></span>
+                        <input id="returnOrder" name="order_id" hidden/>
+                    </div>
+                    <div class="field purchaseDate">
+                        <label><?php echo $this->__('Date of Purchase: ')?></label>
+                        <span></span>
+                    </div>
+                    <div class="field returnBook">
+                        <label><?php echo $this->__('Product Name: ')?></label>
+                        <span></span>
+                        <input id="returnBook" name="product_sku" hidden/>
+                    </div>
+                    <div class="field purchasePrice">
+                        <label><?php echo $this->__('Purchase Price: ')?></label>
+                        <span></span>
+                    </div>
+
+                    <div class="field returnReason">
+                        <label for="returnReason"><?php echo $this->__('Reason for return: ')?><em>*</em></label><br>
+                        <select id="returnReason" name="reason_id" class="required-entry validate-select">
+                            <option value=""><?php echo $this->__('Please select a reason') ?></option>
+                            <?php foreach(Mage::helper('entangled_returns')->getReturnReasons() as $key => $reason): ?>
+                                <option value="<?php echo $key ?>"><?php echo $reason ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="field additionalFeedback">
+                        <label for="additional-feedback"><?php echo $this->__('Can you provide additional feedback or comments?') ?></label>
+                        <textarea id="additional-feedback" name="reason"></textarea>
+                    </div>
+
+
+
+                    <p><span class="pink-text bold uppercase"><?php echo $this->__('Return policy:') ?></span>
+                        <?php echo $this->__('Return/Exchange applies to Entangled direct sales only.
+                        If you did not purchase your merchandise from the Entangled Bookstore,
+                        then please contact the vendor where it was originally purchased. 
+                        Entangled will not accept any returned products bought outside our website storefront.') ?></p>
+                    <ul class="return-details">
+                        <li><?php echo $this->__('All returned merchandise is for STORE CREDIT ONLY. No cash or credit refunds will be offered.') ?></li>
+                        <li><?php echo $this->__('All returns must occur within seven days of purchase.') ?></li>
+                        <li><?php echo $this->__('No more than three products may be returned within a thirty day period per customer.') ?></li>
+                    </ul>
+
+                    <p class="field"><input type="checkbox" id="return-policy" class="required-entry"/> <label for="return-policy"><?php echo $this->__('I have Read and Acknowledge this Return Policy') ?><em>*</em></label></p>
+
+                    <span class="bold"><?php echo $this->__('Thank you for your business!') ?></span>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn"><?php echo $this->__('Submit refund request') ?></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $j('#returnsModal').on('show.bs.modal', function (event) {
+        var button = $j(event.relatedTarget);
+        var purchasePrice = button.data('purchase-price');
+        var purchaseDate = button.data('purchase-date');
+        var bookName = button.data('book-name');
+        var bookSku = button.data('book-sku');
+        var orderInc = button.data('order-inc');
+        var orderId = button.data('order-id');
+        $j(this).find('.returnBook span').text(bookName);
+        $j(this).find('.returnOrder span').text(orderInc);
+        $j(this).find('.purchasePrice span').text(purchasePrice);
+        $j(this).find('.purchaseDate span').text(purchaseDate);
+        $j(this).find('#returnBook').attr('value', bookSku);
+        $j(this).find('#returnOrder').attr('value', orderId);
+
+        var returnForm = new VarienForm('return-form', true);
+    })
+</script>

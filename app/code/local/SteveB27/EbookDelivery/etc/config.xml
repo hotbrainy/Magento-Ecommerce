@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<SteveB27_EbookDelivery>
+			<version>0.1.2</version>
+		</SteveB27_EbookDelivery>
+	</modules>
+
+	<global>
+		<models>
+			<ebookdelivery>
+				<class>SteveB27_EbookDelivery_Model</class>
+				<resourceModel>ebookdelivery_resource</resourceModel>
+			</ebookdelivery>
+
+			<ebookdelivery_resource>
+				<class>SteveB27_EbookDelivery_Model_Resource</class>
+				<entities>
+					<devices>
+						<table>ebookdelivery_devices</table>
+					</devices>
+				</entities>
+			</ebookdelivery_resource>
+
+			<checkout>
+				<rewrite>
+					<type_onepage>SteveB27_EbookDelivery_Model_Type_Onepage</type_onepage>
+				</rewrite>
+			</checkout>
+		</models>
+
+		<helpers>
+			<ebookdelivery>
+				<class>SteveB27_EbookDelivery_Helper</class>
+			</ebookdelivery>
+		</helpers>
+
+		<blocks>
+			<checkout>
+				<rewrite>
+					<onepage>SteveB27_EbookDelivery_Block_Onepage</onepage>
+				</rewrite>
+			</checkout>
+
+			<ebookdelivery>
+				<class>SteveB27_EbookDelivery_Block</class>
+			</ebookdelivery>
+
+			<ebookdeliveryonepage>
+				<class>SteveB27_EbookDelivery_Block_Onepage</class>
+			</ebookdeliveryonepage>
+			
+		</blocks>
+
+		<rewrite>
+			<steveb27_ebookdelivery_onepage>
+				<from><![CDATA[#^/checkout/onepage/#]]></from>
+				<to>/ebookdelivery/onepage/</to>
+			</steveb27_ebookdelivery_onepage>
+		</rewrite>
+		<resources>
+            <ebookdelivery_setup>
+                <setup>
+                    <module>SteveB27_EbookDelivery</module>
+                    <class>Mage_Sales_Model_Mysql4_Setup</class>
+                </setup>
+            </ebookdelivery_setup>
+        </resources>  	
+    </global>
+
+	<frontend>
+		<routers>
+			<ebookdelivery>
+				<use>standard</use>
+				<args>
+					<module>SteveB27_EbookDelivery</module>
+					<frontName>ebookdelivery</frontName>
+				</args>
+			</ebookdelivery>
+
+		</routers>
+
+		<events>
+			<checkout_onepage_controller_success_action>
+				<observers>
+					<hooksystem_order_success>
+						<type>singleton</type>
+						<class>ebookdelivery/observer</class>
+						<method>hookToOrderSaveEvent</method>
+					</hooksystem_order_success>
+				</observers>
+			</checkout_onepage_controller_success_action>
+			<controller_action_predispatch_onestepcheckout_index_index>
+				<observers>
+					<steveb27_ebookdelivery>
+						<class>ebookdelivery/observer</class>
+						<method>controllerActionPredispatchOnestepcheckoutIndexIndex</method>
+					</steveb27_ebookdelivery>
+				</observers>
+			</controller_action_predispatch_onestepcheckout_index_index>
+		</events>
+
+		<layout>
+			<updates>
+				<ebookdelivery>
+					<file>ebookdelivery.xml</file>
+				</ebookdelivery>
+			</updates>
+		</layout>
+	</frontend>
+</config>

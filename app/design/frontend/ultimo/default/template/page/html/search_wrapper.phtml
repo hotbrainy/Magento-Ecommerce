@@ -1,0 +1,21 @@
+<?php
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+    $theme = Mage::helper('ultimo');
+
+    //Search wrapper classes
+    $searchClasses = 'skip-content skip-content--style search-wrapper';
+    if (! $theme->getCfg('header/mode'))
+    {
+        //If mobile header disabled, add a class to style the search box on mobile devices
+        $searchClasses .= ' search-wrapper-mobile';
+    }
+?>
+<div id="search-wrapper-regular">
+    <div id="header-search" class="<?php echo $searchClasses; ?>">
+        <?php echo $this->getChildHtml('top.search'); ?>
+    </div>
+</div>

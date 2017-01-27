@@ -1,0 +1,47 @@
+<?php if ($this->_section == 'awall'): ?>
+<div id="awall_extensions_table">
+    <table class="form-list">
+        <tbody>
+            <?php foreach ($this->getExtensions() as $Extension): ?>
+        <tr>
+            <td><img src="<?php echo $this->getIcon($Extension)->getSource()?>"
+                     alt="<?php echo $this->getIcon($Extension)->getTitle()?>"
+                     title="<?php echo $this->getIcon($Extension)->getTitle();?>"
+                />
+            </td>
+            <td>
+                <a
+                    href="
+                        <?php if (null !== $Extension->getFeedInfo()->getUrl()): ?>
+                            <?php echo $Extension->getFeedInfo()->getUrl();?>
+                        <?php else: ?>
+                            <?php echo 'javascript:void(0);';?>
+                        <?php endif;?>
+                    "
+                    <?php if (null !== $Extension->getFeedInfo()->getUrl()): ?>
+                        onclick="this.target = '_blank'"
+                    <?php endif;?>
+                >
+                    <?php echo $Extension->getName();?>
+                </a>
+            </td>
+            <td><?php echo $Extension->getVersion()?></td>
+            <td>
+                <a href="
+                    <?php if (null !== $Extension->getFeedInfo()->getDocumentationUrl()): ?>
+                        <?php echo $Extension->getFeedInfo()->getDocumentationUrl(); ?>
+                    <?php else: ?>
+                        <?php echo 'http://confluence.aheadworks.com/display/EUDOC/';?>
+                    <?php endif;?>
+                "
+                   onclick="this.target = '_blank'"><img
+                        src="<?php echo $this->getSkinUrl('aw_all/images/readme.png')?>" title="<?php echo $this->__('Readme');?>"/></a></td>
+        </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+    _section = '<?php echo $this->_section?>';
+</script>

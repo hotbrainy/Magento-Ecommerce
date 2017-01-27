@@ -1,0 +1,99 @@
+
+  <div class="ebook_details">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <form id="co-ebookdelivery-form" action="">
+          <ul class="form-list ebookdelivery">
+            <?php echo $this->getChildHtml(); ?>
+          </ul>
+        </form>
+        <div class="button-set">
+          <div id="ebookdelivery-buttons-container">
+            <button type="button" class="button validation-passed" onclick="ebookdelivery.save();"><span><?php echo $this->__('Continue') ?></span></button>
+            <span id="ebookdelivery-please-wait" style="display:none;" class="opc-please-wait"> <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading next step...') ?> &nbsp; </span> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+//<![CDATA[
+
+var Ebookdelivery = Class.create();
+Ebookdelivery.prototype = {
+    initialize: function(form, saveUrl){
+        this.form = form;
+        if ($(this.form)) {
+            $(this.form).observe('submit', function(event){this.save();Event.stop(event);}.bind(this));
+        }
+        this.saveUrl = saveUrl;
+        this.onSave = this.nextStep.bindAsEventListener(this);
+        this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
+    },
+
+    save: function(){
+        if (checkout.loadWaiting!=false) return;
+
+        var validator = new Validation(this.form);
+        if (validator.validate()) {
+
+            checkout.setLoadWaiting('ebookdelivery');
+
+
+            var request = new Ajax.Request(
+                this.saveUrl,
+                {
+                    method: 'post',
+                    onComplete: this.onComplete,
+                    onSuccess: this.onSave,
+                    onFailure: checkout.ajaxFailure.bind(checkout),
+                    parameters: Form.serialize(this.form)
+                }
+            );
+        }
+    },
+
+    resetLoadWaiting: function(transport){
+        checkout.setLoadWaiting(false);
+    },
+
+    nextStep: function(transport){
+        if (transport && transport.responseText){
+            try{
+                response = eval('(' + transport.responseText + ')');
+            }
+            catch (e) {
+                response = {};
+            }
+        }
+
+        if (response.error){
+            if ((typeof response.message) == 'string') {
+                alert(response.message);
+            } else {
+                if (window.billingRegionUpdater) {
+                    billingRegionUpdater.update();
+                }
+
+                alert(response.message.join("\n"));
+            }
+
+            return false;
+        }
+
+        checkout.setStepResponse(response);
+    }    
+}
+
+var ebookdelivery = new Ebookdelivery('co-ebookdelivery-form', '<?php echo $this->getUrl('checkout/onepage/saveEbookdelivery') ?>');
+
+$('shipping:same_as_entrant').observe('click',function(){
+	if(this.checked){
+		$('shipping:permanent').setValue($('shipping:local_address').value);
+	}
+	else{
+		$('shipping:permanent').setValue('');	
+	}
+});
+
+//]]>
+</script>

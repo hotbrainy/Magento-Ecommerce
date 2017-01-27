@@ -1,0 +1,626 @@
+<?xml version = "1.0"?>
+<!-- 
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <modules>
+        <MageWorx_CustomerCredit>
+            <version>2.9.0</version>
+        </MageWorx_CustomerCredit>
+    </modules>
+
+    <frontend>
+        <routers>
+            <mageworx_customercredit>
+                <use>standard</use>
+                <args>
+                    <module>MageWorx_CustomerCredit</module>
+                    <frontName>customercredit</frontName>
+                </args>
+            </mageworx_customercredit>
+        </routers>
+
+        <translate>
+            <modules>
+                <MageWorx_CustomerCredit>
+                    <files>
+                        <default>MageWorx_CustomerCredit.csv</default>
+                    </files>
+                </MageWorx_CustomerCredit>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <mageworx_customercredit>
+                    <file>mageworx_customercredit.xml</file>
+                </mageworx_customercredit>
+            </updates>
+        </layout>
+
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <mageworx_customercredit_to_html_block_before>
+                        <type>singleton</type>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>toHtmlBlockBefore</method>
+                    </mageworx_customercredit_to_html_block_before>
+                </observers>
+            </core_block_abstract_to_html_before>
+
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <mageworx_customercredit_to_html_block_after>
+                        <type>singleton</type>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>toHtmlBlockAfter</method>
+                    </mageworx_customercredit_to_html_block_after>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MageWorx_CustomerCredit after="Mage_Adminhtml">MageWorx_CustomerCredit_Adminhtml</MageWorx_CustomerCredit>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <MageWorx_CustomerCredit>
+                    <files>
+                        <default>MageWorx_CustomerCredit.csv</default>
+                    </files>
+                </MageWorx_CustomerCredit>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <mageworx_customercredit>
+                    <file>mageworx_customercredit.xml</file>
+                </mageworx_customercredit>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <global>
+        <models>
+            <mageworx_customercredit>
+                <class>MageWorx_CustomerCredit_Model</class>
+                <resourceModel>mageworx_customercredit_resource</resourceModel>
+            </mageworx_customercredit>
+            <mageworx_customercredit_resource>
+                <class>MageWorx_CustomerCredit_Model_Resource</class>
+                <entities>
+                    <credit>
+                        <table>mageworx_customercredit_credit</table>
+                    </credit>
+                    <credit_log>
+                        <table>mageworx_customercredit_credit_log</table>
+                    </credit_log>
+                    <code>
+                        <table>mageworx_customercredit_code</table>
+                    </code>
+                    <code_log>
+                        <table>mageworx_customercredit_code_log</table>
+                    </code_log>
+                    <rules>
+                        <table>mageworx_customercredit_rules</table>
+                    </rules>
+                    <rules_customer>
+                        <table>mageworx_customercredit_rules_customer</table>
+                    </rules_customer>
+                    <rules_customer_action>
+                        <table>mageworx_customercredit_rules_customer_action</table>
+                    </rules_customer_action>
+                    <rules_customer_log>
+                        <table>mageworx_customercredit_rules_customer_log</table>
+                    </rules_customer_log>
+                </entities>
+            </mageworx_customercredit_resource>
+
+            <sales>
+                <rewrite>
+                    <order>MageWorx_CustomerCredit_Model_Sales_Order</order>
+                    <order_creditmemo>MageWorx_CustomerCredit_Model_Sales_Order_Creditmemo</order_creditmemo>
+                </rewrite>
+            </sales>
+            <paypal>
+                <rewrite>
+                    <standard>MageWorx_CustomerCredit_Model_Paypal_Standard</standard>
+                </rewrite>
+            </paypal>
+            <customer>
+                <rewrite>
+                    <convert_parser_customer>MageWorx_CustomerCredit_Model_Customer_Convert_Parser_Customer</convert_parser_customer>
+                    <convert_adapter_customer>MageWorx_CustomerCredit_Model_Customer_Convert_Adapter_Customer</convert_adapter_customer>
+                </rewrite>
+            </customer>
+        </models>
+
+        <resources>
+            <mageworx_customercredit_setup>
+                <setup>
+                    <module>MageWorx_CustomerCredit</module>
+                    <class>Mage_Sales_Model_Mysql4_Setup</class>
+                </setup>
+            </mageworx_customercredit_setup>
+        </resources>
+
+        <blocks>
+            <mageworx_customercredit>
+                <class>MageWorx_CustomerCredit_Block</class>
+            </mageworx_customercredit>
+
+            <checkout>
+                <rewrite>
+                    <onepage_payment_methods>MageWorx_CustomerCredit_Block_Checkout_Onepage_Payment_Methods</onepage_payment_methods>
+                    <multishipping_billing>MageWorx_CustomerCredit_Block_Checkout_Multishipping_Billing</multishipping_billing>
+                </rewrite>
+            </checkout>
+
+            <sales>
+                <rewrite>
+                    <order_info>MageWorx_CustomerCredit_Block_Sales_Order_Info</order_info>
+                    <order_print>MageWorx_CustomerCredit_Block_Sales_Order_Print</order_print>
+                </rewrite>
+            </sales>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_view_tab_info>MageWorx_CustomerCredit_Block_Adminhtml_Sales_Order_View_Tab_Info</sales_order_view_tab_info>
+                    <sales_order_view_tab_invoices>MageWorx_CustomerCredit_Block_Adminhtml_Sales_Order_View_Tab_Invoices</sales_order_view_tab_invoices>
+                    <sales_order_view_tab_creditmemos>MageWorx_CustomerCredit_Block_Adminhtml_Sales_Order_View_Tab_Creditmemos</sales_order_view_tab_creditmemos>
+                    <customer_grid>MageWorx_CustomerCredit_Block_Adminhtml_Customer_Grid</customer_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <helpers>
+            <mageworx_customercredit>
+                <class>MageWorx_CustomerCredit_Helper</class>
+            </mageworx_customercredit>
+        </helpers>
+
+        <events>
+            <paypal_prepare_line_items>
+                <observers>
+                    <mageworx_customercredit_paypal_cart>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>paypalCart</method>
+                    </mageworx_customercredit_paypal_cart>
+                </observers>
+            </paypal_prepare_line_items>
+            <sales_quote_collect_totals_after>
+                <observers>
+                    <mageworx_customercredit_save_credits_in_order>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>saveCreditsInOrder</method>
+                    </mageworx_customercredit_save_credits_in_order>
+                </observers>
+            </sales_quote_collect_totals_after>
+            <customer_save_after>
+                <observers>
+                    <mageworx_customercredit_add_credit_to_customer_for_subscription>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>addCreditToCustomerForSubscription</method>
+                    </mageworx_customercredit_add_credit_to_customer_for_subscription>
+                </observers>
+            </customer_save_after>
+            <customer_save_after>
+                <observers>
+                    <mageworx_customercredit_change_group>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>changeGroup</method>
+                    </mageworx_customercredit_change_group>
+                </observers>
+            </customer_save_after>
+            <tag_save_after>
+                <observers>
+                    <mageworx_customercredit_add_credit_to_customer_for_product_tag>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>addCreditToCustomerForProductTag</method>
+                    </mageworx_customercredit_add_credit_to_customer_for_product_tag>
+                </observers>
+            </tag_save_after>
+            <review_save_after>
+                <observers>
+                    <mageworx_customercredit_add_credit_to_customer_for_product_review>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>addCreditToCustomerForProductReview</method>
+                    </mageworx_customercredit_add_credit_to_customer_for_product_review>
+                </observers>
+            </review_save_after>
+            <mageworx_customercredit_code_save_after>
+                <observers>
+                    <mageworx_customercredit_save_code_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>saveCodeAfter</method>
+                    </mageworx_customercredit_save_code_after>
+                </observers>
+            </mageworx_customercredit_code_save_after>
+            <mageworx_customercredit_credit_save_after>
+                <observers>
+                    <mageworx_customercredit_save_credit_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>saveCreditAfter</method>
+                    </mageworx_customercredit_save_credit_after>
+                </observers>
+            </mageworx_customercredit_credit_save_after>
+            <adminhtml_customer_prepare_save>
+                <observers>
+                    <mageworx_customercredit_prepare_customer_save>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>prepareCustomerSave</method>
+                    </mageworx_customercredit_prepare_customer_save>
+                </observers>
+            </adminhtml_customer_prepare_save>
+            <adminhtml_customer_save_after>
+                <observers>
+                    <mageworx_customercredit_save_customer_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>saveCustomerAfter</method>
+                    </mageworx_customercredit_save_customer_after>
+                </observers>
+            </adminhtml_customer_save_after>
+
+            <customer_group_save_after>
+                <observers>
+                    <mageworx_customercredit_customer_group_save_after>
+                        <type>singleton</type>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>customerGroupSaveAfter</method>
+                    </mageworx_customercredit_customer_group_save_after>
+                </observers>
+            </customer_group_save_after>
+
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <mageworx_customercredit_customer_group_prepare_layout_after>
+                        <type>singleton</type>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>customerGroupPrepareLayoutAfter</method>
+                    </mageworx_customercredit_customer_group_prepare_layout_after>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+
+            <customer_group_load_after>
+                <observers>
+                    <mageworx_customercredit_customer_group_load_after>
+                        <type>singleton</type>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>customerGroupLoadAfter</method>
+                    </mageworx_customercredit_customer_group_load_after>
+                </observers>
+            </customer_group_load_after>
+
+            <sales_quote_collect_totals_before>
+                <observers>
+                    <mageworx_customercredit_collect_quote_totals_before>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>collectQuoteTotalsBefore</method>
+                    </mageworx_customercredit_collect_quote_totals_before>
+                </observers>
+            </sales_quote_collect_totals_before>
+
+            <sales_order_place_before>
+                <observers>
+                    <mageworx_customercredit_place_order_before>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>placeOrderBefore</method>
+                    </mageworx_customercredit_place_order_before>
+                </observers>
+            </sales_order_place_before>
+
+            <sales_order_place_after>
+                <observers>
+                    <mageworx_customercredit_place_order_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>placeOrderAfter</method>
+                    </mageworx_customercredit_place_order_after>
+                </observers>
+            </sales_order_place_after>
+
+            <sales_order_invoice_save_after>
+                <observers>
+                    <mageworx_customercredit_save_invoice_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>saveInvoiceAfter</method>
+                    </mageworx_customercredit_save_invoice_after>
+                </observers>
+            </sales_order_invoice_save_after>
+
+            <sales_order_load_after>
+                <observers>
+                    <mageworx_customercredit_load_order_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>loadOrderAfter</method>
+                    </mageworx_customercredit_load_order_after>
+                </observers>
+            </sales_order_load_after>
+
+            <customer_register_success>
+                <observers>
+                    <mageworx_customercredit_customer_register_success>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>customerRegisterSuccess</method>
+                    </mageworx_customercredit_customer_register_success>
+                </observers>
+            </customer_register_success>
+
+            <sales_order_creditmemo_refund>
+                <observers>
+                    <mageworx_customercredit_refund_creditmemo>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>refundCreditmemo</method>
+                    </mageworx_customercredit_refund_creditmemo>
+                </observers>
+            </sales_order_creditmemo_refund>
+
+            <sales_order_creditmemo_save_after>
+                <observers>
+                    <mageworx_customercredit_save_creditmemo_after>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>saveCreditmemoAfter</method>
+                    </mageworx_customercredit_save_creditmemo_after>
+                </observers>
+            </sales_order_creditmemo_save_after>
+
+            <order_cancel_after>
+                <observers>
+                    <mageworx_customercredit_return_credit>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>returnCredit</method>
+                    </mageworx_customercredit_return_credit>
+                </observers>
+            </order_cancel_after>
+
+            <sales_order_save_after>
+                <observers>
+                    <mageworx_customercredit_check_complete_status_order>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>checkCompleteStatusOrder</method>
+                    </mageworx_customercredit_check_complete_status_order>
+                    <mageworx_customercredit__return_refund_data>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>returnRefundData</method>
+                    </mageworx_customercredit__return_refund_data>
+                </observers>
+            </sales_order_save_after>
+
+            <controller_action_postdispatch_checkout_onepage_savePayment>
+                <observers>
+                    <mageworx_customercredit_checkout_onepage_savepayment>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>savePayment</method>
+                    </mageworx_customercredit_checkout_onepage_savepayment>
+                </observers>
+            </controller_action_postdispatch_checkout_onepage_savePayment>
+            
+            <custom_mageworx_loyalty_save_payment>
+                <observers>
+                    <mageworx_customercredit_checkout_onepage_savepayment>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>savePaymentOneStep</method>
+                    </mageworx_customercredit_checkout_onepage_savepayment>
+                </observers>
+                
+            </custom_mageworx_loyalty_save_payment>
+
+            <payment_method_is_active>
+                <observers>
+                    <mageworx_customercredit_payment_method_is_active>
+                        <class>mageworx_customercredit/observer</class>
+                        <method>isActivePaymentMethodFree</method>
+                    </mageworx_customercredit_payment_method_is_active>
+                </observers>
+            </payment_method_is_active>
+        </events>
+        <sales>
+            <quote>
+                <totals>
+                    <mageworx_customercredit>
+                        <class>mageworx_customercredit/quote_total_customercredit</class>
+                        <after>grand_total,tax,subtotal</after>
+                    </mageworx_customercredit>
+                </totals>
+            </quote>
+
+            <order_invoice>
+                <totals>
+                    <mageworx_customercredit>
+                        <class>mageworx_customercredit/invoice_total_customercredit</class>
+                         <after>grand_total,tax,subtotal</after>
+                    </mageworx_customercredit>
+                </totals>
+            </order_invoice>
+
+            <order_creditmemo>
+                <totals>
+                    <mageworx_customercredit>
+                        <after>grand_total</after>
+                        <class>mageworx_customercredit/creditmemo_total_customercredit</class>
+                    </mageworx_customercredit>
+                </totals>
+            </order_creditmemo>
+        </sales>
+        <fieldsets>
+            <sales_convert_quote_address>
+                <customer_credit_amount>
+                    <to_order>*</to_order>
+                </customer_credit_amount>
+                <base_customer_credit_amount>
+                    <to_order>*</to_order>
+                </base_customer_credit_amount>
+            </sales_convert_quote_address>
+        </fieldsets>
+
+        <pdf>
+            <totals>
+                <customer_credit_amount translate="title" module="mageworx_customercredit">
+                    <title>Internal Credit</title>
+                    <source_field>customer_credit_amount</source_field>
+                    <font_size>7</font_size>
+                    <display_zero>0</display_zero>
+                    <sort_order>590</sort_order>
+                    <amount_prefix>-</amount_prefix>
+                </customer_credit_amount>
+            </totals>
+        </pdf>
+
+        <template>
+            <email>
+               <mageworx_customercredit_email_balance_changed translate="label" module="mageworx_customercredit">
+                   <label>Internal Balance Changed</label>
+                   <file>mageworx/customercredit/balance_changed.html</file>
+                   <type>html</type>
+               </mageworx_customercredit_email_balance_changed>
+                <mageworx_customercredit_email_credit_rules translate="label" module="mageworx_customercredit">
+                    <label>Credit Rules</label>
+                    <file>mageworx/customercredit/credit_rules.html</file>
+                    <type>html</type>
+                </mageworx_customercredit_email_credit_rules>
+                <mageworx_customercredit_email_product_review translate="label" module="mageworx_customercredit">
+                    <label>Product Review</label>
+                    <file>mageworx/customercredit/product_review.html</file>
+                    <type>html</type>
+                </mageworx_customercredit_email_product_review>
+                <mageworx_customercredit_email_product_tag translate="label" module="mageworx_customercredit">
+                    <label>Product Tag</label>
+                    <file>mageworx/customercredit/product_tag.html</file>
+                    <type>html</type>
+                </mageworx_customercredit_email_product_tag>
+                <mageworx_customercredit_email_newsletter_subscription translate="label" module="mageworx_customercredit">
+                    <label>Newsletter Subscription</label>
+                    <file>mageworx/customercredit/newsletter_subscription.html</file>
+                    <type>html</type>
+                </mageworx_customercredit_email_newsletter_subscription>
+                <mageworx_customercredit_email_customer_birthday translate="label" module="mageworx_customercredit">
+                    <label>Customer Birthday</label>
+                    <file>mageworx/customercredit/customer_birthday.html</file>
+                    <type>html</type>
+                </mageworx_customercredit_email_customer_birthday>
+               <mageworx_customercredit_email_expiration_notice translate="label" module="mageworx_customercredit">
+                   <label>Expiration Date Notice</label>
+                   <file>mageworx/customercredit/expiration_notice.html</file>
+                   <type>html</type>
+               </mageworx_customercredit_email_expiration_notice>
+            </email>
+        </template>
+
+    </global>
+
+    <default>
+        <mageworx_customercredit>
+            <main>
+                <enable_credit>1</enable_credit>
+                <enable_sharing>1</enable_sharing>
+                <enable_custom_value>0</enable_custom_value>
+                <exchange_rate>1</exchange_rate>
+                <credit_scope>1</credit_scope>
+                <enable_invoice_order>1</enable_invoice_order>
+                <enable_partial_credit_payment>0</enable_partial_credit_payment>
+                <enable_credit_memo_return>0</enable_credit_memo_return>
+                <order_edit_affect_credit_log>0</order_edit_affect_credit_log>
+                <enable_credit_columns_in_grid_order_view_tabs>1</enable_credit_columns_in_grid_order_view_tabs>
+                <enable_customer_balance_grid_column>1</enable_customer_balance_grid_column>
+                <display_credit_block_at_cart>0</display_credit_block_at_cart>
+                <display_credit_link_in_top_menu>0</display_credit_link_in_top_menu>
+                <credit_totals>subtotal,shipping,tax</credit_totals>
+                <credits_product></credits_product>
+                <default_qty_credit_units>100</default_qty_credit_units>
+                <min_order_amount>0</min_order_amount>
+                <customer_group></customer_group>
+            </main>
+            <expiration>
+                <expiration_enable>0</expiration_enable>
+                <default_expiration_period>30</default_expiration_period>
+                <update_expiration_date>1</update_expiration_date>
+                <notify_expiration_date_left>2</notify_expiration_date_left>
+            </expiration>
+            <recharge_codes>
+                <enable_recharge_codes>1</enable_recharge_codes>
+                <code_length>16</code_length>
+                <group_length>4</group_length>
+                <group_separator>-</group_separator>
+                <code_format>num</code_format>
+            </recharge_codes>
+            <email_config>
+                <send_email_templates>1</send_email_templates>
+                <for_balance_changed>0</for_balance_changed>
+                <for_credit_rules>0</for_credit_rules>
+                <for_expiration_notice>0</for_expiration_notice>
+                <for_product_review>0</for_product_review>
+                <for_customer_birthday>0</for_customer_birthday>
+                <for_newsletter_subscription>0</for_newsletter_subscription>
+                <for_product_tag>0</for_product_tag>
+                <tpl_balance_changed>mageworx_customercredit_email_balance_changed</tpl_balance_changed>
+                <tpl_expiration_notice>mageworx_customercredit_email_expiration_notice</tpl_expiration_notice>
+                <tpl_product_review>mageworx_customercredit_email_credit_rules</tpl_product_review>
+                <tpl_product_review>mageworx_customercredit_email_product_review</tpl_product_review>
+                <tpl_customer_birthday>mageworx_customercredit_email_customer_birthday</tpl_customer_birthday>
+                <tpl_newsletter_subscription>mageworx_customercredit_email_newsletter_subscription</tpl_newsletter_subscription>
+                <tpl_product_tag>mageworx_customercredit_email_product_tag</tpl_product_tag>
+            </email_config>
+            <give_credit>
+                <product_review>0</product_review>
+                <customer_birthday>0</customer_birthday>
+                <newsletter_subscription>0</newsletter_subscription>
+                <product_tag>0</product_tag>
+            </give_credit>
+        </mageworx_customercredit>
+        <payment>
+            <customercredit translate="title" module="mageworx_customercredit">
+                <active>1</active>
+                <model>mageworx_customercredit/payment_method_customercredit</model>
+                <order_status>pending</order_status>
+                <title>Internal Credit</title>
+                <allowspecific>0</allowspecific>
+            </customercredit>
+        </payment>
+        <sales>
+            <totals_sort>
+                <mageworx_customercredit>98</mageworx_customercredit>
+            </totals_sort>
+        </sales>
+    </default>
+    <crontab>
+        <jobs>
+            <mageworx_customercredit_check_customer_birthday>
+                <schedule>
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>mageworx_customercredit/observer::checkCustomerBirthdayCron</model>
+                </run>
+            </mageworx_customercredit_check_customer_birthday>
+            <mageworx_customercredit_credit_expiration_date>
+                <schedule>
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>mageworx_customercredit/observer::expirationDateCron</model>
+                </run>
+            </mageworx_customercredit_credit_expiration_date>
+            <mageworx_customercredit_credit_expiration_date_refresh>
+                <run>
+                    <model>mageworx_customercredit/observer::expirationDateRefreshCron</model>
+                </run>
+            </mageworx_customercredit_credit_expiration_date_refresh>
+        </jobs>
+    </crontab>
+</config>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Hardik Gajjar
+ */
+-->
+<config>
+    <modules>
+        <Hardik_Ajaxcart>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Hardik_Ajaxcart>
+    </modules>
+</config>

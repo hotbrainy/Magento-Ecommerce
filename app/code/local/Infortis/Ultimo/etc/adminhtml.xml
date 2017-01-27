@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+									<ultimo translate="title" module="ultimo">
+										<title>Theme Settings</title>
+										<sort_order>1</sort_order> 
+                                    </ultimo>
+									<ultimo_design translate="title" module="ultimo">
+										<title>Theme Design</title>
+										<sort_order>1</sort_order> 
+                                    </ultimo_design>
+									<ultimo_layout translate="title" module="ultimo">
+										<title>Theme Layout</title>
+										<sort_order>1</sort_order> 
+                                    </ultimo_layout>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

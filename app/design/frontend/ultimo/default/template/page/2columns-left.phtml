@@ -1,0 +1,126 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php 
+$GetMyPageType = $this->getRequest()->getControllerName();
+echo $this->getChildHtml('after_body_start') ?>
+<div id="root-wrapper">
+  <div class="wrapper"> <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page"> <?php echo $this->getChildHtml('header') ?>
+      <section class="breadcrumb_wraper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12"> <?php echo $this->getChildHtml('breadcrumbs') ?> </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-content">
+        <div class="container">
+          <div class="row prod_wrapper">
+            <div class="col-sm-12"> <?php echo $this->getChildHtml('main_before_top') ?>
+            </div>
+            <div class="preface"><?php echo $this->getChildHtml('preface') ?></div>
+            <?php
+			$CurrentUrl = Mage::helper('core/url')->getCurrentUrl(); 
+            $find_str = strpos($CurrentUrl,"/author/");
+			?>
+            <?php if($find_str>=1){ ?>   
+  <div class="col-md-12"> <?php echo $this->getChildHtml('global_messages') ?> <?php echo $this->getChildHtml('content') ?> </div>
+            <?php } else { ?>
+            <div class="col-sm-9 col-sm-push-3 col-xs-12"> <?php echo $this->getChildHtml('global_messages') ?> <?php echo $this->getChildHtml('content') ?> </div>
+            <div class="col-sm-3 col-sm-pull-9 col-xs-12">
+            <?php echo $this->getChildHtml('left') ?>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_left_bottom')->toHtml();?>
+            </div>
+
+            <?php } ?>
+            
+            <div class="postscript"><?php echo $this->getChildHtml('postscript') ?></div>
+          </div>
+          <div class="main-bottom-container"><?php echo $this->getChildHtml('main_bottom') ?></div>
+        </div>
+      </section>
+      <?php echo $this->getChildHtml('footer') ?> <?php echo $this->getChildHtml('global_cookie_notice') ?> <?php echo $this->getChildHtml('before_body_end') ?> </div>
+  </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function()
+            {(h.hj.q=h.hj.q||[]).push(arguments)}
+        ;
+        h._hjSettings=
+        {hjid:317632,hjsv:5}
+        ;
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<script id="grv-widget">
+    // <![CDATA[
+    window.groove = window.groove || {}; groove.widget = function()
+    { groove._widgetQueue.push(Array.prototype.slice.call(arguments)); }
+    ; groove._widgetQueue = [];
+    groove.widget('setWidgetId', 'e61f9e96-d982-2e03-e545-428c7ecb8f83');
+    !function(g,r,v){var a,c,n=r.createElement("iframe");(n.frameElement||n).style.cssText="width: 0; height: 0; border: 0",n.title="",n.role="presentation",n.src="javascript:false",r.body.appendChild(n);try
+    {a=n.contentWindow.document}
+    catch(b)
+    {c=r.domain;var d="javascript:document.write('<head><script>document.domain=\""+c+"\";</",i="script></head><body></body>')";n.src=d+i;}
+        var a=n.contentWindow.document;
+        var s="https:"==r.location.protocol?"https://":"http://",p="http://groove-widget-production.s3.amazonaws.com".replace("http://",s);n.className="grv-widget-tag",a.open()._l=function()
+        {c&&(this.domain=c);var t=this.createElement("script");t.type="text/javascript",t.charset="utf-8",t.async=!0,t.src=p+"/loader.js",this.body.appendChild(t)}
+            ,a.write('<body onload="document._l();">'),a.close()
+    }(window,document);
+
+    // ]]>
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52930407-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

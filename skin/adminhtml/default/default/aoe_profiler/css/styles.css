@@ -1,0 +1,249 @@
+#profiler {
+    background-color: white;
+    padding: 10px 20px 50px 20px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: left;
+    position: relative;
+}
+#profiler h1 {
+    font-size: 40px;
+    margin: 20px 0;
+    text-align: left;
+    line-height: 40px;
+    font-weight: normal;
+}
+#profiler .caption {
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    display: block;
+    overflow: hidden;
+    height: 16px;
+    cursor: pointer;
+}
+#profiler .profiler-label > * {
+    vertical-align: bottom;
+}
+#profiler a {
+    color: black;
+    text-decoration: none;
+}
+#profiler li.captions {
+    font-weight: bold;
+}
+#profiler li.captions-line {
+    border-bottom: 2px solid black;
+}
+#profiler li.captions-line .metric {
+    font-size: 25px;
+    line-height: 25px;
+}
+#profiler ul {
+    padding: 0;
+    list-style: none outside none;
+}
+#profiler .level-1 ul {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding-left: 16px;
+}
+#profiler .captions .info:hover {
+    background-color: inherit;
+}
+#profiler .profiler-column3 {
+    float: right;
+    width: 216px;
+    min-height: 1em;
+    text-align: center;
+}
+#profiler .level-1 > .info .total {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+#profiler .collapsed > ul {
+    display: none;
+}
+
+#profiler .caption em {
+    font-size: 10px;
+    font-style: italic;
+}
+
+#profiler .profiler-open,
+#profiler .profiler-closed {
+    position: absolute;
+    left: -11px;
+    top: 2px;
+    height: 16px;
+    width: 16px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#profiler .profiler-closed {
+    display: none;
+}
+
+#profiler .collapsed > .info .profiler-closed {
+    display: block;
+}
+#profiler .collapsed > .info .profiler-open {
+    display: none;
+}
+
+#profiler .metric {
+    float: left;
+    margin-left: 30px;
+}
+#profiler .info { overflow: hidden; }
+#profiler .info:hover {
+    background-color: #FAD69D;
+}
+#profiler .selected .info:hover {
+    background-color: #F7C26D;
+}
+#profiler .profiler-label {
+    float: left;
+    position: absolute;
+    padding-left: 4px;
+    height: 18px;
+}
+#profiler .profiler-columns {
+    float: right;
+}
+#profiler .profiler-column {
+    float: left;
+    width: 210px;
+    min-height: 1em;
+    text-align: center;
+    padding-right: 2px;
+}
+
+
+#profiler #treeView .profiler-label {
+    margin-top: 4px;
+}
+
+#profiler #expand-all,
+#profiler #collapse-all {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+#profiler div.progress {
+    background: white none repeat scroll 0 0;
+    border: 1px solid #CCC;
+    margin: 2px;
+    float: left;
+    padding: 1px;
+    position: relative;
+    display: block;
+    width: 200px;
+}
+
+#profiler .info:hover div.progress {
+    -moz-box-shadow: 1px 2px 4px -1px #888;
+    -webkit-box-shadow: 1px 2px 4px -1px #888;
+    box-shadow: 1px 2px 4px -1px #888;
+    border-color: #000;
+}
+
+#profiler div.progress-bar1,
+#profiler div.progress-bar2 {
+    float: left;
+    background-color: #f08080;
+    height: 15px;
+    vertical-align: middle;
+}
+
+#profiler div.progress-bar2 {
+    background-color: #add8e6;
+}
+
+#profiler div.progress-label {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    font-size: 11px;
+    line-height: 11px;
+}
+
+#profiler .hint a {
+    text-decoration: underline;
+}
+#profiler .hint-small {
+    font-size: 10px;
+}
+#profiler #treeView li.filtered {
+    display: none;
+}
+
+#profiler input {
+    width: auto;
+    margin: auto;
+    padding: auto;
+}
+
+#profiler font {
+    background-color: yellow;
+}
+
+
+
+
+
+
+#filter-form .form-block {
+    display: table-cell;
+}
+
+#duration-filter {
+    width: 40px;
+    text-align: center;
+}
+#filter-form button {
+    padding: 0 10px;
+}
+#p-filter {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 5px;
+    display: inline-block;
+}
+#p-track {
+    position:relative;
+    height:4px;
+    background-color: #ccc;
+    margin: 6px 0;
+}
+#p-handle {
+    position: absolute;
+    left: -3px;
+    top: -6px;
+    width: 9px;
+    height: 22px;
+}
+
+
+
+
+#profiler li.selected {
+    background-color: #BAFFBA;
+}
+
+#profiler li.selected > .info {
+    font-weight: bold;
+}
+
+
+
+
+#profiler .profiler-open { background-image: url('../img/button-open.png'); }
+#profiler .profiler-closed { background-image: url('../img/button-closed.png'); }
+#profiler .type-default { background-image: url('../img/led-icons/page.png'); }
+#profiler .type-db { background-image: url('../img/led-icons/database.png'); }
+#profiler .type-template { background-image: url('../img/led-icons/template.png'); }
+#profiler .type-block { background-image: url('../img/led-icons/brick.png'); }
+#profiler .type-event { background-image: url('../img/led-icons/anchor.png'); }
+#profiler .type-observer { background-image: url('../img/led-icons/pin.png'); }

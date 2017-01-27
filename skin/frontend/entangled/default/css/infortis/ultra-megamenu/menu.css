@@ -1,0 +1,527 @@
+/*
+ * Main menu
+ *
+ * Old selector:		New selector:
+ * #nav				--> .nav-regular
+ * #nav.mobile		--> .nav-mobile
+ */
+
+
+
+/* Common elements %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Category blocks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.nav-block { margin-top: 1%; margin-bottom: 1%; }
+.nav-block--center { margin-top: 1%; margin-bottom: 1%; }
+
+/* Section line (separator) is lighter than other lines
+-------------------------------------------------------------- */
+.nav-block .section-line { border-color: #eee; }
+
+/* Deprecated: custom static block block_header_nav_dropdown displayed as a dropdown
+-------------------------------------------------------------- */
+#nav .nav-custom-link .header-nav-dropdown-wrapper .heading { margin: 10px 0; }
+
+
+/* Caret
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.nav-regular .caret {
+	display:inline-block;
+	width:0;
+	height:0;
+	margin-bottom:2px;
+	margin-left:2px;
+	vertical-align:middle;
+	content:"";
+	border-color:#333 transparent transparent;
+	border-style:solid solid none;
+	border-width:4px 4px 0;
+}
+
+/* Only items with dropdown display the caret */
+.nav-regular .caret { display: none; }
+.nav-regular .nav-item--parent > a .caret { display: inline-block; }
+
+/* Carets inside dropdowns - right side caret */
+.nav-regular .nav-panel a .caret {
+	border-color: transparent transparent transparent #333;
+	border-style: solid none solid solid;
+	border-width: 4px 0 4px 4px;
+	margin-left: 5px;
+	opacity: 0.2;
+}
+.nav-regular .nav-panel a:hover .caret { opacity: 1; }
+
+
+/* Home link
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Home link with icon inside a menu item
+-------------------------------------------------------------- */
+/* Class "feature" inside an item */
+.nav-regular .nav-item--home a {}
+.nav-regular .nav-item--home .ic {
+	display: inline-block;
+	font-size: 16px;
+	padding: 0;
+	width: 30px;
+	text-align: center;
+	vertical-align: middle; /* TODO: check for better option */
+	float: none;
+	background-color: transparent !important; /* Remove default colors */
+}
+
+/* Single icon as a home link
+-------------------------------------------------------------- */
+#nav .nav-item--homeicon a {
+	padding-left: 17px; /* The same as side padding of top-level items +5px */
+	padding-right: 5px;
+	background: none !important;
+	box-shadow: none !important;
+	border: none !important;
+	opacity: 1;
+	transition:			opacity 450ms ease-in-out;
+	-moz-transition:	opacity 450ms ease-in-out;
+	-webkit-transition:	opacity 450ms ease-in-out;
+	-o-transition:		opacity 450ms ease-in-out;
+}
+#nav .nav-item--homeicon a:hover {
+	opacity: 0.6;
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}
+
+
+/* Category labels
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.cat-label {
+	padding:2px 4px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	line-height:18px;
+	text-transform:none;
+	text-shadow:none;
+	
+	transition:			color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-moz-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-webkit-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
+	-o-transition:		color 450ms ease-in-out, background-color 450ms ease-in-out;
+}
+li > a:hover > span > .cat-label {
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}
+
+/* labels: 1st level
+-------------------------------------------------------------- */
+li.level0 > a > span { position:relative; }
+li.level0 > a > span > .cat-label {
+	position:absolute;
+	top:-10px; /*-14px*/
+	right:0;
+	padding:0 6px;
+	
+	font-size:14px;
+	line-height:22px;
+}
+
+/* Add pin (1st level only) */
+li.level0 > a > span > .pin-bottom:before {
+	position:absolute;
+	right:6px;
+	top:22px;
+	width:0;
+	height:0;
+	content:"";
+	border-style:solid;
+	border-width:4px;
+	border-color:transparent;
+
+	transition:			border-color 450ms ease-in-out;
+	-moz-transition:	border-color 450ms ease-in-out;
+	-webkit-transition:	border-color 450ms ease-in-out;
+	-o-transition:		border-color 450ms ease-in-out;
+}
+li.level0 > a:hover > span > .pin-bottom:before {
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}
+
+/* labels: 2nd level
+-------------------------------------------------------------- */
+li.level1 > a > span > .cat-label {
+	display:inline-block !important;
+	padding:0 4px;
+	margin-left:5px;
+	vertical-align:middle;
+}
+
+/* labels: 3rd level
+-------------------------------------------------------------- */
+li.level2 > a > span > .cat-label {
+	display:inline-block !important;
+	padding:0 4px;
+	margin-left:2px;
+}
+
+/* Category labels inside mobile menu / vertical menu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.nav-mobile li > a > span > .cat-label {
+	position:static;
+	display:inline-block !important;
+	padding:0 4px;
+	margin-left:5px;
+
+	/* Label size: all levels */
+	font-size:14px;
+	line-height:18px;
+}
+
+/* Hide pin */
+.nav-mobile li > a > span > .pin-bottom:before {
+	display:none;
+}
+
+
+/* Non-clickable links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+#nav a.no-click { cursor: default; }
+
+
+/* Remove highlight color on tap
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+#nav,
+.mobnav-trigger,
+.nav-regular .nav-item.level0 > a { -webkit-tap-highlight-color: transparent; }
+
+
+
+/* Base styles of the menu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+#nav {
+	position: relative; /* Dropdown box position is relative to this container */
+	z-index: 2000; /* Without this dropdown goes under other elements */
+	-webkit-transform: translateZ(0); /* Fix possible glitches during animation */
+}
+#nav.nav-mobile { display: none; }
+#nav.nav-mobile.show { display: block; }
+
+
+
+/* Standard menu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Height of the menu bar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Top-level items and mobile menu trigger */
+.mobnav-trigger,
+.nav-regular .nav-item.level0 > a {
+	line-height:50px;
+}
+
+
+/* Additional classes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Menu items centered within the menu bar
+-------------------------------------------------------------- */
+.nav-regular.centered {
+	text-align: center;
+}
+.nav-regular.centered li.level0
+{
+	float: none;
+	display: inline-block;
+}
+.nav-regular.centered li.level0.right,
+.nav-regular.centered li.level0.left
+{
+	float: none !important;
+}
+
+
+/* Other elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Openers */
+.nav-regular .opener { display: none; }
+
+/* Hide elements */
+.nav-regular .hide-in-desktop-menu { display: none !important; }
+
+
+/* Holder for additional elements in the menu bar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Important: added "#nav" id to make the rule more specific and override the default float direction */
+#nav .nav-holder {
+	float: right;
+}
+.nav-holder > * {
+	display: block;
+}
+
+/* Drop-downs
+-------------------------------------------------------------- */
+.nav-holder .dropdown .dropdown-heading .label {
+	vertical-align: baseline;
+}
+
+/* Search box
+-------------------------------------------------------------- */
+/* Common styles for search box in holder, wehn it's displayed inisde menu bar and inside mobile menu trigger.
+   Important: added "ul.nav-regular" and ".header-regular" to make both rules more specific. */
+ul.nav-regular .nav-holder .search-wrapper,
+.header-regular .nav-holders-wrapper-mobile .nav-holder .search-wrapper
+{
+	width: inherit; /* Important: to avoid stretching the box to 100% */
+	float: none !important;
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 7px;
+
+	/* To center the search box vertically */
+	margin-bottom: 1px;
+
+	/* Override styles of search box when its inside element with class ".hp-blocks-holder--stacked" */
+	max-width: none;
+	margin: 0;
+}
+
+ul.nav-regular .nav-holder .search-wrapper .input-text,
+.header-regular .nav-holders-wrapper-mobile .nav-holder .search-wrapper .input-text
+{
+	/* To center the search box vertically */
+	margin-bottom: 1px;
+}
+
+
+
+/* Mobile menu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Mobile menu trigger.
+   Shares style with the 1st-level links from the standard menu.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Mobile menu trigger
+-------------------------------------------------------------- */
+.mobnav-trigger {
+	display:block;
+	padding:0 15px;
+}
+
+/* Mobile menu icon */
+.mobnav-trigger .trigger-icon {
+	display:block;
+	float:left;
+	width:23px;
+	padding-top:18px;
+	margin:0 8px 0 0;
+}
+.mobnav-trigger .trigger-icon .line {
+	display:block;
+	background-color:#fff;
+	height:3px;
+	margin-bottom:2px;
+}
+
+/* Mobile menu trigger wrapper
+-------------------------------------------------------------- */
+.mobnav-trigger-wrapper {
+	display: none;
+}
+/* If trigger is next to the holders wrapper, make it float left */
+.nav-holders-wrapper-mobile + .mobnav-trigger {
+	float: left;	
+}
+
+/* Wrapper of the menu holders. Holders are moved inside this
+   wrapper when the menu is in the mobile mode.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.nav-holders-wrapper-mobile {
+	float: right;
+}
+.nav-holders-wrapper-mobile .nav-holder {
+	float: right;
+}
+.nav-holders-wrapper-mobile .nav-holder > * {
+	line-height: 50px; /* The same height as height of the mobile menu items and mobile menu trigger */
+	max-height: 50px;
+}
+
+/* Common styles with mobile menu trigger
+-------------------------------------------------------------- */
+.mobnav-trigger,
+.nav-holders-wrapper-mobile .nav-holder .dropdown .dropdown-heading {
+	font-size: 14px;
+}
+
+/* Drop-downs
+-------------------------------------------------------------- */
+/* Set max height (the same as height of the mobile menu items and mobile menu trigger)
+   to avoid issues with excessive height of the dropdown elements */
+.nav-holders-wrapper-mobile .nav-holder .dropdown .dropdown-heading {
+	max-height: 50px;
+	line-height: 50px;
+}
+.nav-holders-wrapper-mobile .nav-holder .dropdown .dropdown-heading.cover > span,
+.nav-holders-wrapper-mobile .nav-holder .dropdown .dropdown-heading.cover > div {
+	padding: 0 15px;
+}
+
+
+/* Drop-downs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Drop-downs inside mobile menu */
+.nav-mobile .nav-panel--dropdown {
+	/* To override width which can be added to dropdowns of the regular menu */
+	width: 100% !important;
+
+	/* Reset of dropdown's inline positioning */
+	left: 0 !important;
+	top: 0 !important;
+}
+
+/* Remove background color of dropdown in items containing only subcategories */
+.nav-mobile .nav-item--only-subcategories > .nav-panel--dropdown {
+    background-color: transparent !important;
+}
+
+/* Show category blocks on selected levels
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Hide blocks on all levels */
+.nav-mobile .nav-block { display: none; }
+
+/* Structure of the selectors below:
+   menu.modifier [level] item > panel > innerPanel > categoryBlocks */
+
+/* Show on 0 levels
+-------------------------------------------------------------- */
+.nav-mobile.opt-sb0 .nav-item > div { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; } /* Remove dropdown shadow and background color */
+.nav-mobile.opt-sb0 .nav-item > div > div { padding: 0 !important; } /* Remove padding of inner panel */
+.nav-mobile.opt-sb0 .nav-item > div > div > .nav-block--center { margin: 0; width: 100%; } /* Stretch the central column */
+.nav-mobile.opt-sb0 .nav-item.nav-item--only-blocks { display: none; } /* Hide items containing only category blocks */
+
+/* TODO: for top-level items:
+   If "nav-item--only-blocks": hide only the dropdown and the opener, but not the item itself.
+   Exception: if it's an item of "block_header_nav_dropdown", the item has to be hidden completely
+   because it's not clickable so there is no sense to display it.
+*/
+/*.nav-mobile.opt-sb0 .nav-item.nav-item--only-blocks > .opener {
+	display: none;
+}*/
+
+/* Show on 1 level
+-------------------------------------------------------------- */
+.nav-mobile.opt-sb1 li.level0 > div > div > .nav-block { display: block; }
+
+.nav-mobile.opt-sb1 ul.level0 .nav-item > div { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; }
+.nav-mobile.opt-sb1 ul.level0 .nav-item > div > div { padding: 0 !important; }
+.nav-mobile.opt-sb1 ul.level0 .nav-item > div > div > .nav-block--center { margin: 0; width: 100%; }
+.nav-mobile.opt-sb1 ul.level0 .nav-item.nav-item--only-blocks { display: none; }
+
+/* Show on 2 levels
+-------------------------------------------------------------- */
+.nav-mobile.opt-sb2 li.level0 > div > div > .nav-block,
+.nav-mobile.opt-sb2 li.level1 > div > div > .nav-block { display: block; }
+
+.nav-mobile.opt-sb2 ul.level1 .nav-item > div { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; }
+.nav-mobile.opt-sb2 ul.level1 .nav-item > div > div { padding: 0 !important; }
+.nav-mobile.opt-sb2 ul.level1 .nav-item > div > div > .nav-block--center { margin: 0; width: 100%; }
+.nav-mobile.opt-sb2 ul.level1 .nav-item.nav-item--only-blocks { display: none; }
+
+/* Show on 3 levels
+-------------------------------------------------------------- */
+.nav-mobile.opt-sb3 li.level0 > div > div > .nav-block,
+.nav-mobile.opt-sb3 li.level1 > div > div > .nav-block,
+.nav-mobile.opt-sb3 li.level2 > div > div > .nav-block { display: block; }
+
+.nav-mobile.opt-sb3 ul.level2 .nav-item > div { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; }
+.nav-mobile.opt-sb3 ul.level2 .nav-item > div > div { padding: 0 !important; }
+.nav-mobile.opt-sb3 ul.level2 .nav-item > div > div > .nav-block--center { margin: 0; width: 100%; }
+.nav-mobile.opt-sb3 ul.level2 .nav-item.nav-item--only-blocks { display: none; }
+
+/* Show on 4 levels
+-------------------------------------------------------------- */
+.nav-mobile.opt-sb4 li.level0 > div > div > .nav-block,
+.nav-mobile.opt-sb4 li.level1 > div > div > .nav-block,
+.nav-mobile.opt-sb4 li.level2 > div > div > .nav-block,
+.nav-mobile.opt-sb4 li.level3 > div > div > .nav-block { display: block; }
+
+.nav-mobile.opt-sb4 ul.level3 .nav-item > div { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; }
+.nav-mobile.opt-sb4 ul.level3 .nav-item > div > div { padding: 0 !important; }
+.nav-mobile.opt-sb4 ul.level3 .nav-item > div > div > .nav-block--center { margin: 0; width: 100%; }
+.nav-mobile.opt-sb4 ul.level3 .nav-item.nav-item--only-blocks { display: none; }
+
+/* Show on 5 levels
+-------------------------------------------------------------- */
+.nav-mobile.opt-sb5 li.level0 > div > div > .nav-block,
+.nav-mobile.opt-sb5 li.level1 > div > div > .nav-block,
+.nav-mobile.opt-sb5 li.level2 > div > div > .nav-block,
+.nav-mobile.opt-sb5 li.level3 > div > div > .nav-block,
+.nav-mobile.opt-sb5 li.level4 > div > div > .nav-block { display: block; }
+
+.nav-mobile.opt-sb5 ul.level4 .nav-item > div { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; }
+.nav-mobile.opt-sb5 ul.level4 .nav-item > div > div { padding: 0 !important; }
+.nav-mobile.opt-sb5 ul.level4 .nav-item > div > div > .nav-block--center { margin: 0; width: 100%; }
+.nav-mobile.opt-sb5 ul.level4 .nav-item.nav-item--only-blocks { display: none; }
+
+
+/* Other elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Carets
+-------------------------------------------------------------- */
+.nav-mobile .caret { display: none !important; }
+
+/* Home link
+-------------------------------------------------------------- */
+.nav-mobile .nav-item--home { display: none !important; }
+
+/* Hide elements
+-------------------------------------------------------------- */
+.nav-mobile .hide-in-mobile-menu { display: none !important; }
+
+/* Hide containers for additional elements
+-------------------------------------------------------------- */
+.nav-mobile .nav-holder { display: none !important; }
+
+
+
+/* Miscellaneous %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Other modules/components
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Item sliders
+-------------------------------------------------------------- */
+.nav .itemslider { margin-top:0; margin-bottom:0; }
+.nav .itemslider .item { padding-top:5px; padding-bottom:0; }
+.nav .itemslider .product-name a { display: inline-block; }
+.nav .itemslider .product-name { margin-top: 8px; }

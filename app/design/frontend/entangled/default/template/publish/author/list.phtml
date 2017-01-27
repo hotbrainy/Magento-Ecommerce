@@ -1,0 +1,44 @@
+<?php
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_authors = $this->getAuthorCollection(); ?>
+<div class="page-title author-title">
+    <?php if(Mage::helper('publish/author')->isRssEnabled()) : ?>
+        <a href="<?php echo Mage::helper('publish/author')->getRssUrl();?>" class="link-rss"><?php echo Mage::helper('publish')->__('Subscribe to RSS Feed')?></a>
+    <?php endif;?>
+    <h1><?php echo Mage::helper('publish')->__('Authors') ?></h1>
+</div>
+<?php if ($_authors->getSize() > 0) :?>
+    <?php echo $this->getPagerHtml(); ?>
+    <div class="category-products">
+    <?php $i = 0; foreach($_authors as $_author) : ?>
+		<?php if ($i++%3==0): ?>
+			<ul class="products-grid category-products-grid itemgrid itemgrid-adaptive itemgrid-3col">
+        <?php endif ?>
+			<li class="item<?php if(($i-1)%3==0): ?> first<?php elseif($i%3==0): ?> last<?php endif; ?>">
+				<div class="product-image-wrapper">
+					<a href="<?php echo $_author->getAuthorUrl() ?>" class="product-image">
+						<img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(135) ?>" alt="<?php echo $_author->getName(); ?>"/>
+					</a>
+				</div>
+                <h2 class="product-name"><a href="<?php echo $_author->getAuthorUrl() ?>" title="<?php echo $this->stripTags($_author->getName(), null, true) ?>"><?php echo $this->stripTags($_author->getName(), null, true) ?></a></h2>
+            </li>
+        <?php if ($i%3==0 || $i==3): ?>
+			</ul>
+        <?php endif ?>
+    <?php endforeach;?>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <?php echo Mage::helper('publish')->__('There are no authors at this moment');?>
+<?php endif;?>

@@ -1,0 +1,179 @@
+/*
+ * Accordions and collapsible blocks
+ */
+
+
+
+/* Accordion  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.accordion {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+.accordion ul {
+	display:block; /*display:none;*/
+	float:left;
+	width:100%;
+	padding:0;
+	margin:0;
+}
+.accordion li {
+	float:left;
+	display:block;
+	width:100% !important;
+	padding:0 !important;
+	margin:0;
+	list-style-type:none;
+	cursor:pointer;
+	position:relative;
+}
+
+.accordion li a {
+	display:block;
+	padding:15px 10px;
+	font-size: 1.1666em; /*14px*/
+	line-height: 1.2857em; /*18px*/
+}
+.accordion li li a { padding-left:20px; }
+.accordion li li li a { padding-left:40px; }
+.accordion li li li li a { padding-left:60px; }
+
+/* Space for openner if item has children.
+   Space has to be a few pixels wider than openner */
+.accordion li.parent > a { padding-right:54px; }
+
+/* Opener
+-------------------------------------------------------------- */
+.accordion .opener {
+	position:absolute;
+	right:0;
+	top:0;
+	display:block;
+	cursor:pointer;
+	text-align:center;
+	
+	width:49px;
+	height:49px;
+	line-height:49px;
+	background: url(../../../images/infortis/_shared/accordion/opener.png) center center no-repeat;
+}
+.accordion .opener:hover {
+	background-color:rgba(0,0,0, 0.05);
+}
+
+/* Active */
+.accordion li.item-active > .opener {
+	background-image:url(../../../images/infortis/_shared/accordion/opener-active.png);
+}
+
+
+/* Accordion - Style 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Padding
+-------------------------------------------------------------- */
+.accordion-style1 li a { padding:5px 10px; }
+.accordion-style1 li li a { padding-left:20px; }
+.accordion-style1 li li li a { padding-left:35px; }
+.accordion-style1 li li li li a { padding-left:50px; }
+
+/* Space for openner if item has children.
+   Space has to be a few pixels wider than openner */
+.accordion-style1 li.parent > a { padding-right:33px; }
+
+/* Misc
+-------------------------------------------------------------- */
+.accordion-style1 li a {
+	border-bottom-color:#eee;
+	border-bottom:1px solid rgba(0,0,0,0.06);
+	font-size:1em; /*12px*/
+	line-height:1.5em; /*18px*/
+}
+.accordion-style1 li a:hover {
+	background-color:rgba(0,0,0, 0.03);
+}
+
+/* Opener
+-------------------------------------------------------------- */
+.accordion-style1 .opener {
+	width:28px;
+	height:28px;
+	line-height:28px;
+	/*background-image:url(../../../images/infortis/_shared/accordion/opener-small.png);*/
+	background-color:rgba(0,0,0, 0.03);
+}
+.accordion-style1 .opener:hover {
+	background-color:rgba(0,0,0, 0.10);
+	background-image: url(../../../images/infortis/_shared/accordion/opener-w.png);
+}
+
+/* Active */
+/*.accordion-style1 li.item-active > .opener {
+	background-image:url(../../../images/infortis/_shared/accordion/opener-small-active.png);
+}*/
+.accordion-style1 li.item-active > .opener:hover {
+	background-image:url(../../../images/infortis/_shared/accordion/opener-active-w.png);
+}
+
+
+
+/* Collapsible %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.collapsible .block-title {
+	cursor: pointer;
+}
+
+.collapsible .block-title,
+.mobile-collapsible .block-title
+{
+	padding-top:8px;
+	/*padding-right:35px;*/ /* Rremoved space for opener */
+	padding-bottom:8px;
+	border-bottom:1px solid #f2f2f2;
+	border-color:rgba(0,0,0, 0.05);
+	margin-bottom:0.625em; /*10px*/
+	
+	font-size:1.3333em; /*16px*/
+	line-height:1.25em; /*20px*/
+	font-weight:normal;
+}
+
+.collapsible .block-content,
+.collapsible .block-content > * {
+	margin-top:0; /* Prevent animation jumping */
+}
+
+/* Deprecated: opener
+-------------------------------------------------------------- */
+.collapsible .opener {
+	position:absolute;
+	right:0;
+	top:2px;
+	display:block;
+	cursor:pointer;
+	text-align:center;
+	
+	width:30px;
+	height:30px;
+	line-height:30px;
+	
+	background-image:url(../../../images/infortis/_shared/accordion/opener.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color:#f2f2f2; /*IE*/
+	background-color:rgba(0,0,0, 0.05);
+}
+.collapsible .opener:hover {
+	background-color:#e5e5e5; /*IE*/
+	background-color:rgba(0,0,0, 0.1);
+	background-image:url(../../../images/infortis/_shared/accordion/opener-w.png);
+}
+.collapsible.active .opener {
+	background-image:url(../../../images/infortis/_shared/accordion/opener-active.png);
+}
+.collapsible.active .opener:hover {
+	background-image:url(../../../images/infortis/_shared/accordion/opener-active-w.png);
+}

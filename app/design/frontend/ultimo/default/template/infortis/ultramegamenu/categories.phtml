@@ -1,0 +1,44 @@
+<?php
+/**
+ * Use this template to display the sidebar menu inside static blocks and pages.
+ */
+?>
+<?php
+    $helper = Mage::helper('ultramegamenu');
+    $visibilityClass = $helper->getCfg('sidemenu/hide_on_mobile') ? ' hide-below-768' : '';
+
+    //Get starting category - a point where traverse begins
+    $categoryId = $this->getParent();
+    if ($categoryId === NULL) //Param not set
+    {
+        $categoryId = $helper->getCfg('sidemenu/parent');
+    }
+
+    //Get depth of recursion - how many levels of subcategories retrieve
+    $depth = $this->getDepth();
+    if ($depth === NULL) //Param not set
+    {
+        $depth = intval($helper->getCfg('sidemenu/depth'));
+    }
+    else
+    {
+        $depth = intval($depth);
+    }
+
+    //Render categories menu HTML
+    $html = $this->renderMe(TRUE, $categoryId, $depth);
+    if (!$html)
+    {
+        return '';
+    }
+?>
+<div class="block block-vertnav<?php echo $visibilityClass; ?>">
+    <div class="block-title">
+        <strong><span><?php echo $this->renderBlockTitle(); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ul class="accordion accordion-style1 vertnav vertnav-side clearer"> <?php //Class "vertnav-side" left for backward compatibility ?>
+            <?php echo $html; ?>
+        </ul>
+    </div>
+</div>

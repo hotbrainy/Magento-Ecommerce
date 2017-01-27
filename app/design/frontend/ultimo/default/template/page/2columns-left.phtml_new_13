@@ -1,0 +1,131 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php echo $this->getChildHtml('after_body_start') ?> <?php echo $this->getChildHtml('global_notices') ?> <?php echo $this->getChildHtml('header'); ?>
+<section class="breadcrumb_wraper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"> <?php echo $this->getChildHtml('breadcrumbs') ?> </div>
+    </div>
+  </div>
+</section>
+<main>
+  <section class="main-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="sidebar">
+            <div class="sidebar-block white-bg">
+              <h6>All Categories</h6>
+              <div id="accordian">
+                <ul class="category-menu">
+                  <li class="parent active-parent">
+                    <h3>Imprints</h3>
+                    <ul class="sub-cat" style="display:block;">
+                      <?php 
+                $parentCategoryId = 4;
+                $cat = Mage::getModel('catalog/category')->load($parentCategoryId);
+                $subcats = $cat->getChildren();
+                foreach(explode(',',$subcats) as $subCatid)
+                {
+                $_category = Mage::getModel('catalog/category')->load($subCatid);
+                if($_category->getIsActive()) {
+                echo '<li><a href="'.$_category->getURL().'" title="View the products for the "'.$_category->getName().'" category">'.$_category->getName().'</a>';
+                echo '</li>';
+                }
+                }
+                ?>
+                    </ul>
+                  </li>
+                  <li class="parent">
+                    <h3>Genres</h3>
+                    <ul class="sub-cat">
+                      <?php 
+                $parentCategoryId = 3;
+                $cat = Mage::getModel('catalog/category')->load($parentCategoryId);
+                $subcats = $cat->getChildren();
+                foreach(explode(',',$subcats) as $subCatid)
+                {
+                $_category = Mage::getModel('catalog/category')->load($subCatid);
+                if($_category->getIsActive()) {
+                echo '<li><a href="'.$_category->getURL().'" title="View the products for the "'.$_category->getName().'" category">'.$_category->getName().'</a>';
+                echo '</li>';
+                }
+                }
+                ?>
+                    </ul>
+                  </li>
+                  <li class="parent">
+                    <h3>Tropes</h3>
+                    <ul class="sub-cat">
+                      <?php 
+                $parentCategoryId = 93;
+                $cat = Mage::getModel('catalog/category')->load($parentCategoryId);
+                $subcats = $cat->getChildren();
+                foreach(explode(',',$subcats) as $subCatid)
+                {
+                $_category = Mage::getModel('catalog/category')->load($subCatid);
+                if($_category->getIsActive()) {
+                echo '<li><a href="'.$_category->getURL().'" title="View the products for the "'.$_category->getName().'" category">'.$_category->getName().'</a>';
+                echo '</li>';
+                }
+                }
+                ?>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="sidebar-block"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_left_bottom')->toHtml();?> </div>
+            <div class="sidebar-block testemonial_info"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('featured_author')->toHtml();?> </div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <?php echo $this->getChildHtml('content') ?>
+          <div class="carousel_container">
+ <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('best-selling-block')->toHTML();?>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</main>
+<?php echo $this->getChildHtml('footer') ?> <?php echo $this->getChildHtml('global_cookie_notice') ?> <?php echo $this->getChildHtml('before_body_end') ?> <?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

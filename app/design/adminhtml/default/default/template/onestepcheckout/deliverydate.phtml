@@ -1,0 +1,25 @@
+<?php
+$order = $this->getOrder();
+$getIoscDdate = $order->getIoscDdate();
+$getIoscDdateSlot = $order->getIoscDdateSlot();
+$getIoscDnote = $order->getIoscDnote();
+?>
+<?php if($getIoscDnote || $getIoscDdateSlot || $getIoscDdate):?>
+<div id="osc_deliverydate" style="display:none; margin: 15px 0px 0px 0px; padding: 6px 10px; border: 1px solid #ccc; background: #eee; border-radius: 3px;">
+    <?php if($getIoscDdate):?>
+    <div><?php echo $this->__('<strong>Date:</strong> %s', date('d/m/Y', strtotime($getIoscDdate)));?></div>
+    <?php endif;?>
+    <?php if($getIoscDdateSlot):?>
+    <div><?php echo $this->__('<strong>Slot:</strong> %s', $this->escapeHtml($getIoscDdateSlot));?></div>
+    <?php endif;?>
+    <?php if($getIoscDnote):?>
+    <div><?php echo $this->__('<strong>Note:</strong> %s', $this->escapeHtml($getIoscDnote));?></div>
+    <?php endif;?>
+</div>
+<script>
+$$('.head-shipping-method').first().up('div').next('fieldset').insert({
+    bottom: $('osc_deliverydate')
+  });
+$('osc_deliverydate').show();
+</script>
+<?php endif;?>

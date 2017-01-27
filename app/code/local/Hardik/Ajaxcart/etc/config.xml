@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Hardik Gajjar
+ */
+-->
+<config>
+    <modules>
+        <Hardik_Ajaxcart>
+            <version>2.0.1</version>
+        </Hardik_Ajaxcart>
+    </modules>
+    <global>
+        <models>
+            <ajaxcart>
+                <class>Hardik_Ajaxcart_Model</class>
+            </ajaxcart>
+        </models>
+        <blocks>
+            <ajaxcart>
+                <class>Hardik_Ajaxcart_Block</class>
+            </ajaxcart>
+        </blocks>
+        <helpers>
+            <ajaxcart>
+                <class>Hardik_Ajaxcart_Helper</class>
+            </ajaxcart>
+        </helpers>
+        <rewrite>
+            <Hardik_ajaxcart_checkout_cart>
+                <from><![CDATA[#^/checkout/cart/#]]></from>
+                <to>/ajaxcart/checkout_cart/</to>
+            </Hardik_ajaxcart_checkout_cart>
+        </rewrite>
+    </global>
+    <frontend>
+        <routers>
+            <ajaxcart>
+                <use>standard</use>
+                <args>
+                    <module>Hardik_Ajaxcart</module>
+                    <frontName>ajaxcart</frontName>
+                </args>
+            </ajaxcart>
+        </routers>
+        <events>
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <ajaxcart>
+                        <type>singleton</type>
+                        <class>ajaxcart/observer</class>
+                        <method>addToCartEvent</method>
+                    </ajaxcart>
+                </observers>
+            </checkout_cart_add_product_complete>
+            <checkout_cart_update_item_complete>
+                <observers>
+                    <ajaxcart>
+                        <type>singleton</type>
+                        <class>ajaxcart/observer</class>
+                        <method>updateItemEvent</method>
+                    </ajaxcart>
+                </observers>
+            </checkout_cart_update_item_complete>
+            <!--for configurable products-->
+            <controller_action_postdispatch_catalog_product_view>
+                <observers>
+                    <ajaxcart>
+                        <class>ajaxcart/observer</class>
+                        <method>getConfigurableOptions</method>
+                    </ajaxcart>
+                </observers>
+            </controller_action_postdispatch_catalog_product_view>
+            <!--for group products-->
+            <controller_action_predispatch_checkout_cart_add>
+                <observers>
+                    <ajaxcart>
+                        <type>singleton</type>
+                        <class>ajaxcart/observer</class>
+                        <method>getGroupProductOptions</method>
+                    </ajaxcart>
+                </observers>
+            </controller_action_predispatch_checkout_cart_add>
+        </events>
+        <layout>
+            <updates>
+                <ajaxcart>
+                    <file>ajaxcart.xml</file>
+                </ajaxcart>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ajaxcart>
+                                            <title>Ajaxcart Settings</title>
+                                        </ajaxcart>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <default>
+        <ajaxcart>
+            <general>
+                <enable>1</enable>
+                <update_blocks>a:2:{s:2:"id";a:4:{i:0;s:17:".block.block-cart";i:1;s:14:".header .links";i:2;s:26:".checkout-cart-index .cart";i:3;s:16:".header-minicart";}s:3:"xml";a:4:{i:0;s:12:"cart_sidebar";i:1;s:9:"top.links";i:2;s:13:"checkout.cart";i:3;s:13:"minicart_head";}}</update_blocks>
+            </general>
+        </ajaxcart>
+    </default>
+</config>

@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category	Infortis
+ * @package		Infortis_UltraMegamenu
+ * @author		Infortis
+ * @copyright	Copyright 2012 - 2014 Infortis
+ */
+-->
+<config>
+	<modules>
+		<Infortis_UltraMegamenu>
+			<version>1.2.0</version>
+		</Infortis_UltraMegamenu>
+	</modules>
+	<frontend>
+		<layout>
+			<updates>
+				<ultramegamenu module="ultramegamenu">
+					<file>infortis_ultramegamenu.xml</file>
+				</ultramegamenu>
+			</updates>
+		</layout>
+		<category>
+			<collection>
+				<attributes>
+					<umm_dd_type />
+					<umm_dd_width />
+					<umm_dd_proportions />
+					<umm_dd_columns />
+					<umm_dd_blocks />
+					<umm_cat_target />
+					<umm_cat_label />
+				</attributes>
+			</collection>
+		</category>
+	</frontend>
+	<global>
+		<blocks>
+			<ultramegamenu>
+				<class>Infortis_UltraMegamenu_Block</class>
+			</ultramegamenu>
+		</blocks>
+		<helpers>
+			<ultramegamenu>
+				<class>Infortis_UltraMegamenu_Helper</class>
+			</ultramegamenu>
+		</helpers>
+		<models>
+			<ultramegamenu>
+				<class>Infortis_UltraMegamenu_Model</class>
+				<!--<resourceModel>ultramegamenu_mysql4</resourceModel>-->
+			</ultramegamenu>
+			<!--<ultramegamenu_mysql4>
+				<class>Infortis_UltraMegamenu_Model_Mysql4</class>
+			</ultramegamenu_mysql4>-->
+		</models>
+		<resources>
+			<ultramegamenu_setup>
+				<setup>
+					<module>Infortis_UltraMegamenu</module>
+					<!--<class>Infortis_UltraMegamenu_Model_Resource_Mysql4_Setup</class>-->
+					<class>Infortis_UltraMegamenu_Model_Resource_Eav_Mysql4_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</ultramegamenu_setup>
+			<ultramegamenu_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</ultramegamenu_write>
+			<ultramegamenu_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</ultramegamenu_read>
+		</resources>
+		<events>
+			<catalog_category_flat_loadnodes_before>
+				<observers>
+					<ultramegamenu>
+						<type>singleton</type>
+						<class>ultramegamenu/observer</class>
+						<method>hookTo_CatalogCategoryFlatLoadnodesBefore</method>
+					</ultramegamenu>
+				</observers>
+			</catalog_category_flat_loadnodes_before>
+		</events>
+	</global>
+	<default>
+		<ultramegamenu>
+			<general>
+				<enable>1</enable>
+				<mode>0</mode>
+				<categories>1</categories>
+			</general>
+			<mainmenu>
+				<home>1</home>
+				<home_img>0</home_img>
+				<home_link_icon>0</home_link_icon>
+				<spill>1</spill>
+				<custom_block_floating>1</custom_block_floating>
+			</mainmenu>
+			<mobilemenu>
+				<threshold>960</threshold>
+				<collapsed>1</collapsed>
+				<show_blocks>0</show_blocks>
+				<hide_blocks_below>1</hide_blocks_below>
+			</mobilemenu>
+			<sidemenu>
+				<enable_category_left>1</enable_category_left>
+				<enable_category_right></enable_category_right>
+				<enable_home_left></enable_home_left>
+				<enable_home_right></enable_home_right>
+				<enable_cms_left></enable_cms_left>
+				<enable_cms_right></enable_cms_right>
+				<enable_product_left></enable_product_left>
+				<enable_product_right></enable_product_right>
+				<block_name>Categories</block_name>
+				<parent>current</parent>
+				<depth>2</depth>
+				<fallback>1</fallback>
+				<block_name_fallback></block_name_fallback>
+				<num_of_products>0</num_of_products>
+				<hide_on_mobile>1</hide_on_mobile>
+				<hide_laynav_categories>1</hide_laynav_categories>
+			</sidemenu>
+			<category_labels>
+				<label1>New</label1>
+				<label2>Hot!</label2>
+			</category_labels>
+		</ultramegamenu>
+	</default>
+</config>
+
+
+
+
+
+

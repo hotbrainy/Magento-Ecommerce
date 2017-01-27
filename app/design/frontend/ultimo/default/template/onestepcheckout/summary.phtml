@@ -1,0 +1,133 @@
+<?php
+// todo: move this to block
+$_coreHelper = $this->helper('core');
+$checkoutHelper = Mage::helper('onestepcheckout/checkout');
+$authorHelper = Mage::helper('publish/author');
+$customHelper = Mage::helper('entangled_custom');
+$mageworxHelper = Mage::helper('mageworx_customercredit');
+$checkout = Mage::getSingleton('checkout/cart');
+/** @var Mage_Sales_Model_Quote $quote */
+$quote = $checkout->getQuote();
+$totals = $quote->getTotals();
+$exchangeRate = Mage::helper('mageworx_customercredit')->getExchangeRate();
+$pointsTotal = $customHelper->getTotalCustomerCredit() / 10;
+$pointsTotalExchange = $mageworxHelper->getValueExchangeRateDivided($pointsTotal);
+$isMembership = $customHelper->isSubscriptionUser(true);
+$isMembershipFromProduct = $customHelper->isMembershipCouponInCart();
+$membershipDiscount =  $isMembershipFromProduct ? round(($totals["subtotal"]["value"] - 20) * -0.1,2) : round($totals["subtotal"]["value"] * -0.1,2);
+if(isset($totals["discount"])){
+    $totals["discount"]["value"] = $isMembership ? round($totals["discount"]["value"] - $membershipDiscount,2) : $totals["discount"]["value"];
+}
+if($isMembershipFromProduct){
+    $membershipWithTax = $mageworxHelper->getMembershipPriceWithTax();
+    $pointsTotal -= $membershipWithTax * 100;
+}
+$pointsTotal = round($pointsTotal,4);
+?>
+<div id="header-cart">
+  <div class="cart_container">
+    <h2><?php echo $this->__("Order Summary") ?></h2>
+    <div class="cart_details no_border">
+      <div class="cart-totals">
+          <div class="cart_rht">
+              <h5><?php echo $this->__("Cart Subtotal: ") ?><span> <span class="price"><?php echo $this->helper('checkout')->formatPrice($quote->getSubtotal()); ?> </span></span></h5>
+              <h6><?php echo $this->__("Your books are available for immediate download.") ?></h6>
+              <?php if(isset($totals["tax"])): ?>
+                  <h5 >
+                      <?php echo $this->__("Sales Tax: ") ?>
+                      <i class="fa fa-question-circle checkout-helper tax-helper" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="We are required by State laws to collect sales tax for consumers living in Colorado or Virginia."></i>
+                      <span> <span class="price"><?php echo $this->helper('checkout')->formatPrice($totals["tax"]["value"]); ?> </span></span>
+                  </h5>
+              <?php endif; ?>
+              <?php if(isset($totals["discount"]) && $totals["discount"]["value"]): ?>
+                  <h5><?php echo $this->__("Discounts and promotions: ") ?><span> <span class="price"><?php echo $this->helper('checkout')->formatPrice($totals["discount"]["value"]); ?> </span></span></h5>
+              <?php endif; ?>
+              <?php if($isMembership && $membershipDiscount): ?>
+                  <h5><?php echo $this->__("Entangled Fanatic ™ Discount: ") ?><span> <span class="price"><?php echo $this->helper('checkout')->formatPrice($membershipDiscount); ?> </span></span></h5>
+              <?php elseif($membershipDiscount): ?>
+                  <!-- <div class="clearfix text-center membership-discount-container">
+                      <p><?php echo $this->__('Become an Entangled Fanatic ™ and save <b>%s</b> on this purchase!',$this->helper('checkout')->formatPrice($membershipDiscount*-1)) ?></p>
+                      <a href="<?php echo $this->getUrl('membership/index/membership')?>" class="membership-link"><?php echo $this->__('Upgrade your account!') ?></a>
+                  </div> -->
+              <?php endif; ?>
+              <?php if(isset($totals["mageworx_customercredit"])): ?>
+                  <h5><?php echo $this->__("Internal Credit: ") ?><span> <span class="price"><?php echo $this->helper('checkout')->formatPrice($totals["mageworx_customercredit"]["value"]); ?> </span></span></h5>
+              <?php endif; ?>
+          </div>
+          <div class="grand_total_amount"> Order Total: <span class="price"><?php echo $this->helper('checkout')->formatPrice($quote->getGrandTotal()); ?> </span> </div>
+          <div class="clearfix"></div>
+          <div class="line"></div>
+      </div>
+        <div class="customer-credit-details">
+            <?php echo $this->__('You’ll earn <span class="points">%s POINTS</span> towards your next purchase. Learn more about the <a href="%s" target="_blank">Entangled Fanatic Rewards Program</a>.',$pointsTotal,Mage::getBaseUrl()."rewardpoints") ?>
+        </div>
+      <div class="living_holder">
+          <ol id="cart-sidebar" class="mini-products-list clearer">
+              <?php foreach($this->getItems() as $item): ?>
+                  <?php $authors = $authorHelper->getProductAuthorsNames($item->getProduct()); ?>
+                  <div class="living_container">
+                      <div class="living_feild">
+                          <li class="item"> <span class="item_img"><img src="<?=$this->helper('catalog/image')->init($item->getProduct(),'small_image')->resize(70,70);?>" width="70" height="70" alt="<?php echo $item->getName();?>"/></span>
+                              <div class="product-details">
+                                  <p class="product-name">
+                                      <a href="<?php echo $item->getProduct()->getProductUrl() ?>">
+                                          <?php echo $item->getName();?>
+                                      </a>
+                                  </p>
+                                  <?php foreach($authors as $author): ?>
+                                      <p class="author-name">
+                                          <?php echo $author;?>
+                                      </p>
+                                  <?php endforeach; ?>
+                              </div>
+                              <span class="item_quantity">
+                                  <div class="editcart"><a href="#" class="subsqty" name="substract">+</a></div>
+                                  <div class="qty" nowrap><input type="hidden" value="<?php echo $item->getQty(); ?>" id="qty_<?php echo $item->getId(); ?>" name="cart[<?php echo $item->getId(); ?>][qty]" class="qtyinput" size="1" /></div>
+                                  <div class="editcart wider" nowrap></div>
+                              </span>
+                              <span class="item_price">
+                                <?php echo $this->helper('checkout')->formatPrice($item->getPrice());?>
+                              </span>
+                          </li>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div>
+              <?php endforeach; ?>
+          </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+try{
+    var total = <?php echo $this->getGrandTotal();?>;
+    if(payment.reloadcallback){
+        var url = '<?php echo $this->getUrl('onestepcheckout/ajax/paymentrefresh', array('_secure'=>true)); ?>';
+        paymentrefresh(url);
+        payment.countreload = 0;
+        payment.reloadcallback = false;
+    }
+}catch(e){
+
+}
+
+$$('a.subsqty, a.addsqty, a.removeqty').each(
+    function(e){
+        e.observe('click', function(e){
+            e.stop();
+            oscUpdateCart(e.element(), '<?php echo $this->getUrl('onestepcheckout/ajax/updatecart', array('_secure'=>true)); ?>', '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>' );
+        });
+    }
+);
+$$('input.qtyinput').each(
+    function(e){
+        e.observe('change', function(e){
+            e.stop();
+
+            oscUpdateCart(e.element(), '<?php echo $this->getUrl('onestepcheckout/ajax/updatecart', array('_secure'=>true)); ?>','<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>');
+        });
+    }
+);
+//]]>
+</script> 

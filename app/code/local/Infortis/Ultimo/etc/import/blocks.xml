@@ -1,0 +1,997 @@
+<root>
+   <blocks>
+      <cms_block>
+         <title>Landing page 1</title>
+         <identifier>landing_page1</identifier>
+         <content><![CDATA[<div class="horizontal-section">
+
+	<a href="#">
+		<img src="{{media url="wysiwyg/infortis/ultimo/custom/landing/category01.jpg"}}" title="You can edit this block or replace it with custom content" alt="Sample banner" />
+    
+		<div class="caption dark2 full-width">
+			<h2 class="heading permanent">Category Banner</h2>
+			<p>Upload image and description for every category in the store</p>
+			<p>Create landing pages for categories</p>
+		</div>
+	</a>
+    
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom footer links 2</title>
+         <identifier>block_footer_links2</identifier>
+         <content><![CDATA[<ul class="links hide-below-768">
+
+	<li class="first">
+		<a href="{{store direct_url='about-magento-demo-store/'}}" title="You can add more custom links here">About Us</a>
+	</li>
+	<li class="last">
+		<a href="{{store direct_url='customer-service/'}}"  title="You can even replace these links with any other content">Customer Service</a>
+	</li>
+
+</ul>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom footer links</title>
+         <identifier>block_footer_links</identifier>
+         <content><![CDATA[This block can replace Magento's default footer links.
+
+<ul class="links">
+
+    <li class="first">
+    	<a href="{{store url='about-magento-demo-store'}}" title="My custom link">Custom Link</a>
+    </li>
+    <li class=" last">
+    	<a href="{{store url='about-magento-demo-store'}}" title="My sample link">Sample Link</a>
+    </li>
+    
+</ul>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer primary bottom left - social links</title>
+         <identifier>block_footer_primary_bottom_left</identifier>
+         <content><![CDATA[<div class="social-links ib-wrapper--square">
+	<a class="first" href="http://twitter.com/infortis" title="Follow Infortis on Twitter">
+		<span class="ib ib-hover ic ic-lg ic-twitter"></span>
+	</a>
+	<a href="#" title="Join us on Facebook">
+		<span class="ib ib-hover ic ic-lg ic-facebook"></span>
+	</a>
+	<a href="#" title="Join us on Google Plus">
+		<span class="ib ib-hover ic ic-lg ic-googleplus"></span>
+	</a>
+	<a href="#" title="Youtube">
+		<span class="ib ib-hover ic ic-lg ic-youtube"></span>
+	</a>
+	<a href="#" title="Vimeo">
+		<span class="ib ib-hover ic ic-lg ic-vimeo"></span>
+	</a>
+	<a href="#" title="Instagram">
+		<span class="ib ib-hover ic ic-lg ic-instagram"></span>
+	</a>
+	<a href="#" title="Pinterest">
+		<span class="ib ib-hover ic ic-lg ic-pinterest"></span>
+	</a>
+	<a href="#" title="Linked in">
+		<span class="ib ib-hover ic ic-lg ic-linkedin"></span>
+	</a>
+	<a href="#" title="VKontakte">
+		<span class="ib ib-hover ic ic-lg ic-vk"></span>
+	</a>
+	<a href="#" title="Renren">
+		<span class="ib ib-hover ic ic-lg ic-renren"></span>
+	</a>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer payment</title>
+         <identifier>block_footer_payment</identifier>
+         <content><![CDATA[<img src="{{media url="wysiwyg/infortis/ultimo/custom/payment.gif}}" alt="Payment methods" title="Sample image with payment methods" />]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Category below collection</title>
+         <identifier>block_category_below_collection</identifier>
+         <content><![CDATA[<div class="nested-container hide-below-768">
+
+    <div class="page-banners clearer">
+        <div class="grid12-6 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-6 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/03.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Category above empty collection</title>
+         <identifier>block_category_above_empty_collection</identifier>
+         <content><![CDATA[<div class="note-msg empty-catalog">
+
+	<h3>There are no products matching the selection</h3>
+	This is a custom CMS block displayed if category is empty.<br>
+	You can replace it with any custom content.
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Product - secondary column bottom</title>
+         <identifier>block_product_secondary_bottom</identifier>
+         <content><![CDATA[<div class="feature feature-icon-hover indent first">
+	<span class="ib ic ic-lg ic-plane"></span>
+	<p class="no-margin ">We will send this product in 2 days. <a href="#">Read more...</a></p>
+</div>
+<div class="feature feature-icon-hover indent">
+	<span class="ib ic ic-lg ic-phone"></span>
+	<p class="no-margin ">Call us now for more info about our products.</p>
+</div>
+<div class="feature feature-icon-hover indent">
+	<span class="ib ic ic-lg ic-reload"></span>
+	<p class="no-margin ">Return purchased items and get all your money back.</p>
+</div>
+<div class="feature feature-icon-hover indent last">
+	<span class="ib ic ic-lg ic-star"></span>
+	<p class="no-margin ">Buy this product and earn 10 special loyalty points!</p>
+</div>
+
+
+
+<!-- Social bookmarks from http://www.addthis.com/get/sharing  -->
+<!-- AddThis Button BEGIN -->
+<div class="feature-wrapper top-border">
+	<div class="addthis_toolbox addthis_default_style ">
+	<a class="addthis_button_preferred_1"></a>
+	<a class="addthis_button_preferred_2"></a>
+	<a class="addthis_button_preferred_3"></a>
+	<a class="addthis_button_preferred_4"></a>
+	<a class="addthis_button_compact"></a>
+	<a class="addthis_counter addthis_bubble_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5054e6c6502d114f"></script>
+</div>
+<!-- AddThis Button END -->
+
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Product - primary column bottom</title>
+         <identifier>block_product_primary_bottom</identifier>
+         <content><![CDATA[Sample content of the static block - primary column bottom.]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Cart - below totals</title>
+         <identifier>block_cart_below_totals</identifier>
+         <content><![CDATA[<div class="hide-below-320" style="display: table; float: right; padding-right: 10px; text-align: right;"><span style="display: table-cell; vertical-align: middle;">Sample info about SSL Certificate</span> <img src="{{media url="wysiwyg/infortis/ultimo/custom/block_cart_below_totals.png"}}" alt="Example Image" title="Static CMS block displayed below totals. Put your own content here." /></div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Mini cart above products</title>
+         <identifier>block_mini_cart_above_products</identifier>
+         <content><![CDATA[<div style="padding:15px; background-color:#f5f5f5; color:#d90000;" title="Customizable CMS block for promo info">
+<a class="go" href="{{store url=""}}">Check our latest super promotions!</a>
+</div>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom Tab 1</title>
+         <identifier>block_product_tab1</identifier>
+         <content><![CDATA[<p>Custom CMS block displayed as a tab. You can use it to display info about returns and refunds, latest promotions etc. You can put your own content here: text, HTML, images - whatever you like. There are <strong>many similar blocks</strong> accross the store. All CMS blocks are editable from the admin panel.</p>
+
+<div class="feature indent first">
+	<span class="icon i-right no-bg-color"></span>
+	<p class="no-margin"><strong>Magento Community Edition is the most powerful</strong> open source e-commerce software and can be downloaded 100% for free. Developers can modify the core code, add custom features and functionality by installing extensions from Magento Connect marketplace.</p>
+</div>
+<div class="feature indent">
+	<span class="icon i-right no-bg-color"></span>
+	<p class="no-margin"><strong>Manage the fully dynamic catalog</strong> with the intutive admistrative interface. The flexible catalog system includes various options for the display of items. Magento is also integrated with a variety of major payment gateways out of the box.</p>
+</div>
+<div class="feature indent last">
+	<span class="icon i-right no-bg-color"></span>
+	<p class="no-margin"><strong>Magento is a fully global platform</strong>, allowing for the expansion of business or simply offering multiple versions of your site to meet the needs of your customers.
+Translated into over 60 languages, supporting multiple currencies, payment methods and taxes, Magento allows for internationalization of your online stores.</p>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom Tab 2</title>
+         <identifier>block_product_tab2</identifier>
+         <content><![CDATA[<p>Another custom CMS block displayed as a tab. You can use it to display info about returns and refunds, latest promotions etc. You can put your own content here: text, HTML, images - whatever you like. There are <strong>many similar blocks</strong> accross the store. All CMS blocks are editable from the admin panel.</p>
+
+<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis. Nullam ornare enim nec justo bibendum lobortis. In eget metus.</p>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Cart - below table</title>
+         <identifier>block_cart_below_table</identifier>
+         <content><![CDATA[<img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/cart-discount.png"}}" alt="Magento discount code" title="Use discount code/coupon" />]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer column 1</title>
+         <identifier>block_footer_column1</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+	<h6 class="block-title heading">About Ultimo</h6>
+
+	<div class="block-content">
+
+		<div class="feature first last">
+			<img class="icon" src="{{media url="wysiwyg/infortis/ultimo/icons/info.png"}}" alt="About Ultimo Magento Theme" />
+			<p>Ultimo is a premium Magento theme with advanced admin module. It’s extremely customizable, easy to use and fully responsive.</p>
+			<p>Suitable for every type of store. Great starting point for your custom projects.</p>
+			<h5><a class="go" href="http://themeforest.net/item/ultimo-fluid-responsive-magento-theme/3231798?ref=infortis">Buy this theme</a></h5>
+		</div>
+
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer column 2</title>
+         <identifier>block_footer_column2</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+
+	<h6 class="block-title heading">Theme Features</h6>
+	<div class="block-content">
+	
+		<ul class="bullet">
+			<li><a href="{{store url='ultimo-responsive-magento-theme'}}">Theme Features</a></li>
+			<li><a href="{{store url='typography'}}">Typography</a></li>
+			<li><a href="#">Some Sample Link</a></li>
+			<li><a href="#">Meat Our Best Partners</a></li>
+			<li><a href="#">Latest Work Samples</a></li>
+			<li><a href="#">Our Other Projects</a></li>
+			<li><a href="#">One Click To Join Us</a></li>
+			<li><a href="#">Follow Us On Twitter</a></li>
+			<li><a href="http://infortis-themes.com/">Magento Themes</a></li>
+			<li><a href="#">Ecommerce</a></li>
+		</ul>
+
+	</div>
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer column 3</title>
+         <identifier>block_footer_column3</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+
+	<h6 class="block-title heading">Key Features</h6>
+	<div class="block-content">
+		<div class="feature feature-icon-hover indent first">
+			<span class="ib ic ic-char">1</span>
+			<p class="no-margin">Unlimited colors, hundreds of customizable elements</p>
+		</div>
+		<div class="feature feature-icon-hover indent">
+			<span class="ib ic ic-char">2</span>
+			<p class="no-margin ">Customizable responsive layout based on fluid grid</p>
+		</div>
+		<div class="feature feature-icon-hover indent">
+			<span class="ib ic ic-char">3</span>
+			<p class="no-margin ">50+ placeholders to display custom content</p>
+		</div>
+		<div class="feature feature-icon-hover indent">
+			<span class="ib ic ic-char">4</span>
+			<p class="no-margin ">Create your custom sub-themes (variants)</p>
+		</div>
+	</div>
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer column 4</title>
+         <identifier>block_footer_column4</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+
+		<h6 class="block-title heading">Company Info</h6>
+		<div class="block-content">
+			<div class="feature feature-icon-hover indent first">
+				<span class="ib ic ic-phone ic-lg"></span>
+				<p class="no-margin ">Call Us +001 555 801<br/>Fax +001 555 802</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-mobile ic-lg"></span>
+				<p class="no-margin ">+77 123 1234<br/>+42 98 9876</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-letter ic-lg"></span>
+				<p class="no-margin ">boss@example.com<br/>me@example.com</p>
+			</div>
+			<div class="feature feature-icon-hover indent last">
+				<span class="ib ic ic-skype ic-lg"></span>
+				<p class="no-margin ">Skype: samplelogin<br/>skype-support</p>
+			</div>
+		</div>
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer column 5</title>
+         <identifier>block_footer_column5</identifier>
+         <content><![CDATA[<div class="grid12-3">
+	<div class="collapsible mobile-collapsible">
+
+		<h6 class="block-title heading">About Ultimo</h6>
+		<div class="block-content">
+			<img src="{{media url="wysiwyg/infortis/ultimo/custom/logo-small.png"}}" alt="Ultimo Theme" style="padding-bottom:10px;" />
+			<div class="feature first last">
+				<p>Ultimo is a premium Magento theme with advanced admin module. It’s extremely customizable, easy to use and fully responsive.</p>
+				<h5><a class="go" href="http://themeforest.net/item/ultimo-fluid-responsive-magento-theme/3231798?ref=infortis">Buy this theme</a></h5>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="grid12-3">
+	<div class="collapsible mobile-collapsible">
+
+		<h6 class="block-title heading">Theme Features</h6>
+		<div class="block-content">
+			<ul class="bullet">
+				<li><a href="{{store url='ultimo-responsive-magento-theme'}}">Theme Features</a></li>
+				<li><a href="{{store url='typography'}}">Typography</a></li>
+				<li><a href="#">Some Sample Link</a></li>
+				<li><a href="#">Meat Our Best Partners</a></li>
+				<li><a href="#">Latest Work Samples</a></li>
+				<li><a href="#">Our Other Projects</a></li>
+				<li><a href="#">One Click To Join Us</a></li>
+				<li><a href="#">Follow Us On Twitter</a></li>
+				<li><a href="http://infortis-themes.com/">Magento Themes</a></li>
+				<li><a href="#">Ecommerce</a></li>
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="grid12-3">
+	<div class="collapsible mobile-collapsible">
+
+		<h6 class="block-title heading">Key Features</h6>
+		<div class="block-content">
+			<div class="feature feature-icon-hover indent first">
+				<span class="ib ic ic-char">1</span>
+				<p class="no-margin">Unlimited colors, hundreds of customizable elements</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-char">2</span>
+				<p class="no-margin ">Customizable responsive layout based on fluid grid</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-char">3</span>
+				<p class="no-margin ">50+ placeholders to display custom content</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-char">4</span>
+				<p class="no-margin ">Create your custom sub-themes (variants)</p>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="grid12-3">
+	<div class="collapsible mobile-collapsible">
+
+		<h6 class="block-title heading">Company Info</h6>
+		<div class="block-content">
+			<div class="feature feature-icon-hover indent first">
+				<span class="ib ic ic-phone ic-lg"></span>
+				<p class="no-margin ">Call Us +001 555 801<br/>Fax +001 555 802</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-mobile ic-lg"></span>
+				<p class="no-margin ">+77 123 1234<br/>+42 98 9876</p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ib ic ic-letter ic-lg"></span>
+				<p class="no-margin ">boss@example.com<br/>me@example.com</p>
+			</div>
+			<div class="feature feature-icon-hover indent last">
+				<span class="ib ic ic-skype ic-lg"></span>
+				<p class="no-margin ">Skype: samplelogin<br/>skype-support</p>
+			</div>
+		</div>
+
+	</div>
+</div>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer column 6</title>
+         <identifier>block_footer_column6</identifier>
+         <content><![CDATA[<h6 class="heading">Sample Column</h6>
+<ul>
+	<li><a href="#">Responsive Magento Theme</a></li>
+	<li><a href="#">Magento Extensions</a></li>
+	<li><a href="#">Store Overview</a></li>
+	<li><a href="#">Buy This</a></li>
+	<li><a href="#">Sample Link</a></li>
+	<li><a href="#">Some Other Link</a></li>
+	<li><a href="#">Link Example</a></li>
+</ul>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom</title>
+         <identifier>block_header_nav_dropdown</identifier>
+         <content><![CDATA[<div class="grid-container-spaced">
+	<div class="grid12-3">
+
+		<h2>Responsive Magento Theme</h2>
+		<p>Ultimo is a premium Magento theme with advanced admin module. It's extremely customizable and fully responsive. Can be used for every type of store.</p>
+		<h5><a class="go" href="http://themeforest.net/item/ultimo-fluid-responsive-magento-theme/3231798?ref=infortis" style="color:red;">Buy this Magento theme</a></h5>
+
+	</div>
+	<div class="grid12-3">
+
+		<a href="{{store url='ultimo-responsive-magento-theme'}}">
+			<img src="{{media url='wysiwyg/infortis/ultimo/menu/custom/01.png'}}" class="fade-on-hover" alt="Magento CMS blocks" />
+		</a>
+		<h4 class="heading">50+ CMS blocks</h4>
+		<p>You can use CMS blocks as content placeholders to display custom content in almost every part of the store. Import sample CMS blocks from the demo.</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+
+	</div>
+	<div class="grid12-3">
+
+		<a href="{{store url='ultimo-responsive-magento-theme'}}">
+			<img src="{{media url='wysiwyg/infortis/ultimo/menu/custom/02.png'}}" class="fade-on-hover" alt="Magento theme documentation" />
+		</a>
+		<h4 class="heading">190-pages documentation</h4>
+		<p>The best Magento theme documentation on ThemeForest. It also describes selected Magento features which you need to know when starting to work with Magento.</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+
+	</div>
+	<div class="grid12-3">
+
+		<a href="{{store url='ultimo-responsive-magento-theme'}}">
+			<img src="{{media url='wysiwyg/infortis/ultimo/menu/custom/03.png'}}" class="fade-on-hover" alt="Create Magento sub-themes" />
+		</a>
+		<h4 class="heading">Easy to customize</h4>
+		<p>Use Ultimo as a starting point for your custom projects. Unlike many other themes, Ultimo lets you create multiple custom sub-themes (theme variants) for your clients.</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Product - replace related</title>
+         <identifier>block_product_replace_related</identifier>
+         <content><![CDATA[<div class="block">
+	<div class="block-title">
+		<strong><span>Replace related</span></strong>
+	</div>
+
+	<p style="background-color: #eee; padding:10px; margin-bottom:10px; margin-top:10px;">
+		Custom CMS block replacing related products. Put your own content here: text, HTML, images - whatever you want.
+	</p>
+	<p style="background-color: #eee; padding:10px;">
+		There are many similar blocks accross the store. All editable from admin panel.
+	</p>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Product - replace up-sell</title>
+         <identifier>block_product_replace_upsell</identifier>
+         <content><![CDATA[<div style="background-color: #eee; padding: 20px;">Custom CMS block displayed when you want to replace up-sell products with custom content. You can display here some text, images or any other content.</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Header top left 2</title>
+         <identifier>block_header_top_left2</identifier>
+         <content><![CDATA[<div class="links-wrapper-separators">
+
+   <ul class="links">
+      <li class="first">
+         <a href="http://ultimo.infortis-themes.com/demo/select-demo/" title="See more demos">All demos</a>
+      </li>
+      <li class="hide-below-768">
+         <a href="{{store url='ultimo-responsive-magento-theme'}}" title="See the list of all features">Features</a>
+      </li>
+      <li class="last hide-below-480">
+         <a href="http://themeforest.net/item/ultimo-fluid-responsive-magento-theme/3231798?ref=infortis" title="Click to buy this theme">Buy me!</a>
+      </li>
+   </ul>
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Header top left</title>
+         <identifier>block_header_top_left</identifier>
+         <content><![CDATA[<div class="hide-below-768" title="You can put here a phone number or some additional help info"><span class="ic ic-lg ic-phone"></span> Call +001 555 801</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom Top Links (to replace Magento's default Top Links)</title>
+         <identifier>block_header_top_links</identifier>
+         <content><![CDATA[<ul class="links">
+
+	<li class="first">
+		<a href="#" title="Sample">Sample</a>
+	</li>
+	<li class="">
+		<a href="#" title="Custom">Custom</a>
+	</li>
+	<li class="last">
+		<a href="#" title="Links">Links</a>
+	</li>
+
+</ul>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Custom Top Links 2</title>
+         <identifier>block_header_top_links2</identifier>
+         <content><![CDATA[<ul class="links">
+
+	<li class="first">
+		<a href="{{store url='about-magento-demo-store'}}" title="Custom link">Sample</a>
+	</li>
+	<li class="last">
+		<a href="{{store url='any/custom/page'}}" title="Link Hidden on Mobile">Links</a>
+	</li>
+
+</ul>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer primary bottom right - newsletter</title>
+         <identifier>block_footer_primary_bottom_right</identifier>
+         <content><![CDATA[This block can replace default newsletter form.]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer - row 2 column 1</title>
+         <identifier>block_footer_row2_column1</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+	<h6 class="block-title heading">First Heading</h6>
+
+	<div class="block-content">
+
+		<ul class="bullet">
+			<li><a href="{{store url="ultimo-responsive-magento-theme"}}">This is just a sample link</a></li>
+			<li><a href="#">And this is some other link</a></li>
+			<li><a href="#">Another dummy text</a></li>
+		</ul>
+
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer - row 2 column 2</title>
+         <identifier>block_footer_row2_column2</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+	<h6 class="block-title heading">Second Heading</h6>
+
+	<div class="block-content">
+
+		<ul class="bullet">
+			<li><a href="{{store url="ultimo-responsive-magento-theme"}}">This is just a sample link</a></li>
+			<li><a href="#">And this is some other link</a></li>
+			<li><a href="#">Another dummy text</a></li>
+		</ul>
+
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer - row 2 column 3</title>
+         <identifier>block_footer_row2_column3</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+	<h6 class="block-title heading">Third Heading</h6>
+
+	<div class="block-content">
+
+		<ul class="bullet">
+			<li><a href="{{store url="ultimo-responsive-magento-theme"}}">This is just a sample link</a></li>
+			<li><a href="#">And this is some other link</a></li>
+			<li><a href="#">Another dummy text</a></li>
+		</ul>
+
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer - row 2 column 5</title>
+         <identifier>block_footer_row2_column5</identifier>
+         <content><![CDATA[<div class="grid12-9 no-gutter">
+
+	<div class="grid12-3">
+		<div class="collapsible mobile-collapsible">
+			<h6 class="block-title heading">Questions?</h6>
+			<div class="block-content">
+
+				<ul class="bullet">
+					<li><a href="#">Terms</a></li>
+					<li><a href="#">Conditions</a></li>
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Example</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="grid12-3">
+		<div class="collapsible mobile-collapsible">
+			<h6 class="block-title heading">Shipping</h6>
+			<div class="block-content">
+
+				<ul class="bullet">
+					<li><a href="#">Delivery</a></li>
+					<li><a href="#">Track your order</a></li>
+					<li><a href="#">Buy gift cards</a></li>
+					<li><a href="#">Returns</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="grid12-3">
+		<div class="collapsible mobile-collapsible">
+			<h6 class="block-title heading">About Us</h6>
+			<div class="block-content">
+
+				<ul class="bullet">
+					<li><a href="#">Responsive</a></li>
+					<li><a href="#">Magento themes</a></li>
+					<li><a href="#">E-commerce</a></li>
+					<li><a href="#">The company</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="grid12-3">
+		<div class="collapsible mobile-collapsible">
+			<h6 class="block-title heading">News</h6>
+			<div class="block-content">
+
+				<ul class="bullet">
+					<li><a href="#">What's new</a></li>
+					<li><a href="#">Products</a></li>
+					<li><a href="#">Magento template</a></li>
+					<li><a href="#">Our sites</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="grid12-3 no-right-gutter">
+	<div class="collapsible mobile-collapsible">
+		<h6 class="block-title heading">Additional Info</h6>
+		<div class="block-content">
+
+			<div class="feature indent first feature-icon-hover">
+				<span class="ic ic-lg ic-pin ib" style="background-color: lightskyblue;"></span>
+				<p class="no-margin">Friends Inc., 90 Bedford St<br />New York, NY 041, USA</p>
+			</div>
+			<div class="feature indent feature-icon-hover">
+				<span class="ic ic-lg ic-twitter ib" style="background-color: lightskyblue;"></span>
+				<p class="no-margin">Follow us on our<br /><a href="http://twitter.com/infortis">Twitter</a> account</p>
+			</div>
+			<br />
+
+		</div>
+	</div>
+</div>]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer - row 2 column 6</title>
+         <identifier>block_footer_row2_column6</identifier>
+         <content><![CDATA[Sample content of block_footer_row2_column6]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Footer - row 2 column 4</title>
+         <identifier>block_footer_row2_column4</identifier>
+         <content><![CDATA[<div class="collapsible mobile-collapsible">
+	<h6 class="block-title heading">Fourth Heading</h6>
+
+	<div class="block-content">
+
+		<ul class="bullet">
+			<li><a href="{{store url="ultimo-responsive-magento-theme"}}">Link example</a></li>
+			<li><a href="#">And this is some other link</a></li>
+			<li><a href="#">Last Sample Link</a></li>
+		</ul>
+
+	</div>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Landing page 2</title>
+         <identifier>landing_page2</identifier>
+         <content><![CDATA[<div class="horizontal-section">
+
+{{block type="ultraslideshow/slideshow" template="infortis/ultraslideshow/slideshow.phtml" slides="block_category_slide1,block_category_slide2" timeout="10000"}}
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Home slide 1</title>
+         <identifier>block_slide1</identifier>
+         <content><![CDATA[<a href="{{store url='about-magento-demo-store'}}">
+
+	<img src="{{media url='wysiwyg/infortis/ultimo/slideshow/01.jpg'}}" alt="Sample slide" />
+
+		<div class="caption light1 top-right">
+			<h2 class="heading permanent">Customizable Theme</h2>
+			<p>You can change colors of almost every element</p>
+			<p>You have never seen so many options</p>
+		</div>
+
+</a>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Home slide 2</title>
+         <identifier>block_slide2</identifier>
+         <content><![CDATA[<a href="{{store url='about-magento-demo-store'}}">
+
+	<img src="{{media url='wysiwyg/infortis/ultimo/slideshow/02.jpg'}}" alt="Sample slide" />
+
+		<div class="caption dark2">
+			<h2 class="heading permanent">Responsive</h2>
+			<p class="permanent">This theme can adapt to any mobile screen resolution</p>
+		</div>
+
+</a>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Home slide 3</title>
+         <identifier>block_slide3</identifier>
+         <content><![CDATA[<a href="{{store url='about-magento-demo-store'}}">
+
+	<img src="{{media url='wysiwyg/infortis/ultimo/slideshow/03.jpg'}}" alt="Sample slide" />
+
+	<a class="caption dark feature-icon-hover" href="{{store direct_url='dress7.html'}}" title="Click to see the product">
+		<h2 class="hide-below-960" style="color: #fff; font-size: 35px; line-height: 60px; padding-right: 8px;">Super Promo</h2>
+		<span class="ic ic-lg ic-char ib ib-size-xl">-25%</span>
+	</a>
+
+</a>
+
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Home slide - wide 1</title>
+         <identifier>block_slide_wide1</identifier>
+         <content><![CDATA[<div style="text-align:center;">
+<a href="{{store url='about-magento-demo-store'}}">
+
+   <img src="{{media url='wysiwyg/infortis/ultimo/slideshow/wide01.jpg'}}" alt="Sample slide" />
+
+      <div class="caption light1">
+         <h2 class="heading permanent">Sample slide caption</h2>
+         <p>Sample text inside the slideshow, replace with custom content.</p>
+      </div>
+
+</a>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Home slide - wide 2</title>
+         <identifier>block_slide_wide2</identifier>
+         <content><![CDATA[<div style="text-align:center;">
+<a href="{{store url='about-magento-demo-store'}}">
+
+   <img src="{{media url='wysiwyg/infortis/ultimo/slideshow/wide02.png'}}" alt="Sample slide" />
+
+</a>
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Landing page 3</title>
+         <identifier>landing_page3</identifier>
+         <content><![CDATA[<div class="landing-page nested-container clearer">
+	<br />
+    
+	<div class="vertical-section grid12-4 mobile-grid-half">
+        <a href="{{store direct_url="downloadable/ebooks.html"}}">
+        	<img class="center-block" src="{{media url="wysiwyg/infortis/ultimo/custom/landing/vert1.jpg"}}" alt="Sample banner" />
+            <div class="caption dark3 full-width">
+                <h2 class="heading permanent">e-Books</h2>
+                <p class="permanent">Sell e-Books with Magento</p>
+                <p>Lorem ipsum dolor </p>
+            </div>
+        </a>
+	</div>
+	<div class="vertical-section grid12-4 mobile-grid-half">
+        <a href="{{store direct_url="downloadable/music.html"}}">
+        	<img class="center-block" src="{{media url="wysiwyg/infortis/ultimo/custom/landing/vert2.jpg"}}" alt="Sample banner" />
+            <div class="caption dark3 full-width">
+	            <h2 class="heading permanent">Music</h2>
+    	        <p class="permanent">Sell music with Magento</p>
+        	    <p>Lorem ipsum dolor </p>
+            </div>
+        </a>
+	</div>
+	<div class="vertical-section grid12-4 mobile-grid-half">
+        <a href="{{store direct_url="downloadable/software.html"}}">
+        	<img class="center-block" src="{{media url="wysiwyg/infortis/ultimo/custom/landing/vert3.jpg"}}" alt="Sample banner" />
+            <div class="caption dark3 full-width">
+	            <h2 class="heading permanent">Software</h2>
+    	        <p class="permanent">Sell digital products</p>
+        	    <p>Lorem ipsum dolor </p>
+            </div>
+        </a>
+	</div>
+
+	<div class="vertical-section grid-full mobile-grid-half">
+		<p class="horizontal-section" style="background-color: #f5f5f5; padding: 15px;">This is a custom landing page: a CMS block which can replace category products. You can put your own content here: text, HTML, images - whatever you want. You can create landing page for every category.</p>
+	</div>
+	<br />
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Slideshow banners</title>
+         <identifier>block_slideshow_banners</identifier>
+         <content><![CDATA[<a class="banner fade-on-hover" href="{{store url='about-magento-demo-store'}}">
+	<img src="{{media url='wysiwyg/infortis/ultimo/slideshow/banner/01.png'}}" alt="Sample banner" />
+
+	<div class="caption light1 full-width right">
+		<p class="right">Sample caption</p>
+	</div>
+
+</a>
+
+<a class="banner fade-on-hover" href="{{store url='about-magento-demo-store'}}">
+	<img src="{{media url='wysiwyg/infortis/ultimo/slideshow/banner/02.png'}}" alt="Sample banner" />
+
+	<div class="caption dark1 full-width right">
+		<p class="right">Add custom text</p>
+	</div>
+
+</a>
+
+<a class="banner fade-on-hover" href="{{store url='about-magento-demo-store'}}">
+	<img src="{{media url='wysiwyg/infortis/ultimo/slideshow/banner/03.png'}}" alt="Sample banner" />
+
+	<div class="caption dark3 full-width right">
+		<p class="right">Caption sample</p>
+	</div>
+</a>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Header top right 2</title>
+         <identifier>block_header_top_right2</identifier>
+         <content><![CDATA[Sample content of the static block block_header_top_right2]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Header top right</title>
+         <identifier>block_header_top_right</identifier>
+         <content><![CDATA[Sample content of the top right static block]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Main menu - custom links</title>
+         <identifier>block_nav_links</identifier>
+         <content><![CDATA[	<li class="nav-item level0 level-top right">
+		<a class="level-top" href="{{store direct_url='about-magento-demo-store'}}" title="About Us">
+			<span>About Us</span>
+		</a>
+	</li>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Category slide 1</title>
+         <identifier>block_category_slide1</identifier>
+         <content><![CDATA[<a href="{{store url='about-magento-demo-store'}}">
+
+	<img src="{{media url='wysiwyg/infortis/ultimo/custom/landing/slide1.jpg'}}" alt="Sample image" />
+
+		<div class="caption light1 full-width top">
+			<h2 class="heading permanent">Category Slideshow</h2>
+			<h2 class="heading permanent" style="clear:left;">Sample Banner</h2>
+		</div>
+
+</a>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Category slide 2</title>
+         <identifier>block_category_slide2</identifier>
+         <content><![CDATA[	<img src="{{media url='wysiwyg/infortis/ultimo/custom/landing/slide2.jpg'}}" alt="Sample image" />
+
+		<div class="caption light3 full-width centered">
+			<h2 class="heading permanent">Sample Category Slideshow</h2>
+		</div>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>Product - image column bottom</title>
+         <identifier>block_product_img_bottom</identifier>
+         <content><![CDATA[Sample content of the static block - image column bottom.]]></content>
+         <is_active>0</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+   </blocks>
+</root>

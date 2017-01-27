@@ -1,0 +1,70 @@
+/**
+ * @category    Fishpig
+ * @package     Fishpig_AttributeSplash
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+
+.splash-group-grid { 
+	height: 1%;
+	overflow: hidden;
+}
+
+.splash-group-grid li.item {
+	float: left;
+	text-align: center;
+	width: 25%;
+}
+
+.splash-group-grid li.item .inner {
+	padding: 2%;
+}
+
+.splash-group-grid li.item img {
+	margin-bottom: 1em;
+	max-width: 100%;
+}
+
+.splash-group-grid-2 li.item {
+	width: 50%;
+}
+
+.splash-group-grid-3 li.item {
+	width: 33.3%;
+}
+
+.splash-group-grid-4 li.item {
+	width: 25%;
+}
+
+.splash-group-grid-5 li.item {
+	width: 20%;
+}
+
+.splash-title {
+	
+}
+
+.splash-image {
+	
+}
+
+.splash-image img {
+	max-width: 100%;
+}
+
+.splash-description {
+	margin-bottom: 2em;
+}
+
+.splash-description img {
+	max-width: 100%;
+}
+
+.splash-description-full {
+	padding-top: 2em;
+}
+
+.splash-description-full img {
+	max-width: 100%;
+}

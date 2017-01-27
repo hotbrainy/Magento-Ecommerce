@@ -1,0 +1,51 @@
+<config>
+    <tabs>
+        <sales translate="label" module="sales">
+            <label>Sales</label>
+            <sort_order>400</sort_order>
+        </sales>
+    </tabs>
+    <sections>
+        <sales_email>
+            <groups>
+                <returns_request translate="label">
+                    <label>Return Request</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <contact translate="label">
+                            <label>Returns Request Contact Email</label>
+                            <!--<frontend_type>select</frontend_type>-->
+                            <!--<source_model>adminhtml/system_config_source_email_identity</source_model>-->
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </contact>
+                        <template translate="label">
+                            <label>Returns Request Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template>
+                        <subject translate="label comment">
+                            <label>Email default subject</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </subject>
+                    </fields>
+                </returns_request>
+            </groups>
+        </sales_email>
+    </sections>
+</config>

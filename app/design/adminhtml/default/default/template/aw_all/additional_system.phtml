@@ -1,0 +1,24 @@
+<div class="entry-edit-head collapseable">
+    <a id="<?php echo $this->getHtmlId()?>-head" href="javascript:void(0);" onclick="Fieldset.toggleCollapse('<?php echo $this->getHtmlId()?>'); saveState('<?php echo $this->getHtmlId()?>');return false;">
+        <?php echo $this->getHeaderText();?>
+    </a>
+</div>
+<fieldset class="" id="<?php echo $this->getHtmlId()?>" style="display: none;">
+    <legend><?php echo $this->getHeaderText();?></legend>
+    <div>
+        <span><?php echo $this->__('Memory limit');?> : <?php echo $this->getPhpInfo('memory_limit');?></span>
+    </div>
+    <div>
+        <span><?php echo $this->__('Max execution time');?> : <?php echo $this->getPhpInfo('max_execution_time');?></span>
+    </div>
+    <div>
+        <span><?php echo $this->__('Operation system');?> : <?php echo $this->getSystemInfo();?></span>
+    </div>
+    <div>
+        <span>
+            <a href="<?php echo $this->getMagentoRequirementsUrl();?>" target="_blank" title="<?php echo $this->__('Magento system requirements');?>">
+                <?php echo $this->__('Magento system requirements');?>
+            </a>
+        </span>
+    </div>
+</fieldset>

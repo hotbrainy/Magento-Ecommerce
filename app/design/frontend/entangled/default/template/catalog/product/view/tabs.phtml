@@ -1,0 +1,261 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ */
+?>
+<?php $_panes = ''; ?>
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php
+        if($tmpBlock = $this->getChildHtml($_tab['alias']))
+        {
+            $_panes .= '<h2 class="acctab" id="acctab-'. $_tab['alias'] .'">'. $_tab['title'] .'</h2>';
+            $_panes .= '<div class="panel">'. $tmpBlock .'</div>';
+        }
+    ?>
+<?php endforeach; ?>
+
+<?php if ($_panes != ''): ?>
+
+    <?php
+        $theme = $this->helper('ultimo');
+        $smallTabs = $theme->getCfg('product_page/tabs_style'); //If true, display small tabs
+
+        $tabsClasses = 'gen-tabs--style1';
+        if ($smallTabs)
+        {
+            $tabsClasses .= ' gen-tabs--style1-small';
+        }
+    ?>
+    <div id="product-tabs" class="gen-tabs <?php echo $tabsClasses; ?>">
+
+        <ul class="tabs clearer">
+            <?php $i=0; foreach ($this->getTabs() as $_index => $_tab): ?>
+                <?php if ($this->getChildHtml($_tab['alias'])): ?>
+                    <li id="tab-<?php echo $_tab['alias']?>"><a href="#" <?php if ($i++ === 0): ?>class="current"<?php endif; ?>><?php echo $_tab['title']?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+        <div class="tabs-panels"><?php echo $_panes; ?></div>
+
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        jQuery(function($) {
+
+            //Link to the reviews tab
+            var tabOperator = {
+
+                root : ''
+                , $rootContainer : null
+                , $tabsContainer : null
+                , $panelsContainer : null
+
+                //1 - tabs/accordion, 2 - accordion, 3 - tabs
+                , mode : <?php echo intval($theme->getCfg('product_page/tabs_mode')); ?>
+                , threshold : <?php echo intval($theme->getCfg('product_page/tabs_threshold')); ?>
+                , initialAccIndex : 0
+                , tabEffect : 'default'
+                , accEffect : 'default'
+
+                , init : function(root)
+                {
+                    //If no param, set default selector
+                    tabOperator.root = root || '.gen-tabs';
+                    tabOperator.$rootContainer      = $(tabOperator.root);
+                    tabOperator.$tabsContainer      = tabOperator.$rootContainer.children('.tabs');
+                    tabOperator.$panelsContainer    = tabOperator.$rootContainer.children('.tabs-panels');
+
+                    //Activate tabs based on selected mode
+                    <?php if ($theme->getCfg('product_page/tabs_collapsed')): ?>
+                        tabOperator.initialAccIndex = null;
+                    <?php endif; ?>
+
+                    if (tabOperator.mode === 1)
+                    {
+                        //Initial value of the flag which indicates whether viewport was above the threshold
+                        var previousAboveThreshold = $(window).width() >= tabOperator.threshold;
+
+                        //Activate tabs or accordion
+                        if (previousAboveThreshold)
+                        {
+                            //If above threshold - activate tabs
+                            tabOperator.initTabs();
+                        }
+                        else
+                        {
+                            //If below threshold - activate accordion
+                            tabOperator.initAccordion(tabOperator.initialAccIndex);
+                        }
+
+                        //On tab click
+                        tabOperator.hookToAccordionOnClick();
+
+                        //On window resize
+                        $(window).on('themeResize', function (e, resizeEvent) {
+
+                            if ($(window).width() < tabOperator.threshold)
+                            {
+                                if (previousAboveThreshold)
+                                {
+                                    //Now below threshold, previously above, so switch to accordion
+                                    var api = tabOperator.$tabsContainer.data("tabs");
+                                    var index = api.getIndex();
+                                    api.destroy();
+
+                                    tabOperator.initAccordion(index);
+                                }
+                                previousAboveThreshold = false;
+                            }
+                            else
+                            {
+                                if (!previousAboveThreshold)
+                                {
+                                    //Now above threshold, previously below, so switch to tabs
+                                    var api = tabOperator.$panelsContainer.data("tabs");
+                                    var index = api.getIndex();
+                                    api.destroy();
+                                    tabOperator.$rootContainer.removeClass("accor");
+
+                                    tabOperator.initTabs(index);
+                                }
+                                previousAboveThreshold = true;
+                            }
+
+                        });
+                    }
+                    else if (tabOperator.mode === 2)
+                    {
+                        tabOperator.initAccordion(tabOperator.initialAccIndex);
+
+                        //On tab click
+                        tabOperator.hookToAccordionOnClick();
+                    }
+                    else
+                    {
+                        tabOperator.initTabs();
+                    }
+
+                } //end: init
+
+                , initTabs : function(index)
+                {
+                    //If no param, set it to 0
+                    if (typeof index === "undefined")
+                    { 
+                        index = 0;
+                    }
+                    tabOperator.$tabsContainer.tabs(".tabs-panels .panel", {effect: tabOperator.tabEffect, initialIndex: index});
+                }
+
+                , initAccordion : function(index)
+                {
+                    //If no param, set it to 0
+                    if (typeof index === "undefined")
+                    { 
+                        index = 0;
+                    }
+                    tabOperator.$rootContainer.addClass("accor");
+                    tabOperator.$panelsContainer.tabs(".tabs-panels .panel", {tabs: '.acctab', effect: tabOperator.accEffect, initialIndex: index});
+                }
+
+                , hookToAccordionOnClick : function()
+                {
+                    //Attach a handler to an event after a tab is clicked
+                    tabOperator.$panelsContainer.bind("onClick", function(event, index) {
+
+                        //Note: "this" is a reference to the DOM element of tabs
+                        //var theTabs = this;
+                        var target = event.target || event.srcElement || event.originalTarget;
+
+                        //If viewport is lower than the item, scroll to that item
+                        var itemOffsetTop = $(target).offset().top;
+                        var viewportOffsetTop = jQuery(window).scrollTop();
+                        if (itemOffsetTop < viewportOffsetTop)
+                        {
+                            $("html, body").delay(150).animate({scrollTop: (itemOffsetTop-50)}, 600, 'easeOutCubic');
+                        }
+
+                    }); //end: bind onClick
+                }
+
+                , openTab : function()
+                {
+                    if (tabOperator.$rootContainer.hasClass("accor"))
+                    {
+                        var $panels = tabOperator.$panelsContainer;
+                        var indexOfTab = $panels.children(".acctab").index($("#acctab-tabreviews"));
+                        $panels.data("tabs").click(indexOfTab);
+                    }
+                    else
+                    {
+                        var $tabs = tabOperator.$tabsContainer;
+                        var indexOfTab = $tabs.children("#tab-tabreviews").index();
+                        $tabs.data("tabs").click(indexOfTab);
+                    }
+                }
+
+                , slideTo : function(target, offset)
+                {
+                    //Slide to tab (minus height of sticky menu)
+                    var itemOffsetTop = $(target).offset().top - offset;
+                    $("html, body").animate({scrollTop: itemOffsetTop}, 600, 'easeOutCubic');
+                }
+
+            };
+
+            //Initialize tabs
+            tabOperator.init('#product-tabs');
+
+        <?php
+            //If reviews displayed inside the collateral container, open the reviews tab
+            //when "X Review(s)" or "Be the first to review this product" links are clicked
+        ?>
+        <?php if($theme->getCfg('product_page/collateral_reviews')): ?>
+
+            $("#goto-reviews").click(function() {
+                
+                tabOperator.openTab();
+                tabOperator.slideTo('#product-tabs', 50);
+
+            }); //end: on click
+
+            $("#goto-reviews-form").click(function() {
+
+                tabOperator.openTab();
+                tabOperator.slideTo('#review-form', 90);
+
+            }); //end: on click
+
+        <?php endif; ?>
+
+        });
+        //]]>
+    </script>
+
+<?php endif; //end: if (panes != '') ?>

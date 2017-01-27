@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Watermark Downloadable Files
+ * 
+ * Add a watermark to downloadable files such as PDF files
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown, Alex Pelletier May 6, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>, Alex Pelletier
+ */
+-->
+<config>
+    <tabs>
+        <publish translate="label" module="watermark">
+            <label>Publishing Tools</label>
+            <sort_order>2000</sort_order>
+        </publish>
+    </tabs>
+    <sections>
+        <watermark translate="label" module="watermark">
+            <class>separator-top</class>
+            <label>Watermark Settings</label>
+            <tab>publish</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <watermark translate="label" module="watermark">
+                    <label>Watermark Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Add Watermark</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                        <string translate="label comment">
+                            <label>Watermark String</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use {{email}}, {{firstname}}, {{lastname}}</comment>
+                        </string>
+                    </fields>
+                </watermark>
+            </groups>
+        </watermark>
+    </sections>
+</config>

@@ -1,0 +1,74 @@
+<?php if (Mage::getStoreConfig('socialshare/general/enabled')) : ?>
+
+	<?php if(!Mage::getStoreConfig('opengraphtags/conf/active')) : ?>
+		<!-- Facebook Social Init -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	<?php endif; ?>
+	
+	<?php if (Mage::getStoreConfig('socialshare/general/show_count')) : ?>
+	<div class="social_buttons withcount">    
+		<?php if (Mage::getStoreConfig('socialshare/general/facebook_btn')) : ?>
+		<!-- Facebook -->
+		<span class="facebookContainer">
+			<div class="fb-like" data-href="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false"></div>
+		</span>
+		<?php endif; ?>
+		
+		<?php if (Mage::getStoreConfig('socialshare/general/twitter_btn')) : ?>
+		<!-- Twitter -->
+		<div class="twitterContainer">
+			<a href="//twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<?php echo Mage::getStoreConfig('socialshare/general/twitter_acc'); ?>">Tweet</a>
+		</div>
+		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>    
+		<?php endif; ?>
+		
+		<?php if (Mage::getStoreConfig('socialshare/general/google_btn')) : ?>
+		<!-- Google +1 -->
+		<script type="text/javascript">
+		  (function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		  })();
+		</script>
+		<div class="gPlusContainer">
+			<g:plusone size="medium"></g:plusone>
+		</div>
+		<?php endif; ?>
+		
+		<?php if (Mage::getStoreConfig('socialshare/general/pinter_btn')) : ?>
+		<?php $product = Mage::registry('current_product'); ?>
+		<!-- Pinterest -->
+		<div class="pinterestContainer">
+			<a href="//pinterest.com/pin/create/button/?url=<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>&media=<?php echo $this->htmlEscape($product->getImageUrl());?>&description=<?php echo $this->stripTags($product->getShortDescription());?>" data-pin-do="buttonPin" data-pin-config="beside">
+				<img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+			</a>
+		</div>
+		<?php endif; ?>	
+	</div>
+	<?php else : ?>
+	<div class="social_buttons withoutcount">
+
+		<div class="social-container">
+			<?php $product = Mage::registry('current_product'); ?>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-via="<?php echo Mage::getStoreConfig('socialshare/general/twitter_acc'); ?>">Tweet</a>
+			<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+			<a class="facebook-share share-button" href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(Mage::helper('core/url')->getCurrentUrl()); ?>&t=<?php echo urlencode($product->getName()); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><i class="fa fa-facebook-square"></i><span>Share</span></a>
+			<a class=" share-button" href="//pinterest.com/pin/create/button/?url=<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>&media=<?php echo $this->htmlEscape($product->getImageUrl());?>&description=<?php echo $this->stripTags($product->getShortDescription());?>" data-pin-do="buttonPin" data-pin-config="none" target="_blank">
+				<img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+			</a>
+			<a class="share-by-email share-button" href="<?php echo Mage::helper("catalog/product")->getEmailToFriendUrl($product) ?>"><i class="fa fa-envelope"></i><span>Mail</span></a>
+
+		</div>
+	</div>
+	<?php endif; ?>
+
+<div class="clearfix"></div>
+<?php endif; ?>

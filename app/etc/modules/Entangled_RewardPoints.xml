@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Entangled_RewardPoints>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <MageWorx_CustomerCredit/>
+                <Idev_OneStepCheckout/>
+            </depends>
+        </Entangled_RewardPoints>
+    </modules>
+</config>

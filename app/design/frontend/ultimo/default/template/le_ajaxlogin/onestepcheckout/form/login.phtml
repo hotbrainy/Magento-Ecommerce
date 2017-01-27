@@ -1,0 +1,25 @@
+<?php if ((Mage::getStoreConfig('ajaxlogin/facebook/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/google/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/twitter/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/linkedin/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/yahoo/enabled') == 1)
+) { ?>
+<div class="le-socialconnect-login">
+    <div>
+        <?php if (Mage::getStoreConfig('ajaxlogin/facebook/enabled') == 1) { ?>
+            <?php echo $this->getChildHtml('le_ajaxlogin_facebook_login_button'); ?>
+        <?php } ?>
+        <?php if (Mage::getStoreConfig('ajaxlogin/google/enabled') == 1) { ?>
+            <?php echo $this->getChildHtml('le_ajaxlogin_google_login_button'); ?>
+        <?php } ?>
+    </div>
+    <div>
+        <?php if (Mage::getStoreConfig('ajaxlogin/twitter/enabled') == 1) { ?>
+            <?php echo $this->getChildHtml('le_ajaxlogin_twitter_login_button'); ?>
+        <?php } ?>
+        <?php if (Mage::getStoreConfig('ajaxlogin/linkedin/enabled') == 1) { ?>
+            <?php echo $this->getChildHtml('le_ajaxlogin_linkedin_login_button'); ?>
+        <?php } ?>
+    </div>
+</div>
+<?php } ?>

@@ -1,0 +1,71 @@
+<?php
+$checkoutHelper = Mage::helper('onestepcheckout/checkout');
+$dataHelper = Mage::helper('onestepcheckout');
+
+if(!empty($checkoutHelper->settings['addressreview']['enable_addressreview'])):?>
+<div id="addressreview" data-remodal-id="review-modal" class="oscmodal">
+    <div class="leftcol">
+        <div id="addressreview_billinga"><h4 class="title"><?php echo $this->__('Billing address'); ?></h4><div class="data"></div></div>
+        <div id="addressreview_shippinga"><h4 class="title"><?php echo $this->__('Shipping address'); ?></h4><div class="data"></div></div>
+        <div id="addressreview_shipping"><h4 class="title"><?php echo $this->__('Shipping method'); ?></h4><div class="data"></div></div>
+        <div id="addressreview_payment"><h4 class="title"><?php echo $this->__('Payment method'); ?></h4><div class="data"></div></div>
+    </div>
+    <div class="rightcol">
+        <div id="addressreview_summary"><h4 class="title"><?php echo $this->__('Review your order'); ?></h4><div class="data"></div></div>
+    </div>
+    <div id="buttons">
+        <div class="onestepcheckout-place-order-wrapper">
+            <button type="button" title="<?php echo $this->__('Place order now'); ?>" id="onestepcheckout-place-order-preview" class="button onestepcheckout-button onestepcheckout-place-order" onclick="javasctipt:void(0);"><span><span><?php echo $this->__('Place order now'); ?></span></span></button>
+        </div>
+        <div class="close-preview">
+                <button type="button" title="<?php echo $this->__('Edit more'); ?>" id="close-preview" class="button2 onestepcheckout-button" onclick="javasctipt:reviewmodal.close();review=false;"><span><span><?php echo $this->__('Edit more'); ?></span></span></button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+<?php
+    if(Mage::getSingleton('customer/session')->isLoggedIn()){
+        $blacklist = array('entity_id','entity_type_id','attribute_set_id','increment_id','parent_id','created_at','updated_at','is_active','customer_id');
+        $baddresses = array();
+        $saddresses = array();
+        $customerEmail = $dataHelper->clearDash(Mage::getSingleton('customer/session')->getCustomer()->getEmail());
+        $i = 0;
+        foreach(Mage::getSingleton('checkout/session')->getQuote()->getCustomer()->getAddresses() as $address){
+            foreach($address->getData() as $key=>$value){
+                if(!in_array($key,$blacklist)){
+                    if($key == 'street'){
+                        for($n= 0; $n<=4; $n++){
+                            if($address->getStreet($n)){
+                                $baddresses[$i]['billing:'.$key.$n] = $dataHelper->clearDash($address->getStreet($n));
+                                $saddresses[$i]['shipping:'.$key.$n] = $dataHelper->clearDash($address->getStreet($n));
+                            }
+                        }
+                    } else if ($key === 'country_id') {
+                        $baddresses[$i]['billing:'.$key] = $dataHelper->clearDash(Mage::getModel('directory/country')->loadByCode($value)->getName());
+                        $saddresses[$i]['shipping:'.$key] = $dataHelper->clearDash(Mage::getModel('directory/country')->loadByCode($value)->getName());
+                    } else {
+                        $baddresses[$i]['billing:'.$key] = $dataHelper->clearDash($value);
+                        $saddresses[$i]['shipping:'.$key] = $dataHelper->clearDash($value);
+                        $baddresses[$i]['billing:email'] = $customerEmail;
+                        $saddresses[$i]['shipping:email'] = $customerEmail;
+                    }
+                }
+            }
+            $i++;
+        }
+
+        echo 'var customerBAddresses = '.Mage::helper('onestepcheckout')->jsonEncode($baddresses).';';
+        echo 'var customerSAddresses = '.Mage::helper('onestepcheckout')->jsonEncode($saddresses).';';
+    }
+?>
+    var addressTemplates = {
+            shipping: '<?php echo str_replace("\r", '', str_replace("\n", '', $checkoutHelper->settings['addressreview']['shipping_template']));?>',
+            billing: '<?php echo str_replace("\r", '', str_replace("\n", '', $checkoutHelper->settings['addressreview']['billing_template']));?>'
+        };
+    addressPreview(addressTemplates, 'addressreview');
+
+//]]>
+</script>
+<?php endif;?>

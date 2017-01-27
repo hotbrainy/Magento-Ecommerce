@@ -1,0 +1,41 @@
+<?php
+/**
+*
+*/
+?>
+<?php if ($extensions = $this->getSelectedExtensions()): ?>
+<div id="<?php echo $this->getId() ?>">
+	<ul id="<?php echo $this->getId() ?>-list">
+		<?php foreach($extensions as $extension): ?>
+			<li class="item<?php if ($this->isLast($extension)): ?> last<?php endif; ?>">
+				<div class="pad">
+					<a href="<?php echo $this->getTrackedUrl($extension, $this->getModule(), 'image') ?>" class="image" target="_blank">
+						<img src="<?php echo $this->getImageUrl($extension) ?>" alt="<?php echo $this->escapeHtml($this->getTitle($extension)) ?>" />
+					</a>
+					<h2>
+						<a href="<?php echo $this->getTrackedUrl($extension, $this->getModule(), 'title') ?>" target="_blank">
+							<strong><?php echo $this->escapeHtml($this->getTitle($extension)) ?></strong>
+							<span><?php echo $this->escapeHtml($this->getSubTitle($extension)) ?></span>
+						</a>
+					</h2>
+					<p><?php echo $this->getShortDefinition($extension) ?></p>
+					<div><a href="<?php echo $this->getTrackedUrl($extension, $this->getModule(), 'view-more') ?>" target="_blank"><?php echo $this->__('View Add-On') ?></a></div>
+				</div>			
+			</li>
+		<?php endforeach; ?>
+	</ul>
+</div>
+<script type="text/javascript">$('<?php echo $this->getId() ?>').select('a').invoke('writeAttribute', 'target', '_blank');</script>
+<style type="text/css">
+#<?php echo $this->getId() ?> { max-width: 1600px; margin: 50px auto 0; }
+#<?php echo $this->getId() ?> ul { /*height: 1%; overflow: hidden; */text-align: center; }
+#<?php echo $this->getId() ?> li.item { display: inline-block; width: 24.5%; }
+#<?php echo $this->getId() ?> li.item .pad { padding: 10% 8%; border-right: 1px solid #ccc; }
+#<?php echo $this->getId() ?> li.item.last .pad { border-right: 0px none; }
+#<?php echo $this->getId() ?> li.item .image { display: block; margin-bottom: 10px; }
+#<?php echo $this->getId() ?> h2 a { color: #000; text-decoration: none; font-family: Tahoma, Verdana, Arial;, }
+#<?php echo $this->getId() ?> h2 strong { display: block; text-transform: uppercase; line-height: 1em; }
+#<?php echo $this->getId() ?> h2 span { font-size: 70%; font-family: Georgia, 'Times New Roman'; font-style: italic; }
+#<?php echo $this->getId() ?> p { min-height: 80px; }
+</style>
+<?php endif; ?>

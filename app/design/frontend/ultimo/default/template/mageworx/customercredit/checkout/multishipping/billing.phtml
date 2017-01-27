@@ -1,0 +1,168 @@
+<?php
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * MageWorx Loyalty Booster extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+$isPartial = $this->isPartialPayment();
+$isCheckedCustomercredit = Mage::getSingleton('checkout/session')->getUseInternalCredit();
+if ($isPartial==2 && $isCheckedCustomercredit) $this->getQuote()->getPayment()->setMethod('customercredit');
+?>
+<div class="multiple-checkout">
+    <div class="page-title">
+        <h1><?php echo $this->__('Billing Information') ?></h1>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <script src="<?php echo Mage::getBaseUrl('js') ?>varien/payment.js" type="text/javascript"></script>
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="multishipping-billing-form">
+        <div class="col2-set">
+            <div class="col-1 col-narrow">
+                <div class="box">
+                    <div class="box-title">
+                        <h2><?php echo $this->__('Billing Address') ?> <span class="separator">|</span> <a href="<?php echo $this->getSelectAddressUrl() ?>"><?php echo Mage::helper('mageworx_customercredit')->__('Change') ?></a></h2>
+                    </div>
+                    <div class="box-content">
+                        <?php $_address=$this->getAddress() ?>
+                        <address><?php echo $_address->format('html') ?></address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 col-wide">
+                <div class="box">
+                    <div class="box-title">
+                        <h2><?php echo $this->__('Payment Method') ?></h2>
+                    </div>
+                    <div class="box-content">
+                        <div class="tool-tip" id="payment-tool-tip" style="display:none;">
+                            <div class="btn-close"><a href="#" id="payment-tool-tip-close" title="<?php echo $this->__('Close') ?>"><?php echo $this->__('Close') ?></a></div>
+                            <div class="tool-tip-content"><img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>" alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>" title="<?php echo $this->__('Card Verification Number Visual Reference') ?>" /></div>
+                        </div>
+                        <!-- Payment methods forms list -->
+                        <dl class="sp-methods">
+                        <?php
+                            $_methods       = $this->getMethods();
+                            $_methodsCount  = count($_methods);
+                        ?>
+                        <?php foreach ($_methods as $_method): 
+                                $_code = $_method->getCode(); 
+                                if ($_code=='customercredit' && $isPartial == -2) continue; // hide customer credit
+                        ?>
+                            <dt>
+                                <?php if ($_methodsCount > 1): ?>                                    
+                                    <?php if ($_code=='customercredit' && $isPartial==1): ?>
+                                        <input id="p_method_<?php echo $_code ?>" value="1" type="checkbox" name="payment[use_internal_credit]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" class="checkbox" onclick="creditPayment.switchPMethod('<?php echo $_code ?>')"<?php if ($isCheckedCustomercredit) { ?> checked="checked"<?php } ?> />
+                                    <?php elseif ($_code=='customercredit' && $isPartial==-1): ?>
+                                        <input id="p_method_<?php echo $_code ?>_disabled" disabled="disabled" value="1" type="checkbox" name="payment[use_internal_credit]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" class="checkbox" />
+                                    <?php elseif ($_code=='customercredit' && $isPartial==0) : ?>
+                                        <input id="p_method_<?php echo $_code ?>_disabled" disabled="disabled" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" class="radio" />
+                                    <?php else: ?>
+                                        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" class="radio" onclick="creditPayment.switchPMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> />
+                                    <?php endif; ?>                                    
+                                <?php else :?>
+                                <span class="no-display"><input type="radio" id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" name="payment[method]" checked="checked" class="radio" /></span>
+                                <?php endif;?>
+                                <label for="p_method_<?php echo $_code ?>">
+                                    <?php echo $_method->getTitle(); 
+                                    if ($_code=='customercredit' && Mage::helper('mageworx_customercredit')->isEnabledCodes()) { ?>
+                                        (<a href="<?php echo $this->getUrl('customercredit/') ?>" target="_blank"><?php echo Mage::helper('mageworx_customercredit')->__('Recharge') ?></a>)
+                                    <?php } ?>
+                                </label>
+                            </dt>
+                            <?php if($html = $this->getChildHtml('payment.method.'.$_code)) : ?>
+                            <dd>
+                                <?php echo $html; ?>
+                            </dd>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        </dl>
+                        <?php echo $this->getChildHtml('checkout_billing_items') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-set">
+            <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to Shipping Information') ?></a></p>
+            <button type="submit" title="<?php echo $this->__('Continue to Review Your Order') ?>" class="button"><span><span><?php echo $this->__('Continue to Review Your Order') ?></span></span></button>
+        </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var payment = new paymentForm('multishipping-billing-form');
+        function toggleToolTip(event){
+            if($('payment-tool-tip')){
+                $('payment-tool-tip').toggle();
+            }
+            Event.stop(event);
+        }
+        if($('payment-tool-tip-close')){
+            Event.observe($('payment-tool-tip-close'), 'click', toggleToolTip);
+        }
+        $$('.cvv-what-is-this').each(function(element){
+            Event.observe(element, 'click', toggleToolTip);
+        });
+        
+        el = $('p_method_customercredit');
+        if (el) el.disabled = false;
+        <?php if ($isPartial==1 && $isCheckedCustomercredit) { ?>payment.switchMethod('customercredit');<?php } ?>
+        var creditPayment = {
+            switchPMethod: function(code) {
+                el = $('p_method_customercredit');
+                if (el && el.checked==true) {
+                    payment.switchMethod('customercredit');
+                } else if(code=='customercredit') {
+                    payment.switchMethod('');
+                } else {
+                    payment.switchMethod(code);
+                }
+
+                $$('ul[id^="payment_form_"]').each(function(form){
+                    pCode = form.id.replace('payment_form_','');
+                    if (!$('p_method_'+pCode) || !$('p_method_'+pCode).checked) {
+                        form.hide();
+                        var elements = form.getElementsByTagName('input');
+                        for (var i=0; i<elements.length; i++) elements[i].disabled = true;
+                        var elements = form.getElementsByTagName('select');
+                        for (var i=0; i<elements.length; i++) elements[i].disabled = true;
+                    } else {
+                        form.show();
+                        var elements = form.getElementsByTagName('input');
+                        for (var i=0; i<elements.length; i++) elements[i].disabled = false;
+                        var elements = form.getElementsByTagName('select');
+                        for (var i=0; i<elements.length; i++) elements[i].disabled = false;
+                    }
+                });
+
+            }              
+        };
+    //]]>
+    </script>
+</div>

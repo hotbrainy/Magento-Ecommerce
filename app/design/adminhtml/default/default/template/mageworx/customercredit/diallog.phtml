@@ -1,0 +1,102 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php echo $this->getChildHtml('head') ?>
+<style>
+#diallog_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    width: 1000px;
+    margin: -220px 0 0 -450px;
+}
+#diallog_box[id]{ /* IE6 and below Can't See This */
+    position: fixed;
+}
+#diallog_box_group-select 
+{ 
+    margin: 0; 
+    z-index: 1000;
+    background-color: #fff;
+    padding: 30px;
+    border: 3px solid #000;
+    border-radius:16px;
+    -webkit-border-radius:16px;
+    -moz-border-radius:15px;
+    -khtml-border-radius:20px;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Firefox */
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Safari & Chrome */
+    box-shadow: 0 0 20px rgba(255,255,255,0.8); /* Shadow Params */
+}
+#diallog_box .buttons {
+    margin-top: 20px;
+}
+#diallog_box .list li {
+    margin-top: 10px;
+}
+#diallog_box-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500;   
+    background-color: #000;
+    -moz-opacity: 0.5;
+    opacity:.50;
+    filter: alpha(opacity=50);
+}
+#location-selector-overlay[id]{ /* IE6 and below Can't See This */
+    position: fixed;
+}
+#close_button {
+    float: right;
+    height: 30px;
+    left: 30px;
+    position: relative;
+    top: -20px;
+    width: 30px;
+    z-index: 600;
+    cursor: pointer
+}
+.calendar {
+    z-index: 4000;
+}
+</style>
+<div id="diallog_box-wrapper" style="display: none;">
+    <div id="diallog_box-overlay"></div>
+    <div id="diallog_box">
+        <div id="close_button" onclick="close_form()"><img width="32" alt="<?php $this->__('Close');?>" title="<?php $this->__('Close');?>" src="<?php echo $this->getSkinUrl('images/mageworx/customercredit/cancel.png') ?>"/></div>
+        <div id="diallog_box_group-select"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    function close_form() {
+        $('diallog_box-wrapper').hide();
+        $('diallog_box_group-select').innerHTML = "";
+    }
+</script>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   /**
+    * @project     Notification
+    * @package	   LitExtension_Notification
+    * @author      LitExtension
+    * @email       litextension@gmail.com
+    */
+-->
+<config>
+    <modules>
+        <LitExtension_Notification>
+            <version>1.0.0</version>
+        </LitExtension_Notification>
+    </modules>
+
+    <global>
+        <blocks>
+            <le_notification>
+                <class>LitExtension_Notification_Block</class>
+            </le_notification>
+        </blocks>
+        <helpers>
+            <le_notification>
+                <class>LitExtension_Notification_Helper</class>
+            </le_notification>
+        </helpers>
+        <models>
+            <le_notification>
+                <class>LitExtension_Notification_Model</class>
+            </le_notification>
+        </models>
+    </global>
+
+    <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <le_notification_check_update>
+                        <type>singleton</type>
+                        <class>le_notification/feed</class>
+                        <method>check</method>
+                    </le_notification_check_update>
+                </observers>
+            </controller_action_predispatch>
+            <controller_action_predispatch>
+                <observers>
+                    <le_notification_check_extension>
+                        <type>singleton</type>
+                        <class>le_notification/extensions</class>
+                        <method>check</method>
+                    </le_notification_check_extension>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <translate>
+            <modules>
+                <LitExtension_Notification>
+                    <files>
+                        <default>LitExtension_Notification.csv</default>
+                    </files>
+                </LitExtension_Notification>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <default>
+        <le_extension>
+            <feed>
+                <feed_url>litextension.com/feeds/updates.xml</feed_url>
+                <use_https>0</use_https>
+                <frequency>24</frequency>
+                <interests>UPDATE_RELEASE,INSTALLED_UPDATE,NEW_RELEASE,PROMO,INFO</interests>
+            </feed>
+        </le_extension>
+    </default>
+</config>

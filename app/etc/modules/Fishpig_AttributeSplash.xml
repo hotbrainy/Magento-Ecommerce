@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Fishpig_AttributeSplash>
+			<active>true</active>
+			<codePool>community</codePool>
+		</Fishpig_AttributeSplash>
+		<Fishpig_AttributeSplash_FPAdmin>
+			<active>true</active>
+			<codePool>community</codePool>
+		</Fishpig_AttributeSplash_FPAdmin>
+	</modules>
+</config>

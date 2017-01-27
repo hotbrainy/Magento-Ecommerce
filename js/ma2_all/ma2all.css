@@ -1,0 +1,30 @@
+
+/*# TABS - Default pure style #######################################*/
+.tab-list { position:relative; }
+.tab-list .tab { float:left; cursor:pointer; }
+.tab-list .last {}
+.tab-list .active { cursor:default }
+.tab-list .tab-container { position:absolute; left:0; width:100%; }
+.tab-list .tab-content {overflow: hidden;}
+
+.tab-list { padding-bottom:15px; margin:0 0 15px; }
+.tab-list .tab { position:relative; z-index:2; margin-right:3px; background:#EEE; border: 1px solid #C4C4C4; color:#888; padding:0 0 0 10px; font-size:14px; }
+.tab-list .tab span { padding:0 10px 0 0; line-height:24px; float:left; font-weight: bold;}
+.tab-list .last {}
+.tab-list .active { color:#000; font-weight:bold; z-index:3; border-bottom:0; background:#fff; 
+  background-image: -moz-linear-gradient(top, #CDCDCD, #FFFFFF);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CDCDCD), to(#FFFFFF));
+  background-image: -webkit-linear-gradient(top, #CDCDCD, #FFFFFF);
+  background-image: -o-linear-gradient(top, #CDCDCD, #FFFFFF);
+  background-image: linear-gradient(to bottom, #CDCDCD, #FFFFFF);
+  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFCDCDCD', endColorstr='#FFFFFFFF', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.tab-list .active span { background-position:100% 0; padding-bottom:1px; }
+.tab-list .tab-container { z-index:1; top:25px; background:#fff; }
+.tab-list .tab-content { padding: 1.2em 1em; background:#fff; border:1px solid #c4c4c4; font-size:12px; }
+.tab-list .tab-content object,
+.tab-list .tab-content embed { width:100% !important; height:auto !important; }
+
+/*#  #######################################*/

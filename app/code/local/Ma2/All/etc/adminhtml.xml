@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <layout>
+        <updates>
+            <ma2all module="Ma2_All">
+                <file>ma2_all.xml</file>
+            </ma2all>
+        </updates>
+    </layout>
+      
+      <acl>
+          <resources>
+              <all>
+                  <title>Allow Everything</title>
+              </all>
+              <admin>
+                  <children>
+                      <system>
+                          <children>
+                              <config>
+                                  <children>
+                                      <ma2all>
+                                          <title>MagenMarket Extensions</title>
+                                      </ma2all>
+                                  </children>
+                              </config>
+                          </children>
+                      </system>
+                  </children>
+              </admin>
+          </resources>
+      </acl>
+</config>

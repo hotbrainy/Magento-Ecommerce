@@ -1,0 +1,139 @@
+<!-- <?php if ($this->isEnabledCodes()):?>
+<div class="box-account box-recent">
+    <div class="page-head box-credit-generate" style="border-bottom: 1px solid #D9DDE3; width: 100%">
+        <h2 style="float:none;"><?php echo $this->__('Recharge Code') ?></h2>
+    </div>
+    <br>
+    <ol>
+        <li>
+            <form id="refill-credit-form" action="<?php echo $this->getFormAction()?>" method="post">
+                <fieldset>
+                    <ul class="form-list" >
+                        <li>
+                            <label><?php echo $this->__('Enter a recharge code to refill your balance. You can use this credit at any time during the checkout process.')?></label><br />
+                            <input type="text" class="required-entry input-text" value="<?php echo $this->getCustomerCreditCode()?>" name="customercredit_code"/>
+                            <button class="button" type="submit"><span><span><?php echo $this->__('Submit Code')?></span></span></button>                            
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </li>
+    </ol>
+</div>
+<?php endif;?>
+
+<?php if ($this->isAllowAddToCart()):?>
+<div class="box-account box-recent">
+    <div class="page-head box-credit-generate" style="border-bottom: 1px solid #D9DDE3; width: 100%">
+        <h2 style="float:none;"><?php echo $this->__('Buy Internal Credits') ?></h2>
+    </div>
+    <br>
+
+    <ol>
+        <?php $qty = $this->helper('mageworx_customercredit')->getDefaultQtyCreditUnits(); ?>
+        <li>
+            <form id="product_addtocart_form" action="<?php echo $this->getAddToCartFormUrl()?>" method="post">
+            <ul class="form-list" >
+                <li>
+                    <label>
+                        <?php echo $this->__('Qty of Credit Units:')?>&nbsp;
+                    </label>
+                    <input type="text" class="input-text qty" title="Qty" value="<?php echo $qty; ?>" maxlength="12" id="qty" name="qty" style="width:40px !important;"/>
+                        <button id="add_to_cart_button" class="button btn-cart" title="<?php echo $this->htmlEscape(Mage::helper('mageworx_customercredit')->__('Add to Cart')) ?>" type="submit">
+                            <span><span><?php echo Mage::helper('mageworx_customercredit')->__('Add to Cart') ?></span></span>
+                        </button>
+                </li>                    
+            </ul>
+            </form>
+        </li>
+    </ol>
+</div>
+<?php endif;?>     
+
+
+<?php if(Mage::helper('mageworx_customercredit')->isEnableShareCredit()): ?>
+<div class="box-account box-recent">
+    <div class="page-head box-credit-generate" style="border-bottom: 1px solid #D9DDE3; width: 100%">
+        <h2 style="float:none;"><?php echo $this->__('Generate My Codes') ?></h2>
+    </div>
+    <br>
+<form action="<?php echo $this->getUrl('customercredit/refferals/generate',array('_secure'=>true)) ?>"  method="post" id="form-validate-generator">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <ul class="form-list">
+            <li>
+                <label for="credit_value_id" class="required"><em>*</em><?php echo $this->__('Credit Value:') ?></label><br>
+                <input type="text" name="credit_value" id="credit_value_id" value="" title="<?php echo $this->__('Credit Value') ?>" class="input-text required-entry" />
+                <button id="generateButton" type="submit" title="<?php echo $this->__('Generate code') ?>" class="button"><span><?php echo $this->__('Generate code') ?></span></button>
+            </li>
+        </ul>
+</form>
+<script type=”text/javascript”>
+//< ![CDATA[
+var dataForm = new VarienForm('form-validate-generator',true);
+//]]>
+</script>
+</div>
+<?php
+$_items = $this->getCollection(); ?>
+<br>
+<div class="box-account box-recent">
+    <div class="page-head credit-payment">
+        <h2><?php echo $this->__('My Credit Codes') ?></h2>
+    </div>
+    <br>
+    <?php echo $this->getPagerHtml(); ?>
+    
+    <table cellspacing="0" class="data-table" id="my-credit-code-table">
+        <col width="150" />
+        <col width="150" />
+        <col width="150" />
+
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Code Id') ?></th>
+                <th><?php echo $this->__('Code Balance') ?></th>
+                <th><?php echo $this->__('Created On') ?></th>
+                <th><?php echo $this->__('Used On') ?></th>
+                <th><?php echo Mage::helper('mageworx_customercredit')->__('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if($_items->getSize()): ?>
+            <?php foreach ($_items as $_item): ?>
+            <tr>
+                    <td><?php echo $_item->getCode()?></td>
+                    <td><?php echo round($_item->getCredit(),2)?></td>
+                    <td><?php echo $_item->getCreatedDate()?></td>
+                    <td><?php echo $_item->getUsedDate()?></td>
+                    <td>
+                        <?php if(!$_item->getUsedDate()) : ?>
+                        <a onclick="confirmDelete('<?php echo $this->getUrl('*/*/removeCode',array('_secure'=>true,'code_id'=>$_item->getId()))?>');" style="cursor: pointer;">
+                        Remove
+                        </a>
+                        <?php else: ?>
+                        --
+                        <?php endif; ?>
+                            
+                    </td>
+                </tr>
+            <?php endforeach;?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5"><p style="margin:10px 35%"><?php echo $this->__('You didn\'t create any codes yet.'); ?></p></td>
+                </tr>
+            <?php endif ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-credit-code-table');
+        function confirmDelete(url)
+        {
+            if(confirm('<?php echo $this->__('Are you sure to remove this code?')?>')) {
+                window.location.href = url;
+            }
+        }
+    
+    </script>
+    <?php echo $this->getPagerHtml(); ?>
+    
+</div>
+<?php endif; ?> -->

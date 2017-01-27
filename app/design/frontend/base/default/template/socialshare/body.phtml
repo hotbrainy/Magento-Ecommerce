@@ -1,0 +1,23 @@
+<?php if (Mage::getStoreConfig('opengraphtags/facebook/fb_appid') != '') { ?>
+<!-- SocialShare - OpenGraphTags Body -->
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '<?php echo Mage::getStoreConfig('opengraphtags/facebook/fb_appid'); ?>',
+      status     : true, 
+      cookie     : true,
+      xfbml      : true 
+    });
+  };
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/<?php echo Mage::getStoreConfig('opengraphtags/conf/lang'); ?>/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+<!-- SocialShare - OpenGraphTags Body END -->
+<?php } ?>

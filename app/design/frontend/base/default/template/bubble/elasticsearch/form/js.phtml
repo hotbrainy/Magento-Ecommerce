@@ -1,0 +1,78 @@
+<?php
+/**
+ * Override default autocomplete JS to allow custom URL redirect
+ *
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ */
+?>
+<?php if (Mage::getStoreConfigFlag('elasticsearch/autocomplete/enable')): ?>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Varien.searchForm) !== 'undefined') {
+    Varien.searchForm.prototype._selectAutocompleteItem = function(element) {
+        var link = element.down();
+        if (link && link.tagName == 'A') {
+            setLocation(link.href);
+        } else {
+            if (element.title){
+                this.field.value = element.title;
+            }
+            this.form.submit();
+        }
+    };
+    Varien.searchForm.prototype.initAutocomplete = function(url, destinationElement) {
+        new Ajax.Autocompleter(
+            this.field,
+            destinationElement,
+            url,
+            {
+                paramName: this.field.name,
+                method: 'get',
+                minChars: 2,
+                frequency: .1,
+                updateElement: this._selectAutocompleteItem.bind(this),
+                onShow : function(element, update) {
+                    if(!update.style.position || update.style.position=='absolute') {
+                        update.style.position = 'absolute';
+                        Position.clone(element, update, {
+                            setHeight: false,
+                            offsetTop: element.offsetHeight
+                        });
+                    }
+                    Effect.Appear(update,{duration:0});
+                }
+
+            }
+        );
+    };
+    Autocompleter.Base.prototype.markPrevious = function() {
+        if (this.index > 0) {
+            this.index--;
+        } else {
+            this.index = this.entryCount - 1;
+        }
+        var entry = this.getEntry(this.index);
+        if (entry.select('a').length === 0) {
+            this.markPrevious(); // Ignore items that don't have link
+        }
+    };
+    Autocompleter.Base.prototype.markNext = function() {
+        if (this.index < this.entryCount - 1) {
+            this.index++;
+        } else {
+            this.index = 0;
+        }
+        var entry = this.getEntry(this.index);
+        if (entry.select('a').length === 0) {
+            this.markNext(); // Ignore items that don't have link
+        } else {
+            entry.scrollIntoView(false);
+        }
+    };
+}
+//]]>
+</script>
+<?php endif; ?>

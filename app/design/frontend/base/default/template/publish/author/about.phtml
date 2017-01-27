@@ -1,0 +1,25 @@
+<?php
+	$_product = Mage::registry('current_product');
+	$_authors = explode(',',$_product->getPublishAuthor());
+	$authorCount = count($_authors);
+?>
+<div class="block-author">
+	<div class="block">
+		<div class="block-content">
+			<?php for($a = 0; $a < $authorCount; $a++): ?>
+				<?php $_author = Mage::getModel('publish/author')->load($_authors[$a]); ?>
+				<div class="grid12-3">
+					<a href="<?php echo $_author->getAuthorUrl() ?>" class="product-image">
+						<img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(200) ?>" alt="<?php echo $_author->getName(); ?>"/>
+					</a>
+				</div>
+				<div class="grid12-9">
+					<h3><a href="<?php echo $_author->getAuthorUrl() ?>" title="<?php echo $this->stripTags($_author->getName(), null, true) ?>"><?php echo $this->stripTags($_author->getName(), null, true) ?></a></h3>
+					<p><?php echo $_author->getBiography(); ?></p>
+					<?php echo $this->getSocialHtml($_author); ?>
+				</div>
+				<?php if($a+1 < $authorCount):?><hr /><?php endif; ?>
+			<?php endfor; ?>
+		</div>
+	</div>
+</div>

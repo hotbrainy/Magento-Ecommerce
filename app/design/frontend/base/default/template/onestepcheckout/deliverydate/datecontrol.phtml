@@ -1,0 +1,88 @@
+<?php
+//date field
+$dateEnabled = Mage::getStoreConfig('onestepcheckout/delivery/enabled_date');
+$dateRequired = Mage::getStoreConfig('onestepcheckout/delivery/date_req');
+
+//note field
+$noteEnabled = Mage::getStoreConfig('onestepcheckout/delivery/enabled_note');
+$noteRequired = Mage::getStoreConfig('onestepcheckout/delivery/note_req');
+
+//slot select
+$slotRequired = Mage::getStoreConfig('onestepcheckout/delivery/slot_req');
+$slotEnabled = Mage::getStoreConfig('onestepcheckout/delivery/enabled_slot');
+$slotTimes = Mage::getStoreConfig('onestepcheckout/delivery/slot_times');
+if(!empty($slotTimes)){
+    $slotTimes = unserialize($slotTimes);
+} else {
+    //disabled if no options you can use note for free text field
+    $slotEnabled = false;
+    $slotTimes = array();
+}
+
+//notice
+$notice = Mage::getStoreConfig('onestepcheckout/delivery/date_message');
+//other
+$quote = Mage::getSingleton('checkout/type_onepage')->getQuote();
+$date = $quote->getIoscDdate();
+if(!empty($date)){
+    $date = date('d/m/Y', strtotime($quote->getIoscDdate()));
+}
+$checked = ($date || $quote->getIoscDdateSlot() || $quote->getIoscDnote());
+?>
+<?php if($dateEnabled || $noteEnabled || $slotEnabled):?>
+<div id="ddate" style="display:none">
+    <div class="input-checkbox add_ddate">
+        <input type="checkbox" name="add_ddate" id="add_ddate" value="1"<?php echo ($checked ? ' checked':'');?>>
+        <label for="add_ddate"><?php echo $this->__('Add delivery info to my order');?></label>
+    </div>
+    <div id="ddatewrap"<?php echo (((!$checked) ? ' style="display:none"':''));?>>
+        <?php if($dateEnabled):?>
+        <div class="input-box input-deliverydate">
+            <label for="deliverydate:date"><?php echo $this->__('Delivery Date');?><?php if($dateRequired):?> <span class="required">*</span><?php endif;?></label><br />
+            <input class="input-text<?php if($dateRequired):?> required-entry<?php endif;?>" type="text" name="deliverydate[date]" id="deliverydate:date" value="<?php echo Mage::helper('core')->escapeHtml($date); ?>">
+        </div>
+        <?php endif;?>
+        <?php if($slotEnabled):?>
+        <div class="input-box input-slotpicker">
+            <label for="deliverydate:slot"><?php echo $this->__('Delivery Slot');?><?php if($slotRequired):?> <span class="required">*</span><?php endif;?></label><br />
+            <select <?php if($slotRequired):?>class="validate-select"<?php endif;?> name="deliverydate[slot]" id="deliverydate:slot" value="<?php echo Mage::helper('core')->escapeHtml($quote->getIoscDdateSlot()); ?>">
+                <option value="">----</option>
+                <?php foreach ($slotTimes as $slot):?>
+                    <option value="<?php echo $slot['start'].'-'.$slot['end'];?>"<?php if($quote->getIoscDdateSlot() && $quote->getIoscDdateSlot() == $slot['start'].'-'.$slot['end'] ){ echo ' selected';}?>><?php echo $slot['start'].'-'.$slot['end'];?></option>
+                <?php endforeach;?>
+            </select>
+        </div>
+        <?php endif;?>
+        <?php if(!empty($notice)):?>
+        <div class="input-box deliverynotice"><?php echo $notice;?></div>
+        <?php endif;?>
+        <?php if($noteEnabled):?>
+        <div class="input-box input-deliverynote">
+            <label for="deliverydate:note"><?php echo $this->__('Delivery Note');?><?php if($noteRequired):?> <span class="required">*</span><?php endif;?></label><br />
+            <textarea class="input-text<?php if($noteRequired):?> required-entry<?php endif;?>" name="deliverydate[note]" id="deliverydate:slot" rows="4"><?php echo Mage::helper('core')->escapeHtml($quote->getIoscDnote()); ?></textarea>
+        </div>
+        <?php endif;?>
+    </div>
+</div>
+<script src="<?php echo $this->getSkinUrl('onestepcheckout/js/oscdp.js', array('_secure'=>true)) ?>"></script>
+<script>
+
+var config = {
+        'enableajaxsavebilling' : '<?php echo (int)Mage::getStoreConfig('onestepcheckout/ajax_update/enable_ajax_save_billing');?>',
+        'sburl' : '<?php echo $this->getUrl('onestepcheckout/ajax/save_billing', array('_secure'=>true)); ?>',
+        'smuorl' : '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>',
+        'updatepayment': '<?php echo ((Mage::getStoreConfig('onestepcheckout/ajax_update/enable_update_payment_on_shipping')) ? 'true' : 'false'); ?>',
+        'start' : '<?php echo (int)Mage::getStoreConfig('onestepcheckout/delivery/date_start');?>',
+        'end' : '<?php echo (int)Mage::getStoreConfig('onestepcheckout/delivery/date_max');?>',
+        'weekdays' : <?php echo (Mage::getStoreConfig('onestepcheckout/delivery/date_days') ? '['.Mage::helper('core')->escapeHtml(Mage::getStoreConfig('onestepcheckout/delivery/date_days')).']' : '[]');?>,
+        'excluded' : <?php echo (Mage::getStoreConfig('onestepcheckout/delivery/date_days') ? '{"'.str_replace("\n", '":true,"', Mage::helper('core')->escapeHtml(Mage::getStoreConfig('onestepcheckout/delivery/date_exclude'))).'":true}' : '{}');?>
+    };
+
+new oscDeliverydate(
+        'ddate',
+        config
+);
+
+</script>
+<?php endif;?>
+

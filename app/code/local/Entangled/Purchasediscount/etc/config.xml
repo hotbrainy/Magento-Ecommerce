@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    Mage
+ * @package     Entangled_Purchasediscount
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Entangled_Purchasediscount>
+            <version>0.1.0</version>
+        </Entangled_Purchasediscount>
+    </modules>
+    <frontend>
+        <routers>
+            <purchasediscount>
+		<use>standard</use>
+		<args>
+                    <module>Entangled_Purchasediscount</module>
+                    <frontName>purchasediscount</frontName>
+                </args>
+            </purchasediscount>
+        </routers>
+        <events>
+             <checkout_onepage_controller_success_action>
+                 <observers>
+                     <purchasediscount_checkorder>
+                         <type>singleton</type>
+                         <class>purchasediscount/observer</class>
+                         <method>checkOrder</method>
+                     </purchasediscount_checkorder>
+                 </observers>
+             </checkout_onepage_controller_success_action>
+        </events>
+        
+    </frontend>
+    <global>
+        
+        <helpers>
+            <purchasediscount>
+                <class>Entangled_Purchasediscount_Helper</class>
+            </purchasediscount>
+        </helpers>
+        <models>
+            <purchasediscount>
+                <class>Entangled_Purchasediscount_Model</class>
+                <resourceModel>entangled_purchasediscount_resource</resourceModel>
+            </purchasediscount>
+            <entangled_purchasediscount_resource>
+                <class>Entangled_Purchasediscount_Model_Resource</class>
+                <entities>
+                    <purchasedate>
+                        <table>purchasediscount_purchasedate</table>
+                    </purchasedate>
+                </entities>
+            </entangled_purchasediscount_resource>
+        </models>
+        <resources>
+            <purchasediscount_setup>
+                <setup>
+                    <module>Entangled_Purchasediscount</module>
+                </setup>
+            </purchasediscount_setup>
+            <purchasediscount_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </purchasediscount_write>
+            <purchasediscount_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </purchasediscount_read>
+        </resources>
+    </global>
+        <crontab>
+        <jobs>
+            <Purchasediscount>
+                <schedule>
+                    <!--<cron_expr>*/60 * * * *</cron_expr>-->
+                    <cron_expr>*/60 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>Purchasediscount/observer::checkDiscountExpiration</model>
+                </run>
+            </Purchasediscount>
+        </jobs>
+    </crontab>
+    
+</config>

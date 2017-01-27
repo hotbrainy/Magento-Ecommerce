@@ -1,0 +1,68 @@
+<?php
+    $_helper = $this->helper('utility');
+    $_product = $this->getProduct();
+    $excludeAttr = Array('praise');
+?>
+<?php if($_additional = $this->getAdditionalData($excludeAttr)): ?>
+    <h4><?php echo $this->__('Additional Details') ?></h4>
+	
+    <?php foreach ($_additional as $_data):?>
+    
+    <h6 class="attribute_<?php echo $_data['code'] ?>">
+        <span class="attribute_label">
+	    <?php 
+            $labelVal = $labelValue = $this->escapeHtml($this->__($_data['label']));
+            
+            if(strtolower($labelVal) == 'book length') continue;
+            if($_data['code'] == "book_series_2") continue;
+            if($_data['code'] == "book_series" && !$_product->getData("book_series")) continue;
+
+	        if($labelVal == 'Imprints') { $labelValue = "Imprint"; }
+	        if($labelVal == 'Genres') { $labelValue = "Genre"; }
+	        if($labelVal == 'Tropes') { $labelValue = "Tropes"; }
+	        echo $labelValue;
+	    ?>: 
+        </span>
+	
+        <?php
+		if($_data['code']=='release_date') {
+            echo $_data['value'];
+        } else {
+	        $attributeVal = $_helper->productAttribute($_product, $_data['value'], $_data['code']);
+	        $attributeVal = str_replace('$','',$attributeVal);
+	        $attributeVal = str_replace('.00','',$attributeVal);
+	        $attributeVal_array = explode(",",$attributeVal);
+
+            $attributeValue = strtolower(trim($attributeVal_array[0]));
+            $attributeLink = '';
+
+            if($labelVal == 'Imprints' || $labelVal == 'Genres' || $labelVal == 'Tropes') {
+                $i = 0;
+                $values = explode(",",$_product->getData($_data["code"]));
+                foreach($attributeVal_array as $_attributeValue){
+                    $attributeValue = strtolower(trim($_attributeValue));
+                    if($attributeValue == '' || $attributeValue == 'no') {
+                        $attributeLink .= '<a>N/A</a>'.',';
+                    } else {
+                        $booksUrl = Mage::getBaseUrl() . "books.html?" . $_data["code"] . "=" . $values[$i];
+                        $attributeLink .= '<a href="' . $booksUrl .'">' . $attributeValue.'</a>'.', ';
+                    }
+                    $i++;
+                }
+                $attributeLink=substr($attributeLink, 0, -2);
+            } elseif($_data['code'] == "book_series") {
+                $booksUrl = Mage::helper('publish/author')->getAuthorUrl($_product);
+                $seriesIndex = $_product->getData("book_series_2");
+                $attributeLink .= '<a href="' . $booksUrl .'">' . $attributeVal.'</a>, Book '.round($seriesIndex,1);
+            } else {
+                $attributeLink = $attributeVal_array[0];
+            }
+            echo $attributeLink;
+		}
+        ?>
+    </h6>
+    
+    <?php endforeach; ?>
+    
+    <script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
+<?php endif;?>

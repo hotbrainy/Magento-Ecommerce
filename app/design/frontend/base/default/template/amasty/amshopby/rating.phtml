@@ -1,0 +1,15 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<div class="ratings" style="display: inline-block;margin: 0px;padding: 0px;">
+    <div class="rating-box" style="margin:0px;">
+        <span class="rating" style="width:<?php echo ($this->getStar()*20);?>%;"></span>
+    </div>
+</div>
+<?php if($this->getStar() != 5):?>
+<span style="font-size: smaller">&amp; up</span>
+<?php endif; ?>

@@ -1,0 +1,973 @@
+<?php if (Mage::helper('customer')->isLoggedIn() != true) : ?>
+    <?php
+    $themes = Mage::getStoreConfig('ajaxlogin/ajaxlogin/themes');
+
+    if (Mage::getStoreConfig('ajaxlogin/ajaxlogin/position') == 1) {
+        ?>
+        <style type="text/css">
+            .le-register-window {
+                margin-left: -200px;
+            }
+        </style>
+    <?php } ?>
+
+    <?php if (Mage::getStoreConfig('ajaxlogin/ajaxlogin/enableolay') == 1) {
+        echo '<div class="le-ajaxlogin-cover"></div>';
+    } ?>
+
+    <div class="le-ajaxlogin-loader" id="le-ajaxlogin-loadid"></div>
+    <div class="le-login-window <?php echo $themes . '-login'; ?>">
+        <div class="le-window-outside le-window-mar">
+            <div class="le-window-inside">
+                <div class="le-login-close le-close <?php echo $themes . '-login-close'; ?>">
+                    <?php if ($themes == 'simple') {
+                        echo '<a>'.$this->__('Close').'</a>';
+                    } ?>
+                </div>
+                <div class="le-window-title">
+                    <h3>
+                        <?php echo $this->__('Login') ?>
+                    </h3>
+                </div>
+
+                <div class="le-window-box first">
+                    <div class="le-window-content">
+                        <div class="input-fly le-showhideme">
+                            <label for="le-email"><?php echo $this->__('E-mail address') ?> <span>*</span></label>
+                            <input type="text" id="le-email" name="le-email" class="" value=""/>
+
+                            <div class="le-ajaxlogin-error err-email err-noemail err-wrongemail "></div>
+                        </div>
+                        <div class="input-fly le-showhideme">
+                            <label for="le-password"><?php echo $this->__('Password') ?> <span>*</span></label>
+                            <input type="password" id="le-password" name="le-password" value=""/>
+
+                            <div class="le-ajaxlogin-error err-password err-dirtypassword err-nopassword err-longpassword err-wronglogin"></div>
+                        </div>
+                        <br style="clear:both;" />
+                    </div>
+                </div>
+
+                <div class="le-window-box second">
+                    <div class="le-window-content">
+                        <div class="le-showhideme social-button">
+                            <?php if (Mage::getStoreConfig('ajaxlogin/facebook/enabled') == 1) { ?>
+                                <button rel="facebook-connect" type="button"
+                                        title="<?php echo $this->__('Connect with %s', $this->__('Facebook')) ?>" class="button">
+                                    <?php echo $this->getChildHtml('le_ajaxlogin_facebook_login_button'); ?>
+                                </button>
+                            <?php } ?>
+                            <?php if (Mage::getStoreConfig('ajaxlogin/google/enabled') == 1) { ?>
+                                <button rel="google-connect" type="button"
+                                        title="<?php echo $this->__('Connect with %s', $this->__('Google')) ?>" class="button">
+                                    <?php echo $this->getChildHtml('le_ajaxlogin_google_login_button'); ?>
+                                </button>
+                            <?php } ?>
+                            <?php if (Mage::getStoreConfig('ajaxlogin/twitter/enabled') == 1) { ?>
+                                <button rel="twitter-connect" type="button"
+                                        title="<?php echo $this->__('Connect with %s', $this->__('Twitter')) ?>" class="button">
+                                    <?php echo $this->getChildHtml('le_ajaxlogin_twitter_login_button'); ?>
+                                </button>
+                            <?php } ?>
+                            <?php if (Mage::getStoreConfig('ajaxlogin/linkedin/enabled') == 1) { ?>
+                                <button rel="linkedin-connect" type="button"
+                                        title="<?php echo $this->__('Connect with %s', $this->__('Linkedin')) ?>" class="button">
+                                    <?php echo $this->getChildHtml('le_ajaxlogin_linkedin_login_button'); ?>
+                                </button>
+                            <?php } ?>
+                            <?php if (Mage::getStoreConfig('ajaxlogin/yahoo/enabled') == 1) { ?>
+                                <button rel="yahoo-connect" type="button"
+                                        title="<?php echo $this->__('Connect with %s', $this->__('Yahoo')) ?>" class="button">
+                                    <?php echo $this->getChildHtml('le_ajaxlogin_yahoo_login_button'); ?>
+                                </button>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="le-window-box last le-showhideme">
+                    <div class="button-set"><p style="float: right; margin-top: 5px;"><span
+                                style="color: #ff0000;"><?php echo $this->__('* Required Fields') ?></span></p></div>
+                    <div class="le-window-content box-contents box-contents-button le-showhideme">
+                        <span class="le-forgot-password">
+                            <a href="<?php echo Mage::getBaseUrl() ?>customer/account/forgotpassword/"
+                               id="le-ajaxlogin-forgotpass"><?php echo $this->__('Forgot Password') ?></a><br />
+                            <a href="<?php echo Mage::getBaseUrl() ?>customer/account/create/"
+                               id="le-ajaxlogin-createacc"><?php echo $this->__('Create an Account') ?></a>
+                        </span>
+                        <button type="button" id="le-login" class="button le-ajaxlogin-button"><span><span>
+                                    <?php echo $this->__('Login') ?>
+                        </span></span></button>
+                    </div>
+                </div>
+
+            </div>
+            <div id="le-ajaxlogin-forgotpass-box" style="display: none; width: 360px; background: #ffffff; z-index: 99999;">
+                <form id="le-ajaxlogin-forgotpass-form">
+                <div>
+                    <div class="le-login-close le-close <?php echo $themes . '-login-close'; ?>">
+                        <?php if ($themes == 'simple') {
+                            echo '<a>'.$this->__('Close').'</a>';
+                        } ?>
+                    </div>
+                    <div class="le-window-title"><h3><?php echo $this->__('Forgot Your Password?') ?></h3></div>
+                    <p class="le-showhideme"><?php echo $this->__('Please enter your email address below. You will receive a link to reset your password.') ?></p>
+                    <div class="le-showhideme">
+                        <label for="le-ajaxlogin-forgotpass-input"><?php echo $this->__('Email Address ') ?></label><span
+                            style="color: #ff0000;">*</span><br />
+                    </div>
+                    <input class="le-showhideme" type="text" id="le-ajaxlogin-forgotpass-input" name="email"
+                           style="width: 254px;"/><br />
+                    <div class="le-ajaxlogin-error er-email er-noemail er-wrongemail" style="float: left; margin: 0;"></div>
+                    <div class="le-ajaxlogin-success email-success success-msg" style="display: none;"></div>
+
+                    <?php if (Mage::getStoreConfig("customer/captcha/enable") != 0) {
+                        echo '<div class="input-fly input-fly-checkbox le-showhideme" style="clear: both;">';
+                        echo $this->getChildHtml("le_captcha_forgotpass");
+                        echo '<br /><div class="le-ajaxlogin-error le-ajaxlogin-error-captcha"></div>';
+                        echo '</div>';
+                    } ?>
+                    <br style="clear:both" />
+                    <div class="button-set le-showhideme"><p style="float: right; margin-top: 5px;">
+                            <span style="color: #ff0000;"><?php echo $this->__('* Required Fields') ?></span></p></div>
+                    <br style="clear:both" />
+                    <div style="vertical-align: middle;" class="le-showhideme">
+                        <div style="margin-top: 5px;"><a href="JavaScript:void(0);" id="le-ajaxlogin-forgotpass-back"><?php echo $this->__('« Back to Login'); ?></a></div>
+                        <button class="button" title="<?php echo $this->__('Submit') ?>" type="submit" id="le-ajaxlogin-forgotpass-submit" style="float: right; margin: -21px 0 14px 0; ">
+                            <span>
+                                <span><?php echo $this->__('Submit') ?></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <form action="<?php echo Mage::getUrl() . 'ajaxlogin/account/createpost/'; ?>" method="post" id="le-form-validate">
+
+    <div class="le-register-window <?php echo $themes . '-register'; ?>">
+    <div id="le-scroll-close" class="le-register-close le-close <?php echo $themes . '-register-close'; ?>">
+        <?php if ($themes == 'simple') {
+            echo '<a>Close</a>';
+        } ?>
+    </div>
+    <div id="le-register" class="le-showhideme">
+
+    <div class="le-window-outside" id="le-window-outside-moveclose">
+    <div class="le-window-inside">
+
+    <div class="le-window-title">
+        <h3>
+            <?php echo $this->__('Registration') ?>
+        </h3>
+    </div>
+    <div id="le-window-main">
+        <div id="le-window-scrollbar">
+            <div class="le-window-box first">
+                <div class="le-window-subtitle le-showhideme">
+                    <p><?php echo $this->__('Profile Information') ?></p>
+                </div>
+                <div class="le-window-content">
+                    <div class="input-fly le-showhideme">
+                        <?php $_name = $this->getLayout()->createBlock('customer/widget_name'); ?>
+                        <?php echo $_name->setTemplate('le_ajaxlogin/widget/name.phtml')->setObject(Mage::getSingleton('customer/session')->getCustomer())->toHtml() ?>
+                    </div>
+
+                    <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob');
+                    if ($_dob->isEnabled()): ?>
+                        <div class="input-fly le-showhideme">
+                            <?php echo $_dob->setTemplate('le_ajaxlogin/widget/dob.phtml')->toHtml(); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat');
+                    if ($_taxvat->isEnabled()): ?>
+                        <div class="input-fly le-showhideme littaxvat">
+                            <?php echo $_taxvat->setTemplate('le_ajaxlogin/widget/taxvat.phtml')->toHtml(); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender');
+                    if ($_gender->isEnabled()): ?>
+                        <div class="input-fly le-showhideme litgender">
+                            <?php echo $_gender->setTemplate('le_ajaxlogin/widget/gender.phtml')->toHtml(); ?>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+
+            <?php
+
+            $var_attrs = array(); // will be used in JS
+            $model = 'customer/attribute_collection';
+            $type = 'customer';
+            $collection = Mage::getResourceModel($model)
+                ->setEntityTypeFilter(Mage::getModel('eav/entity')->setType($type)->getTypeId())
+                ->addVisibleFilter()
+                ->addFilter('is_user_defined', 1)->setOrder('sort_order', 'ASC');
+            if (count($collection) >= 1) {
+                ?>
+                <div class="le-window-box second">
+                    <div class="le-window-subtitle le-showhideme">
+                        <p><?php echo $this->__('More Information') ?></p>
+                    </div>
+                    <div class="le-window-content litmore">
+                        <?php
+                        $store_id = Mage::app()->getStore()->getId();
+                        foreach ($collection as $attribute) {
+                            $attr = $attribute->toArray();
+
+                            if ($attr['is_required'])
+                                $var_attrs[] = $attr['attribute_code'];
+
+                            $store_labels = $attribute->getStoreLabels();
+                            $label = $store_labels[$store_id] ? $store_labels[$store_id] : $attr['frontend_label'];
+                            $func = 'get' . str_replace(' ', '', ucwords(str_replace('_', ' ', $attr['attribute_code'])));
+                            echo '<div class="input-fly le-showhideme">';
+                            echo '<label for="' . $attr['attribute_code'] . '" ' . ($attr['is_required'] ? 'class="required"><em>*</em>' : '>') . $this->__($label) . '</label>';
+                            switch ($attr['frontend_input']) {
+                                case 'text':
+                                    echo '
+                                        <div class="input-box">
+                                            <input type="text" name="' . $attr['attribute_code'] . '" id="' . $attr['attribute_code'] . '" class="input-text" />
+                                        </div>';
+                                    break;
+
+                                case 'textarea':
+                                    echo '
+                                        <div class="input-box">
+                                            <textarea name="' . $attr['attribute_code'] . '" id="' . $attr['attribute_code'] . '" style="width: 154px; max-width: 154px; float: right;" ></textarea>
+                                        </div>';
+                                    break;
+
+                                case 'select':
+                                    echo '
+							                <div class="input-box">';
+                                    echo '<select name="' . $attr['attribute_code'] . '" id="' . $attr['attribute_code'] . '" >';
+                                    foreach ($attribute->getSource()->getAllOptions((!$attr['is_required']), false) as $instance) {
+                                        echo '<option value="' . $instance['value'] . '" ' . ($this->htmlEscape($this->getCustomer()) == $instance['value'] ? 'selected' : '') . '>' . $instance['label'] . '</option>';
+                                    }
+                                    echo '</select>';
+
+                                    echo '
+							                </div>';
+                                    break;
+
+                                case 'multiselect':
+                                    echo '
+							                <div class="input-box">';
+
+                                    $multi_values = explode(',', $this->htmlEscape($this->getCustomer()));
+
+                                    echo '<select name="' . $attr['attribute_code'] . '[]" id="' . $attr['attribute_code'] . '" multiple="multiple" >';
+
+                                    foreach ($attribute->getSource()->getAllOptions((!$attr['is_required']), false) as $instance) {
+                                        echo '<option value="' . $instance['value'] . '" ' . (in_array($instance['value'], $multi_values) ? 'selected="selected"' : '') . '>' . $instance['label'] . '</option>';
+                                    }
+                                    echo '</select></div>';
+                                    break;
+
+                                case 'date':
+                                    $date_element = new Varien_Data_Form_Element_Date();
+                                    $date_element->setValue($this->htmlEscape($this->getCustomer()));
+                                    echo '<div class="input-box" id="le-calendar">
+                                    <input type="text" name="' . $attr['attribute_code'] . '" id="' . $attr['attribute_code'] . '" value="' . $date_element->getValue(Mage::app()->getLocale()->getDateFormatWithLongYear()) . '" class="input-text" />
+                                    <img style="" title="' . $this->__('Select Date') . '" id="' . $attr['attribute_code'] . '_trig" class="v-middle" alt="" src="' . $this->getSkinUrl('images/grid-cal.gif') . '">
+                                    ' . $this->getChildHtml('html_calendar') . '
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField : "' . $attr['attribute_code'] . '",
+                                            ifFormat : "' . Varien_Date::convertZendToStrFtime(Mage::app()->getLocale()->getDateFormatWithLongYear(), true, false) . '",
+                                            button : "' . $attr['attribute_code'] . '_trig",
+                                            showsTime: false,
+                                            align : "Bl",
+                                            singleClick : true
+                                        });
+                                    </script>
+
+								</div>';
+                                    break;
+                            }
+                            echo '</div>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            <?php } ?>
+            <br style="clear:both;" />
+            <div class="le-window-box second">
+                <div class="le-window-subtitle le-showhideme">
+                    <p><?php echo $this->__('Login Information') ?></p>
+                </div>
+                <div class="le-window-content">
+                    <div class="le-showhideme input-fly litemail">
+                        <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?>
+                        </label>
+
+                        <div class="input-box">
+                            <input type="text" name="email" id="le-reg-email_address"
+                                   value="<?php echo $this->htmlEscape($this->getUsername()) ?>"
+                                   title="<?php echo $this->__('Email Address') ?>"
+                                   class="input-text validate-email required-entry"/>
+
+                            <div class="le-ajaxlogin-error err-email err-noemail err-emailisexist err-isnotemail"></div>
+                        </div>
+                    </div>
+                    <div class="input-fly le-showhideme">
+                        <label for="le-password"><?php echo $this->__('Password') ?> <em>*</em></label>
+                        <input type="password" name="password" id="le-reg-password" title="<?php echo $this->__('Password') ?>"
+                               class="input-text required-entry validate-password"/>
+                    </div>
+                    <div class="input-fly le-showhideme">
+                        <label for="le-passwordsecond"><?php echo $this->__('Password confirmation') ?>
+                            <em>*</em></label>
+                        <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>"
+                               id="le-reg-confirmation" class="input-text required-entry validate-cpassword"/>
+                    </div>
+
+                    <?php if (Mage::getStoreConfig('ajaxlogin/registration/enablenewsletter') == 1): ?>
+                        <div class="input-fly le-showhideme">
+                            <input type="checkbox" name="is_subscribed"
+                                   title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1"
+                                   id="is_subscribed" class="checkbox"/>
+                            <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (Mage::getStoreConfig('ajaxlogin/registration/enabletac') == 1): ?>
+                        <div class="input-fly le-showhideme">
+                            <input type="checkbox" name="tac" title="<?php echo $this->__('Terms & Conditions') ?>"
+                                   value="1" id="terms_and_conditions" class="checkbox required-entry"/>
+                            <label for="terms_and_conditions"><?php echo $this->__('Terms & Conditions') ?>
+                                <em>*</em></label>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+            <br style="clear:both;" />
+            <div class="button-set button-bum le-showhideme">
+                <p style="float: right; margin-top: 5px;">
+                    <span style="color: #ff0000;"><?php echo $this->__('* Required Fields'); ?></span></p></div>
+            <br style="clear:both;" />
+            <div class="le-window-box last le-showhideme">
+                <a href="JavaScript:void(0);" id="le-ajaxlogin-register-back" style="line-height: 21px;"><?php echo $this->__('« Back to Login'); ?></a>
+
+                <div class="le-window-content box-contents le-showhideme">
+                    <button type="submit" class="button le-ajaxlogin-button">
+                            <span>
+                                <span>
+                                    <?php echo $this->__('Register') ?>
+                                </span>
+                            </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </form>
+
+    <div class="le_ajaxlogin-temp-error" style="display:none !important;">
+        <div class="leerrorwrongemail"><?php echo $this->__('This is not an email address!') ?></div>
+        <div class="leerrornoemail"><?php echo $this->__('Email address is required!') ?></div>
+        <div class="leerroremailisexist"><?php echo $this->__('This email is already registered!') ?></div>
+        <div class="leerrorisnotemail"><?php echo $this->__('"Email" is not a valid hostname!') ?></div>
+
+        <div class="leerrornopassword"><?php echo $this->__('Password is required!') ?></div>
+        <div class="leerrordirtypassword"><?php echo $this->__('Enter a valid password!') ?></div>
+        <div class="leerrorshortpassword"><?php echo $this->__('Please enter 6 or more characters!') ?></div>
+        <div class="leerrorlongpassword"><?php echo $this->__('Please enter 16 or less characters!') ?></div>
+
+        <div class="leerrorwronglogin"><?php echo $this->__('Email or Password is wrong!') ?></div>
+    </div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+    function setExtraValidation(arg) {
+        <?php $total_attr=count($var_attrs); ?>
+        if (arg) {
+            <?php for($cnt=0; $cnt<$total_attr; $cnt++) { ?>
+            $('<?php echo $var_attrs[$cnt] ?>').addClassName('required-entry');
+            <?php } ?>
+        } else {
+            <?php for($cnt=0; $cnt<$total_attr; $cnt++) { ?>
+            $('<?php echo $var_attrs[$cnt] ?>').removeClassName('required-entry');
+            <?php } ?>
+        }
+    }
+    setExtraValidation(true);
+
+    (function ($) {
+
+        var dataForm = new VarienForm('le-form-validate', true);
+        <?php if($this->getShowAddressFields()): ?>
+        new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+        <?php endif; ?>
+
+
+        $.fn.leAjaxLogin = function (options) {
+
+            var opts = $.extend({}, $.fn.leAjaxLogin.defaults, options);
+
+            return start();
+
+            function start() {
+                removeOriginalJsLocations();
+                setSizes();
+                responsiveMaker();
+                openCloseWindowEvents();
+                sendEvents();
+            }
+
+            function removeOriginalJsLocations() {
+                $('a[href*="customer/account/create"], a[href*="customer/account/login"], .customer-account-login .new-users button, a[href*="customer/account/forgotpassword/"]').attr('onclick', 'return false;');
+            }
+
+            function openCloseWindowEvents() {
+                if (opts.autoShowUp == 'yes' && $('.messages').css('display') != 'block') {
+                    animateShowWindow('login');
+                }
+
+                $('a[href*="customer/account/create"], .new-users button').on('click', function () {
+                    animateCloseWindow('login');
+                    animateShowWindow('register');
+                    return false;
+                });
+
+                $('a[href*="customer/account/login"]').on('click', function () {
+                    animateShowWindow('login');
+                    return false;
+                });
+
+                $('.le-register-close').on('click', function () {
+                    animateCloseWindow('register');
+                });
+
+                $('.le-login-close').on('click', function () {
+                    animateCloseWindow('login');
+                });
+
+                $('#le-ajaxlogin-register-back').on('click', function () {
+                    animateCloseWindow('register');
+                    animateShowWindow('login');
+                });
+            }
+
+            function sendEvents() {
+                $("form#le-form-validate").submit(function () {
+
+                    setDatas('register');
+                    validateDatas('register');
+                    if (opts.errors != '') {
+                        setError(opts.errors, 'register');
+                    } else {
+                        callAjaxControllerRegistration();
+                    }
+                    if (opts.sub == true) {
+
+                    } else {
+                        return false;
+                    }
+                });
+
+                $(document).keypress(function (e) {
+                    if (e.which == 13 && $('.le-window-inside').css('display') == 'block') {
+                        setDatas('login');
+                        validateDatas('login');
+                        if (opts.errors != '') {
+                            setError(opts.errors, 'login');
+                        }
+                        else {
+                            callAjaxControllerLogin();
+                        }
+                    }
+                });
+
+                $('.le-login-window button#le-login').on('click', function () {
+                    setDatas('login');
+                    validateDatas('login');
+                    if (opts.errors != '') {
+                        setError(opts.errors, 'login');
+                    }
+                    else {
+                        callAjaxControllerLogin();
+                    }
+                });
+            }
+
+            function animateShowWindow(windowName) {
+                <?php if(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==2) { ?>
+                $('.le-ajaxlogin-cover').fadeIn();
+                if (windowName == 'register') {
+                    $('.le-register-close').fadeIn();
+                }
+                $('.le-' + windowName + '-window').fadeIn('fast', function () {
+                    $('.le-' + windowName + '-window .le-showhideme').each(function (index, domeE) {
+                        $(this).delay(index * 30).fadeIn('fast');
+                        setTop(windowName);
+                    });
+                });
+                <?php } elseif (Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==1) { ?>
+                $('.le-ajaxlogin-cover').fadeIn();
+                if (windowName == 'register') {
+                    $('.le-register-close').fadeIn();
+                }
+                $('.le-' + windowName + '-window').fadeIn();
+                $('.le-' + windowName + '-window .le-showhideme').each(function () {
+                    $(this).fadeIn();
+                    setTop(windowName);
+                });
+                <?php }else{ ?>
+                $('.le-ajaxlogin-cover').show();
+                if (windowName == 'register') {
+                    $('.le-register-close').show();
+                }
+                $('.le-' + windowName + '-window').show();
+                $('.le-' + windowName + '-window .le-showhideme').each(function () {
+                    $(this).show();
+                    setTop(windowName);
+                });
+                <?php } ?>
+
+            }
+
+            function animateLoader(windowName, step) {
+                setTop(windowName);
+                if (step == 'start') {
+                    $('.le-' + windowName + '-window .le-ajaxlogin-error').fadeOut();
+                    $('.le-ajaxlogin-loader').fadeIn();
+                    $('.le-' + windowName + '-window').animate({opacity: '0.5'});
+                }
+                else {
+                    $('.le-ajaxlogin-loader').fadeOut('normal', function () {
+                        $('.le-' + windowName + '-window').animate({opacity: '1'});
+                    });
+                }
+            }
+
+            function animateCloseWindow(windowName) {
+                <?php if(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==2) { ?>
+                if (opts.stop != true) {
+                    $('.le-ajaxlogin-error').fadeOut();
+                    $('.le-' + windowName + '-window .validation-advice').fadeOut();
+                    $('.le-ajaxlogin-success').fadeOut();
+                    $('.le-' + windowName + '-window input,select,textarea').removeClass("validation-failed");
+
+                    var inputs = $('.le-' + windowName + '-window .le-showhideme').nextAll();
+                    var counter = inputs.length;
+
+                    $($('.le-' + windowName + '-window .le-showhideme').get().reverse()).each(function (index, domeE) {
+                        $(this).delay(index * 30).fadeOut('fast');
+                    });
+
+                    $('.le-' + windowName + '-window').delay(counter * 30).fadeOut();
+                    $('.le-ajaxlogin-cover').delay(counter * 30).fadeOut();
+                    $('.le-register-close').delay(counter * 30).fadeOut();
+                }
+                <?php }elseif(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==1) { ?>
+                if (opts.stop != true) {
+                    $('.le-ajaxlogin-error').fadeOut();
+                    $('.le-' + windowName + '-window .validation-advice').fadeOut();
+                    $('.le-ajaxlogin-success').fadeOut();
+                    $('.le-' + windowName + '-window input,select,textarea').removeClass("validation-failed");
+
+                    $($('.le-' + windowName + '-window .le-showhideme').get().reverse()).each(function () {
+                        $(this).fadeOut('fast');
+                    });
+
+                    $('.le-' + windowName + '-window').fadeOut();
+                    $('.le-ajaxlogin-cover').fadeOut();
+                    $('.le-register-close').fadeOut();
+                }
+                <?php }else { ?>
+                if (opts.stop != true) {
+                    $('.le-ajaxlogin-error').hide();
+                    $('.le-' + windowName + '-window .validation-advice').hide();
+                    $('.le-ajaxlogin-success').hide();
+                    $('.le-' + windowName + '-window input,select,textarea').removeClass("validation-failed");
+
+                    $($('.le-' + windowName + '-window .le-showhideme').get().reverse()).each(function () {
+                        $(this).hide('fast');
+                    });
+
+                    $('.le-' + windowName + '-window').hide();
+                    $('.le-ajaxlogin-cover').hide();
+                    $('.le-register-close').hide();
+                }
+                <?php } ?>
+                $('.le-login-window').hide(function () {
+                    $('.le-ajaxlogin-error').hide();
+                    $('#le-ajaxlogin-forgotpass-box').hide();
+                    $('.le-window-inside').show(0);
+                });
+
+            }
+
+            function validateDatas(windowName) {
+                opts.errors = '';
+
+                if (windowName == 'register') {
+                    if (validateEmail(opts.email) != true) {
+                        opts.errors = opts.errors + 'wrongemail,'
+                    }
+
+                    <?php if (Mage::getStoreConfig('ajaxlogin/registration/enabletac') == 1){ ?>
+                    if ($("#terms_and_conditions").is(":checked")) {
+                    } else {
+                        opts.errors = opts.errors + 'nocondition,'
+                    }
+                    <?php } ?>
+                }
+                else if (windowName == 'login') {
+                    if (opts.email.length < 1) {
+                        opts.errors = opts.errors + 'noemail,';
+                        $("#le-email").addClass("validation-failed");
+                    }
+                    else if (validateEmail(opts.email) != true) {
+                        opts.errors = opts.errors + 'wrongemail,';
+                        $("#le-email").addClass("validation-failed");
+                    }else{
+                        $("#le-email").removeClass("validation-failed");
+                    }
+
+                    if (opts.password.length < 1) {
+                        opts.errors = opts.errors + 'nopassword,';
+                        $("#le-password").addClass("validation-failed");
+                    }
+                    else if (opts.password.length > 16) {
+                        opts.errors = opts.errors + 'wronglogin,'
+                    }else{
+                        $("#le-password").removeClass("validation-failed");
+                    }
+
+                    var n = opts.password.indexOf(' ');
+                    if (n != -1) {
+                        opts.errors = opts.errors + 'wronglogin,'
+                    }
+                }
+            }
+
+            function validateEmail(emailAddress) {
+                var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+                if (filter.test(emailAddress)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function setDatas(windowName) {
+                if (windowName == 'register') {
+                    opts.email = $('.le-' + windowName + '-window #le-reg-email_address').val();
+                }
+                else if (windowName == 'login') {
+                    opts.email = $('.le-' + windowName + '-window #le-email').val();
+                    opts.password = $('.le-' + windowName + '-window #le-password').val();
+                }
+            }
+
+            function setError(errors, windowName) {
+                $('.le-' + windowName + '-window .le-ajaxlogin-error').text('');
+                $('.le-' + windowName + '-window .le-ajaxlogin-error').hide();
+
+                var errorArr = new Array();
+                errorArr = errors.split(',');
+
+                var length = errorArr.length - 1;
+
+                for (var i = 0; i < length; i++) {
+                    var errorText = $('.leerror' + errorArr[i]).text();
+
+                    $('.le-' + windowName + '-window .err-' + errorArr[i]).text(errorText);
+                }
+
+                $('.le-' + windowName + '-window .le-ajaxlogin-error').fadeIn();
+            }
+
+            function callAjaxControllerRegistration() {
+                if (opts.stop != true) {
+                    opts.stop = true;
+
+                    animateLoader('register', 'start');
+
+                    var ajaxRegistration = jal.ajax({
+                        url: '<?php echo $this->getUrl('ajaxlogin/ajax/index') ?>',
+                        type: 'POST',
+                        data: {
+                            ajax: 'register',
+                            email: opts.email,
+                        },
+                        dataType: "html"
+                    });
+                    ajaxRegistration.done(function (msg) {
+                        if (msg != 'success') {
+                            setError(msg, 'register');
+                        }
+                        else {
+                            opts.stop = false;
+                            opts.sub = true;
+                            animateCloseWindow('register');
+                            $("form#le-form-validate").submit();
+                        }
+                        animateLoader('register', 'stop');
+                        opts.stop = false;
+                    });
+                    ajaxRegistration.fail(function (jqXHR, textStatus, errorThrown) {
+                        opts.stop = false;
+                        animateLoader('register', 'stop');
+                    });
+                }
+            }
+
+            function callAjaxControllerLogin() {
+                if (opts.stop != true) {
+
+                    opts.stop = true;
+
+                    animateLoader('login', 'start');
+
+                    var ajaxRegistration = jal.ajax({
+                        url: '<?php echo $this->getUrl('ajaxlogin/ajax/index') ?>',
+                        type: 'POST',
+                        data: {
+                            ajax: 'login',
+                            email: opts.email,
+                            password: opts.password
+                        },
+                        dataType: "html"
+                    });
+                    ajaxRegistration.done(function (msg) {
+                        if (msg != 'success') {
+                            setError(msg, 'login');
+                        }
+                        else {
+                            opts.stop = false;
+                            animateCloseWindow('login');
+                            window.location = opts.profileUrl;
+                        }
+                        animateLoader('login', 'stop');
+                        opts.stop = false;
+                    });
+                    ajaxRegistration.fail(function (jqXHR, textStatus, errorThrown) {
+                        opts.stop = false;
+                        animateLoader('login', 'stop');
+                    });
+                }
+            }
+
+            function responsiveMaker() {
+                var position = 'fixed';
+                $(window).resize(function () {
+                    setSizes(position);
+                });
+            }
+
+            function setSizes(position) {
+                <?php if(Mage::getStoreConfig('ajaxlogin/ajaxlogin/position')==0){ ?>
+                var winHeight = $(window).height();
+                var winWidth = $(window).width();
+
+                $('.le-login-window').css('top', ((winHeight / 2) - 100) + 'px');
+                setTop('login');
+                var rewidth = $('.le-register-window').width();
+                $('.le-register-window').css('top', -((480 - winHeight) / 2 ) + 'px'); //-((500-winHeight)/2 )+
+                $('.le-register-window').css('left', ((winWidth - rewidth) / 2 ) + 'px');
+                setTop('register');
+
+                <?php } else { ?>
+
+                var hlink = $('.links>li').height();
+                var wlink = $('.links>li').width();
+
+                var lwidth = $('.le-login-window').width();
+                var logoffset = $('a[title="Log In"]').offset();
+                var rewitd = $('a[title="Log In"]').width();
+                $('.le-login-window').css('top', (logoffset.top + hlink) + 'px');
+                $('.le-login-window').css('left', (logoffset.left - (lwidth / 2) + rewitd ) + 'px');
+                $('.le-login-window').css('position', 'absolute');
+
+                var rwidth = $('.le-register-window').width();
+                $('.le-register-window').css('top', (logoffset.top + hlink) + 'px');
+                $('.le-register-window').css('left', (logoffset.left + rewitd - (rwidth / 2)) + 'px');
+                $('.le-register-window').css('position', 'absolute');
+
+                $('.le-ajaxlogin-loader').css('left', (logoffset.left - (lwidth / 2) + wlink) + 'px');
+                <?php } ?>
+            }
+
+            function setTop(windowName) {
+                if ($('.le-' + windowName + '-window').css('display') == 'block') {
+                    var height = $('.le-' + windowName + '-window').height();
+                    var marginTop = $('.le-' + windowName + '-window').css('top').replace('px', '');
+                    var loaderheight = $('#le-ajaxlogin-loadid').height();
+                    var theTop = (parseInt(height) / 2) + parseInt(marginTop) - (parseInt(loaderheight)/2);
+                    $('.le-ajaxlogin-loader').css('top', parseInt(theTop) + 'px');
+                    $('.le-ajaxlogin-loader').css('position', $('.le-' + windowName + '-window').css('position'));
+                }
+            }
+        };
+
+
+        $.fn.leAjaxLogin.defaults = {
+            stop: false,
+            sub: false,
+            profileUrl: '<?php echo Mage::getBaseUrl() ?>customer/account/',
+            autoShowUp: '<?php echo $autoShowUp = (isset($_GET['leregister'])) ? 'yes' : 'no' ?>',
+            errors: '',
+            email: '',
+            password: ''
+        };
+
+    })(jal);
+
+    jal(document).ready(function () {
+        jal().leAjaxLogin();
+        jal(document).on('click', '#le-ajaxlogin-forgotpass', function () {
+            jal('#le-ajaxlogin-forgotpass-box').css({'display': 'block'});
+            jal('.le-window-inside').css({'display': 'none'});
+            jal('.le-login-window').css({'display': 'none'});
+            //jal('a[href*="customer/account/login"]').trigger('click');
+            effectShowLogin('.le-login-window');
+            return false;
+        });
+        jal(document).on('click', '#le-ajaxlogin-forgotpass-submit', function () {
+            var email = jal('#le-ajaxlogin-forgotpass-input').val();
+            jal('.le-login-window .le-ajaxlogin-error-captcha').text('');
+            jal('#le-ajaxlogin-forgotpass-box #captcha_form-validate-captcha').removeClass('validation-failed');
+            var checkcaptcha = true;
+            if(jal('#le-ajaxlogin-forgotpass-box #captcha_form-validate-captcha').length != 0){
+                var captcha = jal('#le-ajaxlogin-forgotpass-box #captcha_form-validate-captcha').val();
+                if(captcha == ""){
+                    jal('.le-login-window .le-ajaxlogin-error-captcha').text("<?php echo $this->__('This is a required field.')?>");
+                    jal('#le-ajaxlogin-forgotpass-box #captcha_form-validate-captcha').addClass('validation-failed');
+                    checkcaptcha = false;
+                }
+            }
+            if (IsEmail(email) == true && checkcaptcha == true) {
+                var data = jal('#le-ajaxlogin-forgotpass-form').serialize();
+                data += '&le_ajaxlogin=true';
+                jal('.le-login-window').animate({opacity: '0.5'});
+
+                var height = jal('.le-login-window').height();
+                var marginTop = jal('.le-login-window').css('top').replace('px', '');
+                var loaderheight = jal('#le-ajaxlogin-loadid').height();
+                var theTop = (parseInt(height) / 2) + parseInt(marginTop) - (parseInt(loaderheight)/2);
+                jal('.le-ajaxlogin-loader').css('top', parseInt(theTop) + 'px');
+                jal('.le-ajaxlogin-loader').show();
+
+                jal.ajax({
+                    url: '<?php echo $this->getUrl('ajaxlogin/account/forgotpasswordpost');?>',
+                    type: 'POST',
+                    data: data,
+                    success: function (json) {
+                        var result = jal.parseJSON(json);
+                        console.log(result);
+                        jal('.le-ajaxlogin-loader').hide();
+                        if (result['success'] == true) {
+//                            jal('#le-ajaxlogin-forgotpass-box').hide();
+//                            jal('.le-ajaxlogin-cover').hide();
+//                            jal('.le-login-window').hide();
+//                            jal('.le-window-inside').show();
+
+                            jal('.le-login-window').animate({opacity: '1'});
+                            jal('.le-login-window .le-ajaxlogin-error').fadeOut();
+                            jal('#le-ajaxlogin-forgotpass-input').removeClass('validation-failed');
+                            jal('#le-ajaxlogin-forgotpass-box .email-success').text(result['message']);
+                            jal('.le-login-window .le-ajaxlogin-success').fadeIn();
+                        } else {
+                            if(result['error_type'] == 'email'){
+                                jal('.le-login-window').animate({opacity: '1'});
+                                jal('.le-login-window .le-ajaxlogin-error').fadeOut();
+                                jal('#le-ajaxlogin-forgotpass-input').removeClass('validation-failed');
+                                jal('#le-ajaxlogin-forgotpass-box .email-success').text(result['message']);
+                                jal('.le-login-window .le-ajaxlogin-success').fadeIn();
+}                           else {
+                                jal('#le-ajaxlogin-forgotpass-box .er-noemail').text("");
+                                jal('.le-login-window').animate({opacity: '1'});
+                                jal('#le-ajaxlogin-forgotpass-box #captcha-reload').trigger('click');
+                                jal('.le-login-window .le-ajaxlogin-error-captcha').text(result['message']);
+                                jal('#le-ajaxlogin-forgotpass-input').removeClass('validation-failed');
+                            }
+                        }
+                    }
+                });
+            } else {
+                jal('.le-ajaxlogin-success').hide();
+                jal('#le-ajaxlogin-forgotpass-box .er-noemail').text("<?php echo $this->__('Email is invalid !')?>");
+                jal('#le-ajaxlogin-forgotpass-box .le-ajaxlogin-error').fadeIn();
+                jal('.le-login-window #le-ajaxlogin-forgotpass-input').addClass('validation-failed');
+            }
+            return false;
+        });
+        jal(document).on('click', '#le-ajaxlogin-forgotpass-back', function () {
+            jal('#le-ajaxlogin-forgotpass-box').css({'display': 'none'});
+            jal('.le-window-inside').css({'display': 'block'});
+            jal('.le-login-window').css({'display': 'none'});
+            //jal('a[href*="customer/account/login"]').trigger('click');
+            effectShowLogin('.le-login-window');
+            jal('#le-ajaxlogin-forgotpass-input').removeClass('validation-failed');
+            jal('#le-ajaxlogin-forgotpass-box #captcha_form-validate-captcha').removeClass('validation-failed');
+            jal('.le-login-window .le-ajaxlogin-error-captcha').text('');
+            jal('#le-ajaxlogin-forgotpass-box .er-noemail').text("");
+            return false;
+        });
+        jal(document).on('click', '#le-ajaxlogin-createacc', function () {
+            jal('.le-login-window').hide();
+        });
+        jal('a[href*="customer/account/forgotpassword/"]').not('div.le-login-window a[href*="customer/account/forgotpassword/"]').on('click', function(){
+            jal('#le-ajaxlogin-forgotpass-box .le-showhideme').removeClass('le-showhideme');
+            jal('#le-ajaxlogin-forgotpass-box').show();
+            jal('#le-ajaxlogin-forgotpass').trigger('click');
+            return false;
+        });
+    });
+
+    function IsEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
+    function effectShowLogin(elm) {
+        jal(elm).css({'display': 'none'});
+        <?php if(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==2) { ?>
+        jal(elm).slideDown('800');
+        <?php }elseif (Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==1) {?>
+        jal(elm).fadeIn('800');
+        <?php }else {?>
+        jal(elm).show();
+        <?php }?>
+    }
+
+    function showLELoginPopup(url, width, height) {
+        var screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft;
+        var screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop;
+        var outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth;
+        var outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22);
+        var left = parseInt(screenX + ((outerWidth - width) / 2), 10);
+        var top = parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+        var settings = (
+            'width=' + width +
+                ',height=' + height +
+                ',left=' + left +
+                ',top=' + top
+            );
+        var newwindow = window.open(url, '', settings);
+        if (window.focus) {
+            newwindow.focus()
+        }
+        return false;
+    }
+    //]]>
+    </script>
+
+<?php endif ?>

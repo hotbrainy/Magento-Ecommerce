@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+ -->
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}"
+             targetNamespace="urn:{{var wsdl.name}}">
+
+<!--BEGIN TYPES -->
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">           
+            
+            <xsd:complexType name="customerCreditEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:customerCreditEntity" />
+                </xsd:sequence>
+            </xsd:complexType>                        
+            <xsd:complexType name="customerCreditEntity">
+                <xsd:sequence>
+                    <xsd:element name="credit_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="customer_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="website_id" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="customerCreditListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="customerCreditListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:customerCreditEntityArray"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="customerCreditGetcreditRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="customerId" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="customerCreditGetcreditResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:int"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="customerCreditSetcreditRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="customerId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="value" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="customerCreditSetcreditResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="customerCreditIncrcreditRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="customerId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="value" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="customerCreditIncrcreditResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="customerCreditIncrcreditRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="customerId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="value" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="customerCreditIncrcreditResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="customerCreditDecrcreditRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="customerId" type="xsd:string"></xsd:element>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="value" type="xsd:string"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="customerCreditDecrcreditResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>        
+    </wsdl:types>    
+
+<!--END TYPES -->
+            
+<!--BEGIN MESSAGES -->
+
+    <wsdl:message name="customerCreditListRequest">
+        <wsdl:part name="parameters" element="typens:customerCreditListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditListResponse">
+        <wsdl:part name="parameters" element="typens:customerCreditListResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="customerCreditGetcreditRequest">
+        <wsdl:part name="parameters" element="typens:customerCreditGetcreditRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditGetcreditResponse">
+        <wsdl:part name="parameters" element="typens:customerCreditGetcreditResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditSetcreditRequest">
+        <wsdl:part name="parameters" element="typens:customerCreditSetcreditRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditSetcreditResponse">
+        <wsdl:part name="parameters" element="typens:customerCreditSetcreditResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditIncrcreditRequest">
+        <wsdl:part name="parameters" element="typens:customerCreditIncrcreditRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditIncrcreditResponse">
+        <wsdl:part name="parameters" element="typens:customerCreditIncrcreditResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditDecrcreditRequest">
+        <wsdl:part name="parameters" element="typens:customerCreditDecrcreditRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="customerCreditDecrcreditResponse">
+        <wsdl:part name="parameters" element="typens:customerCreditDecrcreditResponseParam"/>
+    </wsdl:message>
+<!--END MESSAGES -->
+
+<!--BEGIN PORT TYPES -->
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="customerCreditList">
+            <wsdl:documentation>Retrieve customer credit list</wsdl:documentation>
+            <wsdl:input message="typens:customerCreditListRequest" />
+            <wsdl:output message="typens:customerCreditListResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditGetcredit">
+            <wsdl:documentation>Get customer credit</wsdl:documentation>
+            <wsdl:input message="typens:customerCreditGetcreditRequest" />
+            <wsdl:output message="typens:customerCreditGetcreditResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditSetcredit">
+            <wsdl:documentation>Set customer credit</wsdl:documentation>
+            <wsdl:input message="typens:customerCreditSetcreditRequest" />
+            <wsdl:output message="typens:customerCreditSetcreditResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditIncrcredit">
+            <wsdl:documentation>Increase customer credit</wsdl:documentation>
+            <wsdl:input message="typens:customerCreditIncrcreditRequest" />
+            <wsdl:output message="typens:customerCreditIncrcreditResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditDecrcredit">
+            <wsdl:documentation>Increase customer credit</wsdl:documentation>
+            <wsdl:input message="typens:customerCreditDecrcreditRequest" />
+            <wsdl:output message="typens:customerCreditDecrcreditResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+<!--END PORT TYPES -->    
+
+<!--BEGIN BINDINGS -->    
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="customerCreditList">
+            <soap:operation soapAction="" />
+            <wsdl:input><soap:body use="literal" /></wsdl:input>
+            <wsdl:output><soap:body use="literal" /></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditGetcredit">
+            <soap:operation soapAction="" />
+            <wsdl:input><soap:body use="literal" /></wsdl:input>
+            <wsdl:output><soap:body use="literal" /></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditSetcredit">
+            <soap:operation soapAction="" />
+            <wsdl:input><soap:body use="literal" /></wsdl:input>
+            <wsdl:output><soap:body use="literal" /></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditIncrcredit">
+            <soap:operation soapAction="" />
+            <wsdl:input><soap:body use="literal" /></wsdl:input>
+            <wsdl:output><soap:body use="literal" /></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="customerCreditDecrcredit">
+            <soap:operation soapAction="" />
+            <wsdl:input><soap:body use="literal" /></wsdl:input>
+            <wsdl:output><soap:body use="literal" /></wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+<!--END BINDINGS -->
+
+    <wsdl:service name="{{var wsdl.name}}Service">
+        <wsdl:port name="{{var wsdl.handler}}Port" binding="typens:{{var wsdl.handler}}Binding">
+            <soap:address location="{{var wsdl.url}}" />
+        </wsdl:port>
+    </wsdl:service>    
+</wsdl:definitions>

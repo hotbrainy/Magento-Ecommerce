@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<plugins>
+    <website_info>
+        <sort_order>1</sort_order>
+        <render>awall/additional_website</render>
+        <active>1</active>
+    </website_info>
+    <system_info>
+        <sort_order>2</sort_order>
+        <render>awall/additional_system</render>
+        <active>1</active>
+    </system_info>
+</plugins>

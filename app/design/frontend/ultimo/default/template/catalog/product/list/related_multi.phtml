@@ -1,0 +1,172 @@
+<?php
+/**
+ * Related products slider (thumbnails)
+ */
+?>
+<?php if($_collectionSize = $this->getItems()->getSize()): ?>
+<?php
+    $customerHelper = $this->helper('entangled_custom');
+    $_productCollection = $this->getItems();
+    $theme = $this->helper('ultimo');
+    $helpTemplate = $this->helper('ultimo/template');
+    $helpImg = $this->helper('infortis/image');
+    $productCountInSlide = intval($theme->getCfg('product_page/related_count')); //Number of products displayed in a single slide
+    $i = 0;
+    $sliderClasses = '';
+    $gridClasses = '';
+
+    //Additional parameters
+    $isResponsive = true;
+    if ($_collectionSize <= $productCountInSlide)
+    {
+        //If total number of products is smaller than number of products displayed in a single slide
+        $isResponsive = false;
+    }
+
+    //Slider parameters
+    //--------------------------------------------------------------
+
+    $sliderId = "itemslider-related-multi";
+
+    //Responsive mode on/off
+    $isResponsive = true;
+
+    //Assign number of items in a row to specific viewport width
+    $breakpoints = '[0, 1], [480, 2], [768, 3]';
+
+    //Pagination on/off
+    $pagination = false;
+
+    //Default image size
+    $imgWidth = 196;
+    $imgHeight = 196;
+    
+        //Image aspect ratio
+        if ($theme->getCfg('category/aspect_ratio'))
+        {
+            $imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+        }
+
+    //Slider timeout. Set to enable automatic scrolling.
+    $timeout = intval($theme->getCfg('product_page/related_timeout'));
+
+    //Number of items that should move on scrolling
+    $move = 0;
+
+    //If set, slider will loop
+    $loop = $theme->getCfg('product_slider/loop');
+
+    //Speed (arrows / touch swipe)
+    $speed = intval($theme->getCfg('product_slider/speed'));
+
+    //Speed (automatic scrolling / pagination)
+    $autoSpeed = intval($theme->getCfg('product_slider/auto_speed'));
+
+    //Pause slider on mouse hover
+    $pause = $theme->getCfg('product_slider/pause');
+
+
+
+
+?>
+    <h4><?php echo $this->__('other books in the series'); ?></h4>
+    <div class="itemslider-wrapper itemslider-related-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
+        <div id="<?php echo $sliderId; ?>" class="itemslider <?php if($sliderClasses) echo $sliderClasses; ?> products-grid">
+        <?php foreach ($_productCollection as $_item): ?>
+            <div class="item">
+            <div class="product-image-wrapper">
+            	<div class="thumb_imgbox">
+                <a class="product-image" href="<?php echo $_item->getProductUrl(); ?>" title="<?php echo $this->escapeHtml($_item->getName()); ?>">
+                    <img src="<?php echo $helpImg->getImg($_item, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_item->getName()); ?>" />
+                </a>
+                </div>
+            
+            <div class="infobox">
+            	<div class="home_addtocart">
+                <input type="hidden" name="product" value="<?=$_item->getId();?>"/>
+                <button type="button" title="Add to Cart" id="<?=$_item->getId();?>" class="btn-cart">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                </button>
+            </div>            
+            <?php //Add-to links
+                if ($theme->getCfg('category_grid/display_addtolinks') != 0 
+                    && $theme->getCfg('category_grid/addtolinks_simple'))
+                {
+                    if ($theme->getCfg('category_grid/display_addtolinks') == 1) //Display on hover
+                    {
+                        echo $helpTemplate->getCategoryAddtoLinksIcons(
+                        $_item, $this->getAddToCompareUrl($_item), 'addto-links-icons addto-onimage');
+                    }
+                    else //Always display
+                    {
+                        echo $helpTemplate->getCategoryAddtoLinksIcons(
+                        $_item, $this->getAddToCompareUrl($_item), 'addto-links-icons addto-onimage');
+                    }
+                }
+            ?>
+            	<a href="<?php echo $_item->getProductUrl();?>" class="short_desc_overlay"><?php echo Mage::helper("entangled_custom")->getShortDesc($_item->getShortDescription()) ?></a>
+            </div>
+                 <!-- end: product-details -->
+			</div>
+            </div> <!-- end: slider item -->
+        <?php endforeach; ?>
+        </div> <!-- end: itemslider -->
+    </div> <!-- end: itemslider-wrapper -->
+    <script type="text/javascript">
+    //<![CDATA[
+        jQuery(function($) {
+
+            var owl = $('#<?php echo $sliderId; ?>');
+            owl.owlCarousel({
+
+            <?php if(!$isResponsive): ?>
+                responsive: false,
+                items: <?php echo $showItems; ?>,
+            <?php else: ?>
+                itemsCustom: [ <?php echo $breakpoints; ?> ],
+                responsiveRefreshRate: 50,
+            <?php endif; ?>
+
+            <?php if ($speed): ?>
+                slideSpeed: <?php echo $speed; ?>,
+            <?php endif; ?>
+
+            <?php if ($autoSpeed): ?>
+                paginationSpeed: <?php echo $autoSpeed; ?>,
+            <?php endif; ?>
+
+            <?php if ($move !== 1): ?>
+                scrollPerPage: true,
+            <?php endif; ?>
+
+            <?php if ($timeout): ?>
+                autoPlay: <?php echo $timeout; ?>,
+            <?php endif; ?>
+
+            <?php if ($pause): ?>
+                stopOnHover: true,
+            <?php endif; ?>
+
+            <?php if ($loop): ?>
+                rewindNav: true,
+                rewindSpeed: 600,
+            <?php else: ?>
+                rewindNav: false,
+            <?php endif; ?>
+
+            <?php if ($pagination): ?>
+                pagination: true,
+            <?php else: ?>
+                pagination: false,
+            <?php endif; ?>
+
+                navigation: true,
+                navigationText: false
+
+            }); //end: owl
+
+        });
+    //]]>
+    </script>    
+<!-- end: block -->
+<?php endif; ?>

@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<infortis translate="label">
+			<label>Infortis Extensions</label>
+			<sort_order>152</sort_order>
+		</infortis>
+	</tabs>
+	<sections>
+		<cloudzoom translate="label">
+			<label>Zoom</label>
+			<tab>infortis</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>200</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general>
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label">
+							<label>Enable Module</label>
+							<comment>If disabled, images will be displayed the same as in Magento "default" theme.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable>
+						<use_cloud_zoom translate="label">
+							<label>Use Cloud Zoom</label>
+							<comment>If set to "Yes", Cloud Zoom will be used to zoom product images.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</use_cloud_zoom>
+						<position translate="label">
+							<label>Position</label>
+							<comment>Specify the position of the zoom area relative to the main image.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>infortis_cloudzoom/system_config_source_position</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</position>
+						<lens_opacity translate="label">
+							<label>Lens Opacity (%)</label>
+							<comment>Opacity of the lens pointer.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-percents validate-digits</validate>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lens_opacity>
+						<zoom_width translate="label">
+							<label>Zoom Area Width</label>
+							<comment><![CDATA[Width of the zoom area. This field will be ignored if <strong>Position</strong> is set to "Inside". Leave empty to use default.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</zoom_width>
+						<zoom_height translate="label">
+							<label>Zoom Area Height</label>
+							<comment><![CDATA[Height of the zoom area. This field will be ignored if <strong>Position</strong> is set to "Inside". Leave empty to use default.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</zoom_height>
+						<big_image_width translate="label">
+							<label>Image Width After Zooming</label>
+							<comment><![CDATA[Width of the enlarged image. This field refers to the actual resolution of the image <strong>after zooming</strong>.<br/><strong style="color:red;">Important:</strong> in Magento 1.9.1.0 (or later) enter exactly the same value in the <em>"Base Image Width"</em> field which can be found under</br><em>System &gt; Catalog &gt; Product Image</em>.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</big_image_width>
+						<big_image_height translate="label">
+							<label>Image Height After Zooming</label>
+							<comment>Height of the enlarged image. This field refers to the actual resolution of the image after zooming.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</big_image_height>
+						<tint_color translate="label">
+							<label>Tint Color</label>
+							<comment><![CDATA[Color which will cover the main image. Specify color in hex format, e.g. #aabbcc. Leave empty to disable. Does not work with <strong>Soft Focus</strong>.]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</tint_color>
+						<tint_opacity translate="label">
+							<label>Tint Opacity (%)</label>
+							<frontend_type>text</frontend_type>
+							<validate>validate-percents validate-digits</validate>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</tint_opacity>
+						<soft_focus translate="label">
+							<label>Soft Focus</label>
+							<comment>Applies a subtle blur effect to the main image. Does not work with tint.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</soft_focus>
+						<smooth_move translate="label">
+							<label>Smooth Move</label>
+							<comment>Amount of smoothness/drift of the zoom image as it moves. The higher the number, the smoother/more drifty the movement will be. 1 = no smoothing.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</smooth_move>
+					</fields>
+				</general>
+				<images translate="label">
+					<label>Image Size</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<aspect_ratio translate="label">
+							<label>Keep Image Aspect Ratio</label>
+							<comment><![CDATA[Set "Yes", to keep the aspect ratio of the product images.<br/><strong>Important:</strong> if set to "Yes", <strong>Height</strong> specified in this section <strong>will be ignored</strong> and the actual height of the images will be calculated automatically based on width.]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</aspect_ratio>
+						<main_width translate="label">
+							<label>Main Image Width</label>
+							<comment><![CDATA[Width of the main product image. If width is not specified, default width will be used (363 pixels).<br/><strong>Important:</strong><br/>Adjust the size of the image to the width of the image column on product page (under <em>System > Configuration > Theme Settings > Product Page > Width of Columns</em>).]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</main_width>
+						<main_height translate="label">
+							<label>Main Image Height</label>
+							<comment>Height of the main product image. If not specified, height will be calculated automatically based on width.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</main_height>
+						<!--<thumbnail_width translate="label">
+							<label>Thumbnail Image Width</label>
+							<comment><![CDATA[Width of the thumbnail images. If width is not specified, default width will be used (80 pixels).<br/><strong>Important:</strong><br/>Adjust size of the image to the number of displayed thumbnails.]]></comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>310</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</thumbnail_width>
+						<thumbnail_height translate="label">
+							<label>Thumbnail Image Height</label>
+							<comment>Height of the main product image. If not specified, height will be calculated automatically based on width.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-number</validate>
+							<sort_order>320</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</thumbnail_height>-->
+					</fields>
+				</images>
+				<thumbnails>
+					<label>Thumbnails</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<slider translate="label">
+							<label>Use Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</slider>
+						<!--<show_items translate="label">
+							<label>Number of Thumbnails in a Single Row</label>
+							<comment><![CDATA[Number of thumbnails displayed in a single row if slider is not enabled.<br/><strong>Important:</strong><br/>When slider is disabled, you may need to adjust the size of the thumbnails to the number of thumbnails.]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>0</slider>
+							</depends>
+						</show_items>-->
+
+						<heading_slider translate="label">
+							<label>Slider</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</heading_slider>
+
+						<!--<breakpoints translate="label">
+							<label>Breakpoints</label>
+							<comment><![CDATA[With this parameter you can specify the number of thumbnails visible with a particular browser viewport width. Use the format presented in the examples below:<br/><strong>Example 1:</strong><br/><em>[0, 2], [240, 3], [320, 4], [480, 5], [768, 3], [1280, 4]</em><br/>- this is default set of breakpoints, it will display different number of thumbnails for the most popular screen resolutions: display 2 thumbnails if viewport width is between 0px
+and 240px, display 3 thumbnails if viewport width is above 240px, display 4 thumbnails if viewport width is above 320px, and so on.<br/><strong>Example 2:</strong><br/><em>[0, 2], [960, 4]</em><br/>- it will display 2 thumbnails on narrow screens, and 4 thumbnails if browser viewport is wider than 960px.<br/><strong>Important:</strong><br/>Don't forget to include the lowest available browser viewport width, otherwise it will take the default one for screens lower than lowest available width.<br/><strong>Non-responsive mode:</strong><br/>To remove responsive mode, just enter a single digit instead of the format presented above, for example:<br/><em>4</em>]]></comment>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</breakpoints>-->
+						<timeout translate="label">
+							<label>Timeout</label>
+							<comment>To enable automatic scrolling of the sliders, specify time (in milliseconds) between slide transitions. Leave empty to disable automatic scrolling. Note that 1000 miliseconds = 1 second.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</timeout>
+						<speed translate="label">
+							<label>Speed</label>
+							<comment>Duration (in milliseconds) of scrolling animation. Applied to scrolling with arrows (and touch swipe).</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</speed>
+						<auto_speed translate="label">
+							<label>Automatic Scrolling Speed</label>
+							<comment><![CDATA[Duration (in milliseconds) of scrolling animation. Applied to automatic scrolling (if <strong>Timeout</strong> was specified).]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>135</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</auto_speed>
+						<loop translate="label">
+							<label>Loop</label>
+							<comment>If enabled, scrolling will loop.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>140</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</loop>
+						<move translate="label">
+							<label>Move Items</label>
+							<comment><![CDATA[Number of thumbnails that should move on animation.<br/><strong>Allowed values:</strong><br/><strong>1</strong> - will move one thumbnail.<br/><strong>0</strong> - will move all visible thumbnails.]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</move>
+						<lazy translate="label">
+							<label>Lazy Loading</label>
+							<comment>Delays loading of images. If enabled, images outside of viewport will not be loaded before user scrolls to them.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>160</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<slider>1</slider>
+							</depends>
+						</lazy>
+					</fields>
+				</thumbnails>
+				<lightbox>
+					<label>Lightbox</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable translate="label">
+							<label>Use Lightbox</label>
+							<comment>If set to "Yes", lightbox will be used to zoom product images.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable>
+						<max_width translate="label">
+							<label>Maximum Width</label>
+							<comment>Set a maximum width for lightbox content. Examples: 90%, 500px, 500.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_width>
+						<max_height translate="label">
+							<label>Maximum Height</label>
+							<comment>Set a maximum height for lightbox content. Examples: 90%, 500px, 500.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_height>
+						<group translate="label">
+							<label>Lightbox As Gallery</label>
+							<comment>If set to "Yes", after image is displayed in the lightbox, "next" and "previous" buttons will be displayed.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</group>
+					</fields>
+				</lightbox>
+			</groups>
+		</cloudzoom>
+	</sections>
+</config>

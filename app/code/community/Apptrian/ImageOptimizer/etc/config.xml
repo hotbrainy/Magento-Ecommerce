@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Apptrian
+ * @package   Apptrian_ImageOptimizer
+ * @author    Apptrian
+ * @copyright Copyright (c) 2016 Apptrian (http://www.apptrian.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License
+ */
+-->
+<config>
+    <modules>
+        <Apptrian_ImageOptimizer>
+            <version>2.1.0</version>
+        </Apptrian_ImageOptimizer>
+    </modules>
+    <global>
+        <models>
+            <apptrian_imageoptimizer>
+                <class>Apptrian_ImageOptimizer_Model</class>
+            </apptrian_imageoptimizer>
+        </models>
+        <resources>
+            <apptrian_imageoptimizer_setup>
+                <setup>
+                    <module>Apptrian_ImageOptimizer</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </apptrian_imageoptimizer_setup>
+        </resources>
+        <blocks>
+            <apptrian_imageoptimizer>
+                <class>Apptrian_ImageOptimizer_Block</class>
+            </apptrian_imageoptimizer>
+        </blocks>
+        <helpers>
+            <apptrian_imageoptimizer>
+                <class>Apptrian_ImageOptimizer_Helper</class>
+            </apptrian_imageoptimizer>
+        </helpers>
+    </global>
+    <default>
+        <apptrian_imageoptimizer>
+            <general>
+                <enabled>1</enabled>
+                <batch_size>50</batch_size>
+                <paths>media;skin/frontend</paths>
+            </general>
+            <cron>
+                <enabled_scan>1</enabled_scan>
+                <expression_scan>15 4 * * *</expression_scan>
+                <enabled_optimize>1</enabled_optimize>
+                <expression_optimize>0 * * * *</expression_optimize>
+            </cron>
+            <utility>
+                <use64bit>0</use64bit>
+                <log_output>0</log_output>
+                <permissions></permissions>
+                <path>lib/apptrian/imageoptimizer</path>
+                <gif>gifsicle</gif>
+                <gif_path></gif_path>
+                <gif_options>-b -O3 %filepath%</gif_options>
+                <jpg>jpegtran</jpg>
+                <jpg_path></jpg_path>
+                <jpg_options>-copy none -optimize -progressive -outfile %filepath% %filepath%</jpg_options>
+                <png>optipng</png>
+                <png_path></png_path>
+                <png_options>-o7 -quiet -strip all %filepath%</png_options>
+            </utility>
+        </apptrian_imageoptimizer>
+    </default>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <apptrian_imageoptimizer after="Mage_Adminhtml">Apptrian_ImageOptimizer_Adminhtml</apptrian_imageoptimizer>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <apptrian_info>
+                                            <title>Info</title>
+                                        </apptrian_info>
+                                        <apptrian_imageoptimizer>
+                                            <title>Image Optimizer</title>
+                                        </apptrian_imageoptimizer>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <apptrian_imageoptimizer>
+                    <file>apptrian_imageoptimizer.xml</file>
+                </apptrian_imageoptimizer>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Apptrian_ImageOptimizer>
+                    <files>
+                        <default>Apptrian_ImageOptimizer.csv</default>
+                    </files>
+                </Apptrian_ImageOptimizer>
+            </modules>
+        </translate>
+    </adminhtml>
+    <crontab>
+        <jobs>
+            <apptrian_imageoptimizer_scan>
+                <run>
+                    <model>apptrian_imageoptimizer/cron::scan</model>
+                </run>
+            </apptrian_imageoptimizer_scan>
+            
+            <apptrian_imageoptimizer_optimize>
+                <run>
+                    <model>apptrian_imageoptimizer/cron::optimize</model>
+                </run>
+            </apptrian_imageoptimizer_optimize>
+        </jobs>
+    </crontab>
+</config>

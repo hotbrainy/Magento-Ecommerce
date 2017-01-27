@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<layout>
+	<!--
+	/**
+	 *
+	 */
+	 -->
+	<attributesplash_page_view>
+		<reference name="head">
+			<action method="addCss"><style>css/attribute-splash.css</style></action>
+		</reference>
+		<reference name="left">
+			<block type="directory/currency" name="currency" before="-" template="directory/currency.phtml"/>
+			<block type="attributeSplash/layer_view" name="catalog.leftnav" after="currency" template="catalog/layer/view.phtml">
+				<block type="core/text_list" name="catalog.leftnav.state.renderers" as="state_renderers" />
+			</block>
+		</reference>
+		<reference name="content">
+			<block type="attributeSplash/page_view" name="attributeSplash.view" template="attribute-splash/page/view.phtml">
+				<block type="attributeSplash/page_view_product_list" name="product_list" template="catalog/product/list.phtml">
+					<block type="core/text_list" name="product_list.name.after" as="name.after" />
+					<block type="core/text_list" name="product_list.after" as="after" />
+					<block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+						<block type="page/html_pager" name="product_list_toolbar_pager"/>
+					</block>
+					<action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+				</block>
+			</block>
+		</reference>
+	</attributesplash_page_view>
+	<!--
+	/**
+	 *
+	 */
+	 -->
+	<attributesplash_group_view>
+		<reference name="head">
+			<action method="addCss"><style>css/attribute-splash.css</style></action>
+		</reference>
+		<reference name="content">
+			<block type="attributeSplash/group_view" name="attributeSplash.view.group" template="attribute-splash/group/view.phtml" />
+		</reference>
+	</attributesplash_group_view>
+</layout>

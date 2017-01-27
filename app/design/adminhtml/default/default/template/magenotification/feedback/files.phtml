@@ -1,0 +1,17 @@
+<?php
+
+?>
+<div id="feedback_files">
+<input type="file" class="input-file" value="" name="file0" id="file0" >
+<button onclick="magenotificationAddMoreFile();" class="scalable add" type="button">
+	<span><?php echo $this->__('Add More')?></span>
+</button>
+</div>
+<script type="text/javascript">
+	var currentfile = 0;
+	function magenotificationAddMoreFile(){
+		currentfile++;
+		var inputFile = '<br/><input type="file" class="input-file" value="" name="file'+currentfile+'" id="file'+currentfile+'">';
+		$('feedback_files').insert(inputFile);
+	}
+</script>

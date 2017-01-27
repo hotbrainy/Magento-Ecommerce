@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Entangled_Custom>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Idev_OneStepCheckout/>
+            </depends>
+        </Entangled_Custom>
+    </modules>
+</config>

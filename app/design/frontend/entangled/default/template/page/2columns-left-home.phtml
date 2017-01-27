@@ -1,0 +1,209 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php echo $this->getChildHtml('after_body_start') ?>
+<?php echo $this->getChildHtml('global_notices') ?>
+<?php echo $this->getChildHtml('header') ?>
+<main>
+
+<section class="main-content">
+	<div class="container">
+		<div class="row">
+        <div class="col-sm-3">
+        	<div class="sidebar">
+            	<div class="sidebar-block white-bg">
+                <h6>All Categories</h6>
+                <ul class="category-menu">
+                	<li class="parent active-parent"><a href="#">Genres</a>
+                    <ul class="sub-cat">
+                    <li class="active"><a href="#">Contemporary</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Historical</a></li>
+                    <li><a href="#">Holiday Romances</a></li>
+                    <li><a href="#">Military/Men in Uniform</a></li>
+                    <li><a href="#">Mystery & Suspense</a></li>
+                    <li><a href="#">New Adult</a></li>
+                    <li><a href="#">Paranormal</a></li>
+                    <li><a href="#">Sci-Fi</a></li>
+                    <li><a href="#">Young Adult</a></li>
+                    </ul>
+                    </li>
+                    <li class="parent"><a href="#">Tropes</a>
+                    <ul class="sub-cat">
+                    <li class="active"><a href="#">Contemporary</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Historical</a></li>
+                    <li><a href="#">Holiday Romances</a></li>
+                    <li><a href="#">Military/Men in Uniform</a></li>
+                    <li><a href="#">Mystery & Suspense</a></li>
+                    <li><a href="#">New Adult</a></li>
+                    <li><a href="#">Paranormal</a></li>
+                    <li><a href="#">Sci-Fi</a></li>
+                    <li><a href="#">Young Adult</a></li>
+                    </ul>
+                    </li>
+                    <li class="parent"><a href="#">Imprints</a>
+                    <ul class="sub-cat">
+                    <li class="active"><a href="#">Contemporary</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Historical</a></li>
+                    <li><a href="#">Holiday Romances</a></li>
+                    <li><a href="#">Military/Men in Uniform</a></li>
+                    <li><a href="#">Mystery & Suspense</a></li>
+                    <li><a href="#">New Adult</a></li>
+                    <li><a href="#">Paranormal</a></li>
+                    <li><a href="#">Sci-Fi</a></li>
+                    <li><a href="#">Young Adult</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+             <div class="adultbook_thumb"><img src="<?php echo $this->getSkinUrl('images/ad-left.png');?>" alt="<?php echo $this->__("Steals & Deals - Buy it now!") ?>"></div>
+        </div>
+        <div class="col-sm-9">
+        	<div class="Searchbox">
+            	<form><input type="text" name="searchbox" placeholder="Search book by or author" /></form>
+            </div>
+            <div class="heading_info">
+             <h2>Trending stories right now!</h2>
+             <p>Contrary to popular belief, lorem</p>
+            </div>
+            <div class="carousel_container cont_gap">
+              <h4> Holiday Romances</h4>
+          
+             <ul class="carousel_items">
+              <li>
+               <div class="carousel_thumb">
+                 <a href="#"><img src="<?php echo $this->getSkinUrl('images/romance_book1.jpg');?>" alt=""></a>            
+                </div>
+              </li>
+              <li>
+               <div class="carousel_thumb">
+                 <a href="#"><img src="<?php echo $this->getSkinUrl('images/romance_book2.jpg');?>" alt=""></a>            
+                </div>
+              </li>
+              <li>
+               <div class="carousel_thumb">
+                 <a href="#"><img src="<?php echo $this->getSkinUrl('images/romance_book3.jpg');?>" alt=""></a>            
+                </div>              
+              </li> 
+              <li>
+               <div class="carousel_thumb">
+                 <a href="#"><img src="<?php echo $this->getSkinUrl('images/romance_book4.jpg');?>" alt=""></a>            
+                </div>              
+              </li>                
+             </ul>
+           </div>
+            
+            <div class="carousel_container">
+            <h4>New adult</h4>
+        
+           <ul class="carousel_items">
+            <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/adult_book1.jpg');?>" alt=""></a>            
+              </div>
+            </li>
+            <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/adult_book2.jpg');?>" alt=""></a>            
+              </div>
+            </li>
+            <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/adult_book3.jpg');?>" alt=""></a>            
+              </div>
+            </li> 
+             <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/adult_book4.jpg');?>" alt=""></a>            
+              </div>
+            </li>                 
+           </ul>
+         </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<section  class="testimonial_wrap">
+    <div class="container">
+      <div class="row testimonian_divider">
+        <div class="col-sm-3">
+         <div class="testemonial_info">
+           <div class="testimonial_thumb"><img src="<?php echo $this->getSkinUrl('images/author.png');?>" alt=""></div>
+            <h4>Featured author</h4>
+            <h3>Michelle Phan</h3>
+             <p>Contrary to popular belief, lorem</p>
+             <a href="#" class="btn">Shop For her books</a>       
+        
+          </div>
+         </div>    
+      
+        <div class="col-sm-9">
+          <div class="carousel_container">
+            <h4>Best Selling Books</h4>
+        
+           <ul class="carousel_items">
+            <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/carousel_img2.jpg');?>" alt=""></a>            
+              </div>
+            </li>
+            <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/carousel_img1.jpg');?>" alt=""></a>            
+              </div>
+            </li>
+            <li>
+             <div class="carousel_thumb">
+               <a href="#"><img src="<?php echo $this->getSkinUrl('images/carousel_img3.jpg');?>" alt=""></a>            
+              </div>
+            </li>                
+           </ul>
+         </div>
+        </div>      
+       </div>
+    </div>
+  </section>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>  
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

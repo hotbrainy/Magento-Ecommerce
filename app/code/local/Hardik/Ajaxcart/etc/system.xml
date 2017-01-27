@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <hardik translate="label">
+            <label>Ajaxcart Extension</label>
+            <sort_order>400</sort_order>
+        </hardik>
+    </tabs>
+
+    <sections>
+        <ajaxcart translate="label" module="ajaxcart">
+            <label>Ajax Cart Configuration</label>
+            <comment>This extension was developed by Hardik Gajjar</comment>
+            <tab>hardik</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <plugin_info>
+                    <frontend_model>ajaxcart/adminhtml_info</frontend_model>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </plugin_info>
+                <general translate="label">
+                    <label>Ajaxcart Configuration</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>2</sort_order>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable Ajax Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable using Ajaxcart</comment>
+                        </enable>
+                        <update_blocks translate="label">
+                            <label>XML of update blocks</label>
+                            <comment>insert HTML parent tag ID of block to be updated</comment>
+                            <frontend_model>ajaxcart/adminhtml_url</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </update_blocks>
+                    </fields>
+                </general>
+            </groups>
+        </ajaxcart>
+    </sections>
+</config>

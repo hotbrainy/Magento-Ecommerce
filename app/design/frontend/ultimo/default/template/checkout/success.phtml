@@ -1,0 +1,106 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+$order =Mage::getModel('sales/order')->load(Mage::getSingleton('checkout/session')->getLastOrderId());
+$GetKindleEmail = $order->getOnestepcheckoutCustomercomment();
+if($GetKindleEmail !='') {
+$items = $order->getAllItems();
+foreach($items as $item)
+{ 
+$links = Mage::getModel('downloadable/link_purchased_item')->getCollection()->addFieldToFilter('order_item_id',$item->getId());
+$ProductName = $item->getName();
+
+foreach($links as $link) 
+{
+	if($link->getLinkTitle()=='ePub file for e-readers')
+	{
+		//$LinkValue = Mage::helper('downloadable')->__('').$this->getUrl('downloadable/download/link',array('id' => $link->getLinkHash(), '_store' => $order->getStore(),'_secure' => true, '_nosid' => true));
+		$EpubFile = $link->link_file;
+		
+		$html_body = '<table width="600" border="0">
+		<tr>
+		<td height="81" colspan="2" align="left">THANK YOU FOR YOUR ORDER FROM ENTANGLED BOOKSTORE.</td>
+		</tr>
+		<tr><td width="50%" height="41" align="center"><strong>Product Name: '.$ProductName.'</strong></td></tr>
+		<tr><td height="50" align="center">&nbsp;</td></tr>
+		<tr><td height="81" colspan="2" align="center">Thank you, <br />Entangled Bookstore!</td></tr>
+		</table>';
+		$mail = new Zend_Mail();
+		$mail->setType(Zend_Mime::MULTIPART_RELATED);
+		$mail->setBodyHtml($html_body);
+		$mail->setFrom('delivery@entangledpublishing.com', 'Entangled Publishing');
+		$mail->addTo($GetKindleEmail,'Customer');
+		$mail->setSubject('Entangled Bookstore: Download ePub File');
+		$dir = Mage::getBaseDir();
+		$path = "media/downloadable/files/links".$EpubFile;  // any file named test.html at root
+		$file = $mail->createAttachment(file_get_contents($path));
+		$file ->type        = 'text/csv';
+		$file ->disposition = Zend_Mime::DISPOSITION_INLINE;
+		$file ->encoding    = Zend_Mime::ENCODING_BASE64;
+		$file ->filename    = time().'.epub';
+		$mail->send();
+	}
+}
+}
+}
+?>
+
+
+<div class="page-title">
+    <h1><?php echo $this->__('Thank you for your order!') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?php if ($this->getOrderId()):?>
+<?php if ($this->getCanViewOrder()) :?>
+    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+<?php  else :?>
+    <p class="order-id"><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+<?php endif;?>
+    <p>A copy of your order has been sent to your email. If you requested your book be sent to your Kindle&trade;, click “sync” on your device and enjoy! Otherwise, to begin reading from your iPad&trade;, phone, or other device, simply go to your <a href="/downloadable/customer/products/">My Library</a> page and click the “Download” link.</p>
+
+<p>Happy reading! <br>-The Entangled Team</p>
+
+<?php endif;?>
+
+<?php if ($this->getAgreementRefId()): ?>
+    <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
+<?php endif;?>
+
+<?php if ($profiles = $this->getRecurringProfiles()):?>
+<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+<ul class="disc">
+<?php foreach($profiles as $profile):?>
+<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+<?php endforeach;?>
+</ul>
+<?php endif;?>
+
+<div class="buttons-set">
+    <button type="button" class="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+</div>

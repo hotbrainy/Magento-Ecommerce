@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<config>
+	<fishpig>
+		<extend>
+			<Fishpig_Bolt>
+				<url><![CDATA[magento/extensions/bolt-full-page-cache/]]></url>
+				<image>bolt.png</image>
+				<title>Bolt</title>
+				<subtitle>Full Page Cache</subtitle>
+				<short_definition>Add enterprise level caching to Magento community with Bolt, Magento's fastest Full Page Cache extension.</short_definition>
+			</Fishpig_Bolt>	
+			<Fishpig_FSeo>
+				<url><![CDATA[magento/extensions/seo/]]></url>
+				<image>fseo.png</image>
+				<title>SEO</title>
+				<subtitle>Layered Navigation</subtitle>
+				<short_definition>Add SEO URLs to your layered navigation for Magento Categories and Splash Pages</short_definition>
+			</Fishpig_FSeo>
+			<Fishpig_NoBots>
+				<url><![CDATA[magento/extensions/block-robots-stop-spam/]]></url>
+				<image>nobots.png</image>
+				<title>NoBots</title>
+				<subtitle>Stop Magento Spam Bots</subtitle>
+				<short_definition>NoBots automatically blocks spam bots from your website giving you less spam and a faster server.</short_definition>
+			</Fishpig_NoBots>		
+			<Fishpig_CrossLink>
+				<url><![CDATA[magento/extensions/seo-internal-links/]]></url>
+				<image>crosslink.png</image>
+				<title>Crosslink</title>
+				<subtitle>SEO Internal Links</subtitle>
+				<short_definition>Automatically cross link your products, categories, splash pages, CMS pages, blog posts and categories using Crosslinks.</short_definition>
+			</Fishpig_CrossLink>
+			<Fishpig_Opti>
+				<url><![CDATA[magento/extensions/optimisation-minification/]]></url>
+				<image>opti.png</image>
+				<title>Opti</title>
+				<subtitle>Minify Magento</subtitle>
+				<short_definition>Opti automatically minifies your HTML, CSS and Javascript and works on any server.</short_definition>
+			</Fishpig_Opti>
+			<Fishpig_AttributeSplashPro>
+				<url><![CDATA[magento/extensions/attribute-splash-pro/]]></url>
+				<image>splash-pro.png</image>
+				<title>AttributeSplash Pro</title>
+				<subtitle>SEO Landing Pages</subtitle>
+				<short_definition>Create SEO landing pages quickly and easily using AttributeSplash Pro. Decide which products you want to display based on multiple attribute filters, category filters and price filters.</short_definition>
+			</Fishpig_AttributeSplashPro>
+			<Fishpig_BasketShipping>
+				<url><![CDATA[magento/extensions/bolt-full-page-cache/]]></url>
+				<image>basket-shipping.png</image>
+				<title>Basket Shipping</title>
+				<subtitle>Automatically set the Shipping Method</subtitle>
+				<short_definition>Automatically set the shipping method as soon as your customer hits your shopping cart.</short_definition>
+			</Fishpig_BasketShipping>
+			<Fishpig_Wordpress_Addon_Multisite>
+				<url><![CDATA[magento/wordpress-integration/multisite/]]></url>
+				<image>wordpress-multisite.png</image>
+				<title>WordPress Integration</title>
+				<subtitle>Multi-Store Blog Integration</subtitle>
+				<short_definition>Integrate a WordPress blog into your Magento theme in minutes with this free extension.</short_definition>
+				<require_multistore>1</require_multistore>
+				<depends><Fishpig_Wordpress /></depends>
+			</Fishpig_Wordpress_Addon_Multisite>
+			<Fishpig_Wordpress>
+				<url><![CDATA[magento/wordpress-integration/]]></url>
+				<image>wordpress.png</image>
+				<title>WordPress Integration</title>
+				<subtitle>WordPress blog integration</subtitle>
+				<short_definition>Manage multiple blogs from a single WordPress Admin and integrate each blog with a different Magento store view</short_definition>
+				<require_multistore>0</require_multistore>
+			</Fishpig_Wordpress>
+			<Fishpig_Wordpress_Addon_CS>
+				<url><![CDATA[magento/wordpress-integration/customer-synchronisation/]]></url>
+				<image>cs.png</image>
+				<title>Customer Synchronisation</title>
+				<subtitle>Single Sign-on</subtitle>
+				<short_definition>Synchronise WordPress users and Magento customers and provide a single login for your customers.</short_definition>
+				<depends><Fishpig_Wordpress /></depends>
+			</Fishpig_Wordpress_Addon_CS>
+			<Fishpig_Wordpress_Addon_Facebook>
+				<url><![CDATA[magento/wordpress-integration/facebook/]]></url>
+				<image>facebook.png</image>
+				<title>Facebook</title>
+				<subtitle>Social Integration</subtitle>
+				<short_definition>Add Like buttons, Send buttons, Facebook comments and more!</short_definition>
+				<depends><Fishpig_Wordpress /></depends>
+			</Fishpig_Wordpress_Addon_Facebook>
+			<Fishpig_Wordpress_Addon_Root>
+				<url><![CDATA[magento/wordpress-integration/root/]]></url>
+				<image>root.gif</image>
+				<title>Root</title>
+				<subtitle>Use WordPress to create your CMS pages</subtitle>
+				<short_definition>Remove the blog sub-directory from your integrated blog URLs.</short_definition>
+				<depends><Fishpig_Wordpress /></depends>
+			</Fishpig_Wordpress_Addon_Root>
+			<Fishpig_Wordpress_Addon_IntegratedSearch>
+				<url><![CDATA[magento/wordpress-integration/integrated-search/]]></url>
+				<image>integrated-search.png</image>
+				<title>Integrated Search</title>
+				<subtitle>Magento and WordPress search</subtitle>
+				<short_definition>Integrate your Magento and WordPress search systems automatically and make searching your site easier for your customers.</short_definition>
+				<depends><Fishpig_Wordpress /></depends>
+			</Fishpig_Wordpress_Addon_IntegratedSearch>
+			<Fishpig_AttributeSplash_Addon_XmlSitemap>
+				<url><![CDATA[magento/extensions/attribute-splash-pages/xml-sitemap/]]></url>
+				<image>splash-pages.png</image>
+				<title>Attribute AttributeSplash</title>
+				<subtitle>XML Sitemap</subtitle>
+				<short_definition>Add an XML sitemap for your AttributeSplash Pages and AttributeSplash Group so search engines can index your pages.</short_definition>
+				<depends><Fishpig_AttributeSplash /></depends>
+			</Fishpig_AttributeSplash_Addon_XmlSitemap>
+			<Fishpig_AttributeSplash_Addon_QuickCreate>
+				<url><![CDATA[magento/extensions/attribute-splash-pages/quick-create/]]></url>
+				<image>splash-pages.png</image>
+				<title>Attribute AttributeSplash</title>
+				<subtitle>Quick Create</subtitle>
+				<short_definition>Quickly create AttributeSplash Pages for any attributes with this extension and save yourself from hours of manual work.</short_definition>
+				<depends><Fishpig_AttributeSplash /></depends>
+			</Fishpig_AttributeSplash_Addon_QuickCreate>
+		</extend>
+	</fishpig>
+</config>

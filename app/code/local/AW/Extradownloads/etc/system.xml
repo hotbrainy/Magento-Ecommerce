@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <extradownloads translate="label" module="extradownloads">
+            <label>Extra Downloads</label>
+            <tab>awall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>222</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Options</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>extradownloads/adminhtml_system_config_form_fieldset</frontend_model>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <default_title translate="label">
+                            <label>Default Section Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Applied if per-product section is empty</comment>
+                        </default_title>
+                        <max_upload translate="label">
+                            <label>Maximum Uploaded File Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Mb</comment>
+                        </max_upload>
+                    </fields>
+                </general>
+            </groups>
+        </extradownloads>
+    </sections>
+</config>

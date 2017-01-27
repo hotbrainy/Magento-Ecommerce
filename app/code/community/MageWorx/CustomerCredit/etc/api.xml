@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <api>
+        <resources>
+            <mageworx_customercredit translate="title" module="mageworx_customercredit">
+                <model>mageworx_customercredit/api</model>
+                <title>Loyalty Booster Api</title>
+                <acl>mageworx_customercredit</acl>
+                <methods>
+                    <getcredit translate="title" module="mageworx_customercredit">
+                        <title>Get Loyalty Booster</title>
+                        <method>getCredit</method>                      
+                    </getcredit>
+                    <setcredit translate="title" module="mageworx_customercredit">
+                        <title>Set Loyalty Booster</title>
+                        <method>setCredit</method>                      
+                    </setcredit>
+                    <incrcredit translate="title" module="mageworx_customercredit">
+                        <title>Increase Loyalty Booster</title>
+                        <method>increaseCredit</method>                      
+                    </incrcredit>
+                    <decrcredit translate="title" module="mageworx_customercredit">
+                        <title>Decrease Loyalty Booster</title>
+                        <method>decreaseCredit</method>                      
+                    </decrcredit>
+                    <list translate="title" module="mageworx_customercredit">
+                        <title>Loyalty Booster List</title>
+                        <method>listCredit</method> 
+                    </list>
+                </methods>
+                <faults module="mageworx_customercredit">
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid customer data. Details in error message.</message>
+                    </data_invalid>
+                    <not_exists>
+                        <code>102</code>
+                        <message>Customer not exists.</message>
+                    </not_exists>
+                    <not_updated>
+                        <code>103</code>
+                        <message>Customer credit can't updated. Details in error message.</message>
+                    </not_updated>
+                </faults>
+            </mageworx_customercredit>
+        </resources>
+       
+        <v2>
+            <resources_function_prefix>
+                <mageworx_customercredit>customerCredit</mageworx_customercredit>
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <mageworx_customercredit translate="title" module="mageworx_customercredit">
+                     <title>Loyalty Booster</title>
+                     <getcredit translate="title" module="mageworx_customercredit">
+                        <title>Get</title>
+                     </getcredit>
+                     <setcredit translate="title" module="mageworx_customercredit">
+                        <title>Set</title>
+                     </setcredit>
+                     <incrcredit translate="title" module="mageworx_customercredit">
+                        <title>Update</title>
+                     </incrcredit>
+                     <decrcredit translate="title" module="mageworx_customercredit">
+                        <title>Update</title>
+                     </decrcredit>
+                     <list translate="title" module="mageworx_customercredit">
+                        <title>List</title>
+                     </list>
+                </mageworx_customercredit>
+            </resources>
+        </acl>
+    </api>
+</config>

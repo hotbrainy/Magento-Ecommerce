@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Base
+ */
+
+    $events = $this->getEventsList();
+?>
+
+<div class="ambase-debug-header ambase-debug-header-click" onclick="$('ambase-debug-section-events').toggle();"><?php echo $this->__('Events');?></div>
+<div class="ambase-debug-section" id="ambase-debug-section-events" style="display:none;">
+    <table cellspacing="0">
+    <?php foreach ($events as $name => $event): ?>
+        <tr>
+            <td style="padding-right: 10px;"><?php echo $name; ?></td>
+            <td>
+                <?php foreach ($event as $listener): ?>
+                    <?php echo $listener['class']; ?> (<?php echo $listener['scope'];?>)
+                    <div class='ambase-file'>
+                        <?php echo $this->__('method');?>: <?php echo $listener['method']; ?>
+                    </div>
+                <?php endforeach; ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+</div>

@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <magestore translate="label">
+            <label>Magestore Extension</label>
+            <sort_order>400</sort_order>
+        </magestore>
+    </tabs>
+	<sections>
+        <magenotificationcerts translate="label" module="magenotification">
+            <class>separator-top</class>
+            <label>License Certificate Information</label>
+            <tab>magestore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>99</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <extension_keys translate="label">
+                    <label><![CDATA[List of License Certificates]]></label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>magenotification/config_extensioncerts</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extension_keys>					
+			</groups>
+        </magenotificationcerts>
+        <magenotificationsecure translate="label" module="magenotification">
+            <class>separator-top</class>
+            <label>License Key Management</label>
+            <tab>magestore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <extension_keys translate="label">
+                    <label>Magestore Extension Key Management</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>magenotification/config_extensionkeys</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extension_keys>					
+			</groups>
+		</magenotificationsecure>
+        <!--
+        <magestore_extension_feedback translate="label" module="magenotification">
+            <class>separator-top</class>
+            <label>Extension Feedbacks</label>
+            <tab>magestore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <email translate="label">
+                    <label>Email Configuration</label>					
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>		                   
+                        <contactname translate="label">
+                            <label>Contact Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>Default as general contact</comment>
+                        </contactname>
+                        <contactemail translate="label">
+                            <label>Contact email</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>Default as general contact</comment>
+                        </contactemail>						
+					</fields>
+                </email>					
+			</groups>
+		</magestore_extension_feedback>		
+        -->
+        <magenotification translate="label" module="magenotification">
+            <class>separator-top</class>
+            <label>MageNotification</label>
+            <tab>magestore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>300</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+				<general translate="label">
+                    <label>General Infomation</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>		                   
+                        <frequency translate="label">
+                            <label>Update frequency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_notification_frequency</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </frequency>
+                        <last_update translate="label">
+                            <label>Last update</label>
+                            <frontend_type>label</frontend_type>
+							<backend_model>magenotification/source_time</backend_model>								
+							<sort_order>2</sort_order>               							
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </last_update>		
+                        <magestore_url translate="label">
+                            <label>Magestore Url</label>
+                            <frontend_type>label</frontend_type>
+							<sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </magestore_url>						
+					</fields>
+				</general>
+			</groups>
+		</magenotification>
+    </sections>
+</config>

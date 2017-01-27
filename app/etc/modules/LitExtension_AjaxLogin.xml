@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <LitExtension_AjaxLogin>
+            <active>true</active>
+            <codePool>community</codePool>
+        </LitExtension_AjaxLogin>
+    </modules>
+</config>

@@ -1,0 +1,32 @@
+<?php 
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+?>
+<?php $_feeds = $this->getFeeds();?>
+<?php if ($_feeds): ?>
+<table class="data-table rss-table" id="rss-table-author" style="margin-top:20px">
+    <col />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th colspan="2"><?php echo Mage::helper('publish')->__('Author Feeds') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($_feeds as $_feed): ?>
+        <tr>
+            <td><?php echo $_feed->getLabel() ?></td>
+            <td><a href="<?php echo $_feed->getUrl() ?>" class="link-rss"><?php echo Mage::helper('publish')->__('Get Feed'); ?></a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif; ?>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<SteveB27_GoodReads>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+                <Mage_Catalog />
+                <Mage_Review />
+                <Mage_Rating />
+            </depends>
+		</SteveB27_GoodReads>
+	</modules>
+</config>

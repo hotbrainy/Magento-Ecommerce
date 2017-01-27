@@ -1,0 +1,67 @@
+/*
+ * Internet Explorer: less than or equal 7
+ *
+ */
+
+/* Reset negative value of the top margin of old prices */
+.product-view .product-shop .price-box .old-price { margin-top:0; }
+
+/* Remove icon */
+button.btn-checkout span span .img-checkout { display:none; }
+
+/* Enforce floating for second level links block */
+#nav ul.level0 > li { float:left !important; }
+
+
+/* Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.header { z-index:3000; position:relative; }
+
+.header .form-search .button { top:2px; right:0; }
+
+.user-menu { overflow:visible !important; }
+
+li.level0 > a > span > .cat-label {	top:-24px; right:5px; }
+
+/* Drop-down
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.dropdown-toggle * { display:block; float:left; }
+.dropdown-menu > li * { display:block; float:left; }
+
+/* Replace caret with img-caret */
+.dropdown-toggle .caret {
+	background:url(../images/infortis/_shared/dropdown/arrow-dropdown.png) 100% 50% no-repeat;
+	width:10px;
+	text-indent:-9999px;
+
+	content:inherit;
+	height:auto;
+	display:block;	
+	margin:0;
+	vertical-align:inherit;
+	border:none;
+}
+
+
+/* Vertically aligned grid
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.v-grid-container .v-grid { float:left; display:block; width:32%; }
+.v-grid-container .v-grid.clearer { clear:none; }
+.v-grid-container .user-menu { float:right; }
+.v-grid-container .header-top-search-wrapper { margin-top:25px; }
+
+
+/* Clearing %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* clearer: IE6/7 */
+.clearer {
+	display:block; clear:both; height:auto; overflow:hidden;
+	/*font-size:12px; line-height:15px;*/
+}
+.cart .crosssell {
+	display:block; clear:both; height:auto; overflow:hidden;
+}

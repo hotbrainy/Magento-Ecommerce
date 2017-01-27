@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <catalog translate="label" module="goodreads">
+            <groups>
+                <goodreads translate="label" module="goodreads">
+                    <label>GoodReads Review API</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <api_key translate="label comment">
+                            <label>API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>https://www.goodreads.com/api/keys</comment>
+                        </api_key>
+                        <!-- api_secret translate="label comment">
+                            <label>API Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>https://www.goodreads.com/api/keys</comment>
+                        </api_secret -->
+                        <isbn_attribute translate="label comment">
+                            <label>ISBN Attribute Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Magento Attribute code that contains ISBN values</comment>
+                        </isbn_attribute>
+                    </fields>
+                </goodreads>
+            </groups>
+        </catalog>
+    </sections>
+</config>

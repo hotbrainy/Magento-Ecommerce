@@ -1,0 +1,307 @@
+<?php
+/**
+ * Featured Products Slider
+ */
+?>
+<?php
+    $_productCollection = $this->getLoadedProductCollection();
+?>
+<?php if ($_productCollection && ($_collectionSize = $this->getCollectionCount())): ?>
+<?php
+    $_helper = $this->helper('catalog/output');
+    $theme = $this->helper('ultimo');
+    $helpLabels = $this->helper('ultimo/labels');
+    $helpTemplate = $this->helper('ultimo/template');
+    $helpImg = $this->helper('infortis/image');
+    $sliderClasses = '';
+    $gridClasses = '';
+
+    $hash = $this->getFrontendHash();
+    $sliderId = "itemslider-featured-{$hash}";
+
+    //Slider parameters
+    //--------------------------------------------------------------
+
+    //Responsive mode on/off
+    $isResponsive = $this->getIsResponsive(); //param: is_responsive
+    if ($isResponsive === NULL) //Param not set
+    {
+        $isResponsive = true; //IMPORTANT: enabled by default
+    }
+
+    //Assign number of items in a row to specific viewport width
+    $breakpoints = $this->getBreakpoints(); //param: breakpoints
+    if ($breakpoints === NULL) //Param not set
+    {
+        //$breakpoints = '[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 7]';
+		$breakpoints = '[0, 1], [480, 2], [640, 3], [960, 7]';
+		 //Set default breakpoints     
+    }
+	
+    
+    //assig margin right
+    $marginRight = $this->getMarginright();
+    if ($marginRight === NULL) //Param not set
+    {
+        $marginRight = 22;
+    }
+    
+
+    //Number of items in a row displayed if responsive mode is off
+    $showItems = $this->getShowItems(); //param: show_items
+    if (!$showItems) //Param not set or equals zero
+    {
+        $showItems = 5; //Set default number of items
+    }
+
+    //Pagination on/off
+    $pagination = $this->getPagination(); //param: pagination
+
+    //Slider initial delay
+    $initDelay = 0;
+    $initDelay = intval($this->getInitDelay()); //param: init_delay
+
+    //Image width
+    $imgWidth = $this->getImgWidth(); //param: img_width
+    if ($imgWidth === NULL) //Param not set
+    {
+        $imgWidth = 196; //Set default value
+    }
+    else
+    {
+        $imgWidth = intval($imgWidth);
+    }
+
+        //Image aspect ratio
+        if ($theme->getCfg('category/aspect_ratio'))
+        {
+            $imgHeight = 0; //Keep aspect ratio - height will be calculated automatically based on width
+        }
+        else
+        {
+            $imgHeight = $imgWidth; //Don't keep aspect ratio - height is the same as width
+        }
+
+    //Image height
+    if ($this->getImgHeight() !== NULL) //param: img_height
+    {
+        //If param is set, it overrides default height and aspect ratio settings
+        $imgHeight = intval($this->getImgHeight());
+    }
+
+    //Slider timeout. Set to enable automatic scrolling.
+    $timeout = $this->getTimeout(); //param: timeout
+    if ($timeout === NULL) //Param not set
+    {
+        $timeout = intval($theme->getCfg('product_slider/timeout'));
+    }
+    else
+    {
+        $timeout = intval($timeout);
+    }
+
+    //Number of items that should move on scrolling
+    $move = $this->getMove(); //param: move
+    if ($move === NULL) //Param not set
+    {
+        $move = 0; //By default scroll all visible items
+    }
+    else
+    {
+        $move = intval($move);
+    }
+
+    //If set, slider will loop
+    $loop = $this->getLoop(); //param: loop
+    if ($loop === NULL) //Param not set
+    {
+        $loop = $theme->getCfg('product_slider/loop');
+    }
+
+    //Speed (arrows / touch swipe)
+    $speed = intval($theme->getCfg('product_slider/speed'));
+
+    //Speed (automatic scrolling / pagination)
+    $autoSpeed = intval($theme->getCfg('product_slider/auto_speed'));
+
+    //Pause slider on mouse hover
+    $pause = $theme->getCfg('product_slider/pause');
+
+    //Lazy loading
+    $lazy = $theme->getCfg('product_slider/lazy');
+
+    //Slider classes
+    //--------------------------------------------------------------
+    if($isResponsive)
+    {
+        $sliderClasses .= ' itemslider-responsive';
+    }
+
+    if ($_collectionSize == 1)
+    {
+        $sliderClasses .= ' single-item';
+    }
+
+    //Product grid classes
+    //--------------------------------------------------------------
+    //Size of grid elements
+    $size = $this->getSize(); //param: size
+    if ($size)
+    {
+        $gridClasses = ' ' . $size;
+    }
+    else
+    {
+        if ($showItems >= 8)
+        {
+            $gridClasses = ' size-xs';
+        }
+        elseif ($showItems >= 6)
+        {
+            $gridClasses = ' size-s';
+        }
+    }
+
+    //Align elements to the center
+    if ($this->getCentered()) //param: centered
+    {
+        $gridClasses .= ' centered';
+    }
+
+    //Set equal height for all items
+    if ($this->getEqualHeight()) //param: equal_height
+    {
+        $gridClasses .= ' equal-height';
+    }
+?>
+
+
+
+<h4><?php echo $this->getBlockName(); ?></h3>
+<div class="itemslider-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1 ho">
+    <div id="<?php echo $sliderId; ?>" class="itemslider<?php if($sliderClasses) echo $sliderClasses; ?> products-grid<?php if($gridClasses) echo $gridClasses; ?>">
+    <?php foreach ($_productCollection as $_product): ?>
+        <!--<div class="item" style="margin-right:<?php echo $marginRight; ?>px;">-->
+        <div class="item">
+        
+            <div class="product-image-wrapper" style="max-width:<?php echo $imgWidth; ?>px;">
+            	<div class="thumb_imgbox">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
+                        
+                        <?php if ($lazy): ?>
+                            <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                        <?php else: ?>
+                            <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                        <?php endif; ?>
+    
+                        <?php if ($theme->getCfg('category/alt_image')): ?>
+                            <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+                        <?php endif; ?>
+    
+                        <?php echo $helpLabels->getLabels($_product); //Product labels ?>
+                    </a>
+                </div>
+                
+                <div class="infobox">
+                    <div class="home_addtocart">
+                    	<input type="hidden" name="product" value="<?=$_product->getId();?>"/>
+                    	<button type="button" title="Add to Cart" id="<?=$_product->getId();?>" class="btn-cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                    </div>            
+                    <?php //Add-to links
+						if ($theme->getCfg('category_grid/display_addtolinks') != 0 
+							&& $theme->getCfg('category_grid/addtolinks_simple'))
+						{
+							if ($theme->getCfg('category_grid/display_addtolinks') == 1) //Display on hover
+							{
+								
+							}
+							else //Always display
+							{
+								echo $helpTemplate->getCategoryAddtoLinksIcons(
+								$_product, $this->getAddToCompareUrl($_product), 'addto-links-icons addto-onimage');
+							}
+                            echo $helpTemplate->getCategoryAddtoLinksIcons(
+                            $_product, $this->getAddToCompareUrl($_product), 'addto-links-icons addto-onimage');
+						}
+                    ?>
+                	<a href="<?php echo $_product->getProductUrl() ?>" class="short_desc_overlay">
+                        <?php echo Mage::helper("entangled_custom")->getShortDesc($_product->getShortDescription()) ?>
+                	</a> 
+                </div>
+                
+                
+            </div>
+
+            
+            
+            
+            
+        </div>
+    <?php endforeach; ?>
+    </div> <!-- end: itemslider -->
+</div> <!-- end: itemslider-wrapper 11-->
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+    jQuery(function($) {
+        
+        var owl = $('#<?php echo $sliderId; ?>');
+        owl.owlCarousel({
+        <?php if ($lazy): ?>
+            lazyLoad: true,
+        <?php endif; ?>
+
+        <?php if(!$isResponsive): ?>
+            responsive: false,
+            items: <?php echo $showItems; ?>,
+        <?php else: ?>
+            itemsCustom: [ <?php echo $breakpoints; ?> ],
+			//itemsCustom: [[0, 1], [480, 2], [640, 3], [960, 7] ],
+            responsiveRefreshRate: 50,
+        <?php endif; ?>
+
+        <?php if ($speed): ?>
+            slideSpeed: <?php echo $speed; ?>,
+        <?php endif; ?>
+
+        <?php if ($autoSpeed): ?>
+            paginationSpeed: <?php echo $autoSpeed; ?>,
+        <?php endif; ?>
+
+        <?php if ($move !== 1): ?>
+            scrollPerPage: true,
+        <?php endif; ?>
+
+        <?php if ($timeout): ?>
+            autoPlay: <?php echo $timeout; ?>,
+        <?php endif; ?>
+
+        <?php if ($pause): ?>
+            stopOnHover: true,
+        <?php endif; ?>
+
+        <?php if ($loop): ?>
+            rewindNav: true,
+            rewindSpeed: 600,
+        <?php else: ?>
+            rewindNav: false,
+        <?php endif; ?>
+
+        <?php if ($pagination): ?>
+            pagination: true,
+        <?php else: ?>
+            pagination: false,
+        <?php endif; ?>
+
+            navigation: true,
+            navigationText: false
+
+        }); //end: owl
+
+    });
+//]]>
+</script>
+<?php endif; ?>

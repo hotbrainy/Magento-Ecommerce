@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category	Infortis
+ * @package		Infortis_CloudZoom
+ * @author		Infortis
+ * @copyright	Copyright 2012 Infortis
+ * @version:    1.0.0
+ */
+-->
+<config>
+    <modules>
+        <Infortis_CloudZoom>
+            <version>1.0.0</version>
+        </Infortis_CloudZoom>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <infortis_cloudzoom module="infortis_cloudzoom">
+                    <file>infortis_cloudzoom.xml</file>
+                </infortis_cloudzoom>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <models>
+            <infortis_cloudzoom>
+                <class>Infortis_CloudZoom_Model</class>
+            </infortis_cloudzoom>
+        </models>
+        <blocks>
+            <infortis_cloudzoom>
+                <class>Infortis_CloudZoom_Block</class>
+            </infortis_cloudzoom>
+        </blocks>
+        <helpers>
+            <infortis_cloudzoom>
+                <class>Infortis_CloudZoom_Helper</class>
+            </infortis_cloudzoom>
+        </helpers>
+    </global>
+    <default>
+        <cloudzoom>
+            <general>
+                <enable>1</enable>
+				<use_cloud_zoom>1</use_cloud_zoom>
+                <position>inside</position>
+				<lens_opacity>50</lens_opacity>
+				<zoom_width>427</zoom_width>
+				<zoom_height>275</zoom_height>
+				<big_image_width>650</big_image_width>
+                <big_image_height>650</big_image_height>
+                <tint_opacity>50</tint_opacity>
+				<soft_focus>0</soft_focus>
+				<smooth_move>3</smooth_move>
+            </general>
+			<images>
+				<aspect_ratio>1</aspect_ratio>
+				<main_width>363</main_width>
+				<main_height></main_height>
+                <!--<thumbnail_width>80</thumbnail_width>
+                <thumbnail_height>80</thumbnail_height>-->
+			</images>
+            <thumbnails>
+                <slider>1</slider>
+                <!--<show_items>5</show_items>-->
+                <!--<breakpoints>[0, 2], [240, 3], [320, 4], [480, 5], [768, 3], [1280, 4]</breakpoints>-->
+                <timeout>5000</timeout>
+                <speed>200</speed>
+                <auto_speed>500</auto_speed>
+                <loop>1</loop>
+                <move>1</move>
+                <lazy>1</lazy>
+            </thumbnails>
+			<lightbox>
+				<enable>1</enable>
+				<max_width>95%</max_width>
+				<max_height>95%</max_height>
+				<group>1</group>
+			</lightbox>
+        </cloudzoom>
+    </default>
+</config>

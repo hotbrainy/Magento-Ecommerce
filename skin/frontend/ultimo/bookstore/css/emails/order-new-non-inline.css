@@ -1,0 +1,198 @@
+@media only screen and (min-width:768px){
+    .templateContainer{
+        width:600px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    body,table,td,p,a,li,blockquote{
+        -webkit-text-size-adjust:none !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    body{
+        width:100% !important;
+        min-width:100% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    #bodyCell{
+        padding-top:10px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImage{
+        width:100% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer{
+        max-width:100% !important;
+        width:100% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnBoxedTextContentContainer{
+        min-width:100% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImageGroupContent{
+        padding:9px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .mcnTextContent{
+        padding-top:9px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImageCardTopImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
+        padding-top:18px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImageCardBottomImageContent{
+        padding-bottom:9px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImageGroupBlockInner{
+        padding-top:0 !important;
+        padding-bottom:0 !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImageGroupBlockOuter{
+        padding-top:9px !important;
+        padding-bottom:9px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnTextContent,.mcnBoxedTextContentColumn{
+        padding-right:18px !important;
+        padding-left:18px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
+        padding-right:18px !important;
+        padding-bottom:0 !important;
+        padding-left:18px !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    .mcpreview-image-uploader{
+        display:none !important;
+        width:100% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Heading 1
+    @tip Make the first-level headings larger in size for better readability on small screens.
+    */
+    h1{
+        /*@editable*/font-size:22px !important;
+        /*@editable*/line-height:125% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Heading 2
+    @tip Make the second-level headings larger in size for better readability on small screens.
+    */
+    h2{
+        /*@editable*/font-size:20px !important;
+        /*@editable*/line-height:125% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Heading 3
+    @tip Make the third-level headings larger in size for better readability on small screens.
+    */
+    h3{
+        /*@editable*/font-size:18px !important;
+        /*@editable*/line-height:125% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Heading 4
+    @tip Make the fourth-level headings larger in size for better readability on small screens.
+    */
+    h4{
+        /*@editable*/font-size:16px !important;
+        /*@editable*/line-height:150% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Boxed Text
+    @tip Make the boxed text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+    */
+    .mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
+        /*@editable*/font-size:14px !important;
+        /*@editable*/line-height:150% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Preheader Visibility
+    @tip Set the visibility of the email's preheader on small screens. You can hide it to save space.
+    */
+    #templatePreheader{
+        /*@editable*/display:block !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Preheader Text
+    @tip Make the preheader text larger in size for better readability on small screens.
+    */
+    #templatePreheader .mcnTextContent,#templatePreheader .mcnTextContent p{
+        /*@editable*/font-size:14px !important;
+        /*@editable*/line-height:150% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Header Text
+    @tip Make the header text larger in size for better readability on small screens.
+    */
+    #templateHeader .mcnTextContent,#templateHeader .mcnTextContent p{
+        /*@editable*/font-size:16px !important;
+        /*@editable*/line-height:150% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Body Text
+    @tip Make the body text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+    */
+    #templateBody .mcnTextContent,#templateBody .mcnTextContent p{
+        /*@editable*/font-size:16px !important;
+        /*@editable*/line-height:150% !important;
+    }
+
+}	@media only screen and (max-width: 480px){
+    /*
+    @tab Mobile Styles
+    @section Footer Text
+    @tip Make the footer content text larger in size for better readability on small screens.
+    */
+    #templateFooter .mcnTextContent,#templateFooter .mcnTextContent p{
+        /*@editable*/font-size:14px !important;
+        /*@editable*/line-height:150% !important;
+    }
+
+}

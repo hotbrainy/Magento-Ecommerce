@@ -1,0 +1,38 @@
+<?php
+    $categories = $this->getImprintsData();
+    $imageHelper = Mage::helper('catalog/image');
+?>
+<section class="imprints-container container-fluid">
+    <div class="container">
+        <div class="title-container">
+            <h4 class="title">SHOP BY IMPRINT</h4>
+            <h4 class="desc">From small town heroes to sexy billionaires to teens saving the world... We've got the imprint for you!</h4>
+        </div>
+        <div class="row">
+            <?php foreach($categories as $category): ?>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <a href="<?php echo $category->getUrl() ?>" class="flipper">
+                        <div class="front">
+                            <div class="body">
+                                <?php $i = 0;foreach($category->getProducts() as $product): ?>
+                                    <?php if($i == 1): ?><div class="image-block"><?php endif; ?>
+                                    <img src="<?php echo $imageHelper->init($product,'small_image')->resize(120,180) ?>" alt="<?php echo $this->__($product->getName()) ?>"/>
+                                    <?php if($i == 1): ?></div><?php endif; ?>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="subtitle"><span><?php echo $category->getName() ?></span></div>
+                        </div>
+                        <div class="back">
+                             <div class="imprint-text">
+                                <br>
+                                <?php echo( ($category->getData('description')!="")? $category->getData('description'):"No Description" ); ?>
+                            </div>
+                            <div class="subtitle"><span><?php echo $category->getName() ?></span></div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>

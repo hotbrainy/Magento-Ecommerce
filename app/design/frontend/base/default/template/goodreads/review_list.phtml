@@ -1,0 +1,34 @@
+<?php
+$goodreads = $this->getGoodreadsReview();
+$page = $this->getPage() ? $this->getPage() : 1;
+//echo $goodreads->getReviewsWidget();
+?>
+<?php if($goodreads): ?>
+<?php $goodreadsData = $goodreads->getReviewsData($page); ?>
+<div class="box-collateral box-reviews" id="customer-reviews" data-pages="<?php echo $goodreadsData["pages"] ?>" data-page="<?php echo $page ?>" data-ajax-url="<?php echo $this->getAjaxUrl() ?>">
+    <div class="reviews-list">
+    <?php foreach($goodreadsData["reviews"] as $review): ?>
+        <div class="review-item">
+            <div class="clearfix">
+                <div class="star-ratings-css">
+                    <div class="star-ratings-css-top" style="width: <?php echo 100 / 5 * $review["stars"] ?>%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                </div>
+                <div class="review-data">By <a class="review-author" target="_blank" href="<?php echo $review["url"] ?>"><?php echo $review["author"] ?></a> <?php echo $review["date"] ?></div>
+            </div>
+            <p><?php echo nl2br($review["body"]) ?></p>
+        </div>
+    <?php endforeach; ?>
+    </div>
+    <div class="reviews-pager">
+        <img src="<?php echo $this->getSkinUrl("images/reviews-loader.gif") ?>" id="reviews-loader" />
+<!--        <span class="count">Showing --><?php //echo $goodreadsData["from"] ?><!-- to --><?php //echo $goodreadsData["to"] ?><!-- of --><?php //echo $goodreadsData["total"] ?><!--</span>-->
+        <span class="count">Showing <?php echo $goodreadsData["from"] ?> to <?php echo $goodreadsData["to"] ?> of <?php echo $goodreadsData["to"] ?></span>
+<!--        <span class="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></span>-->
+<!--        <span class="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></span>-->
+    </div>
+<!--     <div class="reviews-footer">
+        <a href="<?php $goodreadsData["goodreads_link"] ?>" target="_blank">Reviews from Goodreads.com</a>
+    </div> -->
+</div>
+<?php endif; ?>

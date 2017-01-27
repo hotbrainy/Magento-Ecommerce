@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AW_Extradownloads>
+            <active>true</active>
+            <codePool>local</codePool>
+        </AW_Extradownloads>
+    </modules>
+</config>
+

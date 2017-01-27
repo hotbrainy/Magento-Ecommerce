@@ -1,0 +1,180 @@
+<?php if (Mage::helper('customer')->isLoggedIn() == true) : ?>
+
+    <div class="le-menu-window">
+        <div class="le-window-outside">
+            <div class="le-window-inside">
+                <div class="le-window-box first">
+                    <div class="le-window-content">
+                        <div class="le-user-info">
+                            <div class="input-fly le-showhideme">
+                                <div class="le-user-name">
+                                    <?php if (Mage::getSingleton('customer/session')->isLoggedIn()) echo Mage::getSingleton('customer/session')->getCustomer()->getName(); ?>
+                                </div>
+                            </div>
+                            <div class="input-fly le-showhideme">
+                                <?php if (Mage::getSingleton('customer/session')->isLoggedIn()) echo Mage::getSingleton('customer/session')->getCustomer()->getEmail(); ?>
+                            </div>
+                        </div>
+                        <div class="input-fly le-showhideme border-bottom">
+                            <a href="<?php echo Mage::getBaseUrl() . 'customer/account/'; ?>">Account Dashboard</a>
+                        </div>
+                        <div class="input-fly le-showhideme border-bottom">
+                            <a href="<?php echo Mage::getBaseUrl() . 'customer/account/edit/'; ?>">Account
+                                Information</a>
+                        </div>
+                        <div class="input-fly le-showhideme border-bottom">
+                            <a href="<?php echo Mage::getBaseUrl() . 'sales/order/history/'; ?>">My Order</a>
+                        </div>
+                        <div class="input-fly le-showhideme border-bottom">
+                            <a href="<?php echo Mage::getBaseUrl() . 'wishlist/'; ?>">My Wishlist</a>
+                        </div>
+                        <div class="input-fly le-showhideme">
+                            <a href="<?php echo Mage::getBaseUrl() . 'review/customer/'; ?>">My Product Reviews</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        (function ($) {
+
+            $.fn.leMenuAjaxLogin = function (options) {
+
+                var opts = $.extend({}, $.fn.leMenuAjaxLogin.defaults, options);
+
+                return start();
+
+                function start() {
+                    setSizes();
+                    responsiveMaker();
+                    openCloseWindowEvents();
+                }
+
+
+                function openCloseWindowEvents() {
+                    if (opts.autoShowUp == 'yes' && $('.messages').css('display') != 'block') {
+                        animateShowWindow('menu');
+                    }
+
+                    $('ul.links a[href="<?php  echo Mage::getBaseUrl() ?>customer/account/"]').on('hover', function () {
+                        animateShowWindow('menu');
+                        return false;
+                    });
+
+                    $(document).mouseup(function (e) {
+                        var container = $(".le-menu-window");
+                        if (!container.is(e.target)
+                            && container.has(e.target).length === 0) {
+                            animateCloseWindow('menu');
+                        }
+                    });
+                }
+
+                function animateShowWindow(windowName) {
+                    <?php if(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==2) { ?>
+
+
+                    $('.le-' + windowName + '-window').fadeIn('fast', function () {
+                        $('.le-' + windowName + '-window .le-showhideme').each(function (index, domeE) {
+                            $(this).delay(index * 30).fadeIn('fast');
+                        });
+                    });
+                    <?php } elseif (Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==1) { ?>
+
+                    $('.le-' + windowName + '-window').fadeIn();
+                    $('.le-' + windowName + '-window .le-showhideme').each(function () {
+                        $(this).fadeIn();
+                    });
+                    <?php }else{ ?>
+
+                    $('.le-' + windowName + '-window').show();
+                    $('.le-' + windowName + '-window .le-showhideme').each(function () {
+                        $(this).show();
+                    });
+                    <?php } ?>
+
+                }
+
+
+                function animateCloseWindow(windowName) {
+                    <?php if(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==2) { ?>
+                    if (opts.stop != true) {
+
+                        var inputs = $('.le-' + windowName + '-window .le-showhideme').nextAll();
+                        var counter = inputs.length;
+
+                        $($('.le-' + windowName + '-window .le-showhideme').get().reverse()).each(function (index, domeE) {
+                            $(this).delay(index * 30).fadeOut('fast');
+                        });
+
+                        $('.le-' + windowName + '-window').delay(counter * 30).fadeOut();
+
+//                        $('.le-menu-close').delay(counter * 30).fadeOut();
+                    }
+                    <?php }elseif(Mage::getStoreConfig('ajaxlogin/ajaxlogin/effect')==1) { ?>
+                    if (opts.stop != true) {
+                        $($('.le-' + windowName + '-window .le-showhideme').get().reverse()).each(function () {
+                            $(this).fadeOut('fast');
+                        });
+
+                        $('.le-' + windowName + '-window').fadeOut();
+
+                        $('.le-register-close').fadeOut();
+                    }
+                    <?php }else { ?>
+                    if (opts.stop != true) {
+
+                        $($('.le-' + windowName + '-window .le-showhideme').get().reverse()).each(function () {
+                            $(this).hide('fast');
+                        });
+
+                        $('.le-' + windowName + '-window').hide();
+
+                        $('.le-register-close').hide();
+                    }
+                    <?php } ?>
+
+                }
+
+
+                function responsiveMaker() {
+                    var position = 'fixed';
+                    $(window).resize(function () {
+                        setSizes(position);
+                    });
+                }
+
+                function setSizes(position) {
+
+                    var hlink = $('ul.links>li').height();
+                    var logoffset = $('a[title="My Account"]').offset();
+                    $('.le-menu-window').css('top', (logoffset.top + hlink) + 'px');
+                    $('.le-menu-window').css('left', (logoffset.left ) + 'px');
+                    $('.le-menu-window').css('position', 'absolute');
+
+                }
+
+            };
+
+            $.fn.leMenuAjaxLogin.defaults = {
+                stop: false,
+                sub: false,
+                profileUrl: '<?php echo Mage::getBaseUrl() ?>customer/account/',
+                autoShowUp: '<?php echo $autoShowUp = (isset($_GET['leregister'])) ? 'yes' : 'no' ?>'
+            };
+
+        })(jal);
+
+        jal(document).ready(function () {
+            jal().leMenuAjaxLogin();
+        });
+
+        //]]>
+    </script>
+
+<?php endif ?>

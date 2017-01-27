@@ -1,0 +1,68 @@
+<?php
+/**
+ * License Info Template
+ * @see Magestore_Magenotification_Block_Config_Licenseinfo
+ */
+?>
+<strong><label for="<?php echo $this->getExtensionName() ?>_license_info"><?php echo $this->__('License Serial') ?>:</label></strong>
+<?php if ($this->getLicenseSerial()): ?>
+    <?php echo $this->getLicenseSerial() ?>
+    <br/>
+<?php else: ?>
+    <?php $_serial = $this->getConfigLicenseSerial() ?>
+    <a href="#" onclick="return <?php echo $this->getExtensionName() ?>ChangeLicense(this);" style="text-decoration: none;<?php if (!$_serial): ?> display: none;<?php endif ?>">
+        <?php echo $_serial ?>
+        <br/>
+    </a>
+    <span id="<?php echo $this->getExtensionName() ?>_license_input"<?php if ($_serial): ?> style="display: none;"<?php endif ?>>
+        <input id="<?php echo $this->getExtensionName() ?>_license_info" name="groups[extension_serials][fields][<?php echo $this->getExtensionName() ?>][value]" value="<?php echo $_serial ?>" style="width: 154px;" type="text" class="input-text" />
+        <p class="note" style="margin-left: 86px;">
+            <?php echo $this->__('get license serial from') ?>
+            <a href="https://www.magestore.com/licensemanager/license/certificates" title="<?php echo $this->__('get license serial') ?>" target="_blank"><?php echo $this->__('here') ?></a>
+        </p>
+    </span>
+    <script type="text/javascript">
+        function <?php echo $this->getExtensionName() ?>ChangeLicense(el) {
+            el.hide();
+            $('<?php echo $this->getExtensionName() ?>_license_input').show();
+            return false;
+        }
+    </script>
+<?php endif ?>
+
+<strong><?php echo $this->__('License Type') ?>:</strong>
+<?php
+    switch ($this->getLicenseType()) {
+        case Magestore_Magenotification_Model_Config::COMMERCIAL_LICENSE:
+            echo $this->__('commercial for one Magento Installation');
+            break;
+        case Magestore_Magenotification_Model_Config::TRIAL_LICENSE:
+            echo $this->__('Trial for one Magento Installation');
+            break;
+        case Magestore_Magenotification_Model_Config::FREE_LICENSE:
+            echo $this->__('Free License');
+            break;
+        default :
+            echo $this->__('N/A');
+    }
+?>
+
+<br/>
+<strong><?php echo $this->__('Activation Date') ?>:</strong>
+<?php if ($this->getActivationDate()): ?>
+    <?php echo $this->formatDate($this->getActivationDate(), 'medium', false) ?>
+<?php else: ?>
+    <?php echo $this->__('N/A') ?>
+<?php endif ?>
+
+<br/>
+<strong><?php echo $this->__('Expiration Date') ?>:</strong>
+<?php if ($this->getExpirationDate()): ?>
+    <?php echo $this->formatDate($this->getExpirationDate(), 'medium', false) ?>
+<?php else: ?>
+    <?php echo $this->__('N/A') ?>
+<?php endif ?>
+
+<br/>
+<?php echo $this->__('Check license information') ?> 
+<a href="https://www.magestore.com/licensemanager/license/check" title="<?php echo $this->__('check license information') ?>" target="_blank"><?php echo $this->__('here') ?></a>

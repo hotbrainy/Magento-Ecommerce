@@ -1,0 +1,103 @@
+
+<!--@subject {{var store.getFrontendName()}}: New Order # {{var order.increment_id}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"htmlescape var=$order.getCustomerName()":"Customer Name",
+"var store.getFrontendName()":"Store Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var order.increment_id":"Order Id",
+"var order.getCreatedAtFormated('long')":"Order Created At (datetime)",
+"var order.getBillingAddress().format('html')":"Billing Address",
+"var payment_html":"Payment Details",
+"var order.getShippingAddress().format('html')":"Shipping Address",
+"var order.getShippingDescription()":"Shipping Description",
+"layout handle=\"sales_email_order_items\" order=$order":"Order Items Grid",
+"var order.getEmailCustomerNote()":"Email Order Note"}
+@-->
+<!--@styles
+@-->
+{{template config_path="design/email/header"}}
+<tr>
+    <td valign="top" id="templateBody"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+        <table class="mcnTextBlock" style="min-width:100%;" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody class="mcnTextBlockOuter">
+            <tr>
+                <td class="mcnTextBlockInner" style="padding-top:9px;" valign="top">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table style="max-width:100%; min-width:100%;" class="mcnTextContentContainer" width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                        <tbody><tr>
+
+                            <td class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;" valign="top">
+
+                                <div style="text-align: right;">ORDER #{{var order.increment_id}}<br>
+                                    {{var order.getCreatedAtFormated('long')}}</div>
+
+                            </td>
+                        </tr>
+                        </tbody></table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <tbody class="mcnTextBlockOuter">
+        <tr>
+            <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                <!--[if mso]>
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                    <tr>
+                <![endif]-->
+
+                <!--[if mso]>
+                <td valign="top" width="600" style="width:600px;">
+                <![endif]-->
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                    <tbody><tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
+
+                            Dear {{var order.getCustomerName()}},<br>
+                            <br>
+                            Get ready to enjoy another great read from a trusted name in romance. Click the links below to begin reading right away. If you requested your order also be sent to your Kindle&trade; device, it should already be there waiting for you!<br>
+                            <br>
+                            {{layout handle="sales_email_order_items" order=$order}}
+                            <br>
+                            If you ever need to re-download or want to re-read your purchase, just click <a href='{{store url="downloadable/customer/products/"}}'><span style="color:#F2228C">My Library</span></a> in the black menu bar of every page to review past purchases with download links.&nbsp;<br>
+                            <br>
+                            Happy reading!<br>
+                            -The {{var store.getFrontendName()}} Team<br>
+
+                           
+                        </td>
+                    </tr>
+                    </tbody></table>
+                <!--[if mso]>
+                </td>
+                <![endif]-->
+
+                <!--[if mso]>
+                </tr>
+                </table>
+                <![endif]-->
+            </td>
+        </tr>
+        </tbody>
+    </table></td>
+</tr>
+{{template config_path="design/email/footer"}}

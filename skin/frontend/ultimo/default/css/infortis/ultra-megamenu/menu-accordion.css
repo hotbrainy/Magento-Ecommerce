@@ -1,0 +1,109 @@
+/**
+ * Mobile menu accordion
+ */
+
+
+
+.acco { list-style-type:none; }
+.acco li.nav-item {
+	list-style-type:none;
+	display:block;
+	float:left;
+	width:100% !important; /* Use "!important" to override grid units styling */
+	padding:0 !important;
+	margin:0 !important;
+	position:relative; /* For opener positioning */
+}
+.acco ul.nav-panel {
+	display:block;
+	float:left;
+	width:100%;
+	padding:0;
+	margin:0;
+}
+
+
+/* Items
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Space for openner if item has children. Space has to be a few pixels wider than openner */
+.acco li.parent > a { padding-right:54px; }
+
+/* All levels
+-------------------------------------------------------------- */
+.acco .nav-item > a {
+	display: block;
+	padding: 15px 10px;
+
+	/* Set default line height in pixels because font size will be changed via admin (and that would also change the line height) */
+	font-size: 16px; /*1.3333em*/
+	line-height: 19px; /*1.125em*/
+}
+
+/* Level 1
+-------------------------------------------------------------- */
+.acco li.level0 > a {
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+/* Level 2
+-------------------------------------------------------------- */
+.acco li.level1 > a {
+	padding-left: 30px;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
+/* Level 3
+-------------------------------------------------------------- */
+.acco li.level2 > a {
+	padding-left: 50px;
+	font-size: 16px;
+	text-transform: none;
+}
+
+/* Level 4
+-------------------------------------------------------------- */
+.acco li.level3 > a
+{
+	padding-left: 70px;
+	font-size: 14px;
+	text-transform: none;
+}
+
+/* Level 5+
+-------------------------------------------------------------- */
+.acco li.level3 .nav-item > a /* Level 5+ */
+{
+	padding-left: 90px;
+	font-size: 12px;
+	text-transform: none;
+}
+
+
+
+/* Opener
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.acco .opener {
+	position:absolute;
+	right:0;
+	top:0;
+	display:block;
+	cursor:pointer;
+	text-align:center;
+	
+	width:49px;
+	height:49px;
+	line-height:49px;
+	background: url(../../../images/infortis/_shared/accordion/opener.png) center center no-repeat;
+}
+.acco .opener:hover {
+	background-color:rgba(0,0,0, 0.05);
+}
+
+/* Active */
+.acco li.item-active > .opener {
+	background-image:url(../../../images/infortis/_shared/accordion/opener-active.png);
+}

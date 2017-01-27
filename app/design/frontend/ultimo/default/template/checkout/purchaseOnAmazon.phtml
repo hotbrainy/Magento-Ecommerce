@@ -1,0 +1,15 @@
+<?php
+?>
+<?php if($this->getAmazonUrl()): ?>
+	<div class="text-center row amazon-checkout-container">
+		<a href="<?php echo $this->getAmazonUrl() ?>" target="_blank" class="amazon-button">
+			<button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout">
+			<span>
+				<span>
+					<i class="fa fa-amazon" aria-hidden="true"></i> <?php echo $this->__('Checkout on Amazon'); ?>
+				</span>
+			</span>
+			</button>
+		</a>
+	</div>
+<?php endif; ?>

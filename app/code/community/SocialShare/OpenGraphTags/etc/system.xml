@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <tabs>
+    <socialshare>
+      <label>Social Share</label>
+      <sort_order>150</sort_order>
+    </socialshare>
+  </tabs>
+  <sections>
+		<opengraphtags translate="label" module="opengraphtags">
+      <label>Basic Configuration</label>
+      <tab>socialshare</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>10</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <conf translate="label">
+          <label>General Configurations</label>
+          <sort_order>10</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Extensions Active</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </active>
+						<lang translate="label">
+              <label>Language</label>
+              <frontend_type>select</frontend_type>
+              <source_model>opengraphtags/system_config_source_dropdown_localization</source_model>
+							<sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </lang>
+          </fields>
+        </conf>
+				<facebook>
+					<label>Facebook</label>
+          <sort_order>20</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <fb_appid translate="label">
+              <label>Application ID / Key</label>
+              <comment><![CDATA[ Get a <a target="_blank" href="https://developers.facebook.com/apps">Facebook API Key</a>]]></comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </fb_appid>
+						<fb_admins translate="label">
+              <label>Admin ID</label>
+              <comment><![CDATA[ Your Facebook ID (For Analytics and Admin Rights) <br /> * Optional ]]></comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </fb_admins>
+          </fields>
+				</facebook>
+			<defaults>
+				<label>Default Options</label>
+				<sort_order>30</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+				<fields>
+					<default_image translate="label">
+						<label>Default OG Image</label>
+						<comment><![CDATA[ Saved in the media/socialshare/image folder.<br /> Minimum Dimensions: 200 x 200.<br /> Allowed file types: jpeg, gif, &amp; png.]]></comment>
+						<frontend_type>image</frontend_type>
+						<backend_model>adminhtml/system_config_backend_image</backend_model>
+						<upload_dir config="system/filesystem/media" scope_info="1">socialshare/image</upload_dir>
+						<base_url type="media" scope_info="1">socialshare/image</base_url>
+						<sort_order>30</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</default_image>
+				</fields>
+			</defaults>
+	    </groups>
+    </opengraphtags>
+  </sections>
+</config>

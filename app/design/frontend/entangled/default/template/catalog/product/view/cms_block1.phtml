@@ -1,0 +1,6 @@
+<?php
+	$staticBlockId = 'block_product_tab1';
+?>
+<?php if(!empty($staticBlockId)): ?>
+	<div class="std"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($staticBlockId)->toHtml(); ?></div>
+<?php endif; ?>

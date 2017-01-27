@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <menu>
+        <promo>
+            <children>
+                <mageworx_customercredit_rechargecodes translate="title" module="mageworx_customercredit">
+                    <title>Recharge Codes</title>
+                    <action>adminhtml/mageworx_customercredit_code</action>
+                </mageworx_customercredit_rechargecodes>
+                <mageworx_customercredit_creditrules translate="title" module="mageworx_customercredit">
+                    <title>Credit Rules</title>
+                    <action>adminhtml/mageworx_customercredit_rules</action>
+                </mageworx_customercredit_creditrules>
+            </children>
+        </promo>
+
+       <report>
+           <children>
+               <mageworx_customercredit translate="title" module="mageworx_customercredit">
+                   <title>Loyalty Booster</title>
+                   <sort_order>1000</sort_order>
+                   <action>adminhtml/mageworx_customercredit_report</action>
+               </mageworx_customercredit>
+           </children>
+       </report>
+
+       <system>
+            <children>
+                <convert>
+                    <children>
+                        <mageworx_customercredit_import_credits translate="title" module="mageworx_customercredit">
+                            <title>Loyalty Booster Import</title>
+                            <action>adminhtml/mageworx_customercredit_import_credit</action>
+                            <sort_order>100</sort_order>
+                        </mageworx_customercredit_import_credits>
+                        <mageworx_customercredit_import_codes translate="title" module="mageworx_customercredit">
+                            <title>Recharge Code Import</title>
+                            <action>adminhtml/mageworx_customercredit_import_code</action>
+                            <sort_order>200</sort_order>
+                        </mageworx_customercredit_import_codes>
+                    </children>
+                </convert>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <promo>
+                        <children>
+                            <mageworx_customercredit_rechargecodes translate="title" module="mageworx_customercredit">
+                                <title>Recharge Codes</title>
+                            </mageworx_customercredit_rechargecodes>
+                            <mageworx_customercredit_creditrules translate="title" module="mageworx_customercredit">
+                                <title>Credit Rules</title>
+                            </mageworx_customercredit_creditrules>
+                        </children>
+                    </promo>
+
+                    <report>
+                        <children>
+                             <mageworx_customercredit translate="title" module="mageworx_customercredit">
+                                 <title>Loyalty Booster</title>
+                             </mageworx_customercredit>
+                         </children>
+                    </report>
+
+                    <system>
+                        <children>
+                            <convert>
+                                <children>
+                                    <mageworx_customercredit_import_credits translate="title" module="mageworx_customercredit">
+                                        <title>Loyalty Booster Import</title>
+                                    </mageworx_customercredit_import_credits>
+                                    <mageworx_customercredit_import_codes translate="title" module="mageworx_customercredit">
+                                        <title>Recharge Code Import</title>
+                                    </mageworx_customercredit_import_codes>
+                                </children>
+                            </convert>
+                            <config>
+                                <children>
+                                    <mageworx_customercredit translate="title" module="mageworx_customercredit">
+                                        <title>MageWorx &gt; Loyalty Booster</title>
+                                        <sort_order>600</sort_order>
+                                        <children>
+                                            <main translate="title" module="mageworx_customercredit">
+                                                <title>General Settings</title>
+                                                <sort_order>10</sort_order>
+                                            </main>
+                                            <expiration translate="title" module="mageworx_customercredit">
+                                                <title>Expiration Date Settings</title>
+                                                <sort_order>20</sort_order>
+                                            </expiration>
+                                            <recharge_codes translate="title" module="mageworx_customercredit">
+                                                <title>Recharge Codes Settings</title>
+                                                <sort_order>30</sort_order>
+                                            </recharge_codes>
+                                            <email_config translate="title" module="mageworx_customercredit">
+                                                <title>Email Settings</title>
+                                                <sort_order>40</sort_order>
+                                            </email_config>
+                                            <give_credit translate="title" module="mageworx_customercredit">
+                                                <title>Give Credit</title>
+                                                <sort_order>50</sort_order>
+                                            </give_credit>
+                                        </children>
+                                    </mageworx_customercredit>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <customer translate="title" module="mageworx_customercredit">
+                        <children>
+                            <credit translate="title">
+                                <title>Customer Internal Credit</title>
+                                <sort_order>200</sort_order>
+                            </credit>
+                        </children>
+                    </customer>
+                </children> 
+            </admin>
+        </resources>
+    </acl>
+</config>

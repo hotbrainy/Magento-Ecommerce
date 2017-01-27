@@ -1,0 +1,289 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$theme = $this->helper('ultimo');
+?>
+<section  class="bottom_wrap">
+    <div class="container">
+        <div class="bottom_holder">
+            <div class="row">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-ads')->toHTML(); ?>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer_wrap" style="background:url(<?=$this->getSkinUrl('images/header-bg.jpg');?>) no-repeat; background-size: cover;">
+  <section class="footer_top">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-3 footer_column">
+		<?php 
+        echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_footer_row2_column1')->toHTML();
+        ?>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 footer_column">
+		<?php 
+        echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_footer_row2_column2')->toHTML();
+        ?>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 footer_column">
+		<?php 
+        echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_footer_row2_column3')->toHTML();
+        ?>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 footer_column">
+		<?php 
+        echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_footer_row2_column6')->toHTML();
+        ?>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="copyright_sec">
+    <div class="container">
+      <div class="row">
+        <div class="copyright_info">
+          <div class="col-sm-4">
+           <div class="ft_logo">
+           	</div>
+          </div>
+        </div>
+        <div class="footer_logo">
+          <div class="col-sm-4">
+          	<div class="copyright_info" style="padding-top: 48px;">
+	            <p>Copyright &copy; <?=date("Y");?> Entangled Publishing, LLC. All rights reserved.</p>
+	        </div>
+            </div>
+        </div>
+        <div class="footer_social">
+          <div class="col-sm-4">
+          <?=$this->getLayout()->createBlock('cms/block')->setBlockId('block_footer_primary_bottom_left')->toHTML();?>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </section>
+</footer>
+<?php /*?><div class="footer-container">
+<div class="footer-container2">
+<div class="footer-container3">
+
+	<?php
+		$b = array();
+		if ($theme->getCfg('magento_blocks/footer_links') && $tmp = $this->getChildHtml('footer_links'))
+		{
+			$b['top']['footer_links'] = $tmp;
+		}
+		if ($tmp = $this->getChildHtml('block_footer_links'))
+		{
+			$b['top']['block_footer_links'] = $tmp;
+		}
+		if ($tmp = $this->getChildHtml('block_footer_links2'))
+		{
+			$b['top']['block_footer_links2'] = $tmp;
+		}
+	?>
+
+	<?php if (!empty($b['top'])): ?>
+
+	<div class="footer-top-container section-container">
+		<div class="footer-top footer container">
+			<div class="inner-container">
+			
+				<div class="section clearer links-wrapper-separators">
+				
+					<?php //Default Magento footer links (page.xml) ?>
+					<?php if (!empty($b['top']['footer_links'])): ?>
+						<div class="item item-left"><?php echo $b['top']['footer_links']; ?></div>
+					<?php endif; ?>
+					
+					<?php //Custom footer links - override default Magento footer links ?>
+					<?php if (!empty($b['top']['block_footer_links'])): ?>
+						<div class="item item-left"><?php echo $b['top']['block_footer_links']; ?></div>
+					<?php endif; ?>
+					
+					<?php //Secondary custom footer links ?>
+					<?php if (!empty($b['top']['block_footer_links2'])): ?>
+						<div class="item item-right"><?php echo $b['top']['block_footer_links2']; ?></div>
+					<?php endif; ?>
+					
+				</div> <!-- end: footer-top section -->
+				
+			</div> <!-- end: inner-container -->
+		</div> <!-- end: footer-top -->
+	</div>
+
+	<?php endif; ?>
+
+	<?php
+		$b['primary'] = $theme->getFormattedBlocks($this, 'block_footer_column', $theme->getCfg('footer/links_column_auto_width'));
+
+		if ($tmp = $this->getChildHtml('block_footer_primary_bottom_left'))
+		{
+			$b['primary_bottom']['left'] = $tmp;
+		}
+		if ($tmp = $this->getChildHtml('block_footer_primary_bottom_right'))
+		{
+			$b['primary_bottom']['right'] = $tmp;
+		}
+		if ($theme->getCfg('magento_blocks/footer_newsletter') && $tmp = $this->getChildHtml('newsletter'))
+		{
+			$b['primary_bottom']['newsletter'] = $tmp;
+		}
+
+		if ($tmp = $this->getChildHtml('bottomContainer'))
+		{
+			$b['primary_top']['bottomContainer'] = $tmp;
+		}
+	?>
+	
+	<?php if (!empty($b['primary']) || !empty($b['primary_bottom']) || !empty($b['primary_top'])): ?>
+	
+	<div class="footer-primary-container section-container<?php //if($classString['primary-container']) echo " " . $classString['primary-container']; ?>">
+		<div class="footer-primary footer container">
+			<div class="inner-container">
+
+				<?php if (!empty($b['primary_top'])): ?>
+				<div class="footer-primary-top grid12-12">
+					<div class="<?php if(!empty($b['primary'])) echo 'footer-primary-top-spacing '; ?>clearer">
+						<?php echo $b['primary_top']['bottomContainer']; ?>
+					</div> 
+				</div> <!-- end: footer-primary-top -->
+				<?php endif; ?>
+
+				<?php if (!empty($b['primary'])): ?>
+				<div class="clearer">
+					<?php echo $b['primary']; ?>
+				</div> <!-- end: footer-primary section -->
+				<?php endif; ?>
+				
+				<?php if (!empty($b['primary_bottom'])): ?>
+				<div class="footer-primary-bottom grid12-12">
+					<div class="<?php if(!empty($b['primary'])) echo 'footer-primary-bottom-spacing '; ?>clearer">
+					
+						<?php if (!empty($b['primary_bottom']['left'])): ?>
+							<div class="item item-left clearer block_footer_primary_bottom_left">
+								<?php echo $b['primary_bottom']['left']; ?>
+							</div>
+						<?php endif; ?>
+						
+						<?php if (!empty($b['primary_bottom']['right'])): ?>
+							<div class="item item-right clearer block_footer_primary_bottom_right">
+								<?php echo $b['primary_bottom']['right']; ?>
+							</div>
+						<?php endif; ?>
+						
+						<?php if (!empty($b['primary_bottom']['newsletter'])): ?>
+							<div class="item item-right newsletter-wrapper clearer">
+								<?php echo $b['primary_bottom']['newsletter']; ?>
+							</div>
+						<?php endif; ?>
+						
+					</div> 
+				</div> <!-- end: footer-primary-bottom -->
+				<?php endif; ?>
+			
+			</div> <!-- end: inner-container -->
+		</div> <!-- end: footer-primary -->
+	</div>
+	
+	<?php endif; ?>
+
+	<?php
+		$b['secondary'] = $theme->getFormattedBlocks($this, 'block_footer_row2_column', $theme->getCfg('footer/links_column_auto_width'));
+	?>
+	
+	<?php if (!empty($b['secondary'])): ?>
+
+	<div class="footer-secondary-container section-container">
+		<div class="footer-secondary footer container">
+			<div class="inner-container">
+			
+				<?php if (!empty($b['secondary'])): ?>
+				<div class="clearer">
+					<?php echo $b['secondary']; ?>
+				</div> <!-- end: footer-secondary section -->
+				<?php endif; ?>
+
+			</div> <!-- end: inner-container -->
+		</div> <!-- end: footer-secondary -->
+	</div>
+	
+	<?php endif; ?>
+
+	<?php
+		if ($tmp = $this->getCopyright())
+		{
+			$b['bottom']['copyright'] = $tmp;
+		}
+		if ($tmp = $this->getChildHtml('block_footer_payment'))
+		{
+			$b['bottom']['block_footer_payment'] = $tmp;
+		}
+		if ($theme->getCfg('magento_blocks/store_switcher') && $tmp = $this->getChildHtml('store_switcher'))
+		{
+			$b['bottom']['store_switcher'] = $tmp;
+		}
+	?>
+
+	<?php if (!empty($b['bottom'])): ?>
+
+	<div class="footer-bottom-container section-container">
+		<div class="footer-bottom footer container">
+			<div class="inner-container">
+
+				<div class="clearer">
+				
+					<?php if (!empty($b['bottom']['copyright'])): ?>
+						<div class="item item-left">
+							<div class="footer-copyright"><?php echo $b['bottom']['copyright']; ?></div>
+						</div>
+					<?php endif; ?>
+					
+					<?php if (!empty($b['bottom']['block_footer_payment'])): ?>
+						<div class="item item-right block_footer_payment"><?php echo $b['bottom']['block_footer_payment']; ?></div>
+					<?php endif; ?>
+					
+					<?php if (!empty($b['bottom']['store_switcher'])): ?>
+						<div class="item item-right"><?php echo $b['bottom']['store_switcher']; ?></div>
+					<?php endif; ?>
+
+				</div> <!-- end: footer-bottom section -->
+
+			</div> <!-- end: inner-container -->
+		</div> <!-- end: footer-bottom -->
+	</div>
+
+	<?php endif; ?>
+	
+	<a id="scroll-to-top" class="ic ic-up" href="#top"></a>
+
+</div> <!-- end: footer-container3 -->
+</div> <!-- end: footer-container2 -->
+</div> <!-- end: footer-container -->
+<?php */?>

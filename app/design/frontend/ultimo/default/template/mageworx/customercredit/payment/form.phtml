@@ -1,0 +1,59 @@
+<?php
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * MageWorx Loyalty Booster extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+$helper = Mage::helper('mageworx_customercredit');
+
+$creditValue = $this->getCreditValue();
+$creditValueCurrency = Mage::helper('core')->currency($helper->getValueExchangeRateDivided($this->getCreditValue()));
+$realValue = $helper->getRealCreditValue();
+$realValueCurrency = Mage::helper('core')->currency($helper->getValueExchangeRateDivided($helper->getRealCreditValue()));
+
+?>
+<ul id="payment_form_<?php echo $this->getMethodCode() ?>">
+ <?php if($helper->isFirstTime()): ?>
+  <i class="fa fa-check" aria-hidden="true"></i> <label for="start_rewards"><?php echo $this->__('Yes, Sign me up!') ?></label>
+  <p><?php echo $this->__('EARN POINTS AND SAVE ON EVERY PURCHASE! Not a member yet? Not to worry. You\'ll automatically be signed up for this amazing, free program after completing this purchase.') ?></p>
+    <p><br /><?php echo $this->__('Remember: Every dollar you spend = 100 points!') ?><br /><br />
+      <?php echo $this->__('Learn more about our points and rewards program <a href="%s" target="_blank">here</a>.',Mage::getBaseUrl()."rewardpoints") ?></p>
+ <?php else: ?>
+  <li><p><?php echo $this->__("EARN POINTS AND SAVE ON EVERY PURCHASE! <span class=\"text-no-transform\">Not a member yet? Not to worry. You'll automatically be signed up for this amazing, free program after completing this purchase.</span>"); ?></p>
+  </li>
+  <li>
+   <div ><?php echo $this->__("Available Points: "); ?><?php echo $helper->__("%s", $creditValue)?></div>
+   <p><br /><?php echo $this->__('Remember: Every dollar you spend = 100 points!') ?><br /><br />
+    <?php echo $this->__('Learn more about our points and rewards program <a href="%s" target="_blank">here</a>.',Mage::getBaseUrl()."rewardpoints") ?></p>
+  </li>
+ <?php endif; ?>
+</ul>

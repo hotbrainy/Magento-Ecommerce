@@ -1,0 +1,18 @@
+<div class="rewards-page">
+    <div class="sidebar col-md-3 col-xs-12">
+        <div class="sidebar-wrapper">
+            <div class="head">
+                <h4><?php echo $this->__("Entangled Fanatic™ Rewards Program") ?></h4>
+            </div>
+            <ul>
+                <li><a href="<?php echo $this->getUrl('*/*/index')?>"><?php echo $this->__("Join today") ?></a><span class="arrow-right"></span></li>
+                <li><a href="<?php echo $this->getUrl('*/*/how')?>"><?php echo $this->__("How it works") ?></a><span class="arrow-right"></span></li>
+                <li><a href="<?php echo $this->getUrl('*/*/terms')?>"><?php echo $this->__("Terms of use") ?></a><span class="arrow-right"></span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content col-md-9 col-xs-12" style="margin-top: 10px;">
+        <?php echo $this->getChildHtml('content.wrapper')?>
+    </div>
+</div>
+

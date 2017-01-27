@@ -1,0 +1,46 @@
+/**
+ * Ultra Slideshow
+ */
+
+
+
+/* Slideshow wrapper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.the-slideshow-wrapper {}
+.the-slideshow-wrapper:after { display:block; content:"."; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
+
+
+/* Slideshow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.the-slideshow { margin:0 auto; }
+.the-slideshow .slides { display: none; }
+
+
+/* Banners
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.the-slideshow-banners {
+	-webkit-backface-visibility: hidden; /* Fix possible glitches during animation */
+	margin-bottom:0.1%; /* Important: a little bit bigger than slideshow bottom margin to avoid jumping on slide transition */
+}
+.the-slideshow-banners .banner { position:relative; /* Container for caption */ }
+.the-slideshow-banners a.banner, /* Backward compatibility, link could have "banner" class */
+.the-slideshow-banners .banner a { display:block; }
+
+/* Additional effects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.the-slideshow 			.fade-on-slideshow-hover,
+.the-slideshow-wrapper	.fade-on-slideshow-wrapper-hover {
+	transition:			opacity 300ms ease-in-out;
+	-moz-transition:	opacity 300ms ease-in-out;
+	-webkit-transition:	opacity 300ms ease-in-out;
+	-o-transition:		opacity 300ms ease-in-out;
+}
+.the-slideshow:hover 			.fade-on-slideshow-hover,
+.the-slideshow-wrapper:hover 	.fade-on-slideshow-wrapper-hover {
+	opacity:0.75;
+	filter:alpha(opacity=75);
+}

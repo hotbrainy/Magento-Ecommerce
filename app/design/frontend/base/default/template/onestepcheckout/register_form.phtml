@@ -1,0 +1,62 @@
+<div class="page-title">
+    <h1><?php echo $this->__('Create an Account') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getUrl('onestepcheckout/ajax/register') ?>" method="post" id="form-validate" class="register-form">
+    <div class="fieldset">
+        <h4 class="legend"><?php echo $this->__('Enter your password') ?></h4>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label class="required" for="password"><em>*</em><?php echo $this->__('Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="required-entry validate-password input-text" />
+                    </div>
+                </div>
+                   <div class="field">
+                    <label class="required" for="confirmation"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="required-entry validate-cpassword input-text" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button id="create-account-button" class="button" type="submit"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    //var dataForm = new VarienForm('form-validate', true);
+    <?php if($this->getShowAddressFields()): ?>
+    new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>);
+    <?php endif; ?>
+
+    $('create-account-button').observe('click', function(e)    {
+
+        Event.stop(e);
+
+        var url = '<?php echo $this->getUrl('onestepcheckout/ajax/register', array('_secure'=>true)); ?>';
+        var parameters = $$('form.register-form').first().serialize(true);
+
+        new Ajax.Request(url, {
+                method: 'post',
+                parameters: parameters,
+                onComplete: function(response)  {
+                    if(response.status == 200)  {
+                         var result = response.responseText.evalJSON();
+
+                         if(result.success && result.message == 'customer_logged_in')   {
+                             window.location='<?php echo $this->getUrl('customer/account', array('_secure'=>true)); ?>';
+                         }
+                         else   {
+                            alert('Error occured: ' + result.error);
+                         }
+                    }
+                }
+        });
+    });
+//]]>
+</script>

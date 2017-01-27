@@ -1,0 +1,28 @@
+<?php
+    $theme = $this->helper('ultimo');
+
+    //If true, display tabs, otherwise display stacked blocks
+    $showTabs = $theme->getCfg('product_page/tabs');
+?>
+<div class="box-collateral collateral-container<?php if ($showTabs): ?> box-tabs<?php endif; ?>">
+
+    <?php if ($showTabs): ?>
+
+        <?php echo $this->getChildHtml('product.info.tabs'); //Use full name ?>
+
+    <?php else: ?>
+
+        <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $childAlias => $childContent):?>
+            <div class="collateral-block <?php echo "collateral-block--{$childAlias}"?>">
+
+                <?php if ($title = $this->getChildData($childAlias, 'title')):?>
+                    <h3><?php echo $this->escapeHtml($title); ?></h3>
+                <?php endif;?>
+                <?php echo $childContent; ?>
+                
+            </div>
+        <?php endforeach;?>
+
+    <?php endif; ?>
+
+</div>

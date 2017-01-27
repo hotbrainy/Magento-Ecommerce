@@ -1,0 +1,213 @@
+<div class="page-title">
+    <h1><?php echo $this->__('Edit Account Information') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate">
+    <div class="fieldset">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+            </li>
+            <li>
+                <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                <div class="input-box">
+                    <input type="text" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
+                </div>
+            </li>
+        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>
+        <?php endif ?>
+        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <li><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
+        <?php endif ?>
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <li><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
+        <?php endif ?>
+            <li class="control">
+                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="fieldset" style="display:none;">
+        <h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
+        <ul class="form-list">
+            <li>
+                <label for="current_password" class="required"><em>*</em><?php echo $this->__('Current Password') ?></label>
+                <div class="input-box">
+                    <input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field">
+                    <label for="password" class="required"><em>*</em><?php echo $this->__('New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo $this->__('New Password') ?>" class="input-text validate-password" name="password" id="password" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <?php
+
+    $var_attrs = array(); // will be used in JS
+    $model = 'customer/attribute_collection';
+    $type = 'customer';
+    $collection = Mage::getResourceModel($model)
+        ->setEntityTypeFilter(Mage::getModel('eav/entity')->setType($type)->getTypeId())
+        ->addVisibleFilter()
+        ->addFilter('is_user_defined', 1)->setOrder('sort_order', 'ASC');
+    if (count($collection) >= 1) {
+    ?>
+    <div class="fieldset" id="more_info">
+        	<h2 class="legend"><?php echo $this->__('More Information') ?></h2>
+            <ul class="form-list">
+            	<?php
+				$var_attrs = array();
+				$model = 'customer/attribute_collection';
+				$type='customer'; 
+				$collection = Mage::getResourceModel($model)  
+				->setEntityTypeFilter( Mage::getModel('eav/entity')->setType($type)->getTypeId() )  
+				->addVisibleFilter()
+				->addFilter('is_user_defined', 1)->setOrder('sort_order', 'ASC'); 
+                
+                $store_id = Mage::app()->getStore()->getId();
+				
+				foreach($collection as $attribute) {
+					$attr = $attribute->toArray();
+
+					if($attr['is_required'])
+						$var_attrs[] = $attr['attribute_code'];
+
+                    $store_labels = $attribute->getStoreLabels();
+                    $label = $store_labels[$store_id] ? $store_labels[$store_id] : $attr['frontend_label'];
+                    
+					echo '<li>';
+					$func = 'get'.  str_replace(' ', '',  ucwords(str_replace('_', ' ', $attr['attribute_code'])) );
+
+                    echo '<label for="'. $attr['attribute_code'] .'" '. ($attr['is_required']?'class="required"><em>*</em>':'>') . $this->__( $label ) . '</label>';
+					switch($attr['frontend_input']) {
+						case 'text':
+							echo '
+							<div class="input-box">
+								<input type="text" name="'. $attr['attribute_code'] .'" id="'. $attr['attribute_code'] .'" value="'. $this->htmlEscape($this->getCustomer()->$func()) .'" />
+							</div>';
+							break;
+						
+						case 'select':
+							echo '
+							<div class="input-box">';
+							echo '<select name="'. $attr['attribute_code'] .'" id="'. $attr['attribute_code'] .'" >';
+							foreach ($attribute->getSource()->getAllOptions((!$attr['is_required']), false) as $instance) {
+								  echo '<option value="'.$instance['value'].'" '.  ($this->htmlEscape($this->getCustomer()->$func()) == $instance['value'] ? 'selected' : '') .'>' . $instance['label'] . '</option>';
+							}
+							echo '</select>';
+
+							echo '
+							</div>';							
+							break;
+
+						case 'textarea':
+							echo '
+							<div class="input-box">
+								<textarea name="'. $attr['attribute_code'] .'" id="'. $attr['attribute_code'] .'" >'. $this->htmlEscape($this->getCustomer()->$func()) .'</textarea>
+							</div>';
+							break;
+
+						case 'multiselect':
+							echo '
+							<div class="input-box">';
+                            
+                            $multi_values = explode(',', $this->htmlEscape($this->getCustomer()->$func()));
+                           
+							echo '<select name="'. $attr['attribute_code'] .'[]" id="'. $attr['attribute_code'] .'" multiple="multiple" >';
+                            
+							foreach ($attribute->getSource()->getAllOptions((!$attr['is_required']), false) as $instance) {
+								  echo '<option value="'.$instance['value'].'" '.  (in_array($instance['value'], $multi_values) ? 'selected="selected"' : '') .'>' . $instance['label'] . '</option>';
+							}
+							echo '</select>';
+							break;
+
+						case 'date':
+							$date_element = new Varien_Data_Form_Element_Date();							
+							$date_element->setValue($this->htmlEscape($this->getCustomer()->$func()));
+
+							echo '
+							<div class="input-box">
+								<input type="text" name="'. $attr['attribute_code'] .'" id="'. $attr['attribute_code'] .'" value="'. $date_element->getValue(Mage::app()->getLocale()->getDateFormatWithLongYear()) .'" class="input-text" style="width:110px !important;" />
+								<img style="" title="'. $this->__('Select Date') .'" id="'.$attr['attribute_code'].'_trig" class="v-middle" alt="" src="'. $this->getSkinUrl('images/grid-cal.gif') .'">
+								<script type="text/javascript">
+									Calendar.setup({
+										inputField : "'.$attr['attribute_code'].'",
+										ifFormat : "'. Varien_Date::convertZendToStrFtime(Mage::app()->getLocale()->getDateFormatWithLongYear(), true, false) .'", 
+										button : "'.$attr['attribute_code'].'_trig",
+										showsTime: false,
+										align : "Bl",
+										singleClick : true
+									});
+								</script>
+							</div>';
+							break;
+					}
+					
+					echo '
+						</li>';
+				}
+				?>
+            </ul>
+        </div>
+    <?php } ?>
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+    </div>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    function setPasswordForm(arg){
+        if(arg){
+            $('current_password').up(3).show();
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+        }else{
+            $('current_password').up(3).hide();
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+    <?php if($this->getCustomer()->getChangePassword()): ?>
+        setPasswordForm(true);
+    <?php endif; ?>
+
+	function setExtraValidation(arg){
+		<?php $total_attr=count($var_attrs); ?>
+		if(arg){			
+			<?php for($cnt=0; $cnt<$total_attr; $cnt++) { ?>
+				$('<?php echo $var_attrs[$cnt] ?>').addClassName('required-entry');
+			<?php } ?>
+		}else{
+			<?php for($cnt=0; $cnt<$total_attr; $cnt++) { ?>
+				$('<?php echo $var_attrs[$cnt] ?>').removeClassName('required-entry');
+			<?php } ?>
+		}
+	}
+	setExtraValidation(true);
+//]]>
+</script>

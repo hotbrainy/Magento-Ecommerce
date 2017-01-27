@@ -1,0 +1,752 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+-->
+<config>
+    <sections>
+        <amshopby translate="label" module="amshopby">
+            <label>Improved Navigation</label>
+            <tab>amasty</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>91314</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <category_text_label translate="label">
+                            <label><![CDATA[<b>Category Filter</b>]]></label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category_text_label>
+                        <categories_type translate="label">
+                            <label>Display Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_category</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </categories_type>
+                        <multiselect_categories translate="label,comment">
+                            <label>Enable Multiselect</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><categories_type>0</categories_type></depends>
+                        </multiselect_categories>
+                        <include_cat translate="label">
+                            <label>Display Only Categories</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[List comma-separated IDs like: 12,328,5]]></comment>
+                        </include_cat>
+                        <exclude_cat translate="label">
+                            <label>Exclude Categories</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[List comma-separated IDs like: 12,328,5]]></comment>
+                        </exclude_cat>
+
+                        <price_text_label translate="label">
+                            <label><![CDATA[<br><b>Price Filter</b>]]></label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_text_label>
+                        <price_type translate="label">
+                            <label>Display Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_price</source_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_type>
+                        <use_custom_ranges translate="label">
+                            <label>Use Custom Ranges</label>
+                            <comment><![CDATA[Please define ranges in Catalog -> Improved Navigation -> Price Ranges]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </use_custom_ranges>
+                        <slider_type translate="label">
+                            <depends><price_type>3</price_type></depends>
+                            <label>Indicate maximum ranges on slider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </slider_type>
+                        <slider_step translate="label">
+                            <depends><price_type>3</price_type></depends>
+                            <label>Slider step</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                        </slider_step>
+                        <price_from_to translate="label">
+                            <label>Add From-To Widget</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_from_to>
+                        <price_exclude translate="label">
+                            <label>Exclude Price filter from Categories</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>260</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[List comma-separated IDs like: 12,328,5]]></comment>
+                        </price_exclude>
+
+                        <positions_text_label translate="label">
+                            <label><![CDATA[<br><b>Sorting</b>]]></label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </positions_text_label>
+                        <categories_order translate="label">
+                            <label>Categories Filter Position</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>310</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[To hide categories filter indicate -1]]></comment>
+                        </categories_order>
+                        <stock_filter_pos translate="label">
+                            <label>Stock Filter Position</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>320</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[To hide stock filter indicate -1]]></comment>
+                        </stock_filter_pos>
+                        <rating_filter_pos translate="label comment">
+                            <label><![CDATA[Rating Filter Position]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>330</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[To hide rating filter indicate -1]]></comment>
+                        </rating_filter_pos>
+
+                        <collapsing_text_label translate="label">
+                            <label><![CDATA[<br><b>Filter Collapsing</b>]]></label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </collapsing_text_label>
+                        <enable_collapsing translate="label">
+                            <label>Allow Filter Collapsing</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_collapsing>
+                        <categories_collapsed translate="label">
+                            <depends><enable_collapsing>1</enable_collapsing></depends>
+                            <label>Collapse Categories By Default</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>420</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </categories_collapsed>
+                        <price_collapsed translate="label">
+                            <depends><enable_collapsing>1</enable_collapsing></depends>
+                            <label>Collapse Price By Default</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>430</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_collapsed>
+                        <rating_collapsed translate="label">
+                            <depends><enable_collapsing>1</enable_collapsing></depends>
+                            <label>Collapse Rating By Default</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>440</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rating_collapsed>
+                        <stock_collapsed translate="label">
+                            <depends><enable_collapsing>1</enable_collapsing></depends>
+                            <label>Collapse Stock By Default</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>450</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </stock_collapsed>
+
+                        <other_text_label translate="label">
+                            <label><![CDATA[<br><b>Other Settings</b>]]></label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </other_text_label>
+                        <exclude translate="label">
+                            <label>Exclude filters from Homepage</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>510</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[List comma-separated attribute codes like: category, price, color.]]></comment>
+                        </exclude>
+                        <hide_one_value translate="label">
+                            <label>Hide filters with one available option</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>520</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hide_one_value>
+                        <configurable_images translate="label">
+                            <label>Image-Related Attributes</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>530</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Comma-separated list of attribute codes to show specific image for configurable products. This function could make category loading slower.]]></comment>
+                        </configurable_images>
+                    </fields>
+                </general>
+
+                <block translate="label">
+                    <label>Blocks Display</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <ajax translate="label">
+                            <label>Enable AJAX</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajax>
+                        <slider_use_ui translate="label">
+                            <label>Use jQuery slider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </slider_use_ui>
+                        <state_pos translate="label">
+                            <label>"Currently Shopping By" Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_position</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </state_pos>
+                        <categories_pos translate="label">
+                            <label>Categories Block Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_position</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </categories_pos>
+                        <price_pos translate="label">
+                            <label>Price Block Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_position</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_pos>
+                        <stock_filter_pos translate="label">
+                            <label>Stock Block Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_position</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </stock_filter_pos>
+                        <rating_filter_pos translate="label comment">
+                            <label><![CDATA[Rating Filter Position]]></label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_position</source_model>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rating_filter_pos>
+                        <enable_overflow_scroll translate="label">
+                            <label>Add vertical scrolling to filter blocks higher than (size in pixels)</label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Sets maximum box height in px, to disable indicate 0]]></comment>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_overflow_scroll>
+                    </fields>
+                </block>
+
+                <heading translate="label comment">
+                    <label>Category Title and Description</label>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[Please open Catalog -> Improved Navigation -> Filters -> [open filter] -> Options -> [open option] in order to define Title, Description, Image and CMS block for your filter options.]]></comment>
+                    <fields>
+                        <add_title translate="label">
+                            <label>Add selected filter title to Category Name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_description_position</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_title>
+                        <h1_separator translate="label">
+                            <label>Category Name separator</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </h1_separator>
+                        <add_description translate="label">
+                            <label>Add selected filter description to Category Description</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_description_position</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_description>
+                        <add_image translate="label comment">
+                            <label>Replace Category Image</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Category Image will be replaced if selected filter option have it`s own image uploaded.]]></comment>
+                        </add_image>
+                        <add_cms_block translate="label comment">
+                            <label>Replace Category CMS Block</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Category CMS Block will be replaced in case selected filter option have it`s own defined.]]></comment>
+                        </add_cms_block>
+                    </fields>
+                </heading>
+
+                <meta translate="label comment">
+                    <label>Category Meta Tags</label>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[Please open Catalog -> Improved Navigation -> Filters -> [open filter] -> Options -> [open option] in order to define Meta-Title, Meta-Description and Meta-Keywords for your filter options.]]></comment>                    <fields>
+                        <add_title translate="label">
+                            <label>Add selected filters to Meta-Title</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_description_position</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_title>
+                        <title_separator translate="label">
+                            <label>Title Tag Separator</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title_separator>
+                        <add_description translate="label">
+                            <label>Add selected filter descriptions to Category Meta-Description</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_description_position</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_description>
+                        <descr_separator translate="label">
+                            <label>Description Tag Separator</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </descr_separator>
+                        <add_keyword translate="label">
+                            <label>Add selected filters to Meta-Keywords</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_description_position</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_keyword>
+                    </fields>
+                </meta>
+
+                <seo translate="label">
+                    <label>SEO</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <urls translate="label">
+                            <label>URL Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_url_mode</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </urls>
+                        <redirects_enabled translate="label">
+                            <label>Redirect to SEO URL if possible</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>145</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Standard Magento category pages with applied filters will be redirected to Amasty-style URLs.]]></comment>
+                        </redirects_enabled>
+                        <hide_attributes translate="label">
+                            <depends><urls>1</urls></depends>
+                            <label>Hide Attribute Names</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Show /shopby/canon/black instead of /shopby/brand-canon/color-black.<br/>If attribute values are not unique, the module adds the dash symbol "-" for them.]]></comment>
+                        </hide_attributes>
+                         <key translate="label">
+                            <label>URL Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[/[url_key] page will be created with all the products in store listed.<br> Url key also separates category part and filter parameters part of URL.]]></comment>
+                            <validate>validate-alphanum required-entry</validate>
+                        </key>
+                        <enable_shopby_page>
+                            <label>Enable ShopBy Page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>165</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Activates /[URL Key] page which displays all the products in the store and allows to filter them.]]></comment>
+                        </enable_shopby_page>
+                        <canonical translate="label">
+                            <label>Canonical URL</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_canonical</source_model>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[For the /shopby page]]></comment>
+                        </canonical>
+                        <canonical_cat translate="label">
+                            <label>Category Canonical URL</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_canonical</source_model>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <![CDATA[For the category pages]]>
+                        </canonical_cat>
+                        <query_param translate="label">
+                            <label>Query param for URLs with multiple attributes</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Allows you to tell Google (in the webmaster panel) to skip URL with 2+ values of the same attribute. Will add param_name=true to such urls. Leave empty if you are not sure how to use it.]]></comment>
+                        </query_param>
+                        <special_char translate="label">
+                            <label>Replace special characters with</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_specialchar</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-amshopby-symbols</validate>
+                        </special_char>
+                        <option_char translate="label">
+                            <label>Separate attribute options with</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_options</source_model>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[For example, if a customer selects 3 options for the attribute `color`, the URL will look like http://example.com/red-green-blue.html]]></comment>
+                        </option_char>
+<prev_next translate="label">
+                            <label>Render Prev/Next tags on improved navigation pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>185</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+<comment><![CDATA[When enabled, it helps Google to index paginated content. See more details here:
+https://support.google.com/webmasters/answer/1663744]]></comment>
+                        </prev_next>
+                        <price_nofollow translate="label">
+                            <label>Robots NoFollow meta-tag for Price pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Don`t recommend Google follow links on pages with price filter applied.]]></comment>
+                        </price_nofollow>
+                        <price_noindex translate="label">
+                            <label>Robots NoIndex meta-tag for Price pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Don`t recommend Google index pages with price filter applied.]]></comment>
+                        </price_noindex>
+                        <price_rel_nofollow translate="label comment">
+                            <label>Rel NoFollow for Price Ranges links</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Adds rel=nofollow for price filter links.]]></comment>
+                        </price_rel_nofollow>
+                        <noindex_multiple translate="label comment">
+                            <label>Noindex when multiple attribute filters applied</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>242</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </noindex_multiple>
+                         <cat_noindex translate="label comment">
+                            <label>Noindex the following categories IDs</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Comma separated list of categories IDs where noindex should be shown]]></comment>
+                        </cat_noindex>
+                         <cat_nofollow translate="label comment">
+                            <label>Nofollow the following categories IDs</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Comma separated list of categories IDs where nofollow should be shown]]></comment>
+                        </cat_nofollow>
+                        <page_match_strict translate="label comment">
+                            <label>Use strict Pages matching</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>260</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[In strict mode page not match when extra attribute filters or values present]]></comment>
+                        </page_match_strict>
+                        <exclude_user_agent translate="label comment">
+                            <label>Hide layered navigation for these user agents</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>270</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[List comma-separated user agents like: Googlebot, MSNBot, YandexBot to restrict layered navigation urls crawling.]]></comment>
+                            <tooltip><![CDATA[Layered Navigation HTML code will be cut out from the output to defined user agents. All other visitors will see layered navigation ordinary way.]]></tooltip>
+                        </exclude_user_agent>
+                        <sort_attributes_in_url>
+                            <label>Sort Attributes in URL</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amshopby/source_url_sortMode</source_model>
+                            <sort_order>280</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Brand always goes first]]></comment>
+                        </sort_attributes_in_url>
+                    </fields>
+                </seo>
+                <brands translate="label">
+                    <label>Brands</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <attr translate="label">
+                            <label>Brand Attribute Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Used to generate Brand Pages. Brand pages are always visible for search engines.]]></comment>
+                        </attr>
+                        <show_images translate="label">
+                            <label>Show logos instead of labels on brand list block</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Upload images for brand filter options to make this work.]]></comment>
+                        </show_images>
+                    </fields>
+                </brands>
+
+                <advanced_categories>
+                    <label>Advanced Categories</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <display_product_count translate="label">
+                            <label>Display Product Count</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_product_count>
+                        <show_all_categories translate="label">
+                            <label>Render All Categories Tree</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Render Full Categories Tree or Only For Current Category Path]]></comment>
+                        </show_all_categories>
+                        <show_all_categories_depth translate="label">
+                            <label>Categories Depth</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Max level of categories tree]]></comment>
+                        </show_all_categories_depth>
+                        <start_category translate="label">
+                            <label>Render Categories Level</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>amshopby/source_category_start</source_model>
+                        </start_category>
+                    </fields>
+                </advanced_categories>
+            </groups>
+        </amshopby>
+    </sections>
+</config>

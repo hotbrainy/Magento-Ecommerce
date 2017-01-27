@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/bubble/elasticsearch.css</name></action>
+        </reference>
+        <reference name="after_body_start">
+            <block type="core/template" name="bubble.elasticsearch.form.js" template="bubble/elasticsearch/form/js.phtml" />
+        </reference>
+    </default>
+    <catalogsearch_result_index>
+        <reference name="content">
+            <block type="elasticsearch/catalogsearch_suggest" name="elasticsearch.suggest" before="search.result" template="bubble/elasticsearch/suggest.phtml" />
+        </reference>
+        <reference name="right">
+            <block type="elasticsearch/catalogsearch_cms" name="elasticsearch.result.cms" before="-" template="bubble/elasticsearch/result/cms.phtml" />
+            <block type="elasticsearch/catalogsearch_category" name="elasticsearch.result.category" before="-" template="bubble/elasticsearch/result/category.phtml" />
+        </reference>
+    </catalogsearch_result_index>
+</layout>

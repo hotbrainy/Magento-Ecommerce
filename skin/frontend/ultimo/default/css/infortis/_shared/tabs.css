@@ -1,0 +1,152 @@
+/**
+ * Generic tabs
+ */
+
+
+
+/* Basic styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Tabs
+-------------------------------------------------------------- */
+/* Total height of the tab bar should be the same as in block titles */
+.gen-tabs .tabs li { float:left; margin:0; }
+.gen-tabs .tabs a {
+	display:block;
+	padding:0 10px;
+	text-decoration:none;
+	outline:none;
+}
+
+/* Tab panels
+-------------------------------------------------------------- */
+.gen-tabs .tabs-panels { padding:15px 0; }
+.gen-tabs .tabs-panels .panel {}
+
+/* Accordion
+-------------------------------------------------------------- */
+.gen-tabs .acctab {
+	display:none;
+	padding:0;
+	margin-bottom:1px;
+	font-weight:normal;
+}
+.gen-tabs .acctab:hover { cursor:pointer; }
+
+/* Accordion mode enabled */
+.gen-tabs.accor .tabs { display:none; }
+.gen-tabs.accor .acctab { display:block; }
+.gen-tabs.accor .tabs-panels { padding-top:0; padding-bottom:0; }
+.gen-tabs.accor .tabs-panels .panel { display:none; margin:10px 0; padding:15px; }
+
+
+/* Default skin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.gen-tabs .tabs a {
+	color:#333;
+	background-color:#eee;
+	line-height:3em;
+}
+.gen-tabs .tabs a:hover,
+.gen-tabs .tabs a:focus   { background-color:#e5e5e5; }
+.gen-tabs .tabs a.current { background-color:#ddd; }
+
+/* Accordion
+-------------------------------------------------------------- */
+.gen-tabs .acctab {
+	font-size:1.5em;
+	line-height:2.7777em;
+	background-color:#f5f5f5;
+	color:#333;
+}
+.gen-tabs .acctab:hover,
+.gen-tabs .acctab:focus,
+.gen-tabs .acctab.current { background-color:#e5e5e5; }
+.gen-tabs.accor .tabs-panels .panel {}
+
+
+/* Tabs - skin 1: with thin borders
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Border exists but it is transparent. Except bottom border which has to be removed.
+   Only the current tab need to have bottom border. */
+.gen-tabs--style1 .tabs a {
+	font-size:1.3333em;
+	color:#333;
+	background-color:#eee;
+	border:1px solid transparent;
+	border-bottom:none;
+}
+
+.gen-tabs--style1 .tabs a:hover
+/*, .gen-tabs--style1 .tabs a:focus */ {
+	background-color:#e5e5e5;
+
+	/* Border on hover has the same color as background of the tab */
+	border-color:#e5e5e5;
+}
+
+.gen-tabs--style1 .tabs a.current {
+	background-color:#fff;
+
+	/* Pull up the panels */
+	margin-bottom:-1px;
+
+	/* Border of the active item has the same color as border of panels.
+	   Bottom border is transparent. */
+	border-color:#e5e5e5;
+	border-bottom:1px solid transparent;
+
+	/* Make a little bit higher than other tabs */
+	padding-top:4px;
+	margin-top:-4px;
+}
+.gen-tabs--style1 .tabs a.current:hover {
+	/* Bottom border is transparent. */
+	border-bottom-color: transparent;
+}
+
+.gen-tabs--style1 .tabs-panels {
+	border-top:1px solid #e5e5e5;
+	border-bottom:1px dashed #e5e5e5;
+}
+
+/* Accordion
+-------------------------------------------------------------- */
+.gen-tabs--style1.accor .tabs-panels {
+	border-top:none;
+	border-bottom:none;
+}
+.gen-tabs--style1 .acctab {
+	border-bottom:1px solid #e5e5e5;
+}
+.gen-tabs--style1.gen-tabs.accor {
+	margin-bottom: 25px;
+}
+
+
+/* Tabs - skin 1: smaller
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.gen-tabs--style1-small .tabs a {
+	padding:0 7px;
+	font-size: 14px;
+	line-height: 32px;
+}
+/* Added main class to increase specificity of this rule to override font */
+.gen-tabs--style1.gen-tabs--style1-small .tabs a {
+	font-family: inherit;
+}
+
+/* Accordion
+-------------------------------------------------------------- */
+.gen-tabs--style1-small .acctab {
+	font-size: 14px;
+	line-height: 32px;
+}
+/* Added main class to increase specificity of this rule to override font */
+.gen-tabs--style1.gen-tabs--style1-small .acctab {
+	font-family: inherit;
+}

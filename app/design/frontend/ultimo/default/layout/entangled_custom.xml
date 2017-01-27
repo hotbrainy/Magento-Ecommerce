@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <customer_logged_in>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/entangled/ajaxWishlist.js</name></action>
+        </reference>
+    </customer_logged_in>
+</layout>

@@ -1,0 +1,26 @@
+<?php
+/**
+ * @deprecated
+ * Additional scripts for Flexslider
+ *
+ * IMPORTANT: Flexslider is no longer supported
+ */
+?>
+<script type="text/javascript">
+//<![CDATA[
+
+jQuery(function($) {
+
+var islider={config:{elements:".itemslider-responsive",columnCount:5,maxBreakpoint:960,breakpoints:[[1680,3],[1440,2],[1360,1],[1280,1],[960,0],[768,-1],[640,-2],[480,-3],[320,-5]]},init:function(a){$.extend(islider.config,a)},onResize_recalculateAllSliders:function(){return islider.recalculateAllSliders(),!1},recalculateAllSliders:function(){$(islider.config.elements).each(function(){null!=$(this).data("flexslider")&&islider.recalcElement($(this))})},recalcElement:function(a){var b,c=a.data("breakpoints");if(c)b=islider.getMaxItems_CustomBreakpoints(c);else{var d=a.data("showItems");void 0===d&&(d=islider.config.columnCount),b=islider.getMaxItems(d)}a.data("flexslider").setOpts({minItems:b,maxItems:b})},getMaxItems_CustomBreakpoints:function(a){if(infortisTheme.viewportW)var b=infortisTheme.viewportW;else var b=$(window).width();var c=islider.config.maxBreakpoint;"undefined"!=typeof infortisTheme&&infortisTheme.maxBreak&&(c=infortisTheme.maxBreak);for(var d,e=0;a.length>e;e++){var f=parseInt(a[e][0],10),g=parseInt(a[e][1],10);if(d=g,c>=f&&b>=f)return d}return d},getMaxItems:function(a){var b=islider.config.breakpoints;if(infortisTheme.viewportW)var c=infortisTheme.viewportW;else var c=$(window).width();var d=islider.config.maxBreakpoint;"undefined"!=typeof infortisTheme&&infortisTheme.maxBreak&&(d=infortisTheme.maxBreak);for(var e,f=0;b.length>f;f++){var g=parseInt(b[f][0],10),h=parseInt(b[f][1],10);if(e=a+h,0>=e&&(e=1),d>=g&&c>=g)return e}return e}};
+	
+	if (typeof infortisTheme !== 'undefined' && infortisTheme.responsive)
+	{
+		islider.init( {elements: '.itemslider-responsive'} );
+		islider.recalculateAllSliders();
+		$(document).on("themeResize", islider.onResize_recalculateAllSliders );
+	}
+
+});
+
+//]]>
+</script>

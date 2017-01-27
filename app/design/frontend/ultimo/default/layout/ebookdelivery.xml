@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<checkout_onepage_index>
+		<reference name="head">
+			<action method="addCss"><stylesheet>css/ebookdelivery/options.css</stylesheet></action>
+			<action method="addJs"><script>ebookdelivery/amazonemail.js</script></action>
+		</reference>
+		<reference name="checkout.onepage">
+			<block type="ebookdelivery/onepage_ebookdelivery" name="checkout.onepage.ebookdelivery" as="ebookdelivery" after="checkout.onepage.billing" template="ebookdelivery/ebookdelivery.phtml">
+				<block type="ebookdelivery/onepage_ebookdelivery_options" name="checkout.onepage.ebookdelivery.options" as="ebookdeliveryoptions"/>
+			</block>		
+		</reference>
+	</checkout_onepage_index>
+
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<action method="addLink" translate="label" module="ebookdelivery"><name>ebookdelivery_devices</name><path>ebookdelivery/devices</path><label>My Devices</label></action>
+		</reference>
+	</customer_account>
+
+    <ebookdelivery_devices_index translate="label">
+        <label>My Devices</label>
+        <update handle="customer_account"/>
+		<reference name="head">
+			<action method="addCss"><stylesheet>css/ebookdelivery/options.css</stylesheet></action>
+		</reference>
+        <reference name="my.account.wrapper">
+            <block type="ebookdelivery/customer_account_devices" name="ebookdelivery_devices" template="ebookdelivery/customer/account/devices.phtml" />
+        </reference>
+        <reference name="root">
+            <action method="setHeaderTitle" translate="title" module="ebookdelivery"><title>My Devices</title></action>
+        </reference>
+    </ebookdelivery_devices_index>
+
+	<ebookdelivery_devices_add translate="label">
+		<label>Add New Device</label>
+		<update handle="customer_account"/>
+		<reference name="head">
+			<action method="addCss"><stylesheet>css/ebookdelivery/options.css</stylesheet></action>
+		</reference>
+		<reference name="my.account.wrapper">
+			<block type="ebookdelivery/customer_account_add" name="ebookdelivery_devices"
+				   template="ebookdelivery/customer/account/add.phtml">
+				<block type="ebookdelivery/devices" name="ebookdelivery_devices.ebookdelivery" as="devices"
+					   template="ebookdelivery/checkout/ebookdelivery.phtml">
+					<action method="setData">
+						<name>submit</name>
+						<value>true</value>
+					</action>
+				</block>
+			</block>
+		</reference>
+		<reference name="root">
+			<action method="setHeaderTitle" translate="title" module="ebookdelivery"><title>My Devices</title></action>
+		</reference>
+	</ebookdelivery_devices_add>
+</layout>

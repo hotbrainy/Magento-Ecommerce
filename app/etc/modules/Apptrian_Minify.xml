@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Apptrian
+ * @package   Apptrian_Minify
+ * @author    Apptrian
+ * @copyright Copyright (c) 2016 Apptrian (http://www.apptrian.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License
+ */
+-->
+<config>
+    <modules>
+        <Apptrian_Minify>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Core />
+                <Mage_Page />
+            </depends>
+        </Apptrian_Minify>
+    </modules>
+</config>

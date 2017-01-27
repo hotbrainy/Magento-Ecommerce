@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+-->
+<layout>
+    <publish_author_index translate="label" module="publish">
+        <label>Authors list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="publish/author_list" name="author_list" template="publish/author/list.phtml" />
+        </reference>
+    </publish_author_index>
+    
+    <publish_author_view translate="label" module="publish">
+        <label>Author view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="publish/author_view" name="author_view" template="publish/author/view.phtml">
+				<block type="publish/author_view_products" name="product_list" mode="grid" template="catalog/product/list.phtml" />
+			</block>
+        </reference>
+    </publish_author_view>
+    
+    <publish_author_rss translate="label" module="publish">
+        <label>Authors rss feed</label>
+        <block type="publish/author_rss" output="toHtml" name="publish.author.rss" />
+    </publish_author_rss>
+    
+    <rss_index_index>
+        <reference name="content">
+            <block type="publish/rss" name="publish.rss" template="publish/rss.phtml">
+                <action method="addFeed" ifconfig="publish/author/rss" translate="label" module="publish">
+                    <label>Author</label>
+                    <url helper="publish/author/getRssUrl" />
+                </action>
+            </block>
+        </reference>
+    </rss_index_index>
+    
+    <catalog_product_view>
+		<reference name="right">
+			<block type="publish/author_view" name="author_about" template="publish/author/about.phtml" before="-" />
+		</reference>
+    </catalog_product_view>
+</layout>

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+$goodreadsReview = Mage::registry("current_goodreads_review");
+?>
+<?php if ($oodreadsReview && $this->getReviewsCount()): ?>
+    <?php $reviewsData = $goodreadsReview->getReviewsData(); ?>
+    
+    <?php if ($this->getRatingSummary()):?>
+        <meta itemprop="ratingValue" content="<?php echo $goodreadsReview->getRatingSummary(); ?>" />
+        <meta itemprop="ratingCount" content="<?php echo $reviewsData["total"]; ?>" />
+        <meta itemprop="worstRating" content="0" />
+        <meta itemprop="bestRating" content="100" />
+        <span class="star rating-box">
+            <span class="rating" style="width:<?php echo $goodreadsReview->getRatingSummary(); ?>%"></span>
+        </span>
+    <?php endif;?>
+        <span>
+            <a id="goto-reviews" href="#customer-reviews"><?php echo $this->__('%d Reviews',$reviewsData["total"]) ?></a>
+        </span>
+    
+<?php elseif ($this->getDisplayIfEmpty()): ?>
+<!--        <span class="rating-links">-->
+<!--            <a id="goto-reviews-form" href="#review-form">--><?php //echo $this->__('Be the first to review this product') ?><!--</a>-->
+<!--        </span>-->
+<?php endif; ?>

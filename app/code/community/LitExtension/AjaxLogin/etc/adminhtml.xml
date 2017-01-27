@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ajaxlogin translate="title" module="ajaxlogin">
+                                        <title>Ajax Login</title>
+                                    </ajaxlogin>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <ajaxlogin>
+                        <title>Ajax Login</title>
+                        <children>
+                            <attributemanager>
+                                <title>Attributes</title>
+                            </attributemanager>
+                            <config>
+                                <title>Configuration</title>
+                            </config>
+                        </children>
+                    </ajaxlogin>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <ajaxlogin>
+            <title>Ajax Login</title>
+            <sort_order>70</sort_order>
+            <depends>
+                <module>LitExtension_AjaxLogin</module>
+            </depends>
+            <children>
+                <attributemanager translate="title" module="ajaxlogin">
+                    <title>Custom Attributes Manager</title>
+                    <sort_order>100</sort_order>
+                    <action>ajaxlogin/index/customer/filter/</action>
+                </attributemanager>
+                <config translate="title" module="ajaxlogin">
+                    <title>Configuration</title>
+                    <action>adminhtml/system_config/edit/section/ajaxlogin</action>
+                    <sort_order>200</sort_order>
+                </config>
+            </children>
+        </ajaxlogin>
+    </menu>
+</config>

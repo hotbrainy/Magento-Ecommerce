@@ -1,0 +1,412 @@
+/**
+ * Common styles for multiple elements
+ */
+
+
+
+/* Blocks and headings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Blocks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.sidebar .block:first-child { margin-top:6px; } /* To align with page title */
+.cms-index-index .sidebar .block:first-child { margin-top:0; } /* Remove margin on home page */
+
+ 
+/* Headings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Page Heading
+-------------------------------------------------------------- */
+.my-account .page-title,
+.category-title { border-bottom:1px solid #e5e5e5; }
+
+/* Block titles and section headings
+-------------------------------------------------------------- */
+/* Sidebar blocks */
+.block .block-title,
+
+/* Filters */
+.block-layered-nav .block-subtitle--filter,
+
+/* Section title */
+.section-title,
+
+/* Cart */
+.cart .crosssell h2,
+.cart .discount h2,
+.cart .shipping h2
+{
+	/* padding:13px 0 7px; */ /*TODO*/
+	padding-top:7px;
+	padding-bottom:7px;
+	border-bottom:1px solid #e5e5e5;
+	font-weight:normal;
+	font-size:1.5em; /*18px*/
+	line-height:1.2222em; /*22px*/
+}
+
+/* Secondary headings
+-------------------------------------------------------------- */
+/* Log in */
+.account-login h2,
+
+/* Checkout log in */
+#opc-login h3,
+
+/* Fieldset and multiple checkout */
+.fieldset .legend,
+.multiple-checkout .col2-set h2.legend,
+.info-set h2.legend
+{
+	padding-bottom:7px;
+	border-bottom:1px solid #e5e5e5;
+	font-weight:normal;
+	font-size:1.5em; /*18px*/
+	line-height:1.2222em; /*22px*/
+	margin-bottom:15px;
+}
+
+/* Account headings
+-------------------------------------------------------------- */
+/* Primary */
+.box-account .box-head h2,
+.order-items h2.table-caption,
+.order-items h2.sub-title,
+.order-items .order-comments h2 {}
+
+/* Secondary */
+.dashboard .box .box-title h3,
+.dashboard .box .box-title h4,
+.order-info-box h2 {}
+
+/* Other headings
+-------------------------------------------------------------- */
+/* Page title */
+.category-title,
+
+/* Account */
+.my-account .page-title,
+.box-account .box-head,
+.dashboard .box .box-title
+{
+	border-color:#e5e5e5;
+}
+
+
+
+/* Colors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Borders
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with horizontal border - standard
+-------------------------------------------------------------- */
+/* Blocks */
+.block .actions,
+
+/* CMS */
+.section-line,
+
+/* Misc */
+.buttons-set,
+.toolbar 
+{
+	border-color:#e5e5e5;
+}
+
+/* Elements with horizontal border - lighter
+-------------------------------------------------------------- */
+/* Product page - Add-to-cart area */
+.product-view .product-type-data,
+.product-view .product-type-data .price-box,
+.container1-wrapper,
+.container2-wrapper,
+.product-view .add-to-box,
+
+/* Product grid/list */
+.category-products-grid .item,
+.products-list li.item,
+
+/* Pop-ups */
+.remember-me-popup h3,
+.map-popup-heading
+{
+	border-color:#f5f5f5;
+}
+
+/* Elements with vertical border - standard
+-------------------------------------------------------------- */
+/* Ratings separator */
+.product-view .ratings .rating-links .separator,
+
+/* Product page */
+.custom-sidebar-right .inner,
+.custom-sidebar-left .inner
+{
+	border-color:#e5e5e5;
+}
+
+/* Elements with vertical border - lighter
+-------------------------------------------------------------- */
+/* Product grid/list */
+.products-list .product-shop-inner
+{
+	border-color:#f5f5f5;
+}
+
+/* Elements with darker border
+-------------------------------------------------------------- */
+/* Cart */
+.data-table thead,
+.cart-table thead tr,
+
+/* Availability */
+.availability-only-details thead
+{
+	border-color:#e5e5e5; /*Currently the same color as other borders*/
+}
+
+/* Other elements with border
+-------------------------------------------------------------- */
+.swatch-link {
+	border-color:#cccccc;
+}
+
+
+/* Background colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with light gray background
+-------------------------------------------------------------- */
+/* Product page - increaments */
+.extrahint-wrapper .product-pricing,
+
+/* Account */
+.addresses-list .addresses-primary .item,
+.order-info-box,
+
+/* Advanced search */
+.advanced-search-summary,
+
+/* Checkout */
+.opc .gift-messages-form
+{
+	background-color:#f5f5f5;
+}
+
+
+/* Text color
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Elements with lighter text
+-------------------------------------------------------------- */
+/* Product grid/list */
+.products-list .ratings,
+.products-grid .ratings,
+.products-list .ratings a,
+.products-grid .ratings a,
+
+/* Layered navigation count */
+.block-layered-nav dl dd ol > li > a .count,
+
+/* Breadcrumbs */
+.breadcrumbs li,
+.breadcrumbs a,
+
+/* Product page */
+.block-related-simple .related-add-to-wishlist,
+.block-related-thumbnails .related-add-to-wishlist,
+
+/* Availability */
+.availability,
+
+/* Reviews */
+.product-view .box-reviews dd .date,
+
+/* Product options */
+.item-options dd,
+.product-options p.note
+{
+	color:#aaa;
+}
+
+
+/* Forms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Product options form colors
+-------------------------------------------------------------- */
+.product-options dd select,
+.product-options dd .input-text,
+.product-options dd textarea,
+.product-options ul.options-list { color:#888; }
+.product-options dd select:hover,
+.product-options dd select:focus,
+.product-options dd textarea:hover,
+.product-options dd textarea:focus,
+.product-options ul.options-list:hover { color:#333; }
+
+
+
+/* Fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Price on product page and MSRP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.product-view .price-box .price,
+.map-popup-price .price,
+.map-popup-msrp .price { font-family:Verdana, Geneva, sans-serif; }
+
+
+
+/* Effects %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Shadows: for pop-ups, drop-downs etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Sticky header */
+.sticky-header .sticky-container,
+
+/* Dropdowns */
+.dropdown.open > .dropdown-heading.cover,
+.dropdown.open .dropdown-content,
+
+/* Mini cart options */
+.truncated .truncated_full_value .item-options,
+
+/* Menu dropdowns - to have the same style of shadow as other dropdowns */
+.nav-regular .nav-panel--dropdown,
+
+/* Search autocomplete */
+.form-search .search-autocomplete ul,
+
+/* Pop-ups */
+.remember-me-popup,
+.map-popup,
+#subscribe-form .input-box .validation-advice
+{
+	-moz-box-shadow:	0 3px 10px rgba(0,0,0, 0.15);
+	-webkit-box-shadow:	0 3px 10px rgba(0,0,0, 0.15);
+	box-shadow:			0 3px 10px rgba(0,0,0, 0.15);
+}
+
+
+/* Transitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* Links and other selected elements
+-------------------------------------------------------------- */
+/* IMPORTANT: link transitions should be placed before other transitions */
+a,
+.mobnav-trigger .trigger-icon .line,
+.opener,
+a > .ib,
+a.feature-icon-hover > .ib
+/*, .header-mobile .skip-link*/
+{
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+a:hover,
+.mobnav-trigger:hover .trigger-icon .line,
+.opener:hover,
+.nav-item > a:hover + .opener, /* Opener following a link in mobile menu */
+a:hover > .ib,
+a.feature-icon-hover:hover > .ib
+{
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}
+
+/* Carets - in menu
+-------------------------------------------------------------- */
+.nav-regular a > .caret {
+	transition:			border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+	-moz-transition:	border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+	-webkit-transition:	border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+	-o-transition:		border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+.nav-regular a:hover > .caret {
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}
+
+/* Carets - in dropdown-heading
+-------------------------------------------------------------- */
+/*.dropdown > .dropdown-heading .caret {
+	transition:			border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+	-moz-transition:	border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+	-webkit-transition:	border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+	-o-transition:		border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+}
+.dropdown.open > .dropdown-heading .caret {
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}*/
+
+/* Interface icons: toolbar icons, pager, prev/next slide etc.
+-------------------------------------------------------------- */
+.sorter .view-mode .grid,
+.sorter .view-mode .list,
+.sorter .sort-by .category-asc,
+.sorter .sort-by .category-desc,
+
+/* Add-to links */
+.add-to-links.addto-icons a,
+
+/* Scroll to top */
+#scroll-to-top
+{
+	transition:			background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+	-moz-transition:	background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+	-webkit-transition:	background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+	-o-transition:		background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+}
+
+/* Elements with animated color, background color and borders
+-------------------------------------------------------------- */
+/* Forms */
+input.input-text, select, textarea,
+.product-options ul.options-list,
+
+/* Search */
+.form-search .button,
+
+/* Product image thumbnails */
+.product-view .product-img-box .more-views .thumbnails li a,
+
+/* Product mini-lists */
+.mini-products-list .product-image,
+.cart .crosssell .product-image,
+
+/* Tabs & accordion */
+.gen-tabs .tabs a,
+.gen-tabs .acctab,
+
+/* OPC accordion */
+.opc .step-title
+{
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
+}

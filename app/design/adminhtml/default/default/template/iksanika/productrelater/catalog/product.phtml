@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2013 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+
+?>
+
+    <div class="content-header">
+        <table cellspacing="0">
+            <tr>
+                <td style="width:50%;"><h3 class="icon-head head-products"><?php echo $this->_headerText ?></h3></td>
+                <td class="a-right">
+                    <?php echo $this->getButtonsHtml() ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <?php echo $this->getStoreSwitcherHtml() ?>
+
+    <div>
+        <?php echo $this->getGridHtml() ?>
+    </div>

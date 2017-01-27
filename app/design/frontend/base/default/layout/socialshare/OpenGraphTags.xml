@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<block type="core/template" name="og_meta">
+				<action method="setTemplate">
+					<template>socialshare/head.phtml</template>
+				</action>
+			</block>
+		</reference>
+
+		<reference name="after_body_start">
+			<block type="core/template" name="og_meta">
+				<action method="setTemplate" ifconfig="opengraphtags/conf/active">
+					<template>socialshare/body.phtml</template>
+				</action>
+			</block>
+		</reference>
+
+	</default>
+</layout>

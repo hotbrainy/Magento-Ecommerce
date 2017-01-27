@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author		Infortis
+ * @copyright	Copyright (c) 2015 Infortis
+ */
+-->
+<config>
+	<modules>
+		<Infortis_Dataporter>
+			<version>1.0.0</version>
+		</Infortis_Dataporter>
+	</modules>
+	<global>
+		<blocks>
+			<dataporter>
+				<class>Infortis_Dataporter_Block</class>
+			</dataporter>
+		</blocks>
+		<helpers>
+			<dataporter>
+				<class>Infortis_Dataporter_Helper</class>
+			</dataporter>
+		</helpers>
+		<models>
+			<dataporter>
+				<class>Infortis_Dataporter_Model</class>
+			</dataporter>
+		</models>
+		<!--<resources>
+			<dataporter_setup>
+				<setup>
+					<module>Infortis_Dataporter</module>
+					<class>Infortis_Dataporter_Model_Resource_Mysql4_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</dataporter_setup>
+			<dataporter_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</dataporter_write>
+			<dataporter_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</dataporter_read>
+		</resources>-->
+	</global>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<dataporter after="Mage_Adminhtml">Infortis_Dataporter_Adminhtml</dataporter>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<!--<adminhtml>
+        <layout>
+            <updates>
+                <dataporter>
+                    <file>infortis_dataporter.xml</file>
+                </dataporter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Infortis_Dataporter>
+                    <files>
+                        <default>Infortis_Dataporter.csv</default>
+                    </files>
+                </Infortis_Dataporter>
+            </modules>
+        </translate>
+	</adminhtml>-->
+</config>

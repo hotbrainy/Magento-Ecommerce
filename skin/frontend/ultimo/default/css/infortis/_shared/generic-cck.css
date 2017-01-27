@@ -1,0 +1,108 @@
+/**
+ * Theme Content Construction Kit
+ */
+
+
+
+/* Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Vertically centered content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.v-centered-content {
+	display:table;
+}
+.v-centered-content .v-center {
+	display:table-cell;
+	vertical-align:middle;
+}
+
+
+/* Heading of a content section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.section-title { clear:both; margin:0; display:block; }
+.section-title.padding-right { padding-right:80px !important; }
+
+/* Horizontal line */
+.section-line {
+	clear:both;
+	display:block;
+	font-size:0;
+	line-height:0;
+	height:0;
+	margin:0 0 10px;
+	padding:10px 0 0;
+	background:none;
+	border-bottom:1px solid #e5e5e5;
+	text-indent:-9999em;
+	overflow:hidden;
+}
+
+
+/* Custom sidebars
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.custom-sidebar-right { float:right !important; }
+.custom-sidebar-right .inner {
+	padding-left:10px;
+	border-left:1px solid #e5e5e5;
+}
+
+.custom-sidebar-left { float:left !important; }
+.custom-sidebar-left .inner {
+	padding-right:10px;
+	border-right:1px solid #e5e5e5;
+}
+
+
+
+/* Vertical links %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.links > li { line-height:36px; }
+.links > li > a { padding:0 0.5833em; } /* 0px 7px */
+.links > li.label { padding-right:0.5833em; } /* 7px */
+
+/* Basic links, no separators
+-------------------------------------------------------------- */
+.links > li { float:left; }
+.links > li > a { display:block; }
+
+/* Links with separators (at the right side)
+-------------------------------------------------------------- */
+.links-wrapper-separators .links > li { margin-left:-1px; }
+.links-wrapper-separators .links > li > a {
+	background-image:url(../../../images/img/link-separator.png);
+	background-position:right center;
+	background-repeat:no-repeat;
+}
+.links-wrapper-separators .links > li.last > a { background-image:none; }
+.links-wrapper-separators .links > li.hide-separator > a { background-image:none; }
+.links-wrapper-separators .links > li.separator-left > a { background-position:left center; }
+
+/* Links with separators (at the left side)
+-------------------------------------------------------------- */
+.links-wrapper-separators-left .links > li { margin-left:-1px; }
+.links-wrapper-separators-left .links > li > a {
+	background-image:url(../../../images/img/link-separator.png);
+	background-position:left center;
+	background-repeat:no-repeat;
+}
+.links-wrapper-separators-left .links > li.first > a { background-image:none; }
+.links-wrapper-separators-left .links > li.hide-separator > a { background-image:none; }
+.links-wrapper-separators-left .links > li.separator-right > a { background-position:right center; }
+
+
+
+
+/* Misc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Link with an arrow */
+a.go {
+	background:url(../../../images/infortis/_shared/cck/bullet.png) 97% 50% no-repeat;
+	padding-right:17px;
+	display:inline !important;
+}

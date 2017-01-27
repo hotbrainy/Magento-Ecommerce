@@ -1,0 +1,100 @@
+<?php
+$_coreHelper = $this->helper('core');
+$checkoutHelper = Mage::helper('onestepcheckout/checkout');
+?>
+
+<table class="onestepcheckout-summary">
+    <thead>
+        <tr>
+            <th class="name" colspan="2"><?php echo $this->__('Product'); ?></th>
+            <th class="qty"><?php echo $this->__('Qty'); ?></th>
+            <th></th>
+            <th class="total"><?php echo $this->__('Subtotal'); ?></th>
+        </tr>
+    </thead>
+    <?php foreach($this->getItems() as $item): ?>
+    <tr>
+        <td class="name">
+            <?php echo $item->getName(); ?>
+            <?php if($checkoutHelper->settings['show_custom_options']): ?>
+                <?php $options = $item->getProduct()->getTypeInstance(true)->getOrderOptions($item->getProduct()); ?>
+                <?php if(isset($options['options']) && count($options['options']) > 0): ?>
+                <ul class="onestepcheckout-custom-options">
+                <?php foreach($options['options'] as $option): ?>
+                    <li><b><?php echo $option['label'] . ':</b> ' . $option['value']; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+
+                <?php if($item->getProduct()->isConfigurable()): ?>
+
+                <?php
+                $configurable_options = $item->getProduct()->getTypeInstance(true)->getSelectedAttributesInfo($item->getProduct());
+                ?>
+
+                <?php if(is_array($configurable_options) && count($configurable_options) > 0): ?>
+                <ul class="onestepcheckout-custom-options">
+                <?php foreach($configurable_options as $option): ?>
+                    <li><b><?php echo $option['label']; ?>:</b> <?php echo $option['value']; ?></li>
+                <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+
+                <?php endif; ?>
+
+            <?php endif; ?>
+        </td>
+        <td class="editcart">
+            <a href="#" class="subsqty" name="substract">-</a>
+        </td>
+        <td class="qty" nowrap>
+                <input type="hidden" value="<?php echo $item->getQty(); ?>" id="qty_<?php echo $item->getId(); ?>" name="cart[<?php echo $item->getId(); ?>][qty]" class="qtyinput" size="1" />
+                <?php echo $item->getQty(); ?>
+        </td>
+        <td class="editcart wider" nowrap>
+            <a href="#" class="addsqty" name="add">+</a>
+        </td>
+        <td class="total">
+            <?php if($checkoutHelper->settings['display_tax_included']): ?>
+            <?php echo $this->helper('checkout')->formatPrice($this->helper('checkout')->getSubtotalInclTax($item)); ?>
+            <?php else: ?>
+            <?php echo $this->helper('checkout')->formatPrice($item->getRowTotal()); ?>
+            <?php endif; ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<table class="onestepcheckout-totals">
+    <?php echo $this->renderTotals(); ?>
+    <?php echo $this->renderTotals('footer'); ?>
+</table>
+<script type="text/javascript">
+//<![CDATA[
+var total = <?php echo $this->getGrandTotal();?>;
+if(payment.reloadcallback){
+    var url = '<?php echo $this->getUrl('onestepcheckout/ajax/paymentrefresh', array('_secure'=>true)); ?>';
+    paymentrefresh(url);
+    payment.countreload = 0;
+    payment.reloadcallback = false;
+}
+
+$$('a.subsqty, a.addsqty, a.removeqty').each(
+    function(e){
+        e.observe('click', function(e){
+            e.stop();
+            oscUpdateCart(e.element(), '<?php echo $this->getUrl('onestepcheckout/ajax/updatecart', array('_secure'=>true)); ?>', '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>' );
+        });
+    }
+);
+$$('input.qtyinput').each(
+    function(e){
+        e.observe('change', function(e){
+            e.stop();
+
+            oscUpdateCart(e.element(), '<?php echo $this->getUrl('onestepcheckout/ajax/updatecart', array('_secure'=>true)); ?>','<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>');
+        });
+    }
+);
+//]]>
+</script>

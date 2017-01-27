@@ -1,0 +1,26 @@
+<div class="entry-edit">
+    <form id="edit_form" name="edit_form" method="post" action="<?=$this->getUrl('*/*/post')?>">
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <h4 class="icon-head head-edit-form fieldset-legend"><?=$this->__('Export Customer Data')?></h4>
+        <fieldset id="my-fieldset" style="width: 656px;">
+            <table class="form-list">
+                <tr>
+                    <td class="label"><?=$this->__('Export CSV')?> <span class="required">*</span></td>
+                    <td class="input-ele">
+                    <select name="customerdata" class="required address-select validate-select" style="color: #000000 !important;font-weight: 100 !important;"><option></option><option value="CSV" style="color: #000000;">Export CSV</option></select>
+                    </td>
+                </tr>
+               
+                <tr>
+                	 <td class="label"></td>
+		            <td class="input-ele">
+		                <button onclick="editForm.submit()" class="scalable save" type="button"><span>Export</span></button>
+		            </td>
+		        </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+</script>

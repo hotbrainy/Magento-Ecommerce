@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <entangled_rewardpoints>
+        <label>Reward Points</label>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" template="entangled/rewardpoints/index.phtml" name="entangled.rewardpoints.index" as="rewardpoints_index">
+                <block type="core/text_list" name="content.wrapper" translate="label"/>
+            </block>
+        </reference>
+    </entangled_rewardpoints>
+
+    <entangled_rewardpoints_index_index translate="label">
+        <update handle="entangled_rewardpoints"/>
+        <reference name="content.wrapper">
+            <block type="core/template" template="entangled/rewardpoints/join.phtml" name="entangled.rewardpoints.join" as="rewardpoints_landing"/>
+        </reference>
+    </entangled_rewardpoints_index_index>
+
+    <entangled_rewardpoints_index_how translate="label">
+        <update handle="entangled_rewardpoints"/>
+        <reference name="content.wrapper">
+            <block type="core/template" template="entangled/rewardpoints/how.phtml" name="entangled.rewardpoints.how" as="rewardpoints_how"/>
+        </reference>
+    </entangled_rewardpoints_index_how>
+
+    <entangled_rewardpoints_index_benefits translate="label">
+        <update handle="entangled_rewardpoints"/>
+        <reference name="content.wrapper">
+            <block type="core/template" template="entangled/rewardpoints/benefits.phtml" name="entangled.rewardpoints.benefits" as="rewardpoints_benefits"/>
+        </reference>
+    </entangled_rewardpoints_index_benefits>
+
+    <entangled_rewardpoints_index_terms translate="label">
+        <update handle="entangled_rewardpoints"/>
+        <reference name="content.wrapper">
+            <block type="core/template" template="entangled/rewardpoints/terms.phtml" name="entangled.rewardpoints.terms" as="rewardpoints_terms"/>
+        </reference>
+    </entangled_rewardpoints_index_terms>
+</layout>

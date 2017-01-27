@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <downloadable_customer_products translate="label">
+        <reference name="downloadable_customer_products_list">
+            <block type="downloadable/customer_products_list" name="returns_modal" template="entangled/returns/customer/products/modal.phtml"/>
+        </reference>
+    </downloadable_customer_products>
+</layout>

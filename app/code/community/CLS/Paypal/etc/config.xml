@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * Classy Llama
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email to us at
+ * support+paypal@classyllama.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module
+ * to newer versions in the future. If you require customizations of this
+ * module for your needs, please write us at sales@classyllama.com.
+ *
+ * To report bugs or issues with this module, please email support+paypal@classyllama.com.
+ * 
+ * @category   CLS
+ * @package    Paypal
+ * @copyright  Copyright (c) 2014 Classy Llama Studios, LLC (http://www.classyllama.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <CLS_Paypal>
+            <version>1.1.12</version>
+        </CLS_Paypal>
+    </modules>
+
+    <global>
+        <blocks>
+            <cls_paypal>
+                <class>CLS_Paypal_Block</class>
+            </cls_paypal>
+
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create_customer>CLS_Paypal_Block_Adminhtml_Sales_Order_Create_Customer</sales_order_create_customer>
+                </rewrite>
+            </adminhtml>
+
+            <paypal>
+                <rewrite>
+                    <adminhtml_system_config_fieldset_location>CLS_Paypal_Block_Paypal_Adminhtml_System_Config_Fieldset_Location</adminhtml_system_config_fieldset_location>
+                </rewrite>
+            </paypal>
+        </blocks>
+
+        <models>
+            <cls_paypal>
+                <class>CLS_Paypal_Model</class>
+                <resourceModel>cls_paypal_resource</resourceModel>
+            </cls_paypal>
+
+            <cls_paypal_resource>
+                <class>CLS_Paypal_Model_Resource</class>
+                <entities>
+                    <customerstored>
+                        <table>cls_paypal_customer_stored</table>
+                    </customerstored>
+                </entities>
+            </cls_paypal_resource>
+
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create>CLS_Paypal_Model_Adminhtml_Sales_Order_Create</sales_order_create>
+                </rewrite>
+            </adminhtml>
+
+            <paypal>
+                <rewrite>
+                    <api_nvp>CLS_Paypal_Model_Paypal_Api_Nvp</api_nvp>
+                    <config>CLS_Paypal_Model_Paypal_Config</config>
+                    <express>CLS_Paypal_Model_Paypal_Express</express>
+                    <express_checkout>CLS_Paypal_Model_Paypal_Express_Checkout</express_checkout>
+                    <info>CLS_Paypal_Model_Paypal_Info</info>
+                    <direct>CLS_Paypal_Model_Paypal_Direct</direct>
+                    <payflowpro>CLS_Paypal_Model_Paypal_Payflowpro</payflowpro>
+                    <payflowlink>CLS_Paypal_Model_Paypal_Payflowlink</payflowlink>
+                    <payflowadvanced>CLS_Paypal_Model_Paypal_Payflowadvanced</payflowadvanced>
+                </rewrite>
+            </paypal>
+
+            <paypaluk>
+                <rewrite>
+                    <api_express_nvp>CLS_Paypal_Model_Paypaluk_Api_Express_Nvp</api_express_nvp>
+                    <api_nvp>CLS_Paypal_Model_Paypaluk_Api_Nvp</api_nvp><!-- Necessary for 1.13.0 and below, when this model was also used for Express -->
+                    <express>CLS_Paypal_Model_Paypaluk_Express</express>
+                    <express_checkout>CLS_Paypal_Model_Paypaluk_Express_Checkout</express_checkout>
+                </rewrite>
+            </paypaluk>
+        </models>
+
+        <helpers>
+            <cls_paypal>
+                <class>CLS_Paypal_Helper</class>
+            </cls_paypal>
+
+            <paypal>
+                <rewrite>
+                    <data>CLS_Paypal_Helper_Paypal_Data</data>
+                </rewrite>
+            </paypal>
+        </helpers>
+
+        <resources>
+            <cls_paypal_setup>
+                <setup>
+                    <module>CLS_Paypal</module>
+                </setup>
+            </cls_paypal_setup>
+        </resources>
+
+        <events>
+            <sales_quote_payment_import_data_before>
+                <observers>
+                    <cls_paypal>
+                        <class>cls_paypal/observer</class>
+                        <method>salesQuotePaymentImportDataBefore</method>
+                    </cls_paypal>
+                </observers>
+            </sales_quote_payment_import_data_before>
+
+            <payment_info_block_prepare_specific_information>
+                <observers>
+                    <cls_paypal>
+                        <type>model</type>
+                        <class>cls_paypal/observer</class>
+                        <method>paymentInfoBlockPrepareSpecificInformation</method>
+                    </cls_paypal>
+                </observers>
+            </payment_info_block_prepare_specific_information>
+
+            <checkout_submit_all_after>
+                <observers>
+                    <cls_paypal>
+                        <class>cls_paypal/observer</class>
+                        <method>checkoutSubmitAllAfter</method>
+                    </cls_paypal>
+                </observers>
+            </checkout_submit_all_after>
+        </events>
+
+        <fieldsets>
+            <sales_convert_quote_payment>
+                <!-- this is not a database field, won't exist to be converted in a front-end payment method, and only converts in a single execution context -->
+                <billing_agreement_id>
+                    <to_order_payment>*</to_order_payment>
+                </billing_agreement_id>
+                <stored_card_id>
+                    <to_order_payment>*</to_order_payment>
+                </stored_card_id>
+            </sales_convert_quote_payment>
+        </fieldsets>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <cls_paypal module="CLS_Paypal">
+                    <file>cls_paypal.xml</file>
+                </cls_paypal>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <CLS_Paypal>
+                    <files>
+                        <default>CLS_Paypal.csv</default>
+                    </files>
+                </CLS_Paypal>
+            </modules>
+        </translate>
+
+        <routers>
+            <paypal>
+                <args>
+                    <modules>
+                        <cls_paypal before="Mage_Paypal">CLS_Paypal_Paypal</cls_paypal>
+                    </modules>
+                </args>
+            </paypal>
+            <paypaluk>
+                <args>
+                    <modules>
+                        <cls_paypaluk before="Mage_PaypalUk">CLS_Paypal_PaypalUk</cls_paypaluk>
+                    </modules>
+                </args>
+            </paypaluk>
+            <customer>
+                <args>
+                    <modules>
+                        <cls_paypal before="Mage_Customer">CLS_Paypal_Customer</cls_paypal>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <cls_paypal>
+                    <file>cls_paypal.xml</file>
+                </cls_paypal>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <CLS_Paypal>
+                    <files>
+                        <default>CLS_Paypal.csv</default>
+                    </files>
+                </CLS_Paypal>
+            </modules>
+        </translate>
+
+        <events>
+            <controller_action_predispatch_adminhtml_sales_order_create_loadBlock>
+                <observers>
+                    <cls_paypal>
+                        <class>cls_paypal/observer</class>
+                        <method>adminCheckGuestOrder</method>
+                    </cls_paypal>
+                </observers>
+            </controller_action_predispatch_adminhtml_sales_order_create_loadBlock>
+
+            <sales_quote_save_after>
+                <observers>
+                    <cls_paypal>
+                        <class>cls_paypal/observer</class>
+                        <method>adminQuoteFlagGuestAddress</method>
+                    </cls_paypal>
+                </observers>
+            </sales_quote_save_after>
+        </events>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <cls_paypal before="Mage_Adminhtml">CLS_Paypal_Adminhtml</cls_paypal>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <default>
+        <payment>
+            <paypaluk_express>
+                <allow_ba_signup>never</allow_ba_signup>
+            </paypaluk_express>
+
+            <paypaluk_billing_agreement>
+                <active>0</active>
+                <allow_billing_agreement_wizard>1</allow_billing_agreement_wizard>
+                <model>cls_paypal/paypaluk_method_agreement</model>
+                <title>PayPal Billing Agreement</title>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </paypaluk_billing_agreement>
+
+            <paypal_orderstored_agreement>
+                <active>0</active>
+                <allow_billing_agreement_wizard>0</allow_billing_agreement_wizard>
+                <model>cls_paypal/paypal_method_orderstored_agreement</model>
+                <title>Billing Agreement Used on Previous Order</title>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </paypal_orderstored_agreement>
+
+            <paypaluk_orderstored_agreement>
+                <active>0</active>
+                <allow_billing_agreement_wizard>0</allow_billing_agreement_wizard>
+                <model>cls_paypal/paypaluk_method_orderstored_agreement</model>
+                <title>Billing Agreement Used on Previous Order</title>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </paypaluk_orderstored_agreement>
+
+            <payflow_advanced_customerstored>
+                <model>cls_paypal/paypal_stored_customerstored_payflowadvanced</model>
+                <active>0</active>
+                <title>Saved Credit Card</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </payflow_advanced_customerstored>
+
+            <verisign_customerstored>
+                <model>cls_paypal/paypal_stored_customerstored_payflowpro</model>
+                <active>0</active>
+                <title>Saved Credit Card</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </verisign_customerstored>
+
+            <paypal_direct_customerstored>
+                <model>cls_paypal/paypal_stored_customerstored_direct</model>
+                <active>0</active>
+                <title>Saved Credit Card</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </paypal_direct_customerstored>
+
+            <payflow_link_customerstored>
+                <model>cls_paypal/paypal_stored_customerstored_payflowlink</model>
+                <active>0</active>
+                <title>Saved Credit Card</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </payflow_link_customerstored>
+
+            <payflow_advanced_orderstored>
+                <model>cls_paypal/paypal_stored_orderstored_payflowadvanced</model>
+                <active>0</active>
+                <title>Credit Card Used on Previous Order</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </payflow_advanced_orderstored>
+
+            <verisign_orderstored>
+                <model>cls_paypal/paypal_stored_orderstored_payflowpro</model>
+                <active>0</active>
+                <title>Credit Card Used on Previous Order</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </verisign_orderstored>
+
+            <paypal_direct_orderstored>
+                <model>cls_paypal/paypal_stored_orderstored_direct</model>
+                <active>0</active>
+                <title>Credit Card Used on Previous Order</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </paypal_direct_orderstored>
+
+            <payflow_link_orderstored>
+                <model>cls_paypal/paypal_stored_orderstored_payflowlink</model>
+                <active>0</active>
+                <title>Credit Card Used on Previous Order</title>
+                <payment_action>Authorization</payment_action>
+                <allowspecific>0</allowspecific>
+                <group>paypal</group>
+                <verify_peer>1</verify_peer>
+            </payflow_link_orderstored>
+
+        </payment>
+    </default>
+</config>

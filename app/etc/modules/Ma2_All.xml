@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Ma2_All>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Ma2_All>
+  </modules>
+</config>

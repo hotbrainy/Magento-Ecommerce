@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magestore_Magenotification>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magestore_Magenotification>
+    </modules>
+</config> 

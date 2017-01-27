@@ -1,0 +1,218 @@
+<?php
+/**
+ * Related products slider
+ */
+?>
+<?php if($_collectionSize = $this->getItems()->getSize()): ?>
+<?php
+    $_productCollection = $this->getItems();
+    $theme = $this->helper('ultimo');
+    $helpImg = $this->helper('infortis/image');
+    $sliderClasses = '';
+    $gridClasses = '';
+    
+    $sliderId = "itemslider-related";
+
+    //Slider parameters
+    //--------------------------------------------------------------
+
+    //Responsive mode on/off
+    $isResponsive = true;
+
+    //Assign number of items in a row to specific viewport width
+    $breakpoints = $theme->getCfg('product_page/related_breakpoints');
+    if (empty($breakpoints)) //Param not set
+    {
+        $breakpoints = '[0, 1], [320, 2], [480, 3], [768, 1]'; //Set default breakpoints
+    }
+
+    //Pagination on/off
+    $pagination = false;
+
+    //Default image size
+    $imgWidth = 196;
+    $imgHeight = 196;
+    
+        //Image aspect ratio
+        if ($theme->getCfg('category/aspect_ratio'))
+        {
+            $imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+        }
+
+    //Slider timeout. Set to enable automatic scrolling.
+    $timeout = intval($theme->getCfg('product_page/related_timeout'));
+
+    //Number of items that should move on scrolling
+    $move = 0;
+
+    //If set, slider will loop
+    $loop = $theme->getCfg('product_slider/loop');
+
+    //Speed (arrows / touch swipe)
+    $speed = intval($theme->getCfg('product_slider/speed'));
+
+    //Speed (automatic scrolling / pagination)
+    $autoSpeed = intval($theme->getCfg('product_slider/auto_speed'));
+
+    //Pause slider on mouse hover
+    $pause = $theme->getCfg('product_slider/pause');
+
+    //Lazy loading
+    $lazy = $theme->getCfg('product_slider/lazy');
+
+    //Slider classes
+    //--------------------------------------------------------------
+    
+    if ($_collectionSize == 1)
+    {
+        $sliderClasses .= ' single-item';
+    }
+
+    //Product grid classes
+    //--------------------------------------------------------------
+
+    //Align elements to the center
+    if ($theme->getCfg('category_grid/centered'))
+    {
+        $gridClasses .= ' centered';
+    }
+?>
+<div class="block block-related block-related-slider">
+    <h3 class="section-title padding-right"><?php echo $this->__('Related Products'); ?></h3>
+    <div class="itemslider-wrapper itemslider-related-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
+        <div id="<?php echo $sliderId; ?>" class="itemslider <?php if($sliderClasses) echo $sliderClasses; ?> products-grid<?php if($gridClasses) echo $gridClasses; ?>">
+        <?php foreach ($_productCollection as $_item): ?>
+            <div class="item">
+                <a href="<?php echo $_item->getProductUrl(); ?>" title="<?php echo $this->escapeHtml($_item->getName()); ?>" class="product-image">
+
+                    <?php if ($lazy): ?>
+                        <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_item, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_item->getName()); ?>" />
+                    <?php else: ?>
+                        <img src="<?php echo $helpImg->getImg($_item, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_item->getName()); ?>" />
+                    <?php endif; ?>
+
+                </a>
+                <h3 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>"><?php echo $this->escapeHtml($_item->getName()); ?></a></h3>
+                
+                <?php if ($theme->getCfg('magento_blocks/related_products_checkbox')): ?>
+                    <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+                        <?php if (!$_item->getRequiredOptions()): ?>
+                        <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                
+                <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                
+                <?php if ($this->helper('wishlist')->isAllow()): ?>
+                    <div class="addto-texticons">
+                        <a class="related-add-to-wishlist" href="<?php echo $this->getAddToWishlistUrl($_item); ?>" title="<?php echo $this->__('Add to Wishlist') ?>"><?php echo $this->__('Add to Wishlist') ?></a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+        </div> <!-- end: itemslider -->
+    </div> <!-- end: itemslider-wrapper -->
+    <script type="text/javascript">
+    //<![CDATA[
+        jQuery(function($) {
+
+            var owl = $('#<?php echo $sliderId; ?>');
+            owl.owlCarousel({
+
+            <?php if ($lazy): ?>
+                lazyLoad: true,
+            <?php endif; ?>
+
+            <?php if(!$isResponsive): ?>
+                responsive: false,
+                items: <?php echo $showItems; ?>,
+            <?php else: ?>
+                itemsCustom: [ <?php echo $breakpoints; ?> ],
+                responsiveRefreshRate: 50,
+            <?php endif; ?>
+
+            <?php if ($speed): ?>
+                slideSpeed: <?php echo $speed; ?>,
+            <?php endif; ?>
+
+            <?php if ($autoSpeed): ?>
+                paginationSpeed: <?php echo $autoSpeed; ?>,
+            <?php endif; ?>
+
+            <?php if ($move !== 1): ?>
+                scrollPerPage: true,
+            <?php endif; ?>
+
+            <?php if ($timeout): ?>
+                autoPlay: <?php echo $timeout; ?>,
+            <?php endif; ?>
+
+            <?php if ($pause): ?>
+                stopOnHover: true,
+            <?php endif; ?>
+
+            <?php if ($loop): ?>
+                rewindNav: true,
+                rewindSpeed: 600,
+            <?php else: ?>
+                rewindNav: false,
+            <?php endif; ?>
+
+            <?php if ($pagination): ?>
+                pagination: true,
+            <?php else: ?>
+                pagination: false,
+            <?php endif; ?>
+
+                navigation: true,
+                navigationText: false
+
+            }); //end: owl
+
+        });
+    //]]>
+    </script>
+
+    <?php if ($theme->getCfg('magento_blocks/related_products_checkbox')): ?>
+        <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+        <script type="text/javascript">
+        //<![CDATA[
+            $$('.related-checkbox').each(function(elem){
+                Event.observe(elem, 'click', addRelatedToProduct)
+            });
+        
+            var relatedProductsCheckFlag = false;
+            function selectAllRelated(txt){
+                if (relatedProductsCheckFlag == false) {
+                    $$('.related-checkbox').each(function(elem){
+                        elem.checked = true;
+                    });
+                    relatedProductsCheckFlag = true;
+                    txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('unselect all')) ?>";
+                } else {
+                    $$('.related-checkbox').each(function(elem){
+                        elem.checked = false;
+                    });
+                    relatedProductsCheckFlag = false;
+                    txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('select all')) ?>";
+                }
+                addRelatedToProduct();
+            }
+        
+            function addRelatedToProduct(){
+                var checkboxes = $$('.related-checkbox');
+                var values = [];
+                for(var i=0;i<checkboxes.length;i++){
+                    if(checkboxes[i].checked) values.push(checkboxes[i].value);
+                }
+                if($('related-products-field')){
+                    $('related-products-field').value = values.join(',');
+                }
+            }
+        //]]>
+        </script>
+    <?php endif; ?>
+
+</div> <!-- end: block -->
+<?php endif; ?>

@@ -1,0 +1,65 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_All
+ * @copyright  Copyright (c) 2009-2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<form method="post" action="<?php echo $this->getUrl('adminhtml/system_config/save', array('section' => 'awall'))?>"
+      id="aw_firstrun">
+    <table class="form-list" cellspacing="0">
+        <colgroup class="label"/>
+        <colgroup class="value"/>
+        <tbody>
+
+        <tr>
+            <td class="label">
+                <label for="interests"><?php echo $this->__('I wish to be informed about')?>:</label>
+            </td>
+            <td class="value">
+
+                <input type="hidden" value="" name="groups[feed][fields][interests][value]">
+                <select name="groups[feed][fields][interests][value][]" style="width:214px" size="6" multiple="multiple"
+                        id="interests" class="select multiselect">
+                    <?php foreach (Mage::getModel('awall/source_updates_type')->getGridOptions() as $k => $v): ?>
+                    <option selected="selected" value="<?php echo $k?>"><?php echo $this->__($v)?></option>
+                    <?php endforeach;?>
+                </select><br/>
+                <a href="#"
+                   onclick="$$('#interests option').each(function(el){el.selected=1});return false;"><?php echo $this->__("Select all")?></a>
+                /
+                <a href="#"
+                   onclick="$('interests').selectedIndex = -1;return false;"><?php echo $this->__("Deselect all")?></a>
+            </td>
+        </tr>
+        <tr>
+            <td class="label"></td>
+            <td class="value">
+                <button id="aw-save-button" class="scalable save" style="" onclick="saveCloseMessagePopupWindow()"
+                        type="button">
+                    <span id="aw-save-button-content"> <?php echo $this->__('Save &amp; Close')?></span>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <div style="width:365px">
+                    <small><?php echo $this->__("This message appears only once. At any time you can change these preferences
+					from System > Configuration > aheadWorks extensions > Info. <br/><a href=\"%s\">Visit it now</a>",
+                                                Mage::getModel('adminhtml/url')->getUrl('adminhtml/system_config/edit', array('section' => 'awall')))?></small>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>

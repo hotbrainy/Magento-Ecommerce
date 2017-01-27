@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ * Loyalty Booster Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_CustomerCredit
+ * @copyright  Copyright (c) 2016 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <modules>
+        <MageWorx_CustomerCredit>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <MageWorx_All />
+            </depends>
+            <extension_name>Loyalty Booster</extension_name>
+        </MageWorx_CustomerCredit>
+    </modules>
+</config>

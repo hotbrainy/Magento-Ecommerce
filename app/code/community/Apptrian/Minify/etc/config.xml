@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Apptrian
+ * @package   Apptrian_Minify
+ * @author    Apptrian
+ * @copyright Copyright (c) 2016 Apptrian (http://www.apptrian.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License
+ */
+-->
+<config>
+    <modules>
+        <Apptrian_Minify>
+            <version>1.5.1</version>
+        </Apptrian_Minify>
+    </modules>
+    <global>
+        <helpers>
+            <apptrian_minify>
+                <class>Apptrian_Minify_Helper</class>
+            </apptrian_minify>
+        </helpers>
+        <models>
+            <apptrian_minify>
+                <class>Apptrian_Minify_Model</class>
+            </apptrian_minify>
+        </models>
+        <blocks>
+            <apptrian_minify>
+                <class>Apptrian_Minify_Block</class>
+            </apptrian_minify>
+        </blocks>
+        <resources>
+            <apptrian_minify_setup>
+                <setup>
+                    <module>Apptrian_Minify</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </apptrian_minify_setup>
+        </resources>
+    </global>
+    <default>
+        <apptrian_minify>
+            <minify_html>
+                <enabled>0</enabled>
+                <max_minification>0</max_minification>
+                <compatibility>0</compatibility>
+            </minify_html>
+            <minify_css_js>
+                <remove_comments>0</remove_comments>
+            </minify_css_js>
+        </apptrian_minify>
+    </default>
+    <frontend>
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <apptrian_minify_core_block_abstract_to_html_after>
+                        <class>apptrian_minify/observer</class>
+                        <method>minifyBlockHtml</method>
+                    </apptrian_minify_core_block_abstract_to_html_after>
+                </observers>
+            </core_block_abstract_to_html_after>
+            <controller_action_postdispatch>
+                <observers>
+                    <apptrian_minify_controller_action_postdispatch>
+                        <class>apptrian_minify/observer</class>
+                        <method>minifyPageHtml</method>
+                    </apptrian_minify_controller_action_postdispatch>
+                </observers>
+            </controller_action_postdispatch>
+        </events>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <apptrian_minify after="Mage_Adminhtml">Apptrian_Minify_Adminhtml</apptrian_minify>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <apptrian_info>
+                                            <title>Info</title>
+                                        </apptrian_info>
+                                        <apptrian_minify>
+                                            <title>Minify HTML CSS JS</title>
+                                        </apptrian_minify>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Apptrian_Minify>
+                    <files>
+                        <default>Apptrian_Minify.csv</default>
+                    </files>
+                </Apptrian_Minify>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>

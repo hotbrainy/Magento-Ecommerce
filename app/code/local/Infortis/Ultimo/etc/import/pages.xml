@@ -1,0 +1,1540 @@
+<root>
+   <pages>
+      <cms_block>
+         <title>ULTIMO Customer Service</title>
+         <identifier>customer-service</identifier>
+         <content><![CDATA[<div class="page-title grid12-12">
+	<h1>Customer Service</h1>
+</div>
+
+<div class="grid12-12">
+	<h3 style="margin-bottom: 20px; color: #999;">Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Lorem ipsum dolor sit amet.</h3>
+</div>
+<div class="clearer"></div>
+
+<div class="grid12-12">
+	<ul class="bullet">
+		<li><a href="#answer1">Shipping & Delivery</a></li>
+		<li><a href="#answer2">Privacy & Security</a></li>
+		<li><a href="#answer3">Returns & Replacements</a></li>
+		<li><a href="#answer4">Ordering</a></li>
+		<li><a href="#answer5">Payment, Pricing & Promotions</a></li>
+		<li><a href="#answer6">Viewing Orders</a></li>
+		<li><a href="#answer7">Updating Account Information</a></li>
+	</ul>
+</div>
+<div class="clearer"></div><br>
+
+
+<h2 id="answer1" class="grid12-12">Shipping & Delivery</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus ido pellentesque nisl. senectus et netus et Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo caretes lorte senectus et netus et.</p>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lot intecis, faucibus etri.</p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>Lorem ipsum dolor sit amet, orbi luctus. Duis lobortis. Nulla nec velit. Suspendisse Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lot intecis, faucibus etri.</p>
+	<p>Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus ido pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo caretes lorte.</p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+<h2 id="answer2" class="grid12-12">Privacy & Security</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus id massa. Pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo. </p>
+	<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Nunc et risus. Etiam a nibh. Phasellus dignissim metus eget nisi. Vestibulum sapien dolor, aliquet nec, porta ac, malesuada a, libero. Praesent feugiat purus eget est. Nulla facilisi. Vestibulum tincidunt sapien eu velit. Mauris purus. Maecenas eget mauris eu orci accumsan feugiat. Pellentesque eget velit. Nunc tincidunt.</p>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit.</p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper </p>
+	<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus.</p>
+	<p>Nunc et risus. Etiam a nibh. Phasellus dignissim metus eget nisi.</p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+<h2 id="answer3" class="grid12-12">Returns & Replacements</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus ido pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo caretes lorte.</p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lot intecis, faucibus etri.</p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+<h2 id="answer4" class="grid12-12">Ordering</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus.</p>
+	<p>Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus ido pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo caretes lorte.</p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede otis intecis, faucibus etri.</p>
+	<p>Nunc et risus. Etiam a nibh. Phasellus dignissim metus eget nisi.</p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+<h2 id="answer5" class="grid12-12">Payment, Pricing & Promotions</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Aenean sed nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus ido pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo caretes lorte.</p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>De lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lot intecis, faucibus etrisitissi.</p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+<h2 id="answer6" class="grid12-12">Viewing Orders</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta.</p>
+	<p>Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper </p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus.</p>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper </p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+<h2 id="answer7" class="grid12-12">Updating Account Information</h2>
+
+<div class="grid12-6 mobile-grid-half">
+	<p>Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus ido pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo caretes lorte.</p>
+	<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus.</p>
+</div>
+<div class="grid12-6 mobile-grid-half">
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lot intecis, faucibus etri.</p>
+	<p>Nunc et risus. Etiam a nibh. Phasellus dignissim metus eget nisi.</p>
+</div>
+<span class="section-line"></span>
+<br>
+
+
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page</title>
+         <identifier>ultimo-home-page</identifier>
+         <content><![CDATA[<br/>
+<br/>
+<br/>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xl">
+		<span class="ic ic-2x ic-paint ib ib-size-xl"></span>
+		<h6 class="above-heading">Customizable design</h6>
+		<h3>Unlimited Colors</h3>
+		<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xl">
+		<span class="ic ic-2x ic-smartphones ib ib-size-xl"></span>
+		<h6 class="above-heading">12-column grid</h6>
+		<h3>Responsive Layout</h3>
+		<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xl">
+		<span class="ic ic-2x ic-menu ib ib-size-xl"></span>
+		<h6 class="above-heading">Customizable drop-down menu</h6>
+		<h3>Mega Menu</h3>
+		<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content (images, text, HTML) to any category in the catalog...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+<br/>
+<br/>
+<br/>
+
+
+
+
+{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="15" product_count="12" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 6]" pagination="1" centered="1" hide_button="1" block_name="Our Featured Products"}}
+<br/>
+<br/>
+
+
+<div class="grid12-6 no-left-gutter">
+{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="23" product_count="8" breakpoints="[0, 1], [320, 2], [480, 3], [768, 2], [960, 2], [1280, 3]"  timeout="4000" centered="1" size="size-s" hide_button="0" block_name="Recommended Shoes"}}
+</div>
+<div class="grid12-6 no-right-gutter">
+{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="37" product_count="8" breakpoints="[0, 1], [320, 2], [480, 3], [768, 2], [960, 2], [1280, 3]" timeout="4000" centered="1" size="size-s" hide_button="0" block_name="Recommended Bags"}}
+</div>
+
+<div class="clearer"></div>
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+	<div class="grid-container page-banners">
+		<div class="grid12-4 no-left-gutter banner">
+
+			<img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/2a.png"}}" alt="Sample banner" />
+			<br/><br/>
+
+		</div>
+		<div class="grid12-4">
+
+			<div class="feature feature-icon-hover indent first">
+				<span class="ic ic-char ib" style="background-color: #ddd;">1</span>
+				<h4>Responsive Layout</h4>
+				<p>Ultimo can be displayed on any screen. <span class="hide-below-1280">It is based on fluid grid system lorem ipsum dolor sit.</span> <span class="hide-below-960">If screen is resized, layout will be automat...</span></p>
+			</div>
+			<div class="feature feature-icon-hover indent">
+				<span class="ic ic-char ib" style="background-color: #ddd;">2</span>
+				<h4>Responsive Layout</h4>
+				<p>Ultimo can be displayed on any screen. <span class="hide-below-1280">It is based on fluid grid system lorem ipsum dolor sit.</span> <span class="hide-below-960">If screen is resized, layout will be automat...</span></p>
+			</div>
+			<div class="feature feature-icon-hover indent last">
+				<span class="ic ic-char ib" style="background-color: #ddd;">3</span>
+				<h4>Responsive Layout</h4>
+				<p>Ultimo can be displayed on any screen. <span class="hide-below-1280">It is based on fluid grid system lorem ipsum dolor sit.</span> <span class="hide-below-960">If screen is resized, layout will be automat...</span></p>
+			</div>
+
+		</div>
+		<div class="grid12-4 no-right-gutter hide-below-768">
+
+			<div class="page-banners grid-container-spaced">
+				<div class="grid12-12 no-gutter banner fade-on-hover">
+					<a href="#">
+						<img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/3a.jpg"}}" alt="Sample banner" />
+					</a>
+				</div>
+				<div class="grid12-6 no-left-gutter banner fade-on-hover">
+					<a href="#">
+						<img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/3b.jpg"}}" alt="Sample banner" />
+					</a>
+				</div>
+				<div class="grid12-6 no-right-gutter banner fade-on-hover">
+					<a href="#">
+						<img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/3c.jpg"}}" alt="Sample banner" />
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+<br/>
+<br/>
+
+
+
+
+
+{{block type="catalog/product_new" template="catalog/product/new.phtml" products_count="10" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 6]" move="1" pagination="1" centered="1" hide_button="1" block_name="New in Store"}}
+<br/>
+<br/>
+
+
+
+
+<span class="section-title">Sample Custom Banners</span>
+<br />
+<div class="nested-container">
+
+	<!-- First banner has a link which adds a product to the cart (link was copied from product's button "Add to cart") -->
+	<div class="page-banners grid-container">
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/add/uenc/aHR0cDovL2xvY2FsaG9zdC5jb20vbTE3MDItMDF1bHRpbW8vZGVmYXVsdC8,/product/30/'}}" title="Click to add sample product to your cart">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1a.png"}}" alt="Add product to cart" />
+			</a>
+		</div>
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/'}}" title="Click to go to cart page">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1b.png"}}" alt="Go to Magento cart page" />
+			</a>
+		</div>
+		<div class="grid12-6 banner">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1c.png"}}" alt="Magento discount code" title="Use discount code/coupon on cart page" />
+		</div>
+	</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+
+
+
+
+{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" breakpoints="[0, 1], [320, 2], [480, 2], [768, 3], [960, 4], [1280, 5]" timeout="6000" move="1" pagination="1" block_name="Our Brands"}}
+<br/>
+<br/>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Ultimo - Responsive Magento Theme | Download</title>
+         <identifier>ultimo-responsive-magento-theme</identifier>
+         <content><![CDATA[Add custom content in: CMS > Pages]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 3</title>
+         <identifier>ultimo-home-page3</identifier>
+         <content><![CDATA[<span class="section-line"></span>
+<br/>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xl">
+		<span class="ic ic-2x ic-paint ib ib-size-xl"></span>
+		<h6 class="above-heading">Customizable design</h6>
+		<h3>Unlimited Colors</h3>
+		<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xl">
+		<span class="ic ic-2x ic-smartphones ib ib-size-xl"></span>
+		<h6 class="above-heading">12-column grid</h6>
+		<h3>Responsive Layout</h3>
+		<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover  indent indent-size-xl">
+		<span class="ic ic-2x ic-star ib ib-size-xl"></span>
+		<h6 class="above-heading">Content placeholders</h6>
+		<h3>50+ CMS blocks</h3>
+		<p>You can use content placeholders to display custom content in almost every part of the store. Import sample CMS blocks from the demo...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+
+
+
+
+
+<br/>
+<br/>
+{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="6" product_count="12" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 6]" centered="0" hide_button="1" block_name="Our Featured Products"}}
+
+{{block type="catalog/product_new" template="catalog/product/new.phtml" products_count="15" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 6]" move="1" pagination="1" centered="0" hide_button="1" block_name="New in Store"}}
+
+
+
+<span class="section-title">Sample Custom Banners</span>
+<br />
+
+	<!-- First banner has a link which adds a product to the cart (link was copied from product's button "Add to cart") -->
+	<div class="page-banners grid-container">
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/add/uenc/aHR0cDovL2xvY2FsaG9zdC5jb20vbTE3MDItMDF1bHRpbW8vZGVmYXVsdC8,/product/30/'}}" title="Click to add sample product to your cart">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1a.png"}}" alt="Add product to cart" />
+			</a>
+		</div>
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/'}}" title="Click to go to cart page">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1b.png"}}" alt="Go to Magento cart page" />
+			</a>
+		</div>
+		<div class="grid12-6 banner">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1c.png"}}" alt="Magento discount code" title="Use discount code/coupon on cart page" />
+		</div>
+	</div>
+
+
+
+
+
+<br/>
+<div class="grid12-3">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-lg ic-anchor ib"></span>
+		<h6 class="above-heading">Secondary Heading</h6>
+		<h3>Sample Heading</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit rory solare de equis.</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+
+</div>
+<div class="grid12-3">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-lg ic-gift ib"></span>
+		<h6 class="above-heading">Secondary Heading</h6>
+		<h3>Feature Title</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis.</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+
+</div>
+<div class="grid12-3 hide-below-768">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-lg ic-edit2 ib"></span>
+		<h6 class="above-heading">Secondary Heading</h6>
+		<h3>Sample Title</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis.</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+
+</div>
+<div class="grid12-3 hide-below-768">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-lg ic-alarm ib"></span>
+		<h6 class="above-heading">Secondary Heading</h6>
+		<h3>Feature Title</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis.</p>
+		<a href="http://themeforest.net/item/fortis-flexible-magento-theme/1744309?ref=infortis" class="go">Read more</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+
+
+
+
+
+<br/>
+<br/>
+{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" breakpoints="[0, 1], [320, 2], [480, 2], [768, 3], [960, 4], [1280, 5]" move="1" pagination="1" block_name="Product Brands"}}
+ ]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Typography | Ultimo - Responsive Magento Theme</title>
+         <identifier>typography</identifier>
+         <content><![CDATA[<div class="grid12-6">
+
+<span class="section-title">Sample of basic typography</span>
+<br/>
+
+<h1>H1 Heading</h1>
+<p>Lid est laborum et dolorum fuga. Et harum quidem rerum facilis est et expeditasi distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihilse impedit quo minus id quod amets untra dolor amet sad. Sed ut perspser iciatis unde omnis iste natus error sit voluptatem accusantium doloremque laste. Dolores sadips ipsums sits.</p>
+<div style="margin-top: 40px;"></div>
+<h2>H2 Heading</h2>
+<p>Lid est laborum et dolorum fuga. Et harum quidem rerum facilis est et expeditasi distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihilse impedit quo minus id quod amets untra dolor amet sad. Sed ut perspser iciatis unde omnis iste natus error sit voluptatem accusantium doloremque laste. Dolores sadips ipsums sits.</p>
+<div style="margin-top: 40px;"></div>
+<h3>H3 Heading</h3>
+<p>Lid est laborum et dolorum fuga. Et harum quidem rerum facilis est et expeditasi distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihilse impedit quo minus id quod amets untra dolor amet sad. Sed ut perspser iciatis unde omnis iste natus error sit voluptatem accusantium doloremque laste. Dolores sadips ipsums sits.</p>
+<div style="margin-top: 40px;"></div>
+<h4>H4 Heading</h4>
+<p>Lid est laborum et dolorum fuga. Et harum quidem rerum facilis est et expeditasi distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihilse impedit quo minus id quod amets untra dolor amet sad. Sed ut perspser iciatis unde omnis iste natus error sit voluptatem accusantium doloremque laste. Dolores sadips ipsums sits.</p>
+<div style="margin-top: 40px;"></div>
+<h5>H5 Heading</h5>
+<p>Lid est laborum et dolorum fuga. Et harum quidem rerum facilis est et expeditasi distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihilse impedit quo minus id quod amets untra dolor amet sad. Sed ut perspser iciatis unde omnis iste natus error sit voluptatem accusantium doloremque laste. Dolores sadips ipsums sits.</p>
+<div style="margin-top: 40px;"></div>
+<h6>H6 Heading</h6>
+<p>Lid est laborum et dolorum fuga. Et harum quidem rerum facilis est et expeditasi distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihilse impedit quo minus id quod amets untra dolor amet sad. Sed ut perspser iciatis unde omnis iste natus error sit voluptatem accusantium doloremque laste. Dolores sadips ipsums sits.</p>
+
+</div>
+<div class="grid12-6">
+
+	<span class="section-title">Paragraphs with icons</span>
+	<br/>
+
+	<div class="feature feature-icon-hover indent indent-size-l">
+		<span class="ic ic-lg ic-anchor ib ib-size-l"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Sample Heading</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+	<br/>
+	<div class="feature feature-icon-hover indent indent-size-l">
+		<span class="ic ic-lg ic-star ib ib-size-l"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Feature Title</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis. Nullam ornare enim nec justo bibendum lobortis. In eget metus. Lorem ipsum dolor sit consectetur, adipiscing elit</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+	<br/>
+	<div class="feature feature-icon-hover indent indent-size-l">
+		<span class="ic ic-lg ic-lastminute ib ib-size-l"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Sample Title</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis. Nullam ornare enim nec justo bibendum lobortis. In eget metus. Lorem ipsum dolor sit consectetur, adipiscing elit</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+	<br/>
+	<div class="feature feature-icon-hover indent indent-size-l">
+		<span class="ic ic-lg ic-heart-o ib ib-size-l"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Feature Title</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque quis. Nullam ornare enim nec justo bibendum lobortis. In eget metus. Lorem ipsum dolor sit consectetur, adipiscing elit</p>
+		<a href="#" class="go">Read more</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+
+
+
+<br/>
+<br/>
+<span class="section-title">Ordered  and unordered lists</span>
+<br/>
+
+<div class="grid12-3">
+
+	<ul class="bullet">
+		<li><a href="#">Sample Link</a></li>
+		<li><a href="#">Lectus vitae ligula tempus</a></li>
+		<li><a href="#">Vitae lorem ipsum dolor sit amet</a></li>
+		<li><a href="#">Sample lectus vitae ligula tempus</a></li>
+		<li><a href="#">Meat Our Best Partners</a></li>
+		<li><a href="#">Our Other Projects</a></li>
+		<li><a href="#">One Click To Join Us</a></li>
+		<li><a href="#">Follow Us On Twitter</a></li>
+		<li><a href="http://infortis-themes.com/">Magento Themes</a></li>
+	</ul>
+
+</div>
+<div class="grid12-3">
+
+	<ul class="disc">
+		<li><a href="#">Sample Link</a></li>
+		<li><a href="#">Lectus vitae ligula tempus</a></li>
+		<li><a href="#">Vitae lorem ipsum dolor sit amet</a></li>
+		<li><a href="#">Sample lectus vitae ligula tempus</a></li>
+		<li><a href="#">Meat Our Best Partners</a></li>
+		<li><a href="#">Our Other Projects</a></li>
+		<li><a href="#">One Click To Join Us</a></li>
+		<li><a href="#">Follow Us On Twitter</a></li>
+		<li><a href="http://infortis-themes.com/">Magento Themes</a></li>
+	</ul>
+
+</div>
+<div class="grid12-3">
+
+	<ul class="ic-ul">
+		<li><span class="ic ic-star ic-li"></span>Some text example</li>
+		<li><span class="ic ic-tag ic-li"></span>Lectus vitae ligula tempus</li>
+		<li><span class="ic ic-arrow-right ic-li"></span>Vitae lorem ipsum dolor sit amet</li>
+		<li><span class="ic ic-letter ic-li"></span>Sample lectus vitae ligula tempus</li>
+		<li><span class="ic ic-star ic-li"></span>Some text example</li>
+		<li><span class="ic ic-tag ic-li"></span>Lectus vitae ligula tempus</li>
+		<li><span class="ic ic-arrow-right ic-li"></span>Vitae lorem ipsum dolor sit amet</li>
+		<li><span class="ic ic-letter ic-li"></span>Sample lectus vitae ligula tempus</li>
+		<li><span class="ic ic-bell ic-li"></span>Our Other Projects</li>
+	</ul>
+
+</div>
+<div class="grid12-3">
+
+		<div class="feature indent first">
+			<span class="ic ic-char ib">A</span>
+			<p class="no-margin">Unlimited colors, dozens of customizable elements</p>
+		</div>
+		<div class="feature indent">
+			<span class="ic ic-char ib">B</span>
+			<p class="no-margin ">Customizable responsive layout based on fluid grid</p>
+		</div>
+		<div class="feature indent">
+			<span class="ic ic-char ib">C</span>
+			<p class="no-margin ">50+ placeholders to display custom content</p>
+		</div>
+		<div class="feature indent">
+			<span class="ic ic-char ib">D</span>
+			<p class="no-margin ">Create your custom sub-themes (variants)</p>
+		</div>
+
+</div>
+<div class="clearer"></div>
+
+
+
+<br/>
+<br/>
+<span class="section-title">System messages</span>
+<br/>
+
+<ul class="messages">
+
+	<li class="success-msg">
+		<ul><li><span>These are sample system messages displayed by Magento.</span></li></ul>
+	</li>
+	<li class="error-msg">
+		<ul><li><span>The maximum quantity allowed for purchase is 10.</span></li></ul>
+	</li>
+	<li class="notice-msg">
+		<ul><li><span>Please specify the product's option(s).</span></li></ul>
+	</li>
+	
+</ul>
+
+
+
+<br/>
+<br/>
+<span class="section-title">Paragraphs with icons</span>
+<br/>
+
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-3x ic-lightbulb ib ib-size-xxxl"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Block Heading Example</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-3x ic-microscope ib ib-size-xxxl"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Block Heading Example</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover">
+		<span class="left ic ic-3x ic-globe ib ib-size-xxxl"></span>
+		<h6 class="above-heading">The Secondary Heading</h6>
+		<h3>Block Heading Example</h3>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+		<p>Lorem ipsum dolor sit, consectetur adipiscing elit. Etiam neque velit, blandit sed scelerisque solare de equis. Nullam ornare enim nec justo biben lobortis. In eget metus. Lorem ipsum dolor sit consectetur...</p>
+	</div>
+
+</div>
+<div class="clearer"></div>
+
+
+
+<br />
+<br />
+<h3 class="section-title" id="banners">Sample Custom Banners</h3>
+<br />
+
+<p>Here you can see some examples of banners.<br />
+Banners can be placed on any CMS page, and in any CMS block. Each banner is a simple image inside a link.</p>
+<br />
+
+<div class="nested-container hide-below-1280">
+
+    <div class="page-banners grid-container">
+        <div class="grid12-6 banner">
+            <a href="{{store direct_url="#"}}" title="Replace this image with your own" class="fade-on-hover" >
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-6 banner">
+            <a href="{{store direct_url="#"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="nested-container hide-below-960">
+
+    <div class="page-banners grid-container">
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-4 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="nested-container hide-below-768">
+
+    <div class="page-banners grid-container">
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/11.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/11.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-6 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/03.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="nested-container">
+
+    <div class="page-banners grid-container">
+        <div class="grid12-3 banner hide-below-768">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-3 banner hide-below-480">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+       	</div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+        <div class="grid12-3 banner">
+            <a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+                <img src="{{media url="wysiwyg/infortis/ultimo/custom/banners/01.png"}}" alt="Sample banner" />
+            </a>
+        </div>
+    </div>
+
+</div>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 7</title>
+         <identifier>ultimo-home-page7</identifier>
+         <content><![CDATA[<span class="section-title">Featured Products</span>
+<br />
+{{block type='catalog/product_list' category_id='6' grid_column_count='3' hide_toolbar='1' template='catalog/product/list.phtml'}}
+<br/>
+<br/>]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 4</title>
+         <identifier>ultimo-home-page4</identifier>
+         <content><![CDATA[<div class="nested-container" style="margin-top: 2%;">
+
+	<!-- First banner has a link which adds a product to the cart (link was copied from product's button "Add to cart") -->
+	<div class="page-banners grid-container">
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/add/uenc/aHR0cDovL2xvY2FsaG9zdC5jb20vbTE3MDItMDF1bHRpbW8vZGVmYXVsdC8,/product/30/'}}" title="Click to add sample product to your cart">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1a.png"}}" alt="Add product to cart" />
+			</a>
+		</div>
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/'}}" title="Click to go to cart page">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1b.png"}}" alt="Go to Magento cart page" />
+			</a>
+		</div>
+		<div class="grid12-6 banner">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1c.png"}}" alt="Magento discount code" title="Use discount code/coupon on cart page" />
+		</div>
+	</div>
+
+</div>
+<span class="clearer"></span>
+
+
+
+
+
+<br/>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover centered">
+		<span class="ic ic-3x ic-paint ib ib-size-xxxl"></span>
+		<h6 class="above-heading">Customizable design</h6>
+		<h3>Unlimited Colors</h3>
+		<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover centered">
+		<span class="ic ic-3x ic-smartphones ib ib-size-xxxl"></span>
+		<h6 class="above-heading">12-column grid</h6>
+		<h3>Responsive Layout</h3>
+		<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover centered">
+		<span class="ic ic-3x ic-menu ib ib-size-xxxl"></span>
+		<h6 class="above-heading">Customizable drop-down menu</h6>
+		<h3>Mega Menu</h3>
+		<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content (images, text, HTML) to any category in the catalog...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+{{block type="catalog/product_new" template="catalog/product/new.phtml" products_count="10" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5]" size="size-s" move="1" pagination="1" centered="1" hide_button="1" block_name="New in Store"}}
+<br/>
+
+{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" pagination="1" block_name="Product Brands"}}
+<br/>
+
+{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="58" product_count="12" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5]" size="size-s" pagination="1" centered="1" hide_button="1" block_name="Our Featured Products"}}
+<br/>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 5</title>
+         <identifier>ultimo-home-page5</identifier>
+         <content><![CDATA[<br/>
+<br/>
+<br/>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover centered">
+		<span class="ic ic-3x ic-paint ib ib-size-xxxl"></span>
+		<h3>Unlimited Colors</h3>
+		<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover centered">
+		<span class="ic ic-3x ic-smartphones ib ib-size-xxxl"></span>
+		<h3>Responsive Layout</h3>
+		<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover centered">
+		<span class="ic ic-3x ic-menu ib ib-size-xxxl"></span>
+		<h3>Mega Menu</h3>
+		<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content (images, text, HTML) to any category in the catalog...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+<br/>
+<br/>
+<br/>
+
+
+
+
+<span class="section-title">Featured Products</span>
+<br />
+{{block type='catalog/product_list' category_id='6' grid_column_count='4' hide_toolbar='1' template='catalog/product/list.phtml'}}
+<br/>
+<br/>
+
+
+
+
+
+{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" timeout="5000" move="1" pagination="1" block_name="Product Brands"}}
+<br/>
+<br/>
+
+
+
+
+<span class="section-title">Sample Custom Banners</span>
+<br />
+<div class="nested-container">
+
+	<!-- First banner has a link which adds a product to the cart (link was copied from product's button "Add to cart") -->
+	<div class="page-banners grid-container">
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/add/uenc/aHR0cDovL2xvY2FsaG9zdC5jb20vbTE3MDItMDF1bHRpbW8vZGVmYXVsdC8,/product/30/'}}" title="Click to add sample product to your cart">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1a.png"}}" alt="Add product to cart" />
+			</a>
+		</div>
+		<div class="grid12-3 banner fade-on-hover hide-below-768">
+			<a href="{{store direct_url='checkout/cart/'}}" title="Click to go to cart page">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1b.png"}}" alt="Go to Magento cart page" />
+			</a>
+		</div>
+		<div class="grid12-6 banner">
+				<img class="fade-on-hover" src="{{media url="wysiwyg/infortis/ultimo/custom/banners/1c.png"}}" alt="Magento discount code" title="Use discount code/coupon on cart page" />
+		</div>
+	</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 6</title>
+         <identifier>ultimo-home-page6</identifier>
+         <content><![CDATA[<br/>
+<br/>
+<br/>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xxxl">
+		<span class="ic ic-3x ic-paint ib ib-size-xxxl ib-square"></span>
+		<h6 class="above-heading">Customizable design</h6>
+		<h3>Unlimited Colors</h3>
+		<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xxxl">
+		<span class="ic ic-3x ic-smartphones ib ib-size-xxxl ib-square"></span>
+		<h6 class="above-heading">12-column grid</h6>
+		<h3>Responsive Layout</h3>
+		<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="grid12-4">
+
+	<div class="feature feature-icon-hover indent indent-size-xxxl">
+		<span class="ic ic-3x ic-menu ib ib-size-xxxl ib-square"></span>
+		<h6 class="above-heading">Customizable drop-down menu</h6>
+		<h3>Mega Menu</h3>
+		<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content (images, text, HTML) to any category in the catalog...</p>
+		<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+	</div>
+
+</div>
+<div class="clearer"></div>
+<br/>
+<br/>
+<br/>
+
+
+
+
+{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="6" product_count="20" breakpoints="[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 6]" pagination="1" centered="1" hide_button="1" block_name="Recommended Products"}}
+<br/>
+<br/>
+
+
+{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" timeout="5000" move="1" pagination="1" block_name="Product Brands"}}
+<br/>
+<br/>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 2</title>
+         <identifier>ultimo-home-page2</identifier>
+         <content><![CDATA[<div style="background-color: #fbfbfb; margin-top: -20px;">
+	<div class="container">
+		<div class="inner-container">
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xxxl">
+					<span class="ic ic-2x ic-paint ib ib-size-xxxl"></span>
+					<h6 class="above-heading">Customizable design</h6>
+					<h3>Unlimited Colors</h3>
+					<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xxxl">
+					<span class="ic ic-2x ic-smartphones ib ib-size-xxxl"></span>
+					<h6 class="above-heading">12-column grid</h6>
+					<h3>Responsive Layout</h3>
+					<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xxxl">
+					<span class="ic ic-2x ic-menu ib ib-size-xxxl"></span>
+					<h6 class="above-heading">Customizable drop-down menu</h6>
+					<h3>Mega Menu</h3>
+					<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content to any category in the catalog...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="clearer"></div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container">
+	<div class="inner-container">
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+		{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="3" product_count="12"  breakpoints="[0, 1], [480, 2], [640, 3], [960, 4]" img_width="274" timeout="0" pagination="1" centered="1" hide_button="1" sort_by="name" sort_direction="ASC" block_name="Our Featured Products"}}
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+	</div>
+</div>
+
+
+
+<div style="background-color: #f5f5f5;">
+	<div class="container">
+		<div class="inner-container">
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h2>More features than you could wish for</h2>
+			<br/>
+			<p style="font-size: 16px; color: #999; line-height: 23px;">Ultimo is a premium Magento theme with advanced admin module. It’s extremely customizable, easy to use and fully responsive. Suitable for every type of store, optimized for SEO. Great as a starting point for your custom projects. You can change visual appearance of almost every element. No coding needed, all can be edited directly in admin panel. </p>
+
+			<br/>
+			<br/>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-paint" style="color:#fd517f;"></span>
+					<h3>Unlimited Colors</h3>
+					<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-smartphones" style="color:#fd517f;"></span>
+					<h3>Responsive Layout</h3>
+					<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-menu" style="color:#fd517f;"></span>
+					<h3>Mega Menu</h3>
+					<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content (images, text, HTML) to any category in the catalog...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+
+			<div class="clearer"></div>
+			<br/>
+			<br/>
+
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-microscope" style="color:#fd517f;"></span>
+					<h3>Font Icons</h3>
+					<p>Font icons give you more control over the visual appearance of the icons. Add anywhere you want and customize to your needs...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-lightbulb" style="color:#fd517f;"></span>
+					<h3>Easy to Customize</h3>
+					<p>Use as a starting point for your custom projects. Create multiple child themes (theme variants) with ease...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-anchor" style="color:#fd517f;"></span>
+					<h3>50+ CMS Blocks</h3>
+					<p>You can use content placeholders to display custom content in almost every part of the store. Import sample CMS blocks from the demo...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="clearer"></div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<div style="background: center center; background-image: url({{media url='wysiwyg/demo/infortis/ultimo/custom/pattern.jpg'}});">
+	<div class="container">
+		<div class="inner-container"  style="text-align: center;">
+
+			<div style="display: inline-block; padding:91px 0; color: #26525F;">
+
+					<h1 style="font-size: 40px;">Responsive Magento Theme</h1>
+					<h2 style="font-size: 20px;">Extremely Customizable</h2>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div style="background-color: #fafafa;">
+	<div class="container">
+		<div class="inner-container">
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h2>Our Product Brands</h2>
+			{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" breakpoints="[0, 1], [320, 2], [480, 2], [768, 3], [960, 4], [1280, 5]" timeout="6000" move="1" pagination="0"}}
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div style="background-color: #fff;">
+	<div class="container">
+		<div class="inner-container">
+
+			<div>
+
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<h2>Beautiful & Fully Customizable Design</h2>
+				<br/>
+				<p style="font-size: 16px; color: #999; line-height: 23px;">You can create any imaginable design or layout with Ultimo, and you don’t need to know absolutely anything about coding. All the options you could ever want are right there in our admin panel.</p>
+
+			</div>
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div class="nested-container">
+
+				<div class="page-banners grid-container">
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-01.png}}" alt="Sample banner" />
+						</a>
+					</div>
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-02.png}}" alt="Sample banner" />
+						</a>
+					</div>
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-03.png}}" alt="Sample banner" />
+						</a>
+					</div>
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-04.png}}" alt="Sample banner" />
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+      <cms_block>
+         <title>ULTIMO Home Page 8</title>
+         <identifier>ultimo-home-page8</identifier>
+         <content><![CDATA[<div class="container">
+	<div class="inner-container">
+
+		<br/>
+		<br/>
+
+		{{block type="ultraslideshow/slideshow" template="infortis/ultraslideshow/slideshow.phtml" slides="demo_slide_s8_1,demo_slide_s8_2,demo_slide_s8_3"}}
+
+		<br/>
+		<br/>
+		<br/>
+
+	</div>
+</div>
+
+
+
+<div style="background-color: #fbfbfb;">
+	<div class="container">
+		<div class="inner-container">
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xxxl">
+					<span class="ic ic-2x ic-paint square ib ib-size-xxxl"></span>
+					<h6 class="above-heading">Customizable design</h6>
+					<h3>Unlimited Colors</h3>
+					<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xxxl">
+					<span class="ic ic-2x ic-smartphones square ib ib-size-xxxl"></span>
+					<h6 class="above-heading">12-column grid</h6>
+					<h3>Responsive Layout</h3>
+					<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xxxl">
+					<span class="ic ic-2x ic-menu square ib ib-size-xxxl"></span>
+					<h6 class="above-heading">Customizable drop-down menu</h6>
+					<h3>Mega Menu</h3>
+					<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content to any category in the catalog...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="clearer"></div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container">
+	<div class="inner-container">
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+		<h2  style="text-align: center;">Our Products</h2>
+		{{block type="ultimo/product_list_featured" template="catalog/product/list_featured_slider.phtml" category_id="3" product_count="12"  breakpoints="[0, 1], [480, 2], [640, 3], [960, 4]" img_width="274" timeout="0" pagination="1" centered="1" hide_button="1" sort_by="name" sort_direction="DESC" block_name=""}}
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+	</div>
+</div>
+
+
+
+<div style="background-color: #f5f5f5;">
+	<div class="container">
+		<div class="inner-container">
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h2  style="text-align: center;">More features than you could wish for</h2>
+			<br/>
+			<p   style="text-align: center; font-size: 16px; color: #999; line-height: 23px;">Ultimo is a premium Magento theme with advanced admin module. It’s extremely customizable, easy to use and fully responsive. Suitable for every type of store, optimized for SEO. Great as a starting point for your custom projects. You can change visual appearance of almost every element. No coding needed, all can be edited directly in admin panel. </p>
+
+			<br/>
+			<br/>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-paint" style="color:#30a5ff;"></span>
+					<h3>Unlimited Colors</h3>
+					<p>You have never seen so many options! Change colors of dozens of elements, apply textures, upload background images...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-smartphones" style="color:#30a5ff;"></span>
+					<h3>Responsive Layout</h3>
+					<p>Ultimo can be displayed on any screen. It is based on fluid grid system. If screen is resized, layout will be automatically adjusted...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-menu" style="color:#30a5ff;"></span>
+					<h3>Mega Menu</h3>
+					<p>Two styles: wide mega menu or classic drop-down menu. You can add any custom content (images, text, HTML) to any category in the catalog...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+
+			<div class="clearer"></div>
+			<br/>
+			<br/>
+
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-microscope" style="color:#30a5ff;"></span>
+					<h3>Font Icons</h3>
+					<p>Font icons give you more control over the visual appearance of the icons. Add anywhere you want and customize to your needs...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-lightbulb" style="color:#30a5ff;"></span>
+					<h3>Easy to Customize</h3>
+					<p>Use as a starting point for your custom projects. Create multiple child themes (theme variants) with ease...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="grid12-4">
+
+				<div class="feature feature-icon-hover indent indent-size-xl">
+					<span class="ic ic-4x ic-anchor" style="color:#30a5ff;"></span>
+					<h3>50+ CMS Blocks</h3>
+					<p>You can use content placeholders to display custom content in almost every part of the store. Import sample CMS blocks from the demo...</p>
+					<a href="{{store url='ultimo-responsive-magento-theme'}}" class="go">See all features</a>
+				</div>
+
+			</div>
+			<div class="clearer"></div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<div style="background-color: #30A5FF; background: radial-gradient(ellipse at center, rgba(48,165,255,1) 0%, rgba(48,165,255,1) 41%, rgba(25,141,230,1) 100%);">
+	<div class="container">
+		<div class="inner-container"  style="text-align: center;">
+
+			<div style="display: inline-block; padding:100px 0; color: #DEF0FF;">
+
+					<span class="ic ic-3x ic-smartphones ib ib-hover ib-size-xxxl" style="background-color: rgba(31, 92, 137, 1); margin-bottom: 20px;"></span>
+					<h1 style="font-size: 40px;">Responsive Magento Theme</h1>
+					<h2 style="font-size: 20px;">Extremely Customizable</h2>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div style="background-color: #fafafa;">
+	<div class="container">
+		<div class="inner-container">
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h2  style="text-align: center;">Our Brands</h2>
+			{{block type="brands/brands" template="infortis/brands/brand_slider.phtml" breakpoints="[0, 1], [320, 2], [480, 2], [768, 3], [960, 4], [1280, 5]" timeout="6000" move="1" pagination="0"}}
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div style="background-color: #fff;">
+	<div class="container">
+		<div class="inner-container">
+
+			<div>
+
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<h2  style="text-align: center;">Beautiful & Fully Customizable Design</h2>
+				<br/>
+				<p   style="text-align: center; font-size: 16px; color: #999; line-height: 23px;">You can create any imaginable design or layout with Ultimo, and you don’t need to know absolutely anything about coding. All the options you could ever want are right there in our admin panel.</p>
+
+			</div>
+
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div class="nested-container">
+
+				<div class="page-banners grid-container">
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-01.png}}" alt="Sample banner" />
+						</a>
+					</div>
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-02.png}}" alt="Sample banner" />
+						</a>
+					</div>
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-03.png}}" alt="Sample banner" />
+						</a>
+					</div>
+					<div class="grid12-3 mobile-grid banner">
+						<a href="{{store direct_url="about-magento-demo-store"}}" title="Replace this image with your own">
+							<img src="{{media url="wysiwyg/infortis/ultimo/banners/square-04.png}}" alt="Sample banner" />
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+
+		</div>
+	</div>
+</div>
+]]></content>
+         <is_active>1</is_active>
+         <stores><item>0</item></stores>
+      </cms_block>
+   </pages>
+</root>

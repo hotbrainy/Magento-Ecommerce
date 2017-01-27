@@ -1,0 +1,42 @@
+<div class="banner-wrapper">
+    <div class="text-wrapper">
+        <h2><?php echo $this->__("Choose your Reward!") ?></h2>
+        <span class="reward-banner-desc" style="display: inline-block;"><?php echo $this->__("Whether you buy 4 books a month or 4 books a week, you deserve to be rewarded. Entangled has an easy ways to give you what you want — more Romance.") ?></span>
+        <h2><?php echo $this->__("Shop. Earn. Reward.") ?></h2>
+    </div>
+
+</div>
+<div class="stripe">
+    <span><?php echo $this->__("Two Ways To Join And Save!") ?></span>
+</div>
+<div class="join-options">
+    <div class="col-md-6 entangled-fan join">
+        <div class="join-wrapper">
+            <h3><?php echo $this->__("Entangled Fan") ?></h3>
+            <div class="benefits">
+                <ul>
+                    <li><?php echo $this->__("• Free to join!") ?></li>
+                    <li><?php echo $this->__("• 2000 bonus points at sign-up") ?></li>
+                    <li><?php echo $this->__("• Earn 100 points for every dollar spent") ?></li>
+                </ul>
+            </div>
+            <h2 class="pricing free"><?php echo $this->__("Free") ?></h2>
+            <a href="<?php echo Mage::getUrl('customer/account/create') ?>" class="button join-today"><?php echo $this->__("Join Today") ?></a>
+        </div>
+    </div>
+    <div class="col-md-6 entangled-fanatic join">
+        <div class="join-wrapper">
+            <h3><?php echo $this->__("Entangled Fanatic™") ?></h3>
+            <div class="benefits">
+                <span><?php echo $this->__("All the benefits of being a fan, plus:") ?></span>
+                <ul>
+                    <li><?php echo $this->__("• 10% off every purchase") ?></li>
+                    <li><?php echo $this->__("• Annual Birthday gift") ?></li>
+                    <li><?php echo $this->__("• Exclusive sales and promotions") ?></li>
+                </ul>
+            </div>
+            <h2 class="pricing"><?php echo $this->__("$20/year") ?></h2>
+            <a href="<?php echo Mage::getUrl('membership/index/membership') ?>" class="button join-today"><?php echo $this->__("Join Today") ?></a>
+        </div>
+    </div>
+</div>

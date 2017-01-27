@@ -1,0 +1,24 @@
+<tr>
+    <td class="label"></td>
+    <td class="value">
+        <button class="scalable delete" onclick="resetAllEDStatistics('<?php echo $this->getResetAllUrl(); ?>'); return false;" type="button">
+            <span><?php echo $this->getTitle() ?></span>
+        </button>
+    </td>
+</tr>
+<script  type="text/javascript">
+//<![CDATA[
+var resetAllEDStatistics = function(url) {
+    var loader_id = 'loading-mask';
+    if (confirm('<?php echo $this->__('Are you sure?'); ?>')){
+        new Ajax.Request(url + (url.match(new RegExp('\\?')) ? '&ajax=true' : '?ajax=true' ), {
+                    parameters: this.reloadParams || {},
+                    onCreate: function(obj) { Element.show(loader_id); },
+                    onFailure: function (){ alert('<?php echo $this->__('Statistics clean error'); ?>'); },
+                    onComplete: function (transport) { Element.hide(loader_id); },
+                    onSuccess: function(transport) { alert('<?php echo $this->__('Statistics has been cleared'); ?>'); }
+                });
+    }
+}
+//]]>
+</script>

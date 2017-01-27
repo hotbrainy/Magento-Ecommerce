@@ -1,0 +1,162 @@
+/**
+ * Social icons
+ * Deprecated since 1.10.0 in favor of font icons
+ */
+
+
+
+/* Contact icons
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Phone */
+.icon.i-telephone {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-7px -7px;
+}
+.icon.i-telephone-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-7px -57px;
+}
+
+/* Mobile */
+.icon.i-mobile {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-57px -7px;
+}
+.icon.i-mobile-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-57px -57px;
+}
+
+/* Skype */
+.icon.i-skype {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-107px -7px;
+}
+.icon.i-skype-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-107px -57px;
+}
+
+/* Letter */
+.icon.i-letter {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-157px -7px;
+}
+.icon.i-letter-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-157px -57px;
+}
+
+/* Location */
+.icon.i-location {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-207px -7px;
+}
+.icon.i-location-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-207px -57px;
+}
+
+
+/* Row 2
+-------------------------------------------------------------- */
+/* Twitter */
+.icon.i-twitter {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-7px -107px;
+}
+.icon.i-twitter-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-7px -157px;
+}
+
+/* Facebook */
+.icon.i-facebook {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-57px -107px;
+}
+.icon.i-facebook-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-57px -157px;
+}
+
+/* Google plus */
+.icon.i-googleplus {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-107px -107px;
+}
+.icon.i-googleplus-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-107px -157px;
+}
+
+/* Youtube */
+.icon.i-youtube {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-157px -107px;
+}
+.icon.i-youtube-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-157px -157px;
+}
+
+/* Vimeo */
+.icon.i-vimeo {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-207px -107px;
+}
+.icon.i-vimeo-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-207px -157px;
+}
+
+/* Wordpress */
+.icon.i-wordpress {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-257px -107px;
+}
+.icon.i-wordpress-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-257px -157px;
+}
+
+/* Pinterest */
+.icon.i-pinterest {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-307px -107px;
+}
+.icon.i-pinterest-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-307px -157px;
+}
+
+/* Linked in */
+.icon.i-linkedin {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-357px -107px;
+}
+.icon.i-linkedin-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-357px -157px;
+}
+
+/* Blogger */
+.icon.i-blogger {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-407px -107px;
+}
+.icon.i-blogger-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-407px -157px;
+}
+
+/* Envato */
+.icon.i-envato {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-457px -107px;
+}
+.icon.i-envato-w {
+	background-image:url(../images/sprite-icons-social.png);
+	background-position:-457px -157px;
+}

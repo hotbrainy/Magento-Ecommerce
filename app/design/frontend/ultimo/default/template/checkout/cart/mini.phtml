@@ -1,0 +1,111 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+?>
+<?php if ($this->getIsNeedToDisplaySideBar()): ?>
+<?php
+    $theme = $this->helper('ultimo');
+    $cartClasses = '';
+
+    $_cartQty = $this->getSummaryCount();
+    if (!$_cartQty) {
+        $cartClasses .= ' is-empty';
+    }
+    else {
+        $cartClasses .= ' is-not-empty';
+    }
+
+    $canApplyMsrp = $this->canApplyMsrp();
+?>
+<div class="mini-cart-overlay"></div>
+<div id="mini-cart-wrapper-regular">
+  <div id="mini-cart" class="mini-cart dropdown<?php echo $cartClasses; ?>">
+    <?php $_items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems(); ?>
+    <?php if (count($_items)): ?>
+    <div id="header-cart" class="mini-cart-content dropdown-content left-hand block block-cart skip-content skip-content--style">
+      <div class="cart_container" style="background: url(<?=$this->getSkinUrl('images/header-bg.jpg');?>) no-repeat; background-size:cover;">
+          <i class="fa fa-times close-cart" aria-hidden="true"></i>
+        <h2>My Cart</h2>
+        <div class="cart_details no_border">
+          <div class="cart_lft">
+              <span class="count"><?php echo $_cartQty ?></span>
+              <span><img src="<?php echo $this->getSkinUrl('images/cart-large.png'); ?>" alt="<?php echo $this->__("Cart icon") ?>"></span>
+          </div>
+          <div class="cart_rht">
+            <h5><?php echo $this->__('Subtotal') ?>: <span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+              <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()):?>
+              (<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+              <?php endif; ?>
+              </span></h5>
+            <h6><?php echo $this->__('Enjoy your <a href="%s" target="_blank">Risk-Free Read ™</a>','/return-policy') ?></h6>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+		<?php if($_cartQty && $this->isPossibleOnepageCheckout()):?>
+		<a href="<?php echo $this->getCheckoutUrl(); ?>" class="btn checkout_btn"><?php echo $this->__('proceed to checkout') ?></a>
+		<?php endif; ?></div>
+      <div class="living_holder">
+        <ol id="cart-sidebar" class="mini-products-list clearer">
+          <?php foreach($_items as $_item): ?>
+          <div class="living_container">
+            <div class="living_feild"> <?php echo $this->getItemHtml($_item) ?>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </ol>
+      </div>
+      <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    </div>
+    <?php else: ?>
+    <div id="header-cart" class="mini-cart-content dropdown-content left-hand block block block-cart skip-content skip-content--style">
+    
+    <div class="cart_container" style="background: url(<?=$this->getSkinUrl('images/header-bg.jpg');?>) no-repeat; background-size:cover;">
+      <span class="glyphicon glyphicon-remove-circle close-cart" aria-hidden="true"></span>
+        <h2>My cart</h2>
+        <div class="cart_details no_border">
+          <div class="block-content-inner" style="color:#fff; font-size:16px; text-align:center;">
+        <?php if ($tmpHtml = $this->getChildHtml('block_mini_cart_above_products')): ?>
+        <div class="block_mini_cart_above_products"><?php echo $tmpHtml; ?></div>
+        <?php endif; ?>
+        <div class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></div>
+      </div>
+          
+          <div class="clearfix"></div>
+        </div>
+		</div>
+        
+        
+      
+    </div>
+    <?php endif ?>
+  </div>
+</div>
+<?php endif;?>

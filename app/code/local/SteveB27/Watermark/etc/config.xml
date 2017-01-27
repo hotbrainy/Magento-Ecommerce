@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Watermark Downloadable Files
+ * 
+ * Add a watermark to downloadable files such as PDF files
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown, Alex Pelletier May 6, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>, Alex Pelletier
+ */
+-->
+<config>
+    <modules>
+        <SteveB27_Watermark>
+            <version>0.1.0</version>
+        </SteveB27_Watermark>
+    </modules>
+    <global>
+        <resources>
+            <watermark_setup>
+                <setup>
+                    <module>SteveB27_Watermark</module>
+                    <class>SteveB27_Watermark_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </watermark_setup>
+			<watermark_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</watermark_write>
+			<watermark_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</watermark_read>
+        </resources>
+        <blocks>
+            <watermark>
+                <class>SteveB27_Watermark_Block</class>
+            </watermark>
+        </blocks>
+        <helpers>
+            <watermark>
+                <class>SteveB27_Watermark_Helper</class>
+            </watermark>
+        </helpers>
+        <models>
+            <watermark>
+                <class>SteveB27_Watermark_Model</class>
+                <resourceModel>watermark_resource</resourceModel>
+            </watermark>
+            <watermark_resource>
+                <class>SteveB27_Watermark_Model_Resource</class>
+            </watermark_resource>
+        </models>
+
+		<rewrite>
+			<steveb27_watermark_download>
+				<from><![CDATA[#^/downloadable/download/#]]></from>
+				<to>/watermark/download/</to>
+			</steveb27_watermark_download>
+		</rewrite>
+    </global>
+    <frontend>
+		<routers>
+			<watermark>
+				<use>standard</use>
+				<args>
+					<module>SteveB27_Watermark</module>
+					<frontName>watermark</frontName>
+				</args>
+			</watermark>
+		</routers>
+	</frontend>
+</config>

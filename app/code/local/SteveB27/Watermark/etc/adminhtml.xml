@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Watermark Downloadable Files
+ * 
+ * Add a watermark to downloadable files such as PDF files
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown, Alex Pelletier May 6, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>, Alex Pelletier
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <watermark translate="title" module="watermark">
+                                        <title>Watermark</title>
+                                    </watermark>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+					<publish translate="title" module="watermark">
+						<title>Publishing</title>
+						<children>
+							<watermark translate="title" module="watermark">
+								<title>Watermark Settings</title>
+								<sort_order>10</sort_order>
+							</watermark>
+						</children>
+					</publish>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

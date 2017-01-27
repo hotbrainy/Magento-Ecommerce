@@ -1,0 +1,281 @@
+/**
+ * Main menu dropdown boxes
+ */
+
+
+
+/* Common %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* All levels
+-------------------------------------------------------------- */
+.nav-regular .nav-item { text-align: left; }
+.nav-regular .nav-item > a { display: block; text-decoration: none; }
+
+/* Level 1 only
+-------------------------------------------------------------- */
+.nav-regular li.level0 { float: left; }
+.nav-regular li.level0 > a { padding: 0 12px; } /*TODO:holders*/
+.nav-regular li.level0 > a > span { display: inline-block; white-space: nowrap; }
+
+/* Top-level item on hover: pull up the link above the dropdown */
+.nav-regular li.level0:hover > a {
+	z-index: 2001; /* One level above the dropdown */
+	position: relative;
+}
+
+/* Caret */
+.nav-regular li.level0 > a .caret { opacity: 0.3; }
+.nav-regular li.level0.active > a .caret { opacity: 1; }
+.nav-regular li.level0:hover > a .caret { opacity: 1; }
+
+
+/* Dropdowns
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+/* All levels
+-------------------------------------------------------------- */
+.nav-regular .nav-panel--dropdown {
+	display:none;
+	position:absolute;
+	top:0;
+	z-index:2000; /* Pull above top-level menu items */
+	background-color:#fff; /* To avoid transparent menu */
+
+	/* Uncomment below line to fix possible glitches during animation in webkit browsers */
+	/*-webkit-transform: translateZ(0);*/
+}
+
+/* Inner wrapper of the dropdown (for additional padding etc.)
+-------------------------------------------------------------- */
+#nav .nav-panel-inner { padding: 23px; } /* Required value in pixels to keep padding consistent in different dropdowns */
+#nav .nav-panel-inner:before,
+#nav .nav-panel-inner:after { display: table; line-height: 0; content: ""; }
+#nav .nav-panel-inner:after { clear: both; }
+
+
+/* Full width dropdown
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.nav-regular .nav-panel.full-width { width:100%; }
+.nav-regular .nav-panel.tmp-full-width { width:100% !important; } 
+.nav-regular .nav-panel.tmp-full-teen-width { width:50% !important; }/* Temporary class required by js */
+
+
+
+/* Mega dropdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Dropdown
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* All levels
+-------------------------------------------------------------- */
+.nav-regular .mega > .nav-panel--dropdown { margin:0; }
+
+/* Level 2+
+-------------------------------------------------------------- */
+.nav-regular .nav-panel li.mega { position: relative; } /* Container of the dropdown has to be relative (only on levels 2+) */
+.nav-regular .nav-panel li.mega > .nav-panel--dropdown {}
+.nav-regular .nav-panel li.mega:hover > .nav-panel--dropdown {
+	display: block;
+	left: 60px;
+	top: 0;
+}
+
+
+/* Inside mega dropdown
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Align submenu's content (grid) with the submenu */
+.nav-regular .nav-submenu--mega { margin-left: -1%; margin-right: -1%; }
+
+/* Inside mega dropdown, level 1: item
+-------------------------------------------------------------- */
+.nav-regular .nav-submenu--mega > li {
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+	padding-top: 0;
+	padding-bottom: 5px;
+}
+.nav-regular .nav-submenu--mega > li > a {
+	font-size: 16px;
+	line-height: 1.25em; /*20px*/
+}
+
+/* If item is a parent of subcategories, add bottom margin, but romove it if item is a parent of a dropdown */
+.nav-regular .nav-submenu--mega > li.parent > a { margin-bottom: 10px; }
+.nav-regular .nav-submenu--mega > li.nav-item--parent  > a { margin-bottom: 0; }
+
+/* Inside mega dropdown, level 1: submenu
+-------------------------------------------------------------- */
+/* Each submenu has to be static unless it's a dropdown itself (e.g. if type "classic" was applied to the item).
+   Also, add bottom margin to panel, but romove it if it's a dropdown. */
+.nav-regular .nav-submenu--mega > li > .nav-panel { position: static; margin-bottom: 10px; }
+.nav-regular .nav-submenu--mega > li > .nav-panel--dropdown { position: absolute; margin-bottom: 0; }
+
+/* Inside mega dropdown, level 1: category blocks
+-------------------------------------------------------------- */
+.nav-regular .nav-submenu--mega > li > .nav-block--top { margin-top: 0; margin-bottom: 10px; }
+.nav-regular .nav-submenu--mega > li > .nav-block--bottom { margin-top: 10px; margin-bottom: 0; }
+
+/* Inside mega dropdown, level 2: item
+-------------------------------------------------------------- */
+/* List bullets */
+.nav-regular .nav-submenu--mega > li > ul > li {
+	background: url(../../../images/infortis/ultra-megamenu/bullet.png) 3px 6px no-repeat;
+	padding-left: 15px;
+	transition:			background-position 150ms ease-out;
+	-moz-transition:	background-position 150ms ease-out;
+	-webkit-transition:	background-position 150ms ease-out;
+	-o-transition:		background-position 150ms ease-out;
+}
+.nav-regular .nav-submenu--mega > li > ul > li:hover { background-position:6px 6px; }
+
+/* Important: if item is inside a dropdown (e.g. if type "classic" was applied to the parent item), remove bullets */
+.nav-regular .nav-submenu--mega > li > ul.nav-panel--dropdown > li {
+	background: none;
+	padding-left: 0;
+}
+
+/* Other */
+.nav-regular .nav-submenu--mega > li > ul > li > a { line-height: 1.6666em; /*20px*/ }
+
+
+
+/* Classic dropdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Level 2+
+-------------------------------------------------------------- */
+.nav-regular .classic > .nav-panel--dropdown > li > a { line-height: 1.6666em; /*20px*/ }
+.nav-regular .classic > .nav-panel--dropdown > li > a .caret { float: right; margin-top: 6px; }
+
+
+/* Dropdown
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* All levels
+-------------------------------------------------------------- */
+.nav-regular .classic > .nav-panel--dropdown {
+	margin:0;
+	padding:20px; /*TODO:*/
+	width:16em;
+	min-width:12em;
+}
+
+/* Level 2+
+-------------------------------------------------------------- */
+.nav-regular .nav-panel li.classic { position: relative; } /* Container of the dropdown has to be relative */
+.nav-regular .nav-panel li.classic > .nav-panel--dropdown {}
+.nav-regular .nav-panel li.classic:hover > .nav-panel--dropdown {
+	display:block;
+	left:60px;
+	top:0;
+}
+
+/* If classic dropdown is on the 1 level of mega dropdown, change positioning */
+.nav-regular .nav-submenu--mega > li.classic:hover > .nav-panel--dropdown {
+	left:60px;
+	top:20px;
+}
+
+
+/* Simple submenu - no dropdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* If submenu has to be displayed not as a dropdown, but as a simple list (with slight left indent) */
+/* List bullets */
+.nav-regular .simple > ul {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.nav-regular .simple > ul > li {
+	background:url(../../../images/infortis/ultra-megamenu/bullet-mini.png) 3px 5px no-repeat;
+	padding-left:15px;
+	transition:			background-position 150ms ease-out;
+	-moz-transition:	background-position 150ms ease-out;
+	-webkit-transition:	background-position 150ms ease-out;
+	-o-transition:		background-position 150ms ease-out;
+}
+.nav-regular .simple > ul > li:hover { background-position:6px 5px; }
+.nav-regular .simple > ul > li > a {
+	opacity: 0.6;
+	transition:			opacity 150ms ease-out;
+	-moz-transition:	opacity 150ms ease-out;
+	-webkit-transition:	opacity 150ms ease-out;
+	-o-transition:		opacity 150ms ease-out;
+}
+.nav-regular .simple:hover > ul > li > a { opacity: 1; }
+
+
+
+/* Itemgrid for menu dropdown %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.dd-itemgrid > .nav-item {
+	float:left;
+	padding-left:1%;
+	padding-right:1%;
+}
+
+/* Itemgrid: different numbers of columns
+-------------------------------------------------------------- */
+/* Clear first item in each row (row: group of n items) */
+
+/* Item grid: 1 column */
+.dd-itemgrid-1col > .nav-item { width:98%; }
+
+/* Item grid: 2 columns */
+.dd-itemgrid-2col > .nav-item { width:48%; }
+.dd-itemgrid-2col > .nav-item:nth-child(2n+1) { clear:left; }
+
+/* Item grid: 3 columns */
+.dd-itemgrid-3col > .nav-item { width:31.3333%; }
+.dd-itemgrid-3col > .nav-item:nth-child(3n+1) { clear:left; }
+
+/* Item grid: 4 columns */
+.dd-itemgrid-4col > .nav-item { width:23%; }
+.dd-itemgrid-4col > .nav-item:nth-child(4n+1) { clear:left; }
+
+/* Item grid: 5 columns */
+.dd-itemgrid-5col > .nav-item { width:18%; }
+.dd-itemgrid-5col > .nav-item:nth-child(5n+1) { clear:left; }
+
+/* Item grid: 6 columns */
+.dd-itemgrid-6col > .nav-item { width:14.6666%; }
+.dd-itemgrid-6col > .nav-item:nth-child(6n+1) { clear:left; }
+
+/* Item grid: 7 columns */
+.dd-itemgrid-7col > .nav-item { width:12.2857%; }
+.dd-itemgrid-7col > .nav-item:nth-child(7n+1) { clear:left; }
+
+/* Item grid: 8 columns */
+.dd-itemgrid-8col > .nav-item { width:10.5%; }
+.dd-itemgrid-8col > .nav-item:nth-child(8n+1) { clear:left; }
+
+
+
+/* Effects %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Fade
+-------------------------------------------------------------- */
+.nav-regular.opt-fx-fade-inout .nav-panel .nav-item--parent > .nav-panel--dropdown {
+	display: block; /* Important: has to be visible before hover */
+	left: -10000px;
+	opacity: 0;
+	-moz-transition:	opacity 50ms ease-in-out 50ms, left 0s ease-in-out 100ms, top 0s ease-in-out 100ms;
+	-webkit-transition:	opacity 50ms ease-in-out 50ms, left 0s ease-in-out 100ms, top 0s ease-in-out 100ms;
+	-o-transition:		opacity 50ms ease-in-out 50ms, left 0s ease-in-out 100ms, top 0s ease-in-out 100ms;
+	transition:			opacity 50ms ease-in-out 50ms, left 0s ease-in-out 100ms, top 0s ease-in-out 100ms;
+}
+.nav-regular.opt-fx-fade-inout .nav-panel .nav-item--parent:hover > .nav-panel--dropdown {
+	opacity: 1;
+	transition-delay:			50ms;
+	-moz-transition-delay:		50ms;
+	-webkit-transition-delay:	50ms;
+	-o-transition-delay:		50ms;
+}

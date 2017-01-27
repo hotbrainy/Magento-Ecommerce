@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Base
+ */
+-->
+<layout>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addCss">
+                <name>css/amasty/ambase/style.css</name>
+            </action>
+            <action method="addJs">
+                <name>amasty/ambase/store.js</name>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+    <adminhtml_ambase_base_ajax>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>empty.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_ambase_base_ajax>
+    <default>
+        <reference name="root">
+            <reference name="notifications">
+                <block type="ambase/adminhtml_promo" name="ampromo" as="ampromo" after="messages" template="amasty/ambase/promo.phtml"></block>
+            </reference>
+            
+            <reference name="content">
+                <block type="ambase/adminhtml_update" name="amupdate" as="amupdate" template="amasty/ambase/update.phtml"></block>
+            </reference>
+                
+        </reference>
+    </default>
+</layout>

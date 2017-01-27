@@ -1,0 +1,43 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ */
+/**
+ * @var $this Bubble_Elasticsearch_Block_Autocomplete_Product_Price
+ */
+$_product = $this->getEntity();
+$_prices = $_product->getData('_prices');
+?>
+<div class="price-box">
+    <?php if ($_product->getTypeId() == 'bundle'): ?>
+        <p class="price-from">
+            <span class="price-label"><?php echo $this->getLabel('From:') ?>&nbsp;</span>
+            <span class="price"><?php echo $this->formatPrice($_prices['min_price']) ?></span>
+        </p>
+        <p class="price-to">
+            <span class="price-label"><?php echo $this->getLabel('To:') ?>&nbsp;</span>
+            <span class="price"><?php echo $this->formatPrice($_prices['max_price']) ?></span>
+        </p>
+    <?php elseif (in_array($_product->getTypeId(), array('grouped'))): ?>
+        <p class="minimal-price">
+            <span class="price-label"><?php echo $this->getLabel('Starting at:') ?>&nbsp;</span>
+            <span class="price"><?php echo $this->formatPrice($_prices['min_price']) ?></span>
+        </p>
+    <?php else: ?>
+        <?php if ($_prices['final_price'] < $_prices['price']): ?>
+            <p class="old-price">
+                <span class="price"><?php echo $this->formatPrice($_prices['price']) ?></span>
+            </p>
+            <p class="special-price">
+                <span class="price"><?php echo $this->formatPrice($_prices['final_price']) ?></span>
+            </p>
+        <?php else: ?>
+            <span class="regular-price">
+                <span class="price"><?php echo $this->formatPrice($_prices['price']) ?></span>
+            </span>
+        <?php endif ?>
+    <?php endif ?>
+</div>

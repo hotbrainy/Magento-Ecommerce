@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Custom Publisher Models
+ * 
+ * Add custom model types, such as author, which can be used as a product
+ * attribute while proviting additional details.
+ * 
+ * @license 	http://opensource.org/licenses/gpl-license.php GNU General Public License, Version 3
+ * @copyright	Steven Brown March 12, 2016
+ * @author		Steven Brown <steveb.27@outlook.com>
+ */
+ -->
+ 
+<layout>
+    <adminhtml_author_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>publish/author</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="publish/adminhtml_author" name="author">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm"><params>0</params></action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_author_index>
+    
+    <adminhtml_author_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="publish/adminhtml_author_grid" name="author_grid"/>
+        </block>
+    </adminhtml_author_grid>
+    
+    <adminhtml_author_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>publish/author</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="publish/adminhtml_author_edit" name="author_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="adminhtml/store_switcher" name="store_switcher" before="-"></block>
+            <block type="publish/adminhtml_author_edit_tabs" name="author_tabs"></block>
+        </reference>
+        <reference name="head">
+            <action method="setCanLoadTinyMce"><load>1</load></action>
+        </reference>
+        <reference name="js">
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </adminhtml_author_edit>
+
+    <adminhtml_attribute_index>
+        <reference name="content">
+            <block type="publish/adminhtml_attribute" name="attribute_grid"></block>
+        </reference>
+    </adminhtml_attribute_index>
+    
+    <adminhtml_attribute_edit>
+        <reference name="left">
+            <block type="publish/adminhtml_attribute_edit_tabs" name="attribute_edit_tabs"></block>
+        </reference>
+        <reference name="content">
+            <block type="publish/adminhtml_attribute_edit" name="attribute_edit_content"></block>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/template" name="attribute_edit_js" template="publish/attribute/js.phtml">
+                <action method="setMainEntityName"><name>author</name></action>
+            </block>
+        </reference>
+    </adminhtml_attribute_edit>
+</layout>

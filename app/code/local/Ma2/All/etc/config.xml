@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ma2_All>
+            <version>0.1.0</version>
+        </Ma2_All>
+    </modules>
+    
+    <frontend>
+        <layout>
+            <updates>
+                <ma2all>
+                     <file>ma2_all.xml</file>
+                </ma2all>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <global>
+        <blocks>
+            <ma2all>
+                <class>Ma2_All_Block</class>
+            </ma2all>
+        </blocks>
+        <resources>
+            <ma2all_setup>
+                <setup>
+                    <module>Ma2_All</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ma2all_setup>
+            <ma2all_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ma2all_write>
+            <ma2all_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ma2all_read>
+        </resources>
+        <models>
+            <ma2all>
+                <class>Ma2_All_Model</class>
+            </ma2all>
+        </models>
+        <helpers>
+            <ma2all>
+                <class>Ma2_All_Helper</class>
+            </ma2all>
+        </helpers>
+    </global>
+</config>

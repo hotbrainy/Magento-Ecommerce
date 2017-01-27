@@ -1,0 +1,190 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+$PageType = $this->getRequest()->getControllerName();
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php echo $this->getChildHtml('after_body_start') ?> <?php echo $this->getChildHtml('global_notices') ?> <?php echo $this->getChildHtml('header') ?>
+<section class="breadcrumb_wraper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"> <?php echo $this->getChildHtml('breadcrumbs') ?> </div>
+    </div>
+  </div>
+</section>
+<main>
+<section class="main-content">
+  <div class="container">
+    <div class="row">
+    <?php if($PageType !='product') { ?>
+      <div class="col-sm-3">
+        <div class="categori_select"> <a href="javascript:void(0)" id="catdrop">Categories</a>
+          <div id="catdropcont" class="catdrop">
+            <div id="accordian">
+              <ul class="category-menu">
+                <li class="parent active-parent">
+                  <h3>Imprints</h3>
+                  <ul class="sub-cat" style="display:block;">
+                <?php
+                $cat = Mage::getModel('catalog/category')->getCategories(4, 1, true, true);
+                foreach($cat as $catVal)
+                {
+                echo '<li><a href="'.$catVal->getURL().'">'.$catVal->getName().'</a>';
+                echo '</li>';
+                }
+                ?>
+                  </ul>
+                </li>
+                <li class="parent">
+                  <h3>Genres</h3>
+                  <ul class="sub-cat">
+                <?php
+                $cat = Mage::getModel('catalog/category')->getCategories(3, 1, true, true);
+                foreach($cat as $catVal)
+                {
+                echo '<li><a href="'.$catVal->getURL().'">'.$catVal->getName().'</a>';
+                echo '</li>';
+                }
+                ?>
+                  </ul>
+                </li>
+                <li class="parent">
+                  <h3>Tropes</h3>
+                  <ul class="sub-cat">
+                    <?php
+                $cat = Mage::getModel('catalog/category')->getCategories(93, 1, true, true);
+                foreach($cat as $catVal)
+                {
+                echo '<li><a href="'.$catVal->getURL().'">'.$catVal->getName().'</a>';
+                echo '</li>';
+                }
+                ?>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php } ?>
+      <div class="col-sm-<?php if($PageType !='product') { ?>9<?php } else {?>12<?php } ?>">
+        <div class="Searchbox">
+          <form id="search_mini_form" action="http://stage.entangledpublishing.com.vhost.zerolag.com/index.php/catalogsearch/result/" method="get">
+            <input type="text" name="q" placeholder="Search By Keyword or Author">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<?php if($PageType!='product') { ?>
+<form action="http://stage.entangledpublishing.com.vhost.zerolag.com/index.php/checkout/cart/add/product/" method="post" id="product_addtocart_form_new">
+<input name="form_key" type="hidden" value="<?=Mage::getSingleton('core/session')->getFormKey();?>"/>
+<input type="hidden" name="qty" id="qty" value="1">
+</form><?php } ?>
+
+<?php if($PageType=='product') { ?>
+<section class="containt_info site_content">
+<?php echo $this->getChildHtml('global_messages') ?> <?php echo $this->getChildHtml('content') ?>
+</section><?php } else { ?>
+<section class="containt_info site_content">
+  <div class="container">
+    <div class="row">
+  <div class="col-md-12"> <?php echo $this->getChildHtml('global_messages') ?> <?php echo $this->getChildHtml('content') ?> </div>
+    </div>
+  </div>
+</section>
+<?php } ?>
+
+<?php echo $this->getChildHtml('footer') ?> <?php echo $this->getChildHtml('global_cookie_notice') ?> <?php echo $this->getChildHtml('before_body_end') ?> <?php echo $this->getAbsoluteFooter() ?>
+
+<?php if($PageType!='product') { ?>
+<script type="text/javascript">	
+jQuery(document).ready(function() {
+jQuery('.btn-cart').click(function(){
+var proId = this.id;
+var actionvalue = "http://stage.entangledpublishing.com.vhost.zerolag.com/index.php/checkout/cart/add/product/"+proId;
+jQuery('#product_addtocart_form_new').attr('action', actionvalue);
+productAddToCartForm.submit(this);
+});
+});
+var productAddToCartForm = new VarienForm('product_addtocart_form_new');
+productAddToCartForm.submit = function(button, url) {
+if (this.validator.validate()) {
+	var form = this.form;
+	
+	var oldUrl = form.action;
+
+	if (url) {
+	   form.action = url;
+	}
+	var e = null;
+	try {
+		this.form.submit();
+	} catch (e) {
+	}
+	this.form.action = oldUrl;
+	if (e) {
+		throw e;
+	}
+
+	if (button && button != 'undefined') {
+		button.disabled = true;
+	}
+}
+}.bind(productAddToCartForm);
+
+productAddToCartForm.submitLight = function(button, url){
+if(this.validator) {
+	var nv = Validation.methods;
+	delete Validation.methods['required-entry'];
+	delete Validation.methods['validate-one-required'];
+	delete Validation.methods['validate-one-required-by-name'];
+	if (this.validator.validate()) {
+		if (url) {
+			this.form.action = url;
+		}
+		this.form.submit();
+	}
+	Object.extend(Validation.methods, nv);
+}
+}.bind(productAddToCartForm);
+</script><?php } ?>
+
+</body>
+</html>

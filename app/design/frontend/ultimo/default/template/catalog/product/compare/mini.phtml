@@ -1,0 +1,54 @@
+<?php
+/* @var $this Mage_Catalog_Block_Product_Compare_Sidebar */
+?>
+<?php
+    $theme = $this->helper('ultimo');
+    $_helper = $this->helper('catalog/product_compare');
+    $count = $_helper->getItemCount();
+    $_items = $count > 0 ? $_helper->getItemCollection() : null;
+
+    if ($count > 0) {
+        $mainTitle = $this->__('Compare Products');
+        Mage::register('miniCompareProductCount', $count);
+    }
+    else {
+        $mainTitle = $this->__('You have no items to compare.');
+    }
+?>
+<div id="mini-compare-wrapper-regular">
+<div id="mini-compare" class="mini-compare dropdown<?php echo (!$count ? ' is-empty' : ' is-not-empty'); ?>">
+
+    <div class="mini-compare-heading dropdown-heading cover skip-link skip-compare" title="<?php echo $mainTitle; ?>">
+        <span>
+            <span class="icon ic ic-compare"></span>
+            <?php if ($count > 0): ?>
+                <span class="count"><?php echo $count; ?></span>
+            <?php endif; ?>
+            <span class="label"<?php if (!$theme->getCfg('header/compare_label')) echo ' style="display:none;"'; ?>><?php echo $this->__('Compare'); ?></span>
+            <span class="caret">&nbsp;</span>
+        </span>
+    </div>
+    <div id="header-compare" class="mini-compare-content dropdown-content left-hand block skip-content skip-content--style">
+    <?php if($count > 0): ?>
+        <div class="block-subtitle"><?php echo $this->__('Recently added item(s)'); ?></div>
+        <ol id="compare-items" class="mini-products-list">
+        <?php foreach($_items as $_index => $_item): ?>
+            <li class="item">
+                <input type="hidden" class="compare-item-id" value="<?php echo $_item->getId() ?>" />
+                    <a href="<?php echo $_helper->getRemoveUrl($_item) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Remove This Item')) ?>" class="btn-remove" onclick="return confirm('<?php echo Mage::helper('core')->quoteEscape($this->__('Are you sure you would like to remove this item from the compare products?')) ?>');"></a>
+                <p class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?></a></p>
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('compare-items')</script>
+        <div class="actions">
+            <a href="<?php echo $_helper->getClearListUrl() ?>" onclick="return confirm('<?php echo Mage::helper('core')->quoteEscape($this->__('Are you sure you would like to remove all products from your comparison?')) ?>');"><?php echo $this->__('Clear All') ?></a>
+            <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Compare Products')) ?>" class="button btn-inline" onclick="popWin('<?php echo $_helper->getListUrl() ?>','compare','top:0,left:0,width=820,height=600,resizable=yes,scrollbars=yes')"><span><span><?php echo $this->__('Compare') ?></span></span></button>
+        </div>
+    <?php else: ?>
+        <div class="empty"><?php echo $this->__('You have no items to compare.') ?></div>
+    <?php endif; ?>
+    </div><!-- end: dropdown-content -->
+
+</div> <!-- end: mini-compare -->
+</div> <!-- end: mini-compare-wrapper-regular -->

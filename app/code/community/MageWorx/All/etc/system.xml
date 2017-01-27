@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ * All Extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_All
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ */
+-->
+<config>
+    <tabs>
+        <mageworx module="mageworx_all">
+            <label>MageWorx</label>
+            <sort_order>101</sort_order>
+        </mageworx>
+    </tabs>
+	<sections>
+		<mageworx translate="label" module="mageworx_all">
+			<label>Extensions &amp; Support</label>
+			<tab>mageworx</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>999999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <extensions translate="label">
+                    <label>Extensions Information</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>mageworx_all/system_config_form_fieldset_mageworx_extensions</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extensions>
+                <support translate="label">
+                    <label>Get Support</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>mageworx_all/system_config_form_fieldset_mageworx_support</frontend_model>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </support>
+			</groups>
+		</mageworx>
+	</sections>
+</config>

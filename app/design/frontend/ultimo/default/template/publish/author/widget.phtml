@@ -1,0 +1,19 @@
+<?php
+Varien_Profiler::start("author.widget");
+$_helper = $this->helper('catalog/output');
+$_author = Mage::getModel('publish/author')->load($author_id);
+?>
+<div class="testimonial_thumb">
+    <a href="<?php echo $_author->getAuthorUrl()?>" target="_self">
+        <img title="<?php echo $this->stripTags($_author->getName(), null, true) ?>" alt="<?php echo $this->__('Author') . ' ' . $this->stripTags($_author->getName(), null, true) ?>" src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(200, 200) ?>"/>
+    </a>
+</div>
+
+<h4><?php echo $this->__('Featured author') ?></h4>
+<h3><?=$this->stripTags($_author->getName(),null,true);?></h3>
+<a href="<?php echo $_author->getAuthorUrl()?>" class="btn"><?php echo $this->__('DISCOVER THIS AUTHOR') ?></a>
+
+<?php
+
+Varien_Profiler::stop("author.widget");
+?>

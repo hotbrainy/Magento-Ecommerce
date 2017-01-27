@@ -1,0 +1,138 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<?php if ($this->getCanUseRewardPoints()): ?>
+<dl class="sp-methods checkout-reward checkout-onepage-payment-additional-reward" id="reward_placer">
+    <dt>
+        <input type="checkbox" name="payment[use_reward_points]" value="<?php echo $this->useRewardPoints()?'1':'0' ?>" id="use_reward_points"<?php echo $this->useRewardPoints()?' checked="checked"':'' ?> class="checkbox" />
+        <label for="use_reward_points"><?php echo Mage::helper('enterprise_reward')->__('Use my reward points, %s available', Mage::helper('enterprise_reward')->formatReward($this->getPointsBalance(), $this->getCurrencyAmount())); ?></label>
+    </dt>
+</dl>
+<script type="text/javascript">
+//<![CDATA[
+    var isEnoughPointsToCoverAmount = <?php if ($this->isEnoughPoints()): ?>true<?php else: ?>false<?php endif; ?>;
+    var rewardPointsSubstracted = <?php if ($this->useRewardPoints()): ?>true<?php else: ?>false<?php endif; ?>;
+
+    if (rewardPointsSubstracted) {
+        quoteBaseGrandTotal += <?php echo (float)$this->getQuote()->getBaseRewardCurrencyAmount(); ?>;
+        rewardPointsSubstracted = false;
+    }
+
+    Payment.prototype.switchRewardPointsCheckbox = function() {
+        if ($('use_reward_points').checked) {
+            $('use_reward_points').value = 1;
+        } else {
+            $('use_reward_points').value = 0;
+        }
+        if (!rewardPointsSubstracted && $('use_reward_points').checked) {
+            quoteBaseGrandTotal -= <?php echo (float)$this->getCurrencyAmount(); ?>;
+            rewardPointsSubstracted = true;
+        } else if (rewardPointsSubstracted && !$('use_reward_points').checked) {
+            quoteBaseGrandTotal += <?php echo (float)$this->getCurrencyAmount(); ?>;
+            rewardPointsSubstracted = false;
+        }
+        if (quoteBaseGrandTotal < 0.0001) {
+            var elements = Form.getElements(this.form);
+            for (var i=0; i<elements.length; i++) {
+                if ($('use_reward_points').checked) {
+                    if (elements[i].name == 'payment[method]') {
+                        elements[i].disabled = true;
+                    }
+                }
+                if (elements[i].name == 'payment[method]' && elements[i].value == 'free') {
+                    elements[i].checked = false;
+                    elements[i].disabled = true;
+                    if(elements[i].parentNode){
+                        //(elements[i].parentNode).hide();
+                        }
+                }
+            }
+            if ($('use_reward_points').checked) {
+                if($('payment_form_' + payment.currentMethod)){
+                    $('payment_form_' + payment.currentMethod).hide()
+                }
+                payment.currentMethod = 'free';
+                if($('p_method_free')){
+                    $('p_method_free').checked = true;
+                    $('p_method_free').disabled = false;
+                }
+            }
+        } else {
+            var elements = Form.getElements(this.form);
+            for (var i=0; i<elements.length; i++) {
+                if (elements[i].name == 'payment[method]') {
+                    elements[i].disabled = false;
+                }
+            }
+
+            $('checkout-payment-method-load').show();
+            methodname = $RF($('onestepcheckout-form'), 'payment[method]');
+            if(methodname){
+                payment.currentMethod = methodname;
+            } else {
+                methodElement = $RFF($('onestepcheckout-form'), 'payment[method]');
+                if(methodElement){
+                    methodElement.checked = true;
+                    payment.currentMethod = methodElement.value;
+                }
+
+                if($('payment_form_' + payment.currentMethod)){
+                    $('payment_form_' + payment.currentMethod).show()
+                }
+            }
+        }
+        if(payment.countreload){
+            var url = '<?php echo $this->getUrl('onestepcheckout/ajax/set_methods_separate', array('_secure'=>true)); ?>';
+            get_separate_save_methods_function(url)();
+        }
+    }
+    if (payment) {
+        var rewardPaymentInit = function() {
+            if ($('use_reward_points')) {
+                $('use_reward_points').disabled = false;
+            }
+            this.switchRewardPointsCheckbox();
+        }
+        payment.addAfterInitFunction('reward', rewardPaymentInit.bind(payment));
+        var rewardPaymentValidate = function() {
+            if (quoteBaseGrandTotal < 0.0001) {
+                return true;
+            }
+            return false;
+        }
+        payment.addBeforeValidateFunction('reward', rewardPaymentValidate.bind(payment));
+    }
+    Event.observe($('use_reward_points'), 'click', function(){
+        payment.reloadcallback = true;
+        payment.countreload = 1;
+        payment.switchRewardPointsCheckbox();
+    });
+    //Event.observe($('use_reward_points'), 'click', payment.switchRewardPointsCheckbox);
+
+
+//]]>
+</script>
+<?php endif; ?>

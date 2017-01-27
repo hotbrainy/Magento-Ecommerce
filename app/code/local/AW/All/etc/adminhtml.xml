@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config>
+    <layout>
+        <updates>
+            <awall module="AW_All">
+                <file>aw_all.xml</file>
+            </awall>
+        </updates>
+    </layout>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <awall>
+                                        <title>aheadWorks - All</title>
+                                    </awall>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <events>
+        <controller_action_predispatch>
+            <observers>
+                <awall_exts>
+                    <type>singleton</type>
+                    <class>awall/feed_extensions</class>
+                    <method>check</method>
+                </awall_exts>
+                <awall_upds>
+                    <type>singleton</type>
+                    <class>awall/feed_updates</class>
+                    <method>check</method>
+                </awall_upds>
+            </observers>
+        </controller_action_predispatch>
+    </events>
+</config>

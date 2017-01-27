@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <OE_SocialShare>
+            <version>1.0</version>
+        </OE_SocialShare>
+    </modules>
+
+    <frontend>
+        <layout>
+            <updates>
+                <SocialShare>
+                    <file>socialshare/SocialShare.xml</file>
+                </SocialShare>
+            </updates>
+        </layout>
+        
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <OE_SocialShare>
+                    <files>
+                        <default>OE_SocialShare.csv</default>
+                    </files>
+                </OE_SocialShare>
+            </modules>
+        </translate>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<socialshare translate="title" module="socialshare">
+											<title>SocialShare Buttons</title>
+										</socialshare>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>		
+    </adminhtml>
+
+    <global>
+        <resources>
+            <SocialShare_setup>
+                <setup>
+                    <module>OE_SocialShare</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </SocialShare_setup>
+            <SocialShare_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </SocialShare_write>
+            <SocialShare_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </SocialShare_read>
+        </resources>
+        <blocks>
+            <SocialShare>
+                <class>OE_SocialShare_Block</class>
+            </SocialShare>
+        </blocks>
+        <helpers>
+            <socialshare>
+                <class>OE_SocialShare_Helper</class>
+            </socialshare>
+        </helpers>
+		<models>
+            <socialshare>
+                <class>OE_SocialShare_Model</class>
+            </socialshare>
+        </models>
+		<models>
+            <socialshare>
+                <class>OE_SocialShare_Model</class>
+            </socialshare>
+        </models>
+    </global>
+
+    <default>
+        <socialshare>
+            <general>
+                <enabled>1</enabled>
+				<show_count>1</show_count>
+				<facebook_btn>1</facebook_btn>
+				<twitter_btn>1</twitter_btn>
+				<google_btn>1</google_btn>
+				<pinter_btn>1</pinter_btn>
+            </general>
+            <opengraph>
+                <enabled_op>0</enabled_op>
+            </opengraph>
+        </socialshare>
+    </default>
+</config>

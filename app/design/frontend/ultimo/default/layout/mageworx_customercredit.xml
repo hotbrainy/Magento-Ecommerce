@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * MageWorx Loyalty Booster extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+-->
+<layout version="0.1.0">
+    <customer_account>
+<!--   Show in Observer->toHtmlBlockBefore()     
+       <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="customercredit" ifconfig="mageworx_customercredit/main/enable_credit">
+                <name>customercredit</name>
+                <path>customercredit/</path>
+                <label>My Credit</label>
+            </action>
+        </reference>-->
+    </customer_account>
+    
+    <default>                
+        <reference name="top.links">
+            <block type="mageworx_customercredit/links" name="customercredit_link"/>
+            <action method="addLinkBlock" ifconfig="mageworx_customercredit/main/display_credit_link_in_top_menu"><blockName>customercredit_link</blockName><liParams>class='mini-top-cart'</liParams></action>
+        </reference>        
+    </default>
+  
+    <mageworx_customercredit_index_index>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/mageworx/customercredit/customercredit.css</stylesheet></action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="customer_account_navigation">
+            <action method="setActive"><path>customercredit</path></action>
+        </reference>
+        <reference name="content">
+            <block type="mageworx_customercredit/customer_view" name="customercredit.customer.view">
+                <block type="mageworx_customercredit/customer_view_credit" name="customercredit.customer.view.credit" template="mageworx/customercredit/customer/view/credit.phtml" />
+                <block type='mageworx_customercredit/customer_refferals_details' name='customercredit.customer.refferals.details' template='mageworx/customercredit/customer/refferals/credit_details.phtml'/>
+                <block type="mageworx_customercredit/customer_view_recent" name="customercredit.customer.view.recent" template="mageworx/customercredit/customer/view/recent.phtml" />
+            </block>
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+    </mageworx_customercredit_index_index>
+
+    <mageworx_customercredit_index_log>
+        <update handle="customer_account"/>
+        <reference name="customer_account_navigation">
+            <action method="setActive"><path>customercredit</path></action>
+        </reference>
+        <reference name="content">
+            <block type="mageworx_customercredit/customer_log" name="customercredit.customer.log" />
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+    </mageworx_customercredit_index_log>
+
+    <sales_order_view>
+        <reference name="order_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit" />
+        </reference>
+    </sales_order_view>
+    
+    <sales_order_print>
+        <reference name="order_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_order_print>
+    
+    <sales_email_order_items>
+        <reference name="order_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_email_order_items>
+    
+    <sales_order_invoice>
+        <reference name="invoice_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_order_invoice>
+    <sales_order_printinvoice>
+        <reference name="invoice_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_order_printinvoice>
+    <sales_email_order_invoice_items>
+        <reference name="invoice_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_email_order_invoice_items>
+    
+    <sales_order_creditmemo>
+        <reference name="creditmemo_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_order_creditmemo>
+    <sales_order_printcreditmemo>
+        <reference name="creditmemo_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_order_printcreditmemo>
+    <sales_email_order_creditmemo_items>
+        <reference name="creditmemo_totals">
+            <block type="mageworx_customercredit/sales_order_totals_customercredit" name="customercredtit"></block>
+        </reference>
+    </sales_email_order_creditmemo_items>
+    
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/mageworx/customercredit/customercredit.css</stylesheet></action>
+        </reference>
+    </checkout_cart_index>
+    
+    <checkout_onepage_index>
+        <reference name="checkout.payment.methods">
+            <action method="setTemplate"><template>mageworx/customercredit/checkout/onepage_payment_methods.phtml</template></action>
+        </reference>
+    </checkout_onepage_index>
+    
+    <checkout_onepage_paymentmethod>
+        <reference name="root">
+            <action method="setTemplate"><template>mageworx/customercredit/checkout/onepage_payment_methods.phtml</template></action>
+            <block type="mageworx_customercredit/payment_form" name="payment.custom.value" as="payment.custom.value" template="mageworx/customercredit/checkout/custom_value.phtml"></block>
+        </reference>
+    </checkout_onepage_paymentmethod>
+    
+    <checkout_multishipping_billing translate="label">
+        <reference name="checkout_billing">
+            <action method="setTemplate"><template>mageworx/customercredit/checkout/multishipping/billing.phtml</template></action>
+        </reference>
+    </checkout_multishipping_billing>
+    
+     <!--
+    REWRITE One page checkout payment methods block
+    -->
+    <mageworx_customercredit_index_reload_payment>
+        <remove name="right"/>
+        <remove name="left"/>
+
+        <block type="checkout/onepage_payment_methods" name="root" output="toHtml" template="mageworx/customercredit/checkout/onepage_payment_methods.phtml">
+            <block type="mageworx_customercredit/payment_form" name="payment.custom.value" as="payment.custom.value" template="mageworx/customercredit/checkout/custom_value.phtml"></block>
+            <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+        </block>
+    </mageworx_customercredit_index_reload_payment>
+    
+</layout>

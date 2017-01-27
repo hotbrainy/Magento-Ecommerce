@@ -1,0 +1,342 @@
+/**
+ * Theme icons
+ * Deprecated since 1.10.0 in favor of font icons
+ */
+
+
+
+/* Predefined icons
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Wishlist */
+.icon.i-wishlist {
+	background-image:url(../images/sprite.png);
+	background-position:-7px -7px;
+}
+.icon.i-wishlist-w {
+	background-image:url(../images/sprite.png);
+	background-position:-7px -57px;
+}
+
+	/* bw */
+	.icon.i-wishlist-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -7px;
+	}
+	.icon-hover:hover.i-wishlist-bw,
+	.feature-icon-hover:hover .icon.i-wishlist-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -57px;
+	}
+	
+	/* wb */
+	.icon.i-wishlist-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -57px;
+	}
+	.icon-hover:hover.i-wishlist-wb,
+	.feature-icon-hover:hover .icon.i-wishlist-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -7px;
+	}
+
+/* Compare */
+.icon.i-compare {
+	background-image:url(../images/sprite.png);
+	background-position:-57px -7px;
+}
+.icon.i-compare-w {
+	background-image:url(../images/sprite.png);
+	background-position:-57px -57px;
+}
+
+	/* bw */
+	.icon.i-compare-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-57px -7px;
+	}
+	.icon-hover:hover.i-compare-bw,
+	.feature-icon-hover:hover .icon.i-compare-bw,
+	.open > .dropdown-toggle.cover .icon.i-compare-bw
+	{
+		background-image:url(../images/sprite.png);
+		background-position:-57px -57px;
+	}
+	
+	/* wb */
+	.icon.i-compare-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-57px -57px;
+	}
+	.icon-hover:hover.i-compare-wb,
+	.feature-icon-hover:hover .icon.i-compare-wb,
+	.open > .dropdown-toggle.cover .icon.i-compare-wb
+	{
+		background-image:url(../images/sprite.png);
+		background-position:-57px -7px;
+	}
+
+/* Share/recommend */
+.icon.i-recommend {
+	background-image:url(../images/sprite.png);
+	background-position:-107px -7px;
+}
+.icon.i-recommend-w {
+	background-image:url(../images/sprite.png);
+	background-position:-107px -57px;
+}
+
+	/* bw */
+	.icon.i-recommend-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -7px;
+	}
+	.icon-hover:hover.i-recommend-bw,
+	.feature-icon-hover:hover .icon.i-recommend-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -57px;
+	}
+	
+	/* wb */
+	.icon.i-recommend-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -57px;
+	}
+	.icon-hover:hover.i-recommend-wb,
+	.feature-icon-hover:hover .icon.i-recommend-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -7px;
+	}
+
+/* Low stock */
+.icon.i-lowstock {
+	background-image:url(../images/sprite.png);
+	background-position:-157px -7px;
+}
+.icon.i-lowstock-w {
+	background-image:url(../images/sprite.png);
+	background-position:-157px -57px;
+}
+
+	/* bw */
+	.icon.i-lowstock-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -7px;
+	}
+	.icon-hover:hover.i-lowstock-bw,
+	.feature-icon-hover:hover .icon.i-lowstock-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -57px;
+	}
+	
+	/* wb */
+	.icon.i-lowstock-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -57px;
+	}
+	.icon-hover:hover.i-lowstock-wb,
+	.feature-icon-hover:hover .icon.i-lowstock-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -7px;
+	}
+
+
+
+/* Cart */
+.icon.i-cart {
+	background-image:url(../images/sprite.png);
+	background-position:-457px -7px;
+}
+.icon.i-cart-w {
+	background-image:url(../images/sprite.png);
+	background-position:-457px -57px;
+}
+
+	/* bw */
+	.icon.i-cart-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-457px -7px;
+	}
+	.icon-hover:hover.i-cart-bw,
+	.feature-icon-hover:hover .icon.i-cart-bw,
+	.open > .dropdown-toggle.cover .icon.i-cart-bw
+	{
+		background-image:url(../images/sprite.png);
+		background-position:-457px -57px;
+	}
+	
+	/* wb */
+	.icon.i-cart-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-457px -57px;
+	}
+	.icon-hover:hover.i-cart-wb,
+	.feature-icon-hover:hover .icon.i-cart-wb,
+	.open > .dropdown-toggle.cover .icon.i-cart-wb
+	{
+		background-image:url(../images/sprite.png);
+		background-position:-457px -7px;
+	}
+
+/* Row 2
+-------------------------------------------------------------- */
+
+/* Home */
+.icon.i-home {
+	background-image:url(../images/sprite.png);
+	background-position:-7px -107px;
+}
+.icon.i-home-w {
+	background-image:url(../images/sprite.png);
+	background-position:-7px -157px;
+}
+
+	/* bw */
+	.icon.i-home-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -107px;
+	}
+	.icon-hover:hover.i-home-bw,
+	.feature-icon-hover:hover .icon.i-home-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -157px;
+	}
+	
+	/* wb */
+	.icon.i-home-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -157px;
+	}
+	.icon-hover:hover.i-home-wb,
+	.feature-icon-hover:hover .icon.i-home-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-7px -107px;
+	}
+
+/* Left */
+.icon.i-left {
+	background-image:url(../images/sprite.png);
+	background-position:-107px -107px;
+}
+.icon.i-left-w {
+	background-image:url(../images/sprite.png);
+	background-position:-107px -157px;
+}
+
+	/* bw */
+	.icon.i-left-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -107px;
+	}
+	.icon-hover:hover.i-left-bw,
+	.feature-icon-hover:hover .icon.i-left-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -157px;
+	}
+	
+	/* wb */
+	.icon.i-left-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -157px;
+	}
+	.icon-hover:hover.i-left-wb,
+	.feature-icon-hover:hover .icon.i-left-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-107px -107px;
+	}
+
+/* Right */
+.icon.i-right {
+	background-image:url(../images/sprite.png);
+	background-position:-157px -107px;
+}
+.icon.i-right-w {
+	background-image:url(../images/sprite.png);
+	background-position:-157px -157px;
+}
+
+	/* bw */
+	.icon.i-right-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -107px;
+	}
+	.icon-hover:hover.i-right-bw,
+	.feature-icon-hover:hover .icon.i-right-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -157px;
+	}
+	
+	/* wb */
+	.icon.i-right-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -157px;
+	}
+	.icon-hover:hover.i-right-wb,
+	.feature-icon-hover:hover .icon.i-right-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-157px -107px;
+	}
+
+/* Top */
+.icon.i-top {
+	background-image:url(../images/sprite.png);
+	background-position:-207px -107px;
+}
+.icon.i-top-w {
+	background-image:url(../images/sprite.png);
+	background-position:-207px -157px;
+}
+
+	/* bw */
+	.icon.i-top-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-207px -107px;
+	}
+	.icon-hover:hover.i-top-bw,
+	.feature-icon-hover:hover .icon.i-top-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-207px -157px;
+	}
+	
+	/* wb */
+	.icon.i-top-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-207px -157px;
+	}
+	.icon-hover:hover.i-top-wb,
+	.feature-icon-hover:hover .icon.i-top-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-207px -107px;
+	}
+
+/* Bottom */
+.icon.i-bottom {
+	background-image:url(../images/sprite.png);
+	background-position:-257px -107px;
+}
+.icon.i-bottom-w {
+	background-image:url(../images/sprite.png);
+	background-position:-257px -157px;
+}
+
+	/* bw */
+	.icon.i-bottom-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-257px -107px;
+	}
+	.icon-hover:hover.i-bottom-bw,
+	.feature-icon-hover:hover .icon.i-bottom-bw {
+		background-image:url(../images/sprite.png);
+		background-position:-257px -157px;
+	}
+	
+	/* wb */
+	.icon.i-bottom-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-257px -157px;
+	}
+	.icon-hover:hover.i-bottom-wb,
+	.feature-icon-hover:hover .icon.i-bottom-wb {
+		background-image:url(../images/sprite.png);
+		background-position:-257px -107px;
+	}

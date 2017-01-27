@@ -1,0 +1,29 @@
+/**
+ * Simple vertical menu (sidebar menu)
+ */
+
+
+
+.vertnav { float: left; width: 100%; }
+
+/* Number of products in category */
+.vertnav .number { color: #aaa; margin-left: 3px; }
+
+
+/* Category labels inside vertical menu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* All levels */
+.vertnav li > a > span > .cat-label {
+	position: static;
+	display: inline-block !important;
+	padding: 0 4px;
+	margin-left: 3px;
+
+	/* Label size */
+	font-size: inherit;
+	line-height: inherit;
+}
+
+/* Hide pin */
+.vertnav li > a > span > .pin-bottom:before { display: none; }

@@ -1,0 +1,63 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+
+	<li>
+        <a class="link-wishlist feature feature-icon-hover first" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" title="<?php echo $this->__('Add to Wishlist') ?>">
+			<span class="ic ic-heart ib icon-color-productview"></span>
+			<span class="label"><?php echo $this->__('Add to Wishlist') ?></span>
+		</a>
+	</li>
+
+<?php endif; ?>
+<?php
+    $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
+?>
+<?php if($_compareUrl) : ?>
+
+	<li>
+        <a class="link-compare feature feature-icon-hover first" href="<?php echo $_compareUrl ?>" title="<?php echo $this->__('Add to Compare') ?>">
+			<span class="ic ic-compare ib icon-color-productview"></span>
+			<span class="label"><?php echo $this->__('Add to Compare') ?></span>
+		</a>
+	</li>
+
+<?php endif; ?>
+<?php if ($this->canEmailToFriend()): ?>
+
+	<li>
+    	<a class="link-share feature feature-icon-hover first" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" title="<?php echo $this->__('Email to a Friend') ?>">
+			<span class="ic ic-share ib icon-color-productview"></span>
+			<span class="label"><?php echo $this->__('Email to a Friend') ?></span>
+		</a>
+	</li>
+
+<?php endif; ?>
+</ul>

@@ -1,0 +1,258 @@
+<?php
+
+/**
+ * Iksanika llc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.iksanika.com/products/IKS-LICENSE.txt
+ *
+ * @category   Iksanika
+ * @package    Iksanika_Productupdater
+ * @copyright  Copyright (c) 2013 Iksanika llc. (http://www.iksanika.com)
+ * @license    http://www.iksanika.com/products/IKS-LICENSE.txt
+ */
+
+?>
+
+<?php 
+    $colDataWithRelated = false;
+    $colDataWithCrossSell = false;
+    $colDataWithUpSell = false;
+    $numColumns = sizeof($this->getColumns()); 
+?>
+
+<?php if($this->getCollection()): ?>
+
+    <?php if($this->canDisplayContainer()): ?>
+        <?php if($this->getGridHeader()): ?>
+        <div class="content-header">
+            <table cellspacing="0">
+                <tr>
+                    <td style="width:50%;"><h2><?php echo $this->getGridHeader(); ?></h2></td>
+                </tr>
+            </table>
+        </div>
+        <?php endif ?>
+
+        <div id="<?php echo $this->getId() ?>">
+    <?php else: ?>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php endif; ?>
+
+    <?php if($this->getPagerVisibility() || $this->getFilterVisibility()): ?>
+        <table cellspacing="0" class="actions">
+            <tr>
+            <?php if($this->getPagerVisibility()): ?>
+                <td class="pager">
+                <?php echo $this->__('Page') ?>
+
+                <?php $_curPage  = $this->getCollection()->getCurPage() ?>
+                <?php $_lastPage = $this->getCollection()->getLastPageNumber() ?>
+
+                <?php if($_curPage>1): ?>
+                    <a href="#" title="<?php echo $this->__('Previous page') ?>" onclick="<?php echo $this->getId() ?>JsObjectIKSProductrelater.setPage('<?php echo ($_curPage-1) ?>');return false;"><img src="<?php echo $this->getSkinUrl('images/pager_arrow_left.gif') ?>" alt="Go to Previous page" class="arrow"/></a>
+                <?php else: ?>
+                    <img src="<?php echo $this->getSkinUrl('images/pager_arrow_left_off.gif') ?>" alt="Go to Previous page" class="arrow"/>
+                <?php endif; ?>
+
+                <input type="text" name="<?php echo $this->getVarNamePage() ?>" value="<?php echo $_curPage ?>" class="input-text page" onkeypress="<?php echo $this->getId() ?>JsObjectIKSProductrelater.inputPage(event, '<?php echo $_lastPage ?>')"/>
+
+                <?php if($_curPage < $_lastPage): ?>
+                    <a href="#" title="<?php echo $this->__('Next page') ?>" onclick="<?php echo $this->getId() ?>JsObjectIKSProductrelater.setPage('<?php echo ($_curPage+1) ?>');return false;"><img src="<?php echo $this->getSkinUrl('images/pager_arrow_right.gif') ?>" alt="Go to Next page" class="arrow"/></a>
+                <?php else: ?>
+                    <img src="<?php echo $this->getSkinUrl('images/pager_arrow_right_off.gif') ?>" alt="Go to Previous page" class="arrow"/>
+                <?php endif; ?>
+
+
+                <?php echo $this->__('of %s pages', $this->getCollection()->getLastPageNumber()) ?>
+                <span class="separator">|</span>
+                <?php echo $this->__('View') ?>
+                <select name="<?php echo $this->getVarNameLimit() ?>" onchange="<?php echo $this->getId() ?>JsObjectIKSProductrelater.loadByElement(this)">
+                    <option value="20"<?php if($this->getCollection()->getPageSize()==20): ?> selected="selected"<?php endif; ?>>20</option>
+                    <option value="30"<?php if($this->getCollection()->getPageSize()==30): ?> selected="selected"<?php endif; ?>>30</option>
+                    <option value="50"<?php if($this->getCollection()->getPageSize()==50): ?> selected="selected"<?php endif; ?>>50</option>
+                    <option value="100"<?php if($this->getCollection()->getPageSize()==100): ?> selected="selected"<?php endif; ?>>100</option>
+                    <option value="200"<?php if($this->getCollection()->getPageSize()==200): ?> selected="selected"<?php endif; ?>>200</option>
+                </select>
+                <?php echo $this->__('per page') ?><span class="separator">|</span>
+                <?php echo $this->__('Total %d records found', $this->getCollection()->getSize()) ?>
+                <span id="<?php echo $this->getHtmlId() ?>-total-count" class="no-display"><?php echo $this->getCollection()->getSize() ?></span>
+
+                <?php if($this->getRssLists()): ?>
+                    <?php foreach ($this->getRssLists() as $_rss): ?>
+                        <span class="separator">|</span><a href="<?php echo $_rss->getUrl() ?>" class="link-feed"><?php echo $_rss->getLabel() ?></a>
+                    <?php endforeach ?>
+                <?php endif; ?>
+            </td>
+        <?php endif ?>
+
+            
+            <td class="filter-actions a-right">
+                <?php echo $this->getMainButtonsHtml() ?>
+            </td>
+            
+            </tr>
+        </table>
+    <?php endif; ?>
+            
+            
+            
+    <?php if($this->getMassactionBlock()->isAvailable()): ?>
+        <?php echo $this->getMassactionBlockHtml() ?>
+    <?php endif ?>
+            
+            <?php /* >
+            
+            <div>
+<?php $x = $this->getCollection();
+
+foreach($x as $i)
+{
+    var_dump($i);
+}
+
+?>
+                
+            </div>
+            
+            */ ?>
+            
+            <script type="text/javascript">
+                this.massUpdateProducts = '<?php echo $this->getUrl('*/*/massUpdateProducts')?>';
+            </script>
+            
+            <form method="post" action="" id="editData">
+    <div class="grid">
+	<div class="hor-scroll">
+	<table cellspacing="0" class="data" id="<?php echo $this->getId() ?>_table">
+            
+            
+            
+	    <?php foreach ($this->getColumns() as $_column): ?>
+            <?php
+                $colData = $_column->getData();
+                if(isset($colData['index']))
+                {
+                    if($colData['index'] == 'related_ids')
+                        $colDataWithRelated = true;
+                    if($colData['index'] == 'cross_sell_ids')
+                        $colDataWithCrossSell = true;
+                    if($colData['index'] == 'up_sell_ids')
+                        $colDataWithUpSell = true;
+                }
+            
+            ?>
+            
+	    <col <?php echo $_column->getHtmlProperty() ?> />
+
+
+	    <?php endforeach; ?>
+
+
+	    <?php if ($this->getHeadersVisibility() || $this->getFilterVisibility()): ?>
+	        <thead>
+	            <?php if ($this->getHeadersVisibility()): ?>
+	                <tr class="headings">
+	                <?php foreach ($this->getColumns() as $_column): ?>
+	                    <th<?php echo $_column->getHeaderHtmlProperty() ?>><span class="nobr"><?php echo $_column->getHeaderHtml() ?></span></th>
+	                <?php endforeach; ?>
+	                </tr>
+	            <?php endif; ?>
+	            <?php if ($this->getFilterVisibility()): ?>
+	                <tr class="filter">
+	                <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+	                    <th<?php echo $_column->getHeaderHtmlProperty() ?>><?php echo $_column->getFilterHtml() ?></th>
+	                <?php endforeach; ?>
+	                </tr>
+	            <?php endif ?>
+	        </thead>
+	    <?php endif; ?>
+	    <?php if ($this->getCountTotals()): ?>
+	        <tfoot>
+	            <tr>
+	            <?php foreach ($this->getColumns() as $_column): ?>
+	                <th class="<?php echo $_column->getCssProperty() ?>"><?php echo $_column->getRowField($_column->getGrid()->getTotals()) ?>&nbsp;</th>
+	            <?php endforeach; ?>
+	            </tr>
+	         </tfoot>
+	    <?php endif; ?>
+	    <tbody>
+	    <?php if (($this->getCollection()->getSize()>0) && (!$this->getIsCollapsed())): ?>
+                
+	    <?php foreach ($this->getCollection() as $_index=>$_item): ?>
+                <?php
+                if($colDataWithRelated)
+                {
+                    $ids = implode(',', $_item->getRelatedProductIds());
+                    $_item->setData('related_ids', $ids);
+                }
+                if($colDataWithCrossSell)
+                {
+                    $ids = implode(',', $_item->getCrossSellProductIds());
+                    $_item->setData('cross_sell_ids', $ids);
+                }
+                if($colDataWithUpSell)
+                {
+                    $ids = implode(',', $_item->getUpSellProductIds());
+                    $_item->setData('up_sell_ids', $ids);
+                }
+                ?>
+                
+	        <tr title="<?php echo $this->getRowUrl($_item) ?>"<?php if ($_class = $this->getRowClass($_item)):?> class="<?php echo $_class; ?>"<?php endif;?> id="product<?php echo $_item->getData('entity_id');?>">
+	        <?php $i=0;foreach ($this->getColumns() as $_column): ?>
+	            <td class="<?php echo $_column->getCssProperty() ?> <?php echo ++$i==$numColumns?'last':'' ?>"><?php echo (($_html = $_column->getRowField($_item)) != '' ? $_html : '&nbsp;') ?></td>
+	        <?php endforeach; ?>
+	        </tr>
+	    <?php endforeach; ?>
+	    <?php elseif ($this->getEmptyText()): ?>
+	    	<tr>
+                    <td class="empty-text <?php echo $this->getEmptyTextClass() ?>" colspan="100"><?php echo $this->getEmptyText() ?></td>
+	    	</tr>
+	    <?php endif; ?>
+	    </tbody>
+	</table>
+	</div>
+    </div>
+        
+    </form>
+<?php if($this->canDisplayContainer()): ?>
+</div>
+
+
+<div>
+    <div style="float: right;">
+        <a href="http://www.iksanika.com/go/magento-ext" border="0" target="_blank"><img src="/media/iksanika/productrelater/iksanika-logo.png" border="0"/></a>
+    </div>
+    <div style="float: right;width: 160px;padding-right: 25px;padding-top: 3px;">
+        <a href="http://www.iksanika.com/go/magento-aapm" border="0" target="_blank">Upgrade to <strong>Advanced Admin Products Manager</strong> today!</a>
+    </div>
+    <div style="float: right;padding-right: 25px;padding-top:10px;">
+        <a href="http://www.iksanika.com/products/skrill-step2.php?MPR-D"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" /></a></a>
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    <?php echo $this->getJsObjectName() ?> = new varienGridIKSProductRelater('<?php echo $this->getId() ?>', '<?php echo $this->getGridUrl() ?>', '<?php echo $this->getVarNamePage() ?>', '<?php echo $this->getVarNameSort() ?>', '<?php echo $this->getVarNameDir() ?>', '<?php echo $this->getVarNameFilter() ?>');
+    <?php echo $this->getJsObjectName() ?>.useAjax = '<?php echo $this->getUseAjax() ?>';
+    <?php if($this->getRowClickCallback()): ?>
+        <?php echo $this->getJsObjectName() ?>.rowClickCallback = <?php echo $this->getRowClickCallback() ?>;
+    <?php endif; ?>
+    <?php if($this->getCheckboxCheckCallback()): ?>
+        <?php echo $this->getJsObjectName() ?>.checkboxCheckCallback = <?php echo $this->getCheckboxCheckCallback() ?>;
+    <?php endif; ?>
+    <?php if($this->getRowInitCallback()): ?>
+        <?php echo $this->getJsObjectName() ?>.initRowCallback = <?php echo $this->getRowInitCallback() ?>;
+        <?php echo $this->getJsObjectName() ?>.rows.each(function(row){<?php echo $this->getRowInitCallback() ?>(<?php echo $this->getJsObjectName() ?>, row)});
+    <?php endif; ?>
+    <?php if($this->getMassactionBlock()->isAvailable()): ?>
+        <?php echo $this->getMassactionBlock()->getJavaScript() ?>
+    <?php endif ?>
+//]]>
+</script>
+<?php endif; ?>
+<?php endif ?>

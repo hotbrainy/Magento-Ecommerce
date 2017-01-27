@@ -1,0 +1,366 @@
+"%s (Default Template from Locale)","%s (Default Template from Locale)"
+"%s of all customers","%s of all customers"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Customer
+                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Birthday
+                            ","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Customer
+                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Birthday
+                            "
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Newsletter
+                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Subscription
+                            ","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Newsletter
+                                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Subscription
+                            "
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Product
+                                Review
+                            ","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Product
+                                Review
+                            "
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Product
+                                Tag
+                            ","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Template for Product
+                                Tag
+                            "
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Balance Changed","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Balance Changed"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Credit Rules","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Credit Rules"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Customer Birthday","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Customer Birthday"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Expiration Notice","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Expiration Notice"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Newsletter Subscription","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Newsletter Subscription"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Product Review","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Product Review"
+"&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Product Tag","&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For Product Tag"
+"--Please Select--","--Please Select--"
+API,API
+"Action Log","Action Log"
+"Action Type","Action Type"
+Actions,Actions
+Active,Active
+"Activity Log","Activity Log"
+"Add New Credit Rule","Add New Credit Rule"
+Added,Added
+Added/Deducted,Added/Deducted
+"Adjust Credit","Adjust Credit"
+"Adjustment Fee","Adjustment Fee"
+"Adjustment Refund","Adjustment Refund"
+Alphabetical,Alphabetical
+Alphanumeric,Alphanumeric
+"A negative value subtracts from the credit balance","A negative value subtracts from the credit balance"
+Append,Append
+"Append Comments","Append Comments"
+Apply,Apply
+"Apply Credit to","Apply Credit to"
+"Apply the rule only if the following conditions are met (leave blank for all products)","Apply the rule only if the following conditions are met (leave blank for all products)"
+"Apply to","Apply to"
+"Are you sure to remove this code?","Are you sure to remove this code?"
+"As Discount","As Discount"
+"As Payment Method","As Payment Method"
+"Assign to Customer Groups","Assign to Customer Groups"
+Available,Available
+"Available credit amount: %s","Available credit amount: %s"
+"Back to Shipping Information","Back to Shipping Information"
+"Billing Address","Billing Address"
+"Billing Information","Billing Information"
+Birthday,Birthday
+"Buy Internal Credits","Buy Internal Credits"
+"By Customer #%s","By Customer #%s"
+"By Recharge Code %s","By Recharge Code %s"
+CSV,CSV
+Canceled,Canceled
+"Card Verification Number Visual Reference","Card Verification Number Visual Reference"
+"Change date to this customer","Change date to this customer"
+"Changing value...","Changing value..."
+Close,Close
+"Code Balance","Code Balance"
+"Code Format","Code Format"
+"Code Id","Code Id"
+Comment,Comment
+Conditions,Conditions
+"Conditions combination","Conditions combination"
+"Continue to Review Your Order","Continue to Review Your Order"
+"Create Product","Create Product"
+Created,Created
+"Created On","Created On"
+Credit,Credit
+"Credit Amount","Credit Amount"
+"Credit Balance","Credit Balance"
+"Credit Code %s was created.","Credit Code %s was created."
+"Credit Code %s was removed.","Credit Code %s was removed."
+"Credit Product","Credit Product"
+"Credit Rule","Credit Rule"
+"Credit Rule &quot;%s&quot; In Order #%s","Credit Rule &quot;%s&quot; In Order #%s"
+"Credit Rule(s) In Order #%s","Credit Rule(s) In Order #%s"
+"Credit Rule(s) Order #%s; \nCredit Memo #%s","Credit Rule(s) Order #%s; \nCredit Memo #%s"
+"Credit Rules","Credit Rules"
+"Credit Value","Credit Value"
+"Credit Value:","Credit Value:"
+"Credit activity is empty.","Credit activity is empty."
+"Creditmemo not set.","Creditmemo not set."
+"Credits was changed. %s","Credits was changed. %s"
+"Credits was expired. %s","Credits was expired. %s"
+"Credits was imported. %s","Credits was imported. %s"
+"Credit value is required value.","Credit value is required value."
+"Current Balance","Current Balance"
+"Customer's order complete","Customer's order complete"
+"Customer Actions","Customer Actions"
+"Customer Attributes","Customer Attributes"
+"Customer Birthday","Customer Birthday"
+"Customer Email","Customer Email"
+"Customer Groups","Customer Groups"
+"Customer ID is not set","Customer ID is not set"
+"Customer Id","Customer Id"
+"Customer Internal Credit","Customer Internal Credit"
+"Customer Name","Customer Name"
+"Customer Place Order","Customer Place Order"
+"Customer Registered in Site","Customer Registered in Site"
+"Customer completed rule &quot;%s&quot; action.","Customer completed rule &quot;%s&quot; action."
+"Customer credit hasn\'t assigned.","Customer credit hasn\'t assigned."
+"Customer is new buyer: %s","Customer is new buyer: %s"
+"Customer registered: %s","Customer registered: %s"
+"Customers with credits","Customers with credits"
+"Decrease Loyalty Booster","Decrease Loyalty Booster"
+Decreased,Decreased
+"Default Qty of Credit Units","Default Qty of Credit Units"
+"Default Template from Locale","Default Template from Locale"
+"Delete Rule","Delete Rule"
+"Description: %s","Description: %s"
+Discount,Discount
+Discount%s,Discount%s
+"Discount ","Discount "
+"Discount :","Discount :"
+"Discount Amount","Discount Amount"
+"Display ""My Credit"" Link in Top Menu","Display ""My Credit"" Link in Top Menu"
+"Display Credit Block at Cart Page","Display Credit Block at Cart Page"
+"Display the balance changing for the user due to the order editing","Display the balance changing for the user due to the order editing"
+"Don't use credit.","Don't use credit."
+Done,Done
+Download,Download
+"Edit Order","Edit Order"
+"Edit Order by Extended Orders","Edit Order by Extended Orders"
+"Edit Product","Edit Product"
+"Edit Recharge Code: %s","Edit Recharge Code: %s"
+"Edit Rule '%s'","Edit Rule '%s'"
+"Email Order Confirmation","Email Order Confirmation"
+"Email Settings","Email Settings"
+"Email Template","Email Template"
+"Enable Credit Columns in ""Order View"" Tabs","Enable Credit Columns in ""Order View"" Tabs"
+"Enable Credit Memo Return in Credits","Enable Credit Memo Return in Credits"
+"Enable Credits Sharing","Enable Credits Sharing"
+"Enable Customer Balance Column in Customers Grid","Enable Customer Balance Column in Customers Grid"
+"Enable Expiration Date","Enable Expiration Date"
+"Enable Loyalty Booster","Enable Loyalty Booster"
+"Enable Partial Credit Payment","Enable Partial Credit Payment"
+"End Date should be greater than Start Date","End Date should be greater than Start Date"
+"Enter a recharge code to refill your balance. You can use this credit at any time during the checkout process.","Enter a recharge code to refill your balance. You can use this credit at any time during the checkout process."
+"Entered credit amount is not available","Entered credit amount is not available"
+"Error occur while refilling the credit.","Error occur while refilling the credit."
+"Excel XML","Excel XML"
+"Exchange rate is %s","Exchange rate is %s"
+"Excl. Tax","Excl. Tax"
+"Expiration Date","Expiration Date"
+"Expiration Date Notice","Expiration Date Notice"
+"Expiration Date Settings","Expiration Date Settings"
+"Expire at: %s","Expire at: %s"
+Expired,Expired
+"Expire in %s day(s)","Expire in %s day(s)"
+"Export Codes","Export Codes"
+Fees,Fees
+"File can't uploaded","File can't uploaded"
+"File is empty","File is empty"
+From,From
+From:,From:
+"General Settings","General Settings"
+Generate,Generate
+"Generate My Codes","Generate My Codes"
+"Generate New Recharge Codes","Generate New Recharge Codes"
+"Generate Recharge Codes","Generate Recharge Codes"
+"Generate code","Generate code"
+Get,Get
+"Get Credit","Get Credit"
+"Get Loyalty Booster","Get Loyalty Booster"
+"Gift Certificate","Gift Certificate"
+"Gift Message for this Order","Gift Message for this Order"
+"Give Credit","Give Credit"
+"Give Credits","Give Credits"
+"Grand Total","Grand Total"
+"Grand Total to be charged","Grand Total to be charged"
+Import/Export,Import/Export
+"Import Codes","Import Codes"
+"Import Data","Import Data"
+"Import Settings","Import Settings"
+"Import customer %1$s credits, processed %3$s of %2$s records (%4$s%%)...","Import customer %1$s credits, processed %3$s of %2$s records (%4$s%%)..."
+Imported,Imported
+"Import recharge code %1$s, processed %3$s of %2$s records (%4$s%%)...","Import recharge code %1$s, processed %3$s of %2$s records (%4$s%%)..."
+"In Order #%s","In Order #%s"
+Inactive,Inactive
+"Increase Loyalty Booster","Increase Loyalty Booster"
+"Internal Balance Changed","Internal Balance Changed"
+"Internal Credit","Internal Credit"
+"Invalid discount amount.","Invalid discount amount."
+"Invoice #","Invoice #"
+"Invoice #%s","Invoice #%s"
+"Invoice Order Paid by Credit","Invoice Order Paid by Credit"
+Invoices,Invoices
+Item,Item
+"Items Invoiced","Items Invoiced"
+"Items Ordered","Items Ordered"
+"Items Refunded","Items Refunded"
+List,List
+"Log Id","Log Id"
+"Loyalty Booster","Loyalty Booster"
+"Loyalty Booster Api","Loyalty Booster Api"
+"Loyalty Booster Expiration In","Loyalty Booster Expiration In"
+"Loyalty Booster Import","Loyalty Booster Import"
+"Loyalty Booster List","Loyalty Booster List"
+"Loyalty Booster Report","Loyalty Booster Report"
+"Loyalty Booster Reports","Loyalty Booster Reports"
+"Loyalty Booster Rules","Loyalty Booster Rules"
+"MageWorx &gt; Loyalty Booster","MageWorx &gt; Loyalty Booster"
+"Magento System","Magento System"
+Manage,Manage
+"Manage Credit Rules","Manage Credit Rules"
+"Manage Recharge Codes","Manage Recharge Codes"
+"Manage Rules","Manage Rules"
+"Max code number is %s. Value was changed to maximum.","Max code number is %s. Value was changed to maximum."
+"Maximum amount available to refund is %s","Maximum amount available to refund is %s"
+Message:,Message:
+"Minimal Order Amount","Minimal Order Amount"
+Modified,Modified
+"Modified By","Modified By"
+"Modified On","Modified On"
+"Modified by Credit Product","Modified by Credit Product"
+"My Credit","My Credit"
+"My Credit Activity","My Credit Activity"
+"My Credit Codes","My Credit Codes"
+"My Sharring List","My Sharring List"
+"Name: %s","Name: %s"
+"New Rule","New Rule"
+"Newsletter Subscription","Newsletter Subscription"
+"No Payment Methods","No Payment Methods"
+"No actions yet.","No actions yet."
+"Note: existing conditions will be removed after changing the rule’s type.","Note: existing conditions will be removed after changing the rule’s type."
+"Not enough Credit Amount to complete this Order.","Not enough Credit Amount to complete this Order."
+"Number Of Orders","Number Of Orders"
+"Number of codes was changed to %s.","Number of codes was changed to %s."
+Numeric,Numeric
+One-time,One-time
+"Order #%s","Order #%s"
+"Order #%s; \nCredit Memo #%s","Order #%s; \nCredit Memo #%s"
+"Order #%s was edited. Credits was changed. %s","Order #%s was edited. Credits was changed. %s"
+"Order Date: %s","Order Date: %s"
+"Order Subtotal","Order Subtotal"
+"Order Total","Order Total"
+Ordered,Ordered
+"Order not set.","Order not set."
+"Payment Method","Payment Method"
+"Payment with Credit","Payment with Credit"
+Period,Period
+"Place Order Profit","Place Order Profit"
+"Please decrease code value.","Please decrease code value."
+"Please increase code value.","Please increase code value."
+"Print All Invoices","Print All Invoices"
+"Print All Refunds","Print All Refunds"
+"Print Invoice","Print Invoice"
+"Print Refund","Print Refund"
+"Product Review","Product Review"
+"Product Tag","Product Tag"
+"Purchased amount","Purchased amount"
+"Purchase of Credit Units","Purchase of Credit Units"
+"Purchase of Credit Units in Order #%s","Purchase of Credit Units in Order #%s"
+"Qty Dependent","Qty Dependent"
+"Qty Invoiced","Qty Invoiced"
+"Qty of Credit Units:","Qty of Credit Units:"
+"Recent Actions","Recent Actions"
+Recharge,Recharge
+"Recharge Code","Recharge Code"
+"Recharge Code Import","Recharge Code Import"
+"Recharge Code is invalid.","Recharge Code is invalid."
+"Recharge Codes","Recharge Codes"
+"Recharge Codes Settings","Recharge Codes Settings"
+"Recharge code hasn\'t assigned.","Recharge code hasn\'t assigned."
+"Refund #","Refund #"
+"Refund #%s","Refund #%s"
+Refunded,Refunded
+"Refunded amount of %s offline.","Refunded amount of %s offline."
+"Refunded amount of %s online.","Refunded amount of %s online."
+"Refunded to Customer\'s Credit","Refunded to Customer\'s Credit"
+Refunds,Refunds
+"Registration date","Registration date"
+Replace,Replace
+Reports,Reports
+"Returned credit amount: %s.","Returned credit amount: %s."
+"Reward for Birthday","Reward for Birthday"
+"Reward for Newsletter Subscription","Reward for Newsletter Subscription"
+"Reward for Product Review &quot;%s&quot;","Reward for Product Review &quot;%s&quot;"
+"Reward for Product Tag &quot;%s&quot;","Reward for Product Tag &quot;%s&quot;"
+"Row Total","Row Total"
+"Rule Information","Rule Information"
+"Rule Name","Rule Name"
+"Rule Type","Rule Type"
+"Save Rule","Save Rule"
+"Select File to Import","Select File to Import"
+"Send Email Templates&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;▾","Send Email Templates&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;▾"
+Set,Set
+"Set Loyalty Booster","Set Loyalty Booster"
+Shipped,Shipped
+Shipping,Shipping
+"Shipping &amp; Handling","Shipping &amp; Handling"
+"Shipping Address","Shipping Address"
+"Shipping Method","Shipping Method"
+Sku,Sku
+"Start at: %s","Start at: %s"
+"Starting import...","Starting import..."
+"Static Block for ""My Credit"" Section","Static Block for ""My Credit"" Section"
+"Submit Code","Submit Code"
+"Submit Order","Submit Order"
+Subtotal,Subtotal
+"Sync Balance","Sync Balance"
+"Sync Credits","Sync Credits"
+"Sync Store Credits Balances","Sync Store Credits Balances"
+"Sync Store Credits Balances. %s","Sync Store Credits Balances. %s"
+"The code %s was successfully removed.","The code %s was successfully removed."
+"There was a problem with generate codes: %s","There was a problem with generate codes: %s"
+"This product can be paid using internal credits.","This product can be paid using internal credits."
+To,To
+To:,To:
+Total,Total
+"Total Due","Total Due"
+"Total Paid","Total Paid"
+"Total Refunded","Total Refunded"
+"Total credits in system","Total credits in system"
+"Total credits used","Total credits used"
+"Total size of uploadable files must not exceed %s","Total size of uploadable files must not exceed %s"
+"Unknown log action type.","Unknown log action type."
+Update,Update
+"Update Current Expiration Dates if Default Expiration Period is changed","Update Current Expiration Dates if Default Expiration Period is changed"
+Updated,Updated
+"Update prices using the following information","Update prices using the following information"
+"Use Config","Use Config"
+"Use Credit","Use Credit"
+"Use Credits","Use Credits"
+Used,Used
+"Used On","Used On"
+"Using %s credits (%s) of %s credits (%s)","Using %s credits (%s) of %s credits (%s)"
+"Using all your %s credits (%s)","Using all your %s credits (%s)"
+View,View
+"View All","View All"
+"Website ID is not set","Website ID is not set"
+"Wrong rule specified.","Wrong rule specified."
+"You are using %s your credits to pay this order.","You are using %s your credits to pay this order."
+"You can't create code with %s value. Your balance is %s","You can't create code with %s value. Your balance is %s"
+"You cannot save past periods as the expiration date.","You cannot save past periods as the expiration date."
+"You didn\'t create any codes yet.","You didn\'t create any codes yet."
+"Your credit amount is not enough.","Your credit amount is not enough."
+"Your current credit balance:","Your current credit balance:"
+contains,contains
+credits,credits
+day(s),day(s)
+"does not contain","does not contain"
+"equals or greater than","equals or greater than"
+"equals or less than","equals or less than"
+"example file","example file"
+"greater than","greater than"
+is,is
+"is not","is not"
+"is not one of","is not one of"
+"is one of","is one of"
+"is or earlier than","is or earlier than"
+"is or later than","is or later than"
+"less than","less than"

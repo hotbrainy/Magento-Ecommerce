@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+      <ma2 translate="label" module="ma2all">
+          <label>MagenMarket Extensions</label>
+          <sort_order>168</sort_order>
+      </ma2>
+  </tabs>
+</config>

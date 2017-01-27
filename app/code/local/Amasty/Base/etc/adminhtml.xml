@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Base
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ambase translate="title">
+                                        <title>Amasty - Extensions Information</title>
+                                    </ambase>
+                                    <amstore translate="title">
+                                        <title>Amasty - Extensions Store</title>
+                                    </amstore>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <events>
+        <controller_action_predispatch>
+            <observers>
+                <ambase_upds>
+                    <type>singleton</type>
+                    <class>ambase/feed</class>
+                    <method>check</method>
+                </ambase_upds>
+            </observers>
+        </controller_action_predispatch>
+    </events>
+    <translate>
+        <modules>
+            <Amasty_Base>
+                <files>
+                    <default>Amasty_Base.csv</default>
+                </files>
+            </Amasty_Base>
+        </modules>
+    </translate>
+</config>

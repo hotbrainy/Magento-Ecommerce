@@ -1,0 +1,58 @@
+<?php
+	$_product = Mage::registry('current_product');
+	$_authors = explode(',',$_product->getPublishAuthor());
+	$authorCount = count($_authors);
+?>
+<?php for($a = 0; $a < $authorCount; $a++): ?>
+    <?php 
+        $_author = Mage::getModel('publish/author')->load($_authors[$a]); 
+        
+        $adwards = array();
+        if($_author->getAwardWinning()) $adwards[] = 'Award Winning';
+        if($_author->getBestSellerInternational()) $adwards[] = 'International Best Selling';
+        if($_author->getBestSellerNyTimes()) $adwards[] = 'NY Times Best Selling';
+        if($_author->getBestSellerUsaToday()) $adwards[] = 'USA Today Best Selling';
+    ?>
+    <div class="testemonial_info col-sm-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="testimonial_thumb">
+                        <img src="<?php echo Mage::helper('publish/image')->init($_author, 'image')->resize(248,248) ?>" alt="<?php echo $_author->getName(); ?>">
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="testimonial_details author-container">
+                        <h4 class="author_title">About the author</h4>
+                        <div class="testimonial_aswards tesimonial_social">
+                            <?php echo implode(', ', $adwards); ?>
+                            <?php if (count($adwards) > 0){ echo(" Author"); } ?>
+                        </div>
+                        <div class="tesimonial_social" style="margin-top: 0% !important;">
+                            <h3><?php echo $this->stripTags($_author->getName(), null, true) ?></h3>
+                            <?php echo $this->getSocialHtml($_author); ?>                      
+                        </div>
+                        <?php if($_author->getBiography()) { ?>
+                            <p>
+                                <?php echo $this->stripTags($_author->getBiography(),null,true); ?>
+                            </p>
+                        <?php } ?>
+                        <a href="javascript:void(0);" class="btn follow_btn follow_author" id='follow-author-dialog' data-toggle="popover<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" data-placement="bottom">FOLLOW THIS AUTHOR!</a>
+
+                        <div id="FollowContentList<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" class="pop_dialog follow_author_popup" style="display:none;">
+                            <a href="#" data-toggle="popover<?=$_author->getId();?>" data-author="<?php echo $_author->getId(); ?>" data-placement="bottom" class="follow-author-close">
+                                <span class="follow-author-close-bttn">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <h3>FOLLOW THIS AUTHOR!</h3>
+                            <p>Don't miss the next new release, upcoming book signings, and special offers for this author!</p>
+                            <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setData("author_id",$_author->getId())->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+                            <a target="_Blank" href="/privacy-policy/" class="author-modal-subtext-container"><span class="author-modal-subtext">Your email is safe with us! No spam guarantee. Read our privacy policy</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endfor; ?>

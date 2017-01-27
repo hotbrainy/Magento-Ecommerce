@@ -1,0 +1,31 @@
+<?php $messages = $this->getMessages() ?>
+<?php if(count($messages)): ?>
+	<?php foreach($messages as $message): ?>
+		<?php if((int)$message->getIsCustomer() == 1): ?>
+			<br/>
+			<?php if((int)$message->getIsSent() == 1): ?>
+				<span class="grid-severity-notice" style="width: 150px;">
+					<span><?php echo $this->__('Sent to').' '.Magestore_Magenotification_Model_Keygen::SERVER_NAME?></span>
+				</span>
+			<?php else: ?>
+				<table><tr><td width="170">
+					<span class="grid-severity-critical" style="width: 150px;"><span><?php echo $this->__('Not Sent')?></span></span>
+				</td><td>
+					<a href='<?php echo $this->getUrl('magenotification/adminhtml_feedback/resendmessage',array('id'=>$message->getId(),'feedback_id'=>$this->getFeedback()->getId(),'_secure'=>true)) ?>' >
+						<?php echo $this->__('Resend')?>
+					</a>
+				</td></tr></table>			
+			<?php endif; ?>
+		<?php endif; ?>
+		<?php echo $this->getMessageTitle($message) ?>
+		<br/>
+		<pre><?php echo $message->getMessage() ?></pre>
+		<br/>
+		<?php if($attachedfiles = $message->getAttachedFile()): ?>
+			<b><?php echo $this->__('Attached Files')?></b>
+			<?php echo $attachedfiles ?>
+		<?php endif; ?>
+		<br/>
+		<hr style="border: 1px dashed rgb(204, 204, 204);"/>
+	<?php endforeach; ?>
+<?php endif; ?>

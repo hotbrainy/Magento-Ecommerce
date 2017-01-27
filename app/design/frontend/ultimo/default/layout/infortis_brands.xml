@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<default>
+	
+		<reference name="head">
+			<!-- CSS -->
+			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/itemslider.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/generic-nav.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/infortis/brands/brands.css</name></action>
+			
+			<!-- js -->
+			
+			<action method="addJs"><script>infortis/jquery/jquery.min.js</script></action>
+			<action method="addJs"><script>infortis/jquery/jquery-migrate-1.4.1.js</script></action>
+			<action method="addJs"><script>infortis/jquery/jquery-noconflict.js</script></action>
+			<action method="addJs"><script>infortis/jquery/plugins/jquery.owlcarousel.min.js</script></action>
+			
+
+			<action method="addJs"><script>infortis/jquery/plugins/jquery.easing.min.js</script></action>
+						<!--
+			<action method="addJs"><script>infortis/jquery/plugins/jquery.flexslider.min.js</script></action>
+			-->
+		</reference>
+		
+	</default>
+	
+	<catalog_product_view>
+	
+		<reference name="product.info">
+			<block type="brands/logo" name="brands_brands" as="product_secondary_top_placeholder" template="infortis/brands/brand.phtml" />
+		</reference>
+		
+	</catalog_product_view>
+
+</layout> 

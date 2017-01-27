@@ -1,0 +1,19 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<div class="amshopby-filters-bottom-cms">
+    <?php
+    $blocksObject = Mage::registry('amshopby_bottom_cms_object');
+    if (is_object($blocksObject)) {
+        $blocks = $blocksObject->getData('blocks');
+        foreach ($blocks as $block) {
+            /** @var Mage_Cms_Block_Block $block */
+            echo $block->toHtml();
+        }
+    }
+    ?>
+</div>

@@ -1,0 +1,52 @@
+<?php // Form list option for Amazon email delivery to device ?>
+<li class="wide">
+	<div class="image"><img src="<?php echo $this->getSkinUrl('images/ebookdelivery/amazon-kindle-logo.svg'); ?>" alt="<?php echo $this->__('Amazon Kindle eMail Delivery');?>" /></div>
+	<div class="col2-set">
+		<div class="col-1 description">
+			<p><strong><?php echo $this->__('To get your "Send to Kindle" email address'); ?></strong> (<a href="http://www.amazon.com/gp/help/customer/display.html?nodeId=201974220" rel="no-follow" target="_blank">Amazon Help</a>):</p>
+			<ol type="1">
+				<li>
+					<span class="a-list-item">Ensure that <?php echo Mage::getStoreConfig('trans_email/ident_custom1/name');?> has been added to your Approved Personal Document Email List. See <a href="http://www.amazon.com/gp/help/customer/display.html?nodeId=201974240" target="_blank" rel="no-follow">Add an Email Address to Receive Documents</a>.</span>
+				</li>
+				<li>
+					<span class="a-list-item">Go to 
+						<span><a href="https://www.amazon.com/mycd" target="_blank" rel="no-follow">Manage Your Content and Devices</a></span>.
+					</span>
+				</li>
+				<li>
+					<span class="a-list-item">From 
+						<strong>Settings</strong>, scroll down to <strong>Personal Document Settings</strong>.
+					</span>
+				</li>
+				<li>
+					<span class="a-list-item">Under 
+						<strong>Send-to-Kindle Email Settings</strong>, your Send to Kindle email address will be listed.
+					</span>
+				</li>	
+			</ol>
+		</div>
+		<div class="col-2 form">
+			<div id="amazonemailContainer"><?php
+				$devices = $this->getCustomerDevices('amazonemail');
+				$index = 0;
+				if($devices):
+				?>
+				<ul class="form-list">
+					<li><strong><?php echo $this->__('Your Saved Devices');?></strong></li>
+					<?php foreach($devices as $device): ?>
+					<li class="control">
+						<input type="checkbox" value="<?php echo $device->getId();?>" name="delivery[<?php echo $index; ?>][<?php echo $device->getDeviceType();?>][id]" />
+						<label><?php echo $device->getDeviceNickname(); ?></label>
+					</li>
+					<?php $index++; endforeach; ?>
+				</ul>
+				<?php endif;
+			?></div>
+			<button id="addAmazonEmail" class="button" type="button"><span><span><strong><?php echo $this->__('Add Kindle Device'); ?></strong></span></span></button>
+		</div>
+	</div>
+	<p><strong>Note: </strong>If your device or Kindle reading app is not compatible with Kindle Personal Documents Service, a Send to Kindle email address will not be listed for that device.</p>
+	<script type="text/javascript">
+		<?php echo $this->getJs($index); ?>
+	</script>
+</li>

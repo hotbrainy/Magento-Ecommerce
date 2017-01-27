@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <entangled_restcatalog_category_view>
+       <remove name="root"/>
+       <block type="amshopby/catalog_layer_view" name="amshopby.navleft" before="-" template="catalog/layer/view.phtml"/>
+        <block type="amshopby/catalog_layer_view_top" name="amshopby.navtop" template="amasty/amshopby/view_top.phtml"/>
+        <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
+            <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                <block type="page/html_pager" name="product_list_toolbar_pager"/>
+            </block>
+            <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+        </block>
+        <block type="entangled_restcatalog/shopby_top" name="amshopby.top" before="category.products" template="amasty/amshopby/top.phtml"/>
+    </entangled_restcatalog_category_view>
+
+    <catalog_category_view>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>lib/animate/animate.css</stylesheet>
+            </action>
+        </reference>
+    </catalog_category_view>
+</layout>

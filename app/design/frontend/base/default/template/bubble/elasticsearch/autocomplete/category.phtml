@@ -1,0 +1,23 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ */
+/**
+ * @var $this Bubble_Elasticsearch_Block_Catalogsearch_Autocomplete_Category
+ */
+$_category = $this->getEntity();
+?>
+<?php if ($_category): ?>
+<li>
+    <a href="<?php echo $this->escapeUrl($this->getCategoryUrl($_category)) ?>"
+       title="<?php echo $this->escapeHtml($_category->getName()) ?>">
+        <div class="info">
+            <span class="name"><?php echo $this->escapeHtml($this->getCategoryPathName($_category)) ?></span>
+        </div>
+        <div class="clearer"><!-- --></div>
+    </a>
+</li>
+<?php endif ?>

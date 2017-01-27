@@ -1,0 +1,7 @@
+@media only screen and (max-width: 319px) {
+	.nav-mobile .nav-block { display: none !important; }
+	.nav-mobile .nav-item > div.nav-panel--dropdown { -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; background-color: transparent !important; }
+	.nav-mobile .nav-item > div > div { padding: 0 !important; }
+	.nav-mobile .nav-item > div > div > .nav-block--center { margin: 0 !important; width: 100% !important; }
+	.nav-mobile .nav-item.nav-item--only-blocks { display: none; }
+}

@@ -1,0 +1,30 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ */
+/**
+ * @var $this Bubble_Elasticsearch_Block_Catalogsearch_Autocomplete_Product
+ */
+$_product = $this->getEntity();
+$_imgSize = $this->getImageSize();
+?>
+<?php if ($_product): ?>
+<li>
+    <a href="<?php echo $this->escapeUrl($this->getProductUrl($_product)) ?>"
+       title="<?php echo $this->escapeHtml($_product->getName()) ?>">
+        <?php if ($_src = $this->getImageSrc()): ?>
+            <div class="image" style="min-height: <?php echo $_imgSize ?>px;">
+                <img src="<?php echo $_src; ?>" width="<?php echo $_imgSize ?>" alt="<?php echo $this->escapeHtml($_product->getName()) ?>" />
+            </div>
+        <?php endif ?>
+        <div class="info">
+            <span class="name"><?php echo $this->escapeHtml($_product->getName()) ?></span>
+            <span class="price"><?php echo $this->getPriceHtml($_product) ?></span>
+        </div>
+        <div class="clearer"><!-- --></div>
+    </a>
+</li>
+<?php endif ?>

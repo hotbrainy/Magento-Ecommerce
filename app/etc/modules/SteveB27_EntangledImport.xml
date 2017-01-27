@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<SteveB27_EntangledImport>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+                <Mage_Catalog />
+                <Mage_Dataflow />
+            </depends>
+		</SteveB27_EntangledImport>
+	</modules>
+</config>

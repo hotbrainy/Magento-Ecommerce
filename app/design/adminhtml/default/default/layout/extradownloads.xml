@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                    <name>extradownloads</name>
+                    <block>extradownloads/adminhtml_catalog_product_edit_tab_extradownloads</block>
+            </action>
+            <action method="bindShadowTabs">
+                <first>extradownloads</first>
+                <second>customer_options</second>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+</layout>

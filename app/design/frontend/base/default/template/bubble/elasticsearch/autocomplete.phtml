@@ -1,0 +1,31 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_Elasticsearch
+ * @version     4.1.2
+ * @copyright   Copyright (c) 2016 BubbleShop (https://www.bubbleshop.net)
+ */
+/**
+ * @var $this Bubble_Elasticsearch_Block_Catalogsearch_Autocomplete
+ */
+?>
+<ul class="bubble-elasticsearch">
+    <li style="display:none;"></li>
+    <?php if ($this->isNoResult()): ?>
+        <li><a href="#"><?php echo $this->getLabel('No Result') ?></a></li>
+    <?php else: ?>
+        <?php foreach ($this->getAllResults() as $_entity => $_results): ?>
+            <?php if (count($_results)): ?>
+                <li class="title"><?php echo $this->getEntityTitle($_entity) ?></li>
+                <?php foreach ($_results as $_result): /** @var Varien_Object $_entity */ ?>
+                    <?php echo $this->getEntityHtml($_entity, $_result) ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <li class="all-results">
+            <a href="<?php echo $this->escapeUrl($this->getResultUrl()) ?>">
+                <?php echo $this->getAllResultsLabel() ?>
+            </a>
+        </li>
+    <?php endif; ?>
+</ul>

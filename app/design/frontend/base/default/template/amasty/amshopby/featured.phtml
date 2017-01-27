@@ -1,0 +1,18 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+?>
+<div class="amshopby-featured-wrapper">
+<?php foreach ($this->getItems() as $item):?>
+    <a href="<?php echo $item->getUrl()?>">
+    <?php if ($item->getImgBig()) : ?>
+        <img class="amshopby-featured" title="<?php echo $this->htmlEscape($item->getCurrentTitle())?>" alt="<?php echo $this->htmlEscape($item->getCurrentTitle())?>" src="<?php echo $item->getImgBig()?>" />
+    <?php else: ?>
+    <?php echo $this->htmlEscape($item->getCurrentTitle())?>
+        <?php endif ?>
+    </a>
+<?php endforeach ?>
+</div>

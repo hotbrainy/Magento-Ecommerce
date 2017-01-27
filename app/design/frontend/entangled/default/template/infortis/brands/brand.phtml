@@ -1,0 +1,55 @@
+<?php
+/**
+ *
+ */
+?>
+<?php $helper = Mage::helper('brands'); ?>
+<?php if ($helper->getCfg('product_view/enable')): ?>
+	<?php $_product = Mage::registry('current_product'); ?>
+	<?php $brandAttrId = $this->getBrandAttributeId(); ?>
+	<?php if ($_product->getData($brandAttrId)): //If brand attribute exists ?>
+
+		<?php
+		$brand = $this->getCurrentBrand(); //Attr. value
+		$brandAttrLabel = $this->getBrandAttributeTitle(); //Attr. name
+		$brandPageUrl = $this->getBrandPageUrl($brand);
+		$brandImageUrl = $this->getBrandImageUrl($brand);
+		$brandDetailsHtml = '';
+
+		if (!$helper->isShowImage())
+		{
+			$brandDetailsHtml = '<div class="brand-name attribute"><span class="label">'. $brandAttrLabel .': </span>'. $brand .'</div>';
+		}
+		else
+		{
+			if ($brandImageUrl)
+			{
+				//If brand is a link (URL exists), image's "title" tag has to be empty (otherwise it will override link's "title" tag)
+				$brandPageUrl ? $imgTitle='' : $imgTitle="title=\"{$brandAttrLabel}: {$brand}\"";
+
+				//Build image tag
+				$brandDetailsHtml = "<img src=\"{$brandImageUrl}\" alt=\"{$brand}\" {$imgTitle}/>";
+			}
+			else
+			{
+				if ($helper->isShowImageFallbackToText())
+				{
+					$brandDetailsHtml = '<div class="brand-name attribute"><span class="label">'. $brandAttrLabel .': </span>'. $brand .'</div>';
+				}
+			}
+		}
+		?>
+		<?php if ($brandDetailsHtml): ?>
+
+			<div class="box-brand">
+				<?php if ($brandPageUrl): ?>
+					<a class="fade-on-hover" href="<?php echo $brandPageUrl; ?>" title="<?php echo $this->__('Click to see more products from %s', $brand); ?>"><?php echo $brandDetailsHtml; ?></a>
+				<?php else: ?>
+					<?php echo $brandDetailsHtml; ?>
+				<?php endif; ?>
+				<meta itemprop="brand" content="<?php echo $brand; ?>" />
+			</div>
+		
+		<?php endif; ?>
+	<?php endif; //end: if brand attribute exists ?>
+<?php endif; ?>

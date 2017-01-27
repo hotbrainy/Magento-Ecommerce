@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Base
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Base>
+            <version>2.1.7</version>
+        </Amasty_Base>
+    </modules>
+
+    <global>
+        <blocks>
+            <ambase>
+                <class>Amasty_Base_Block</class>
+            </ambase>
+        </blocks>
+        <resources>
+            <ambase_setup>
+                <setup>
+                    <module>Amasty_Base</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ambase_setup>
+            <ambase_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ambase_write>
+            <ambase_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ambase_read>
+        </resources>
+        <models>
+            <ambase>
+                <class>Amasty_Base_Model</class>
+                <resourceModel>ambase_resource</resourceModel>
+            </ambase>
+            <ambase_resource>
+                <class>Amasty_Base_Model_Resource</class>
+            </ambase_resource>
+        </models>
+        <helpers>
+            <ambase>
+                <class>Amasty_Base_Helper</class>
+            </ambase>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Amasty_Base after="Mage_Adminhtml">Amasty_Base_Adminhtml</Amasty_Base>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <ambase module="Amasty_Base">
+                    <file>amasty/ambase/ambase.xml</file>
+                </ambase>
+            </updates>
+        </layout>
+
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ambase translate="title">
+                                            <title>Amasty - Extensions Information</title>
+                                        </ambase>
+                                        <amstore translate="title">
+                                            <title>Amasty - Extensions Store</title>
+                                        </amstore>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <ambase_upds>
+                        <type>singleton</type>
+                        <class>ambase/feed</class>
+                        <method>check</method>
+                    </ambase_upds>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <translate>
+            <modules>
+                <Amasty_Base>
+                    <files>
+                        <default>Amasty_Base.csv</default>
+                    </files>
+                </Amasty_Base>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <default>
+        <ambase>
+            <feed>
+                <check_frequency>86400</check_frequency>
+                <update>1</update>
+                <promo>1</promo>
+            </feed>
+        </ambase>
+    </default>
+</config>

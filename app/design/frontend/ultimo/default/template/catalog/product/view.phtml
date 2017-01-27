@@ -1,0 +1,548 @@
+<?php
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php
+    $_helper = $this->helper('utility');
+    $_product = $this->getProduct();
+    $theme = $this->helper('ultimo');
+    $helperThis = $this->helper('ultimo/template_catalog_product_view');
+    $helperSnippets = $this->helper('ultimo/rsnippets');
+
+    //CSS classes based on product type
+    $productTypeId = $_product->getTypeId();
+    $productTypeClasses = '';
+    if ($productTypeId === 'grouped') {
+        $productTypeClasses .= ' is-type-grouped';
+    }
+
+    //
+    $shortDescription = $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description');
+    $description = $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description');
+    $rating = $this->helper('goodreads')->getRating($_product);
+
+    //Rich snippets
+    $useRichSnippets = ($helperSnippets->isEnabledOnProductPage() && $productTypeId !== 'grouped');
+    $priceProperties = '';
+    if ($useRichSnippets)
+    {
+        $priceProperties = $helperSnippets->getPriceProperties($_product); //Has to be called before getOfferItemscope
+    }
+
+    //Get grid classes for product page sections
+    $grid = $helperThis->getGridClasses();
+
+    //Product collaterals
+    //--------------------------------------------------------------
+    $section = array();
+    $relatedProductsHtml = '';
+    $upsellProductsHtml = '';
+    
+    //Related products.
+    //If related products not assigned to collateral data container.
+    if (!$theme->getCfg('product_page/collateral_related'))
+    {
+        $replaceRelated = $theme->getCfg('product_page/replace_related');
+        if ($replaceRelated == 1) //don't replace with static block
+        {
+            if ($tmpHtml = trim($this->getChildHtml('related_products_wrapper')))
+                $relatedProductsHtml = $tmpHtml;
+            //$relatedProductsHtml = trim($this->getChildHtml('related_products_wrapper'));
+        }
+        elseif ($replaceRelated == 2) //if related is empty, replace with static block
+        {
+            if ($tmpHtml = trim($this->getChildHtml('related_products_wrapper')))
+                $relatedProductsHtml = $tmpHtml;
+            //else //related empty
+                //if ($tmpHtml = $this->getChildHtml('block_product_replace_related'))
+                    //$relatedProductsHtml = '<div class="block_product_replace_related">'. $tmpHtml .'</div>';
+        }
+        elseif ($replaceRelated == 3) //replace with static block
+        {
+            if ($tmpHtml = $this->getChildHtml('block_product_replace_related'))
+                $relatedProductsHtml = '<div class="block_product_replace_related">'. $tmpHtml .'</div>';
+        }
+    }
+
+    //Up-sell products.
+    //If up-sell products not assigned to collateral data container.
+    if (!$theme->getCfg('product_page/collateral_upsell'))
+    {
+        $replaceUpsell = $theme->getCfg('product_page/replace_upsell');
+        if ($replaceUpsell == 1) //don't replace with static block
+        {
+            if ($tmpHtml = trim($this->getChildHtml('upsell_products_wrapper')))
+                $upsellProductsHtml = $tmpHtml;
+            //$upsellProductsHtml = $this->getChildHtml('upsell_products_wrapper');
+        }
+        elseif ($replaceUpsell == 2) //if upsell is empty, replace with static block
+        {
+            if ($tmpHtml = trim($this->getChildHtml('upsell_products_wrapper')))
+                $upsellProductsHtml = $tmpHtml;
+            //else //upsell empty
+                //if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
+                    //$upsellProductsHtml = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
+        }
+        elseif ($replaceUpsell == 3) //replace with static block
+        {
+            if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
+                $upsellProductsHtml = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
+        }
+    }
+
+    //Assign blocks to selected position
+    $p = array();
+
+    //Related products
+    $position = $theme->getCfg('product_page/related_position');
+    if (isset($p[$position]))
+        $p[$position] = $p[$position] . $relatedProductsHtml;
+    else
+        $p[$position] = $relatedProductsHtml;
+
+    //Up-sell products
+    $position = $theme->getCfg('product_page/upsell_position');
+    if (isset($p[$position]))
+        $p[$position] = $p[$position] . $upsellProductsHtml;
+    else
+        $p[$position] = $upsellProductsHtml;
+?>
+
+<script type="text/javascript"> 
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+
+<?php /*?><form action="<?php echo $this->getUrl();?>checkout/cart/add/product/" method="post" id="product_addtocart_form" <?php if($_product->getOptions()): ?> enctype="multipart/form-data" <?php endif; ?>>
+</form><?php */?>
+
+
+
+<form action="<?php echo $this->getUrl();?>checkout/cart/add/product/" method="post" id="product_addtocart_form">
+<input name="form_key" type="hidden" value="<?=Mage::getSingleton('core/session')->getFormKey();?>" />
+<input type="hidden" name="qty" id="qty" value="1">
+</form>
+    <div class="prod_detail_topsection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                            <div class="col-sm-12">
+                            </div>
+                            <div class="col-sm-4 media-container clearfix">
+                                <div class="prod_thumb">
+                                   	<div class="">
+                                    <?php echo $this->getChildHtml('media') ?>
+                                    <?php echo $this->helper('ultimo/labels')->getLabels($_product,true); //Product labels ?>
+                                    <?php echo $this->getChildHtml('container_product_image_1'); ?>
+
+                                    <?php if($shortDescription): ?>
+                                        <div itemprop="description" id="short_desc">
+                                            <div class="short_desc_inr">
+                                                <?php echo $shortDescription; ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+									</div>
+                                </div>
+                                <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('socialshare/socialbar.phtml')->toHtml(); ?>
+                                <?php //if ($addtoLinksHtml = $this->getChildHtml('addto')): //compare, wishlist, send to friend ?>
+                                <!--<div class="action-box clearer">
+                                            <?php //echo $addtoLinksHtml; ?>
+                                        </div>-->
+                                <?php //endif; ?>
+                                <!-- <button type="button" class="excerpt-button" data-toggle="modal" data-target="#excerptModal">
+                                    <span><?php echo $this->__('Read an excerpt') ?></span>
+                                </button> -->
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="prod_infoarea">
+                                    <div>
+                                    	<div class="row">
+                                            <div class="crt_inline col-sm-11">
+                                                <div class="series_info">
+                                                    <?php
+                                                        $SeriesTxt = strip_tags($_helper->getSeriesText($_product,''));
+                                                        $explodedSeriesTxt = explode(",",$SeriesTxt);
+                                                        $explodedSeriesTxtFinal = str_replace("Series","",$explodedSeriesTxt[0]);
+                                                    ?>
+
+                                                    <h5>
+                                                        <a href="<?=Mage::getBaseUrl();?>catalogsearch/advanced/result/?book_series=<?=urlencode($explodedSeriesTxtFinal);?>"><?php echo strip_tags($_helper->getSeriesText($_product)); ?></a>
+                                                    </h5>
+                                                </div>
+                                                <div class="row" style="margin: 0px !important;">
+                                                    <div class="col-md-8" style="padding-left: 0px;">
+                                                        <h3 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h3>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="reviwe_info">
+                                                            <div class="star_info" style="float: right;">
+                                                                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row subtitle">
+                                            <div class="crt_inline rt_section col-sm-12" style="margin-bottom: 10px;">
+                                                <h5 class="author-name">
+                                                    By <?php echo implode(", ",Mage::helper('publish/author')->getAuthorsList($_product)) ?>
+                                                </h5>
+                                            </div>
+                                            <div class="crt_inline rt_section col-sm-12">
+                                                <div class="price" <?php if ($useRichSnippets) echo $helperSnippets->getOfferItemscope(); ?>>
+                                                    <?php echo $this->getChildHtml('product_type_data'); ?>
+                                                    <?php echo $this->getTierPriceHtml();?>
+                                                    <?php echo $priceProperties; ?>
+                                                    <span class="currency_code <?php echo $_product->getIsSpecialPrice() ? 'red' : '' ?>"> USD</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                        if(Mage::helper('entangled_custom')->isRepeatedProduct($_product))
+                                        {
+                                        ?>
+                                            <div class="already_purchased">
+                                                <?php echo $this->__('You have already purchased this product!<br> Please go to <a href="%s">My Library</a> to re download or re-read.',Mage::getUrl('downloadable/customer/products/')) ?>
+                                            </div>
+                                        <?php
+                                    } 
+                                    ?>
+                                    <div class="add-to-cart-wrapper">
+                                        <?php if(!Mage::helper('entangled_custom')->isRepeatedProduct($_product)):?>
+                                            <?php if(!$this->hasOptions()): //add to cart when no options (e.g. simple products) ?>
+                                                <?php if($_product->isSaleable()):?>
+                                                    <?php echo $this->getChildHtml('addtocart')?>
+                                                <?php endif; ?>
+                                                <?php echo $this->getChildHtml('extra_buttons')?>
+                                            <?php endif; ?>
+                                            <div class="product-options-bottom">
+                                                <div class="add-to-cart left-side">
+                                                    <input type="hidden" name="product" value="<?=$_product->getId();?>"/>
+                                                    <button type="button" title="Add to Cart" id="<?=$_product->getId();?>" class="button btn-cart"><span><span>Add to Cart</span></span></button>
+                                                </div>
+                                            </div>
+                                            <div class="product-options-bottom">
+                                                <div class="dropdown pdp-dropwdown">
+                                                  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="store-drowdown-bttn">
+                                                    OR BUY FROM... 
+                                                    <span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu" aria-labelledby="dLabel" style="margin-top: -3px;">
+                                                    <div class="store-option">
+                                                        <?php if ($_product->getAsin() == ""){
+                                                             ?>
+                                                                <a href="https://www.amazon.com/s/&field-keywords=<?php echo($_product->getSku()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon
+                                                                </a>
+                                                            <?php
+                                                        } else{ 
+                                                            ?>
+                                                                <a href="https://www.amazon.com/dp/<?php echo($_product->getAsin()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon
+                                                                </a>
+                                                            <?php
+                                                        } ?>
+                                                    </div>
+                                                    <div class="store-option">
+                                                        <?php if ($_product->getAsin() == ""){
+                                                             ?>
+                                                                <a href="https://www.amazon.com.au/s/&field-keywords=<?php echo($_product->getSku()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon Australia
+                                                                </a>
+                                                            <?php
+                                                        } else{ 
+                                                            ?>
+                                                                <a href="https://www.amazon.com.au/dp/<?php echo($_product->getAsin()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon Australia
+                                                                </a>
+                                                            <?php
+                                                        } ?>
+                 
+                                                    </div>
+                                                    <div class="store-option">
+                                                        <?php if ($_product->getAsin() == ""){
+                                                             ?>
+                                                                <a href="https://www.amazon.co.uk/s/&field-keywords=<?php echo($_product->getSku()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon UK
+                                                                </a>
+                                                            <?php
+                                                        } else{ 
+                                                            ?>
+                                                                <a href="https://www.amazon.co.uk/dp/<?php echo($_product->getAsin()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon UK
+                                                                </a>
+                                                            <?php
+                                                        } ?>
+                 
+                                                    </div>
+                                                    <div class="store-option">
+                                                        <?php if ($_product->getAsin() == ""){
+                                                             ?>
+                                                                <a href="https://www.amazon.ca/s/&field-keywords=<?php echo($_product->getSku()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon Canada
+                                                                </a>
+                                                            <?php
+                                                        } else{ 
+                                                            ?>
+                                                                <a href="https://www.amazon.ca/dp/<?php echo($_product->getAsin()); ?>?tag=entangpublis-20" target="_blank">
+                                                                    Amazon Canada
+                                                                </a>
+                                                            <?php
+                                                        } ?>
+                 
+                                                    </div>
+                                                    <div class="store-option">
+                                                        <a href="http://www.barnesandnoble.com/s/<?php echo($_product->getSku()); ?>" target="_blank">
+                                                            Barnes and Noble
+                                                        </a>
+                                                    </div>
+                                                    <div class="store-option">
+                                                        <a href="http://itunes.apple.com/us/book/isbn<?php echo($_product->getSku()); ?>" target="_blank">
+                                                            Apple
+                                                        </a>
+                                                    </div>
+                                                    <div class="store-option">
+                                                        <a href="https://www.kobo.com/us/en/search?Query=<?php echo($_product->getSku()); ?>" target="_blank">
+                                                            Kobo
+                                                        </a>
+                                                    </div>
+                                                  </ul>
+                                                </div>
+                                            </div>
+                                            <a href="<?=$_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product);?>" class="wishlist_link product-options-bottom"><i class="fa fa-heart"></i> Add to Wishlist</a>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="review_lft">
+                                        <p>
+                                            <?php echo $description; ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<section class="prod_detail_mid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <?php if($_product->getPraise()): ?>
+                    <div class="praise-wrapper">
+                        <h4><?php echo $this->__('Praise'); ?></h4>
+                        <div class="praise-content">
+                            <?php
+                                $praise_content= nl2br($_product->getPraise());
+                                $praise_content = str_replace("<br>", "", $_product->getPraise());
+                                $praise_content = str_replace("<p>Review</p>", "", $_product->getPraise());
+                                echo $praise_content;
+                            ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="related-wrapper">
+                    <div class="trading_border">
+                        <div class="carousel_container related_slider_detail">
+                            <?php if($relatedProductsHtml !='')  { echo $relatedProductsHtml; } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="additional-wrapper">
+                    <div class="adition_info">
+                        <?php echo $this->getLayout()->createBlock('catalog/product_view_attributes')->setTemplate('catalog/product/view/attributes.phtml')->toHtml();?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="review_rht">
+                    <h4 style="margin-bottom: -10px;">Select Featured Reviews</h4>
+                    <span style="font-size: 12px;">
+                         <?php echo($rating); ?> avg Goodreads.com rating - <a href="https://www.goodreads.com/search?q=<?php echo($_product->getSku()); ?>" target="_blank" style="font-size: 12px; text-decoration: none;">See All Reviews</a>
+                    </span>
+                    <?php echo $this->getLayout()->createBlock('review/product_view_list')->setTemplate('review/product/view/list.phtml')->toHtml();?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="testimonial_wrap single_testimonial">
+    <div class="container-fluid">
+        <div class="row">
+            <?php echo $this->getLayout()->createBlock('publish/author_view')->setTemplate('publish/author/about.phtml')->toHtml();?>
+        </div>
+    </div>
+</section>
+
+<section class="" style="padding-top: 20px; background-color: #ECECEC; margin-bottom: 15px; padding-bottom: 5px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="carousel_container">
+                    <?php echo $this->getChildHtml("related_bottom"); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php if($upsellProductsHtml !='') { ?>
+<section class="">
+    <section class="cont_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="carousel_container">
+                        <?php echo $upsellProductsHtml; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<?php } ?>
+
+<div id="messages_product_view">
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+
+<div class="modal fade" id="excerptModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="excerpt-body row">
+                    <div class="excerpt-image hidden-xs col-sm-3">
+                        <img src="<?php echo Mage::helper('catalog/image')->init($_product, 'small_image')->resize(120,182); ?>" />
+                    </div>
+                    <div class="excerpt-details col-xs-12 col-sm-9">
+                        <h3><?php echo $_product->getName() ?></h3>
+                        <h5 class="author-name">
+                            <?php echo implode(",",Mage::helper('publish/author')->getAuthorsList($_product)) ?>
+                        </h5>
+
+                        <div class="add-to-cart-wrapper">
+                            <?php if(!Mage::helper('entangled_custom')->isRepeatedProduct($_product)):?>
+                                <?php if(!$this->hasOptions()): //add to cart when no options (e.g. simple products) ?>
+                                    <?php if($_product->isSaleable()):?>
+                                        <?php echo $this->getChildHtml('addtocart')?>
+                                    <?php endif; ?>
+                                    <?php echo $this->getChildHtml('extra_buttons')?>
+                                <?php endif; ?>
+                                <div class="product-options-bottom">
+                                    <div class="add-to-cart left-side">
+                                        <input type="hidden" name="product" value="<?=$_product->getId();?>"/>
+                                        <button type="button" title="Add to Cart" id="<?=$_product->getId();?>" class="button btn-cart"><span><span>Add to Cart</span></span></button>
+                                    </div>
+                                </div>
+                                <a href="<?=$_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product);?>" class="wishlist_link product-options-bottom"><i class="fa fa-heart"></i> Add to Wishlist</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php $LongDesc = trim($_product->getData('long_description')); ?>
+                <?php if(strlen($LongDesc) > 0) { ?>
+                    <div id="FullDesc" class="excerpt-content">
+                        <?php echo $LongDesc;?>
+                    </div>
+                <?php } else { ?>
+                    <div id="minimumDesc">
+                        Coming Soon!
+                    </div>
+                <?php } ?>
+
+                <div class="add-to-cart-wrapper" style="margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 360px; position: relative;">
+                    <?php if(!Mage::helper('entangled_custom')->isRepeatedProduct($_product)):?>
+                        <?php if(!$this->hasOptions()): //add to cart when no options (e.g. simple products) ?>
+                            <?php if($_product->isSaleable()):?>
+                                <?php echo $this->getChildHtml('addtocart')?>
+                            <?php endif; ?>
+                            <?php echo $this->getChildHtml('extra_buttons')?>
+                        <?php endif; ?>
+                        <div class="product-options-bottom">
+                            <div class="add-to-cart left-side">
+                                <input type="hidden" name="product" value="<?=$_product->getId();?>"/>
+                                <button type="button" title="Add to Cart" id="<?=$_product->getId();?>" class="button btn-cart"><span><span>Add to Cart</span></span></button>
+                            </div>
+                        </div>
+                        <a href="<?=$_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product);?>" class="wishlist_link product-options-bottom"><i class="fa fa-heart"></i> Add to Wishlist</a>
+                    <?php endif; ?>
+                </div>
+                <br/><br/><br/>
+                
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('.btn-cart').click(function() {
+			var proId = this.id;
+			var actionvalue = '<?php echo $this->getUrl();?>checkout/cart/add/product/' + proId;
+			jQuery('#product_addtocart_form').attr('action', actionvalue);
+			productAddToCartForm.submit(this);
+		});      
+	});
+	
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function(button, url) {
+        if (this.validator.validate()) {
+            var form = this.form;
+            var oldUrl = form.action;
+
+            if (url) {
+                form.action = url;
+            }
+            var e = null;
+            try {
+                this.form.submit();
+            } catch (e) {}
+            this.form.action = oldUrl;
+            if (e) {
+                throw e;
+            }
+
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+        }
+    }.bind(productAddToCartForm);
+
+    productAddToCartForm.submitLight = function(button, url) {
+        if (this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+    //]]>
+
+    function showfull() {
+        document.getElementById('minimumDesc').style.display = 'none';
+        document.getElementById('FullDesc').style.display = 'block';
+    }
+</script>

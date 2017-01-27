@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Shopby
+ */
+--> 
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <amshopby translate="title" module="amshopby">
+                    <title>Improved Navigation</title>
+                    <sort_order>900</sort_order>
+                    <children>
+                        <filters translate="title" module="amshopby"> 
+                            <title>Filters</title>
+                            <action>adminhtml/amshopby_filter/index</action>
+                            <sort_order>10</sort_order>
+                        </filters>
+                        <ranges translate="title" module="amshopby"> 
+                            <title>Price Ranges</title>
+                            <action>adminhtml/amshopby_range/index</action>
+                            <sort_order>20</sort_order>
+                        </ranges>
+                        <pages translate="title" module="amshopby"> 
+                            <title>Pages</title>
+                            <action>adminhtml/amshopby_page/index</action>
+                            <sort_order>25</sort_order>
+                        </pages>                            
+                        <settings translate="title" module="amshopby"> 
+                            <title>Settings</title>
+                            <action>adminhtml/system_config/edit/section/amshopby</action>
+                            <sort_order>30</sort_order>
+                        </settings>
+                        <!--migrations translate="title" module="amshopby">
+                            <title>Migrations</title>
+                            <action>adminhtml/amshopby_migration/index</action>
+                            <sort_order>40</sort_order>
+                        </migrations-->
+                    </children>
+                </amshopby>
+            </children>
+        </catalog>
+    </menu>     
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <amshopby>
+                                <title>Improved Navigation</title>
+                                <children>
+                                    <filters> 
+                                        <title>Filters</title>
+                                    </filters>
+                                    <ranges> 
+                                        <title>Price Ranges</title>
+                                    </ranges>
+                                    <pages> 
+                                        <title>Pages</title>
+                                    </pages>
+                                    <settings> 
+                                        <title>Settings</title>
+                                    </settings>
+                                    <migrations>
+                                        <title>Migrations</title>
+                                    </migrations>
+                                </children>
+                            </amshopby>
+                        </children>
+                    </catalog>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <amshopby>
+                                        <title>Improved Navigation</title>
+                                    </amshopby>
+                                </children>
+                            </config>
+                        </children>
+                    </system> 
+                 </children>
+            </admin> 
+        </resources>
+    </acl>
+</config> 

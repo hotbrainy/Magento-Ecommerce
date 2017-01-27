@@ -1,0 +1,123 @@
+/**
+ * Drop-down block
+ */
+
+
+
+/* Dropdown box %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.dropdown { position:relative; }
+.dropdown:hover { z-index:4000; }
+
+/* Dropdown heading
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.dropdown .dropdown-heading {
+	display:inline-block;
+	cursor:default;
+	line-height:36px;
+	max-height:36px; /* Set static height to improve layout of inline elements inisde the dropdown heading */
+}
+
+/* In case a link ("a" tag) is used as a dropdown heading */
+.dropdown a.dropdown-heading {
+	/* Inherit color to have the same color as the text in the containing section (e.g. in primary header). */
+	color: inherit;
+
+	/* Remove transition */
+	transition: none;
+	transition-delay: unset;
+}
+.dropdown a.dropdown-heading:hover {
+	/* Inherit color to have the same color as the text in the containing section (e.g. in primary header). 
+	   Otherwise the dropdown heading on hover would blink showing standard link hover color. */
+	color: inherit;
+}
+
+/* Inside dropdown heading
+-------------------------------------------------------------- */
+/* Child elements of the heading have to be aligned vertically */
+.dropdown .dropdown-heading > * {
+	display:inline-block;
+	vertical-align: middle;
+}
+
+/* If heading has additional inner wrapper (to cover the shadow of the dropdown),
+   properties of that element needs to be reset (e.g. element shouldn't be "inline-block") */
+.dropdown .dropdown-heading.cover > span,
+.dropdown .dropdown-heading.cover > div {
+	display: block;
+	vertical-align: baseline;
+}
+.dropdown .dropdown-heading.cover > span > *,
+.dropdown .dropdown-heading.cover > div > * {
+	display:inline-block;
+	vertical-align: middle;
+}
+
+	/* Elements of the dropdown heading */
+	.dropdown .dropdown-heading .label {}
+	.dropdown .dropdown-heading .value {
+		margin-left: 2px;
+	}
+	.dropdown .dropdown-heading .dropdown-icon { /* e.g. for flags */
+		width:18px;
+		text-indent:-9999px;
+		background-position:0 50%;
+		background-repeat:no-repeat;
+	}
+
+
+/* Cover shadow of "dropdown-heading" and "dropdown-content"
+   with additional div inside the heading
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.dropdown .dropdown-heading.cover > span,
+.dropdown .dropdown-heading.cover > div {
+	padding:0 10px;
+}
+.dropdown.open > .dropdown-heading.cover > span,
+.dropdown.open > .dropdown-heading.cover > div {
+	background-color:#fff;
+	z-index:4001;
+	position:relative;
+}
+
+
+/* Dropdown content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.dropdown .dropdown-content {
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	z-index:4000;
+	padding:20px;
+	min-width:130px;
+	line-height:1.5em;
+	text-align:left;
+
+	list-style:none;
+	background-color:#fff;
+}
+.dropdown .dropdown-content.left-hand {
+	left:auto;
+	right:0;
+}
+
+/* When dropdown content is an unordered list
+-------------------------------------------------------------- */
+/* Everything is inline-block, except links */
+.dropdown .dropdown-content > li * { display:inline-block; }
+.dropdown .dropdown-content > li > a { display:block; }
+
+.dropdown .dropdown-content > li { white-space:nowrap; }
+.dropdown .dropdown-content > li .label { margin-right:8px; }
+.dropdown .dropdown-content .dropdown-icon {
+	width:18px;
+	text-indent:-9999px;
+	background-position:0 50%;
+	background-repeat:no-repeat;
+}

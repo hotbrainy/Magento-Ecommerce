@@ -1,0 +1,54 @@
+<?php
+/**
+ * Classy Llama
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email to us at
+ * support+paypal@classyllama.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module
+ * to newer versions in the future. If you require customizations of this
+ * module for your needs, please write us at sales@classyllama.com.
+ *
+ * To report bugs or issues with this module, please email support+paypal@classyllama.com.
+ * 
+ * @category   CLS
+ * @package    Paypal
+ * @copyright  Copyright (c) 2014 Classy Llama Studios, LLC (http://www.classyllama.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/** @var $this CLS_Paypal_Block_Paypal_Payment_Form_Customerstored */
+
+$_code = $this->getMethodCode();
+$_storedCards = $this->getStoredCards();
+$_storedCardHelper = Mage::helper('cls_paypal/storedcard');
+?>
+
+<ul id="payment_form_<?php echo $_code ?>" style="display:none">
+
+    <?php $_storedCardId = $this->getInfoData('stored_card_id') ?>
+    <li>
+        <div class="input-box">
+            <?php if ( $_storedCards && ($_storedCards->count() > 0) ): ?>
+            <select id="<?php echo $_code ?>_stored_card_id" name="payment[stored_card_id]" class="required-entry validate-select">
+                <?php if ($_storedCards->count() > 1): ?>
+                <option value=""></option>
+                <?php endif; ?>
+                <?php foreach ($_storedCards as $_storedCard): ?>
+                <option value="<?php echo $_storedCard->getId() ?>"<?php if ($_storedCard->getId() == $_storedCardId): ?> selected="selected" <?php endif; ?>><?php echo $_storedCardHelper->translateCcType($_storedCard->getCcType()) ?> (<?php echo sprintf('xxxx-%s', $_storedCard->getCcLast4()) ?>)</option>
+                <?php endforeach ?>
+            </select>
+            <?php endif; ?>
+        </div>
+    </li>
+
+</ul>

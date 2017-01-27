@@ -1,0 +1,79 @@
+<?php
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @copyright  Copyright (c) 2015 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * MageWorx Loyalty Booster extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_LoyaltyBooster
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_items = $this->getLogItems(); ?>
+<div class="page-head">
+    <h3><?php echo $this->__('My Credit Activity') ?></h3>
+</div>
+<?php echo $this->getPagerHtml(); ?>
+
+<table cellspacing="0" class="data-table" id="my-credit-log-table">
+    <col width="50" />
+    <col width="50" />
+    <col width="150" />
+    <col width="50" />
+    <col />
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Credit Balance') ?></th>
+            <th><?php echo $this->__('Added/Deducted') ?></th>
+            <th><?php echo $this->__('Modified On') ?></th>
+            <th><?php echo  Mage::helper('mageworx_customercredit')->__('Action') ?></th>
+            <th><?php echo $this->__('Order') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if($_items->getSize()): ?>
+        <?php foreach ($_items as $_item): ?>
+            <tr>
+                <td><?php echo round($_item->getValue(),2)?></td>
+                <td><?php echo round($_item->getValueChange(),2)?></td>
+                <td><?php echo $_item->getActionDate()?></td>
+                <td><?php echo $this->getActionTypeLabel($_item->getActionType())?></td>
+                <td>
+                    <?php if($_item->getOrderId()): ?>
+                        <a href="<?php echo $_item->getOrderUrl() ?>">#<?php echo $_item->getOrder()->getIncrementId() ?></a>
+                    <?php endif; ?>
+                </td>            </tr>
+        <?php endforeach;?>
+            <?php else: ?>
+                <td colspan="5"><p><?php echo $this->__('Credit activity is empty.'); ?></p></td>
+            <?php endif ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-credit-log-table')</script>
+<?php echo $this->getPagerHtml(); ?>

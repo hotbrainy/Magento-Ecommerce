@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<layout version="0.9.1.1">
+    <!-- informations concernant la page d'accueil du module -->
+    <ajaxlogin_index>
+        <!-- informations concernant le block content -->
+        <reference name="content">
+            <block type="ajaxlogin/index"  name="attributemanager"  as="attributemanager" template="ajaxlogin_am/index.phtml" />
+        </reference>
+    </ajaxlogin_index>
+
+
+    <ajaxlogin_category>
+        <reference name="content">
+            <block type="ajaxlogin/attributemanagergrid"  name="attributemanagergrid"  as="attributemanagergrid" template="ajaxlogin_am/grid.phtml" />
+        </reference>
+    </ajaxlogin_category>
+    <ajaxlogin_customer>
+        <reference name="content">
+            <block type="ajaxlogin/attributemanagergrid"  name="attributemanagergrid"  as="attributemanagergrid" template="ajaxlogin_am/grid.phtml" />
+        </reference>
+    </ajaxlogin_customer>
+    <ajaxlogin_address>
+        <reference name="content">
+            <block type="ajaxlogin/attributemanagergrid"  name="attributemanagergrid"  as="attributemanagergrid" template="ajaxlogin_am/grid.phtml" />
+        </reference>
+    </ajaxlogin_address>
+
+    <ajaxlogin_edit>
+        <reference name="content">
+            <block type="ajaxlogin/attributemanageredit"  name="attributemanageredit"  as="attributemanageredit" template="ajaxlogin_am/options.phtml" />
+        </reference>
+    </ajaxlogin_edit>
+</layout>

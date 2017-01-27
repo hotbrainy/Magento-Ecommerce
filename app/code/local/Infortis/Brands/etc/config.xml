@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category	Infortis
+ * @package		Infortis_Brands
+ * @author		Infortis
+ * @copyright	Copyright 2012-2014 Infortis
+ */
+-->
+<config>
+	<modules>
+		<Infortis_Brands>
+			<version>1.0.1</version>
+		</Infortis_Brands>
+	</modules>
+	<frontend>
+		<layout>
+			<updates>
+				<brands>
+					<file>infortis_brands.xml</file>
+				</brands>
+			</updates>
+		</layout>
+	</frontend>
+	<global>
+		<models>
+			<brands>
+				<class>Infortis_Brands_Model</class>
+			</brands>
+		</models>
+		<blocks>
+			<brands>
+				<class>Infortis_Brands_Block</class>
+			</brands>
+		</blocks>
+		<helpers>
+			<brands>
+				<class>Infortis_Brands_Helper</class>
+			</brands>
+		</helpers>
+	</global>
+	<default>
+		<brands>
+			<general>
+				<attr_id>manufacturer</attr_id>
+				<image_extension>png</image_extension>
+				<show_image>1</show_image>
+				<show_image_fallback_to_text>1</show_image_fallback_to_text>
+				<link_search_enabled>2</link_search_enabled>
+				<page_base_path></page_base_path>
+				<append_category_suffix>0</append_category_suffix>
+				<url_key_separator>-</url_key_separator>
+				<img_url_key_separator>-</img_url_key_separator>
+			</general>
+			<product_view>
+				<enable>1</enable>
+			</product_view>
+			<list>
+				<all_brands>1</all_brands>
+				<brands>0</brands>
+				<assigned>0</assigned>
+				<assigned_in_stock>0</assigned_in_stock>
+			</list>
+			<slider>
+				<timeout></timeout>
+				<speed>200</speed>
+				<auto_speed>500</auto_speed>
+				<pause>1</pause>
+				<loop>1</loop>
+				<lazy>1</lazy>
+			</slider>
+		</brands>
+	</default>
+</config>

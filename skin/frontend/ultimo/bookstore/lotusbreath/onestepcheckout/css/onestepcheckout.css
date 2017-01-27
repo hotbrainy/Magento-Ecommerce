@@ -1,0 +1,610 @@
+
+
+.right {
+    float: right
+}
+
+.ui-dialog {
+    background: #ffffff;
+    border: 1px solid; /*#e87403*/
+    padding: 10px;
+    -webkit-box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    z-index: 99999999999;
+}
+
+.ui-spinner {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0;
+    vertical-align: middle;
+    border: 1px solid;
+}
+
+.ui-spinner-input {
+    border: none;
+    background: none;
+    color: inherit;
+    padding: 0;
+    margin: .2em 0;
+    vertical-align: middle;
+    margin-left: .4em;
+    margin-right: 22px;
+}
+
+.ui-spinner-button {
+    width: 16px;
+    height: 50%;
+    font-size: .5em;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    cursor: default;
+    display: block;
+    overflow: hidden;
+    right: 0;
+}
+
+/* more specificity required here to override default borders */
+.ui-spinner a.ui-spinner-button {
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+}
+
+/* vertically center icon */
+.ui-spinner .ui-icon {
+    position: absolute;
+    margin-top: -8px;
+    top: 50%;
+    left: 0;
+}
+
+.ui-spinner-up {
+    top: 0;
+}
+
+.ui-spinner-down {
+    bottom: 0;
+}
+
+/* TR overrides */
+.ui-spinner .ui-icon-triangle-1-s {
+    /* need to fix icons sprite */
+    background-position: -65px -16px;
+    text-indent: 99999px;
+}
+
+.ui-icon-triangle-1-n {
+    background-position: 0 -16px;
+    text-indent: 99999px;
+}
+
+.ui-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.ui-icon,
+.ui-widget-content .ui-icon {
+    background-image: url(images/ui-icons_222222_256x240.png);
+}
+
+.ui-widget-header .ui-icon {
+    background-image: url(images/ui-icons_222222_256x240.png);
+}
+
+.ui-state-default .ui-icon {
+    background-image: url(images/ui-icons_888888_256x240.png);
+}
+
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon {
+    background-image: url(images/ui-icons_454545_256x240.png);
+}
+
+.ui-state-active .ui-icon {
+    background-image: url(images/ui-icons_454545_256x240.png);
+}
+
+.ui-state-highlight .ui-icon {
+    background-image: url(images/ui-icons_2e83ff_256x240.png);
+}
+
+.form-list li.wide select {
+    width: 250px;
+}
+
+.ui-dialog-titlebar-close {
+    float: right;
+
+}
+
+#loginFrm {
+    display: block;
+}
+
+#loginFrm h3 {
+    /*color : #e87403;*/
+    border-bottom: 1px solid; /*#e87403;*/
+}
+
+#loginFrm fieldset ul {
+    padding: 10px;
+}
+
+#loginFrm fieldset ul li {
+    width: 100%;
+    display: block;
+    height: 50px;
+}
+
+#loginFrm div.mage-error {
+    text-align: right;
+}
+
+#loginFrm .input-box input {
+
+    min-height: 25px;
+}
+
+#loginFrm fieldset .buttons-set {
+    padding: 10px;
+}
+
+#loginFrm .buttons-set {
+    margin: 0;
+}
+
+.ui-icon-closethick {
+    background-image: url(images/ui-icons_222222_256x240.png);
+    background-position: -96px -128px;
+    width: 14px;
+    height: 14px;
+    text-indent: -99999px;
+    display: inline-block;
+}
+
+.lt-checkoutpage h3.ptitle {
+    /*color : #e87403;*/
+    border-bottom: 1px solid; /*#e87403*/
+    margin: 15px 0 15px 0;
+}
+
+.form-list .fields {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-list .field {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.form-list .input-box {
+    width: 100%;
+}
+
+.form-list .fields .field .input-box {
+    width: 80%;
+}
+
+.form-list .input-box-wide {
+    width: 90%;
+}
+
+.form-list li {
+    margin: 0 0 8px;
+    width: auto;
+    display: block;
+    height: auto;
+}
+
+.form-list input.input-text {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-list #billing-new-address-form select, .form-list #shipping-new-address-form select {
+
+    width: 100%;
+}
+
+.buttons-set {
+    border: none;
+}
+
+.opc .gift-messages-form {
+    background: none;
+    border: none;
+    padding: 0px 24px 22px 30px;
+    margin: 0 -36px;
+}
+
+.opc .gift-messages-form .inner-box {
+    height: auto;
+    overflow: hidden;
+    width: auto;
+}
+
+.opc .gift-messages-form .inner-box .form-list li.wide textarea {
+    width: 402px;
+}
+
+.opc .gift-messages-form .inner-box .form-list li.wide .input-box {
+    width: 402px;
+}
+
+#comment-patial textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 5em;
+}
+
+#comment-patial .form-list .input-box {
+    width: 100%;
+}
+
+.lt-checkoutpage .page-title {
+    /*color : #e87403;*/
+    margin: 0 0 10px 0px;
+    font-size: 2em;
+}
+
+.lt-checkoutpage .page-description {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.ui-tooltip, .arrow:after {
+    background: #fff;
+    border: 2px solid white;
+}
+
+.ui-tooltip {
+    padding: 10px 20px;
+
+    border-radius: 20px;
+    font: "Helvetica Neue", Sans-Serif;
+
+    box-shadow: 0 0 7px; /*#e87403*/
+    width: 500px;
+    text-align: left;
+}
+
+/*
+.arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+}
+.arrow.top {
+    top: -16px;
+    bottom: auto;
+}
+.arrow.left {
+    left: 20%;
+}
+.arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    tranform: rotate(45deg);
+}
+.arrow.top:after {
+    bottom: -20px;
+    top: auto;
+}
+*/
+.ui-button .ui-button-text {
+    min-width: 40px;
+    /*color: #e87403;*/
+    display: inline-block;
+    font-weight: bold;
+
+}
+
+.ui-dialog-titlebar {
+    margin-bottom: 20px;
+    border-bottom: 1px solid; /*#e87403*/
+    padding-bottom: 10px;
+}
+
+.ui-dialog-titlebar .ui-dialog-title {
+    /*color: #e87403;*/
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.aggrement-popup {
+    text-align: justify;
+    /*max-height: 300px !important;*/
+    overflow: auto;
+    width: 500px;
+    padding: 0 10px;
+}
+
+.lt-buttons-set {
+    margin: 10px 0 0 0;
+}
+
+.row {
+    max-width: 100% !important;
+}
+
+.review-qty-input {
+    width: 15px;
+}
+
+.cart-item-img {
+    display: inline-block;
+    float: left;
+}
+
+.white-popup {
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.a-center {
+    text-align: center !important;
+}
+
+.a-right {
+    text-align: right !important;
+}
+
+#comment-patial, #saveOder-error, #review_partial, #coupon_patial {
+    margin: 20px 0;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+p.newsletter {
+    margin: 25px 0;
+}
+
+.valid + .mage-error {
+    display: none !important;
+}
+
+#lbonepage-place-order-btn {
+
+    padding: 0 10px 0 0;
+    min-height: 60px;
+
+}
+
+.layout-2col #lbonepage-place-order-btn {
+    width: 50%;
+}
+
+button#lbonepage-place-order-btn span span {
+    /*width : 100%*/
+
+    text-align: center;
+    /*width: 100%;*/
+    float: none;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+button#lbonepage-place-order-btn > span {
+
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+
+}
+
+#review_partial .data-table td {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#review_partial .data-table thead th {
+    white-space: normal !important;
+}
+
+#review_partial .data-table thead th .tax-flag {
+    white-space: normal;
+!important;
+}
+
+#review_partial .data-table td {
+    padding: 3px;
+}
+
+#checkout-review-table td .ui-spinner {
+    display: none;
+}
+
+#billing_cp_button_div_id .input-box {
+    text-align: right;
+}
+
+#shipping_cp_button_div_id .input-box {
+    text-align: right;
+}
+
+.padding-5 {
+    padding: 0 5px;
+}
+
+.lt-checkoutpage .form-list li.wide textarea {
+    width: 100% !important;
+}
+
+.lt-checkoutpage .form-list li.wide .input-box {
+    width: 100% !important;
+}
+
+.gift-messages-form .item .details .form-list input.input-text {
+    width: 197px;
+}
+
+/* For responsive */
+@media only screen and (max-width: 900px) {
+    .main {
+        min-width: 320px !important;
+        width: auto;
+
+    }
+
+    .wrapper {
+
+        min-width: 320px !important;
+    }
+
+    .form-list .control label, .sp-methods dt label, #checkout-shipping-method-load .sp-methods dd label, #co-shipping-method-form .sp-methods dd label, .product-options ul.options-list label {
+        min-width: inherit !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    .ui-dialog {
+        max-width: 320px;
+    }
+
+    .padding-mobile {
+        padding: 5px !important;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .main {
+        min-width: 300px !important;
+        width: auto;
+        padding: 0;
+
+    }
+
+    .row {
+        padding: 0 !important;
+    }
+
+    .ui-dialog {
+        max-width: 300px;
+    }
+}
+
+.osc-loader {
+    z-index: 1000;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    text-align: center;
+}
+
+.osc-loader .osc-loader-background {
+    z-index: 1000;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(0, 0, 0);
+
+/ / background : transparent;
+    opacity: 0.4;
+    position: fixed;
+    text-align: center;
+}
+
+.loading-mask {
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #f15c22;
+    opacity: 1;
+
+}
+
+.loading-mask .loader {
+    /*border: 1px solid;
+    padding: 15px;
+    opacity: 1;
+    background: #FFA500;
+    */
+
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.loading-mask img {
+    width: auto;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.forgot-link {
+    text-align: left;
+    float: left;
+}
+
+.form-popup {
+    display: block !important;
+}
+
+div.edit-cart-review {
+    display: block;
+    clear: both;
+}
+
+div.error {
+
+    color: black;
+    border-left: 3px solid #df280a;
+    background-color: #faebe7;
+    line-height: 45px;
+    padding-left: 10px;
+    margin: 5px 0;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.mage-error{
+    color: black;
+    border-left: 3px solid #df280a;
+    background-color: #faebe7;
+    line-height: 27px;
+    padding-left: 5px;
+    margin-top: 2px;
+    font-weight: 400;
+    font-size: 0.9em;
+}

@@ -1,0 +1,62 @@
+<?php
+/**
+ * @project     AjaxLogin
+ * @package LitExtension_AjaxLogin
+ * @author      LitExtension
+ * @email       litextension@gmail.com
+ */
+?>
+<?php if ((Mage::getStoreConfig('ajaxlogin/facebook/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/google/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/twitter/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/linkedin/enabled') == 1) ||
+(Mage::getStoreConfig('ajaxlogin/yahoo/enabled') == 1)
+) { ?>
+<div class="le-socialconnect-login">
+    <div class="account-login">
+        <div class="col3-set">
+            <div class="col-3 le-login-facebook">
+                <div class="content" style="text-align: center;"><h2><?php echo $this->__('Social connect')?></h2>
+                    <p><?php echo $this->__('You can login using your social network account.') ?></p>
+                    <div class="le-social-button-login">
+                    <?php if (Mage::getStoreConfig('ajaxlogin/facebook/enabled') == 1) { ?>
+                        <button rel="facebook-connect" type="button"
+                                title="<?php echo $this->__('Connect with %s', $this->__('Facebook')) ?>"
+                                class="button">
+                            <?php echo $this->getChildHtml('le_ajaxlogin_facebook_login_button'); ?>
+                        </button>
+                    <?php } ?>
+                    <?php if (Mage::getStoreConfig('ajaxlogin/google/enabled') == 1) { ?>
+                        <button rel="google-connect" type="button"
+                                title="<?php echo $this->__('Connect with %s', $this->__('Google')) ?>"
+                                class="button">
+                            <?php echo $this->getChildHtml('le_ajaxlogin_google_login_button'); ?>
+                        </button>
+                    <?php } ?>
+                    <?php if (Mage::getStoreConfig('ajaxlogin/twitter/enabled') == 1) { ?>
+                        <button rel="twitter-connect" type="button"
+                                title="<?php echo $this->__('Connect with %s', $this->__('Twitter')) ?>"
+                                class="button">
+                            <?php echo $this->getChildHtml('le_ajaxlogin_twitter_login_button'); ?>
+                        </button>
+                    <?php } ?>
+                    <?php if (Mage::getStoreConfig('ajaxlogin/linkedin/enabled') == 1) { ?>
+                        <button rel="linkedin-connect" type="button"
+                                title="<?php echo $this->__('Connect with %s', $this->__('Linkedin')) ?>"
+                                class="button">
+                            <?php echo $this->getChildHtml('le_ajaxlogin_linkedin_login_button'); ?>
+                        </button>
+                    <?php } ?>
+                    <?php if (Mage::getStoreConfig('ajaxlogin/yahoo/enabled') == 1) { ?>
+                        <button rel="yahoo-connect" type="button" title="<?php echo $this->__('Connect with %s', $this->__('Yahoo')) ?>"
+                                class="button">
+                            <?php echo $this->getChildHtml('le_ajaxlogin_yahoo_login_button'); ?>
+                        </button>
+                    <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>

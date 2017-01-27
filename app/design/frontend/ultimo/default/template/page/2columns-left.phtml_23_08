@@ -1,0 +1,142 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php 
+$GetMyPageType = $this->getRequest()->getControllerName();
+echo $this->getChildHtml('after_body_start') ?>
+<div id="root-wrapper">
+  <div class="wrapper"> <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page"> <?php echo $this->getChildHtml('header') ?>
+      <section class="breadcrumb_wraper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12"> <?php echo $this->getChildHtml('breadcrumbs') ?> </div>
+          </div>
+        </div>
+      </section>
+      <section class="main-content">
+        <div class="container">
+          <div class="row prod_wrapper">
+            <div class="col-sm-12"> <?php echo $this->getChildHtml('main_before_top') ?>
+            </div>
+            <div class="preface"><?php echo $this->getChildHtml('preface') ?></div>
+                       
+            <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4"> <?php echo $this->getChildHtml('global_messages') ?> <?php echo $this->getChildHtml('content') ?> </div>
+            <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8">
+            <?php
+			$CurrentUrl = Mage::helper('core/url')->getCurrentUrl(); 
+            $find_str = strpos($CurrentUrl,"/author/");
+			if($find_str>=1){ ?>
+             <div class="sidebar">
+            <div class="sidebar-block white-bg">
+              <h6>All Categories</h6>
+              <div id="accordian">
+                <ul class="category-menu">
+                  <li class="parent active-parent">
+                    <h3>Imprints</h3>
+                    <ul class="sub-cat" style="display:block;">
+                 <?php
+                $cat = Mage::getModel('catalog/category')->getCategories(4, 1, true, true);
+                foreach($cat as $catVal)
+                {
+                echo '<li><a href="'.$catVal->getURL().'">'.$catVal->getName().'</a>';
+                echo '</li>';
+                }
+                ?>
+                    </ul>
+                  </li>
+                  <li class="parent">
+                    <h3>Genres</h3>
+                    <ul class="sub-cat">
+                <?php
+                $cat = Mage::getModel('catalog/category')->getCategories(3, 1, true, true);
+                foreach($cat as $catVal)
+                {
+                echo '<li><a href="'.$catVal->getURL().'">'.$catVal->getName().'</a>';
+                echo '</li>';
+                }
+                ?>
+                    </ul>
+                  </li>
+                  <li class="parent">
+                    <h3>Tropes</h3>
+                    <ul class="sub-cat">
+                <?php
+                $cat = Mage::getModel('catalog/category')->getCategories(93, 1, true, true);
+                foreach($cat as $catVal)
+                {
+                echo '<li><a href="'.$catVal->getURL().'">'.$catVal->getName().'</a>';
+                echo '</li>';
+                }
+                ?>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="sidebar-block testemonial_info"> <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('featured_author')->toHtml();?> </div>
+          </div>
+        <?php } else { ?>
+        <?php echo $this->getChildHtml('left') ?>
+        <?php } ?>
+              
+           <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block_left_bottom')->toHtml();?> </div>
+           
+            <div class="postscript"><?php echo $this->getChildHtml('postscript') ?></div>
+          </div>
+          <div class="main-bottom-container"><?php echo $this->getChildHtml('main_bottom') ?></div>
+        </div>
+      </section>
+      
+      <?php if($find_str>=1){ ?>
+      <section>
+        <div class="container">
+          <div class="trading_border">
+            <div class="row">
+              <div class="col-sm-12"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('best-selling-block-author')->toHtml() ?> </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <?php } ?>
+      <?php echo $this->getChildHtml('footer') ?> <?php echo $this->getChildHtml('global_cookie_notice') ?> <?php echo $this->getChildHtml('before_body_end') ?> </div>
+  </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

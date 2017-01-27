@@ -1,0 +1,366 @@
+<?php
+/**
+ * @var $_product   Mage_Catalog_Model_Product
+ */
+?>
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+    $helpZoom = $this->helper('infortis_cloudzoom');
+    $helpImg = $this->helper('infortis/image');
+
+    //Get image sizes. If height is not specified, aspect ratio will be kept.
+    $imgWidth       = intval($helpZoom->getCfg('images/main_width'));
+    $imgHeight      = intval($helpZoom->getCfg('images/main_height'));
+    $bigImageWidth  = intval($helpZoom->getCfg('general/big_image_width'));
+    $bigImageHeight = intval($helpZoom->getCfg('general/big_image_height'));
+    $thumbImgWidth  = 65; //intval($helpZoom->getCfg('images/thumbnail_width'));
+    $thumbImgHeight = 65; //intval($helpZoom->getCfg('images/thumbnail_height'));
+    
+    //If main image width is not specified, use default values
+    if ($imgWidth <= 0)
+    {
+        $imgWidth = 363;
+        $imgHeight = 363;
+    }
+    //$imgBorder = 1;
+    //$imgPadd = 5;
+    //$imgTotalPadd = ($imgBorder + $imgPadd) * 2; //12
+    //$imgWidth -= $imgTotalPadd;
+    //$imgHeight -= $imgTotalPadd;
+    
+    //If main image width is not specified, use default values
+    if ($bigImageWidth <= 0)
+    {
+        $bigImageWidth = 650;
+        $bigImageHeight= 650;
+    }
+
+    //Aspect ratio settings
+    if ($helpZoom->getCfg('images/aspect_ratio'))
+    {
+        //Height will be calculated automatically based on width to keep the aspect ratio of each image
+        $imgHeight = 0;
+        $bigImageHeight= 0;
+        $thumbImgHeight = 0;
+    }
+?>
+
+
+
+<?php //Main image ?>
+
+<div class="img-box img-box-style1">
+
+<?php /* Main condition removed to keep normal display even if there's no main image in the product ?>
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+<?php */ ?>
+
+    <?php if($helpZoom->isCloudZoomEnabled()): //If module enabled ?>
+    
+        <?php
+            $zoomClasses = '';
+            if ($helpZoom->useCloudZoom() == false)
+                $zoomClasses .= ' simple-mode';
+            else
+            {
+                if ($helpZoom->isPositionInside())
+                    $zoomClasses .= ' zoom-inside';
+            }
+        ?>
+        
+        <p class="product-image<?php echo $zoomClasses; ?>" style="max-width: <?php echo $imgWidth; ?>px;">
+        
+            <a  href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight); ?>"
+                class="cloud-zoom product-image-gallery" <?php //TODO: SWAT: added class product-image-gallery, check if required ?>
+                id="zoom1"
+                rel="<?php echo $helpZoom->getCloudZoomOptions(); ?>">
+
+                <img id="image-main" <?php //TODO: SWAT: added id ?>
+                    class="gallery-image visible" <?php //TODO: SWAT: added classes ?>
+                    src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight); ?>"
+                    alt="<?php echo $this->escapeHtml($this->getImageLabel()); ?>"
+                    title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>"
+                    itemprop="image" />
+            </a>
+            
+            <?php if($helpZoom->useLightbox()): ?>
+                <?php
+                    $zoomBtnClasses = '';
+                    if ($helpZoom->useCloudZoom() == false)
+                        $zoomBtnClasses .= ' zoom-btn-large';
+                    else
+                        $zoomBtnClasses .= ' zoom-btn-small';
+                ?>
+                <a id="zoom-btn" class="lightbox-group<?php echo $zoomBtnClasses; ?>" href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight); ?>" title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>"><?php echo $this->__('Zoom'); ?></a>
+                
+            <?php endif; ?>
+        </p>
+    
+    <?php else: //Module disabled. Show images in Magento default style ?>
+    
+        <p class="product-image" style="max-width: <?php echo $imgWidth; ?>px;">
+            <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight); ?>" alt="<?php echo $this->escapeHtml($this->getImageLabel());?>" title="<?php echo $this->escapeHtml($this->getImageLabel());?>" itemprop="image" />
+        </p>
+    
+    <?php endif; ?>
+
+
+
+<?php //Thumbnails ?>
+
+<?php
+    //Other settings for thumbnails
+    $galleryImages = $this->getGalleryImages();
+    $imageCount = count($galleryImages);
+    $useSlider = false;
+?>
+<?php if ($imageCount > 1): ?>
+    <?php
+        $sliderId = "itemslider-zoom";
+        $sliderClasses = '';
+        $sliderWrapperClasses = '';
+        $itemWidthStyle = '';
+        $lazy = false;
+        $useSlider = $helpZoom->getCfg('thumbnails/slider');
+
+        if (!$useSlider)
+        {
+            //Add class indicating there's no slider
+            $sliderClasses .= ' show-all auto-adjust-width';
+
+            //Number of thumbnails displayed in a single row if slider is not enabled
+            //$num = $helpZoom->getCfg('thumbnails/show_items');
+            //$widthPercent = round(100 / $num, 4);
+            //$itemWidthStyle = 'style="width: ' . $widthPercent . '%;"';
+        }
+        else //Get slider parameters
+        {
+            //Add class indicating that there is a slider
+            $sliderClasses .= ' slides';
+            $sliderWrapperClasses .= ' itemslider-thumbnails';
+
+            //Responsive mode on/off
+            $isResponsive = true;
+
+            //Assign number of items in a row to specific viewport width
+            /*$breakpoints = trim($helpZoom->getCfg('thumbnails/breakpoints'));
+            $showItems = 0;         //Number of items in a row displayed if responsive mode is off
+            if (!$breakpoints)
+            {
+                //Set default value
+                $breakpoints = '[0, 2], [240, 3], [320, 4], [480, 5], [768, 3], [1280, 4]';
+            }
+            elseif (strpos($breakpoints, '[') === false) //Square bracket was not found, no breakpoints specified
+            {
+                //Responsive mode is off, show static number of items (convert value to int)
+                $isResponsive = false;
+                $showItems = intval($breakpoints);
+            }*/
+
+            //Slider timeout. Set to enable automatic scrolling.
+            $timeout = intval($helpZoom->getCfg('thumbnails/timeout'));
+
+            //Scrolling speed
+            $speed = intval($helpZoom->getCfg('thumbnails/speed'));
+
+            //If set, slider will loop
+            $loop = $helpZoom->getCfg('thumbnails/loop');
+
+            //Number of items that should move on scrolling
+            $move = intval($helpZoom->getCfg('thumbnails/move'));
+            if ($move > 1)
+            {
+                //If set value which is not allowed (greater than 1), then set the default value
+                $move = 1;
+            }
+
+            //Lazy loading
+            $lazy = $helpZoom->getCfg('thumbnails/lazy');
+        }
+        
+        //Modify thumbnail slider depending on number of thumbnails
+        if ($imageCount <= 5)
+        {
+            $sliderWrapperClasses .= " count-{$imageCount}";
+        }
+        else
+        {
+            $sliderWrapperClasses .= ' count-multi';
+        }
+
+        //Assign number of items in a row to specific viewport width
+        if ($imageCount >= 5)
+        {
+                    $breakpoints = '[0, 1], [219, 2], [299, 3], [459, 4], [640, 5], [747, 3], [1259, 4]'; //All breakpoints -21px
+        }
+        else
+        {
+            switch ($imageCount) {
+                case 4:
+                    $breakpoints = '[0, 1], [219, 2], [299, 3], [459, 4],           [747, 3], [1259, 4]';
+                    break;
+                case 3:
+                    $breakpoints = '[0, 1], [219, 2], [299, 3]';
+                    break;
+                case 2:
+                    $breakpoints = '[0, 1], [219, 2]';
+                    break;
+                case 1:
+                    $breakpoints = '[0, 1]';
+                    break;
+            }
+        }
+
+    ?>
+    <div class="more-images slider-arrows3<?php echo $sliderWrapperClasses; ?>">
+        <div id="<?php echo $sliderId; ?>" class="thumbnails<?php if($sliderClasses) echo $sliderClasses; ?>">
+        
+        <?php //Display thumbnails with cloud zoom or lightbox ?>
+        <?php if ($helpZoom->isCloudZoomEnabled()): ?>
+        
+            <?php foreach ($galleryImages as $_image): ?>
+                <?php if ($this->isGalleryImageVisible($_image)): ?>
+                    <?php //Skip, if no image
+                        if ($_image->getFile() == NULL)
+                            continue; ?>
+                    <div class="item"<?php echo " {$itemWidthStyle}"; ?>>
+                        <a href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight, 'image', $_image->getFile()); ?>" class="cloud-zoom-gallery lightbox-group" title="<?php echo $this->escapeHtml($_image->getLabel()); ?>"
+                            rel="useZoom:'zoom1', smallImage: '<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'image', $_image->getFile()); ?>'">
+                            <?php if ($lazy): ?>
+                                <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()); ?>"/>
+                            <?php else: ?>
+                                <img src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()); ?>"/>
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        
+        <?php else: //Show thumbnails in Magento default style, without cloud zoom and lightbox ?>
+        
+            <?php foreach ($galleryImages as $_image): ?>
+                <?php if ($this->isGalleryImageVisible($_image)): ?>
+                    <?php //Skip, if no image
+                        if ($_image->getFile() == NULL)
+                            continue; ?>
+                    <div class="item"<?php echo " {$itemWidthStyle}"; ?>>
+                        <a href="#" onclick="popWin('<?php echo $this->getGalleryUrl($_image) ?>', 'gallery', 'width=300,height=300,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
+                            <img src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>"/>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        
+        <?php endif; ?>
+        </div>
+    </div> <!-- end: more-images -->
+<?php endif; //end: $imageCount > 0 ?>
+</div> <!-- end: img-box -->
+
+
+
+<?php echo $this->getChildHtml('lightboxConfig'); ?>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    jQuery(function($) {
+
+        var $cz = $('.cloud-zoom');
+        var czInstance = $('.cloud-zoom').data('zoom');
+
+        //On image change
+        $(document).on('product-media-manager-image-updated', function(e, data) {
+
+            var img = data.img;
+
+            czInstance.destroy();
+
+            //Add new image's URL to the CloudZoom element's href attribute
+            $cz.attr('href', img.attr('src'));
+
+            //Remove mousetrap
+            var $mt = $('.mousetrap');
+            $mt.unbind();
+            $mt.remove();
+            $mt = null;
+
+            //Reinitialize CloudZoom
+            $cz.CloudZoom();
+
+        }); //end: on event
+
+        //On resize
+        var t;
+        $(window).resize(function() {
+            clearTimeout(t); 
+            t = setTimeout(function() {
+
+                czInstance.destroy();
+
+                //Remove mousetrap and other elements
+                var $mt = $('.mousetrap');
+                $mt.unbind();
+                $mt.remove();
+                $mt = null;
+                $('.cloud-zoom-lens').remove();
+                $('#cloud-zoom-big').remove();
+
+                //Reinitialize CloudZoom
+                $cz.CloudZoom();
+
+            }, 200);
+        });
+
+    <?php if ($useSlider): ?>
+        var owl = $('#<?php echo $sliderId; ?>');
+        owl.owlCarousel({
+
+            mouseDrag: false,
+
+        <?php if ($lazy): ?>
+            lazyLoad: true,
+        <?php endif; ?>
+
+        <?php if(!$isResponsive): ?>
+            responsive: false,
+            items: <?php echo $showItems; ?>,
+        <?php else: ?>
+            itemsCustom: [ <?php echo $breakpoints; ?> ],
+            responsiveRefreshRate: 50,
+        <?php endif; ?>
+
+        <?php if ($speed): ?>
+            slideSpeed: <?php echo $speed; ?>,
+        <?php endif; ?>
+
+        <?php if ($move !== 1): ?>
+            scrollPerPage: true,
+        <?php endif; ?>
+
+        <?php if ($timeout): ?>
+            autoPlay: <?php echo $timeout; ?>,
+        <?php endif; ?>
+
+            stopOnHover: true,
+
+        <?php if ($loop): ?>
+            rewindNav: true,
+            rewindSpeed: 600,
+        <?php else: ?>
+            rewindNav: false,
+        <?php endif; ?>
+
+            pagination: false,
+            navigation: true,
+            navigationText: false
+
+        }); //end: owl
+    <?php endif; ?>
+
+    });
+//]]>
+</script>
+
+<?php echo $this->getChildHtml('after'); ?>

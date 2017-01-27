@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <SteveB27_EbookDelivery>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SteveB27_EbookDelivery>
+    </modules>
+</config>

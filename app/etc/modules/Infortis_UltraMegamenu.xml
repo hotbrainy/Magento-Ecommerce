@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category	Infortis
+ * @package		Infortis_UltraMegamenu
+ * @author		Infortis
+ * @copyright	Copyright 2012 Infortis
+ */
+ -->
+<config>
+    <modules>
+        <Infortis_UltraMegamenu>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Infortis_UltraMegamenu>
+    </modules>
+</config> 

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<default>
+	
+		<reference name="head">
+			<!-- CSS -->
+			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/itemslider.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/generic-nav.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/infortis/ultra-slideshow/ultra-slideshow.css</name></action>
+			
+			<!-- js -->
+			<action method="addJs"><script>infortis/jquery/plugins/jquery.owlcarousel.min.js</script></action>
+			
+			<!--
+			<action method="addJs"><script>infortis/jquery/plugins/jquery.easing.min.js</script></action>
+			<action method="addJs"><script>infortis/jquery/plugins/jquery.flexslider.min.js</script></action>
+			-->
+		</reference>
+		
+	</default>
+	
+	<!-- Insert slideshow at the top of the homepage -->
+	<cms_index_index>
+
+		<reference name="root">
+			<block type="ultraslideshow/slideshow" name="ultraslideshow" as="ultraslideshow" template="infortis/ultraslideshow/slideshow.phtml">
+				<action method="setPredefined"><value>1</value></action>
+			</block>
+		</reference>
+
+		<reference name="main_before_top">
+			<action method="insert" ifconfig="ultraslideshow/general/position1">
+				<block>ultraslideshow</block>
+			</action>
+		</reference>
+
+		<reference name="preface">
+			<action method="insert" ifconfig="ultraslideshow/general/position2">
+				<block>ultraslideshow</block>
+			</action>
+		</reference>
+
+	</cms_index_index>
+	
+</layout>

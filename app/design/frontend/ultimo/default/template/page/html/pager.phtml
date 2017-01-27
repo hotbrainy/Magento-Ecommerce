@@ -1,0 +1,63 @@
+<?php
+/**
+ * Pager template
+ *
+ * @see Mage_Page_Block_Html_Pager
+ */
+?>
+<?php 
+if($this->getCollection()->getSize()): ?>
+
+    <?php if($this->getLastPageNum()>1): ?>
+
+        <?php if (!$this->isFirstPage()): ?>
+            <li class="prev"><a id="last-page-bttn" class="paging-bttn" href="<?php echo $this->getPreviousPageUrl() ?>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li>
+        <?php endif;?>
+
+        <?php if ($this->canShowFirst()): ?>
+            <li><a id="last-page-bttn" class="first paging-bttn" href="<?php echo $this->getFirstPageUrl() ?>">1</a></li>
+        <?php endif;?>
+
+        <?php if ($this->canShowPreviousJump()): ?>
+            <li><a id="last-page-bttn" class="previous_jump paging-bttn" href="<?php echo $this->getPreviousJumpUrl() ?>">...</a></li>
+        <?php endif;?>
+
+		<?php
+        $linkPrev = false;
+        $linkNext = false;
+        if ($this->getCollection()->getSelectCountSql()) {
+            if ($this->getLastPageNum() > 1) {
+                if (!$this->isFirstPage()) {
+                    $linkPrev = true;
+                    if ($this->getCurrentPage() == 2) {
+                        $url = explode('?', $this->getPreviousPageUrl());
+                        $prevUrl = @$url[0];
+                    }else {
+                        $prevUrl = $this->getPreviousPageUrl();
+                    }
+                }
+                if (!$this->isLastPage()) {
+                    $linkNext = true;
+                    $nextUrl = $this->getNextPageUrl();
+                }
+            }
+        }
+        ?>
+
+         
+         
+        <?php if ($this->canShowNextJump()): ?>
+            <li><a id="next-page-bttn" class="next_jump paging-bttn" href="<?php echo $this->getNextJumpUrl() ?>">...</a></li>
+        <?php endif;?>
+
+        <?php if ($this->canShowLast()): ?>
+          <li><a id="next-page-bttn" class="last paging-bttn" href="<?php echo $this->getLastPageUrl() ?>"><?php echo $this->getLastPageNum() ?></a></li>
+        <?php endif;?>
+
+        <?php if (!$this->isLastPage()): ?>
+            <li><a id="next-page-bttn" class="next paging-bttn" href="<?php echo $this->getNextPageUrl() ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+        <?php endif;?>
+
+    <?php endif; ?>
+
+<?php endif ?>

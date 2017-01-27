@@ -1,0 +1,41 @@
+<?php
+
+?>
+<table width="300">
+	<tr>
+		<td colspan="2">
+			<?php echo $this->__('Upgrade License to')?><br/>
+			<select style="margin:5px 0 5px 0;"class="input-text" name="<?php echo $this->getExtensionName() ?>_licensetype" id="<?php echo $this->getExtensionName() ?>_licensetype">
+				<?php foreach($this->getLicenseTypeOption() as $key=>$label): ?>
+					<option value="<?php echo $key?>"><?php echo $label?></option>
+				<?php endforeach; ?>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button style="" onclick="updateLicenseViewPrice('<?php echo $this->getLicensekey() ?>','<?php echo $this->getExtensionName() ?>_licensetype')" class="scalable" type="button" >
+				<span><?php echo $this->__('View Price')?></span>
+			</button>			
+		</td>
+		<td>
+			<button style="" onclick="updateLicensePurchase('<?php echo $this->getLicensekey() ?>','<?php echo $this->getExtensionName() ?>_licensetype')" class="scalable add" type="button" >
+				<span><?php echo $this->__('Upgrade Now')?></span>
+			</button>				
+		</td>
+	</tr>
+</table><br/>
+
+<script type="text/javascript">
+	function updateLicenseViewPrice(licensekey,licensetype_selector){
+		var licensetype = $(licensetype_selector).value;
+		var url = '<?php echo $this->getViewPriceUrl()?>'+'licensekey/'+licensekey+'/licensetype/'+licensetype;
+		TINY.box.show(url, 1, 300, 100, 1);
+	}
+	
+	function updateLicensePurchase(licensekey,licensetype_selector){
+		var licensetype = $(licensetype_selector).value;
+		var url = '<?php echo $this->getUpdateUrl()?>'+'licensekey/'+licensekey+'/licensetype/'+licensetype;
+		location.href=url;
+	}	
+</script>

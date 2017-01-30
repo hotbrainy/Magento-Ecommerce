@@ -9,7 +9,9 @@ var ajaxcart = {
 
         $$('a[href*="/checkout/cart/delete/"]').each(function(e){
             $(e).observe('click', function(event){
-                setLocation($(e).readAttribute('href'));
+                // setLocation($(e).readAttribute('href'));
+                var thisParent = $(e).parentElement.parentElement.parentElement;
+ +                setLocation($(e).readAttribute('href'), thisParent);
                 Event.stop(event);
             });
         });        
@@ -385,13 +387,15 @@ var ajaxcart = {
 
 var oldSetLocation = setLocation;
 var setLocation = (function() {
-    return function(url){
+    return function(url, thisParent){
         if( url.search('checkout/cart/add') != -1 ) {
             //its simple/group/downloadable product
             ajaxcart.ajaxCartSubmit(url);
         } else if( url.search('checkout/cart/delete') != -1 ) {
             if(confirm('Are you sure you would like to remove this item from the shopping cart?')){
+                thisParent.Toggle();
                 ajaxcart.ajaxCartSubmit(url);
+
             }
         } else if( url.search('options=cart') != -1 ) {
             //its configurable/bundle product

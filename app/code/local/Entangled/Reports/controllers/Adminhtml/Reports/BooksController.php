@@ -36,10 +36,22 @@ class Entangled_Reports_Adminhtml_Reports_BooksController extends Mage_Adminhtml
     }
 
     public function exportCsvAction() {
-        $fileName = 'books_sales.csv';
-        $content = $this->getLayout()->createBlock('entangled_reports/adminhtml_books_grid')
-            ->getCsv();
-        $this->_sendUploadResponse($fileName, $content);
+        $extra = "";
+        $block = $this->getLayout()->createBlock('entangled_reports/adminhtml_books_grid');
+        if($from = $this->getRequest()->getParam("from")){
+            $block->addFromFilter($from);
+            $extra = "_from_".$from;
+        }
+
+        if($to = $this->getRequest()->getParam("to")){
+            $block->addToFilter($to);
+            $extra .= "_to_".$to;
+        }else {
+            $extra .= "_to_".date("m/d/Y");
+        }
+        $content = $block->getCsv();
+        $fileName = 'books_sales'.$extra.'.csv';
+        $this->_sendUploadResponse($filename, $content);
     }
 
     public function exportXmlAction() {

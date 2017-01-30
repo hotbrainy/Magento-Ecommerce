@@ -1,8 +1,12 @@
 <?php
 class Entangled_Reports_Block_Adminhtml_Books_Grid extends Mage_Adminhtml_Block_Widget_Grid {
 
+    protected $from;
+    protected $to;
+
     public function __construct() {
         parent::__construct();
+        $this->setTemplate('entangled/reports/books/grid.phtml');
         $this->setId('booksSalesGrid');
         $this->setDefaultSort('created_at');
         $this->setDefaultDir('ASC');
@@ -39,6 +43,13 @@ class Entangled_Reports_Block_Adminhtml_Books_Grid extends Mage_Adminhtml_Block_
             "returns"=>new Zend_Db_Expr("SUM(returns.id)"),
             "total"=>new Zend_Db_Expr("SUM(order_item.base_row_total)"),
         ));
+        if (this->from) {
+                $collection->addFieldToFilter("order_item.created_at",array("gteq"=>$this->from));
+        }
+
+        if (this->to) {
+                $collection->addFieldToFilter("order_item.created_at",array("lteg"=>$this->to));
+        }    
 
         $this->setCollection($collection);
         return parent::_prepareCollection();
@@ -105,8 +116,29 @@ class Entangled_Reports_Block_Adminhtml_Books_Grid extends Mage_Adminhtml_Block_
         return parent::_prepareColumns();
     }
 
-    public function getRowUrl($row) {
+    // public function getRowUrl($row) {
         return false;
+    }
+
+
+    public function getShortDateFormat()
+    {
+        if (!$this->_shortDateFormat) {
+            $this->_shortDateFormat = Mage::app()->getLocale()->getDateStrFormat(
+                Mage_Core_Model_Locale::FORMAT_TYPE_SHORT
+            );
+        }
+        return $this->_shortDateFormat;
+    }
+
+    public function addFromFilter($date) {
+        $parts = explode("-", $date);
+        $this->from = implode("-", array($parts[2],$parts[0],$parts[1]));
+    }
+
+    public function addToFilter($date) {
+        $parts = explode("-", $date);
+        $this->to = implode("-", array($parts[2],$parts[0],$parts[1]));
     }
 
 }

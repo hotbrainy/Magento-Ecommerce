@@ -442,6 +442,17 @@
                         opts.wishlist_product_id = splitUrl[splitUrl.indexOf("product")+1];
                         wishlistData = {wishlist:opts.wishlist, wishlist_product_id:opts.wishlist_product_id};
                         animateShowWindow('login');
+                        jQuery.ajax({
+                            url: ' <?php echo $this->getUrl('leajaxlogin/ajax/addToWishlistRequest') ?>',
+                            type: 'POST',
+                            data: {
+                                wishlist_product_id: wishlistData.wishlist_product_id,
+                                pre_wishlist_url: window.location.href
+                            },
+                            dataType: "html"
+                        }).complete(function(){
+
+                        });
                     });
                 <?php endif; ?>
 
@@ -989,16 +1000,7 @@
         };
 
         if(wishlistData.wishlist){
-            return jQuery.ajax({
-                url: '<?php echo $this->getUrl('leajaxlogin/ajax/addToWishlistRequest') ?>',
-                type: 'POST',
-                data: {
-                    wishlist_product_id: wishlistData.wishlist_product_id
-                },
-                dataType: "html"
-            }).complete(function(){
-                return openPopup();
-            });
+            openPopup();
         }else{
             return openPopup();
         }

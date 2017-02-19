@@ -440,6 +440,11 @@
                         var splitUrl = e.currentTarget.href.split('/');
                         opts.wishlist = true;
                         opts.wishlist_product_id = splitUrl[splitUrl.indexOf("product")+1];
+                        if (splitUrl.indexOf("product") >= 0) {
+                            opts.wishlist_product_id = splitUrl[splitUrl.indexOf("product")+1];
+                        }else{
+                            opts.wishlist_product_id = $(this).closest(".prod-hold").data("id");
+                        };
                         wishlistData = {wishlist:opts.wishlist, wishlist_product_id:opts.wishlist_product_id};
                         animateShowWindow('login');
                         jQuery.ajax({

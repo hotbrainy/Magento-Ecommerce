@@ -564,6 +564,9 @@ var SearchBox = {
         $j(".search-box .search-opener").on("click",function(){
             $j(".search-box input").toggleClass("show-search");
             $j("#mobile-nav .user-section").toggleClass("show-search");
+            if (jQuery(document).width() < 1280) {
+                $j(".cart-menu").toggle();
+            };
         });
     }
 };

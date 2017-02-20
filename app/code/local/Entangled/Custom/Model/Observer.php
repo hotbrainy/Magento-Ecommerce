@@ -4,10 +4,12 @@ class Entangled_Custom_Model_Observer {
 
     public function controllerActionPredispatchCustomerAccountLogin(Varien_Event_Observer $observer){
         Mage::getSingleton("core/session")->unsSocialLoginCheckoutFlag();
+        Mage::getSingleton("core/session")->unsSocialLoginUrlReferer();
     }
 
     public function controllerActionPredispatchOnestepcheckoutIndexIndex(Varien_Event_Observer $observer){
         Mage::getSingleton("core/session")->setSocialLoginCheckoutFlag(1);
+        Mage::getSingleton("core/session")->unsSocialLoginUrlReferer();
     }
 
     public function controllerActionPredispatchNewsletterSubscriberNew(Varien_Event_Observer $observer){

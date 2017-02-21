@@ -579,7 +579,14 @@ var SearchBox = {
                         }
                     });
                 }
-            
+            }else{
+                $j(".cart-menu").show();
+            }
+        });
+
+        $j(window).on("resize",function(){
+            if(jQuery(document).width() >= 1280){
+                $j(".cart-menu").show();
             }
         });
     }

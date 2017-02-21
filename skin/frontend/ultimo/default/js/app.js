@@ -565,8 +565,22 @@ var SearchBox = {
             $j(".search-box input").toggleClass("show-search");
             $j("#mobile-nav .user-section").toggleClass("show-search");
             if (jQuery(document).width() < 1280) {
-                $j(".cart-menu").toggle();
-            };
+                if (!$j(".cart-menu").is(":visible")) {
+                    $j(document).off("mouseup.SearchBox");
+                    setTimeout(function(){
+                        $j(".cart-menu").toggle();
+                    },1000);
+                }else{
+                    $j(".cart-menu").toggle();
+                    $j(document).on("mouseup.SearchBox",function (e){
+                        var container = $j(".search-box input, .search-opener");
+                        if (!container.is(e.target) && container.has(e.target).length === 0) {
+                            $j(".search-box .search-opener").trigger("click");
+                        }
+                    });
+                }
+            
+            }
         });
     }
 };

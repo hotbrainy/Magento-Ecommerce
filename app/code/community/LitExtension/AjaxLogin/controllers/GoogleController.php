@@ -19,29 +19,32 @@ class LitExtension_AjaxLogin_GoogleController extends Mage_Core_Controller_Front
             Mage::getSingleton('core/session')->addError($e->getMessage());
         }
 
-        if(empty($this->flag)){
-            if (!$url = Mage::getSingleton("core/session")->getSocialLoginUrlReferer()){
-                $url = Mage::getSingleton("core/session")->getSocialLoginCheckoutFlag() ? Mage::getUrl("onestepcheckout/index/index") : Mage::getUrl("customer/account/");
-            } else {
-                Mage::getSingleton("core/session")->setSocialLoginUrlReferer(null);
-            }
-            echo '
-            <script data-cfasync="false" type="text/javascript">
-                try{
-                    window.opener.location.href="' . $url . '";
+        if(!empty($this->referer)) {
+            if(empty($this->flag)){
+                if (!$url = Mage::getSingleton("core/session")->getSocialLoginUrlReferer()){
+                    $url = Mage::getSingleton("core/session")->getSocialLoginCheckoutFlag() ? Mage::getUrl("onestepcheckout/index/index") : Mage::getUrl("customer/account/");
                 }
-                catch(e){
-                    window.opener.location.reload(true);
-                }
-                window.close();
-            </script>
-            ';  
-        }else{
+                echo '
+                <script data-cfasync="false" type="text/javascript">
+                    try{
+                        window.opener.location.href="' . $url . '";
+                    }
+                    catch(e){
+                        window.opener.location.reload(true);
+                    }
+                    window.close();
+                </script>
+                ';
+            }else{
                 echo '
                 <script data-cfasync="false" type="text/javascript">
                     window.close();
                 </script>
                 ';
+            }
+
+        } else {
+            Mage::helper('ajaxlogin')->redirect404($this);
         }
     }
 

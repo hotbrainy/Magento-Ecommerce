@@ -260,19 +260,16 @@
 
 				  <div class="search-box">
 					  <form id="search_mini_form_mobile" action="<?php echo $this->getUrl('catalogsearch/result'); ?>" method="get">
-						  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						  <span class="glyphicon glyphicon-search search-opener" aria-hidden="true"></span>
 						  <input type="text" name="q" class="search-input" placeholder="<?php echo $this->__('SEARCH') ?>" />
 					  </form>
 				  </div>
-
-				  <div class="mobile-buttons">
-				  		<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
-                			<a href="<?=Mage::getUrl('customer/account/create');?>" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>SIGN UP</a> <a href="<?=Mage::getUrl('customer/account/login');?>" class="logout-link"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>SIGN IN</a>
-                		<?php } else { ?>
-               				 <a href="<?=Mage::getUrl('customer/account');?>" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>My Account</a> <a href="<?=Mage::getUrl('customer/account/logout');?>" class="logout-link"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>LOGOUT</a>
-                		<?php } ?>
-				  </div>
-              	    
+              
+                <?php if(!Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+                <a href="<?=Mage::getUrl('customer/account/create');?>" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>SIGN UP</a> <a href="<?=Mage::getUrl('customer/account/login');?>" class="logout-link"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>SIGN IN</a>
+                <?php } else { ?>
+                <a href="<?=Mage::getUrl('customer/account');?>" class="account-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>My Account</a> <a href="<?=Mage::getUrl('customer/account/logout');?>" class="logout-link"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>LOGOUT</a>
+                <?php } ?>
               </div>
 
               <ul>
